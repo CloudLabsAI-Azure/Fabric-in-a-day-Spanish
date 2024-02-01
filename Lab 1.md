@@ -1,5 +1,4 @@
-
-
+![](Media/1.1.png)
 # Contenido
 - Estructura del documento
 - Escenario/planteamiento del problema
