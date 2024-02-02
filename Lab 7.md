@@ -417,7 +417,7 @@ Ahora eliminemos la referencia a ADLS Base Folder (2) y usemos ADLS Base Folder.
 
 22. En el menú superior, seleccione **Actualizar**. Observe ahora que en el gráfico de líneas hay datos para mayo de 2023. Además, observe que el dólar de ventas ha aumentado.
 
-    ![](Media/7-30.png)
+    ![](Media/7-36.png)
 
 A medida que cada flujo de datos que hemos creado en laboratorios anteriores se actualiza según lo programado, los datos se incorporan al lakehouse. El modelo de datos en el lakehouse y los informes se actualizan. No tenemos que actualizar el modelo de datos ni informar cuando se actualice cada uno de los flujos de datos. Esta es la ventaja de Direct Lake. 
 
@@ -448,7 +448,11 @@ Una vez que esté todo listo para limpiar el entorno del laboratorio, siga los p
 
 3. Seleccione **<your workspace name>** en el panel izquierdo para navegar a la página de inicio.
 
+   ![](Media/7-37.png)
+
 4. En el menú superior, seleccione **puntos suspensivos (…)** al lado de Administrar acceso y seleccione **Configuración del área de trabajo**.
+
+   ![](Media/7-38.png)
 
 5. Se abre el cuadro de diálogo de Configuración del área de trabajo. Seleccione **Otros** en el menú izquierdo. 
 
@@ -458,9 +462,13 @@ Una vez que esté todo listo para limpiar el entorno del laboratorio, siga los p
 
 Esto eliminará el área de trabajo y todos los elementos que contenía. 
 
+   ![](Media/7-39.png)
+
 ## Referencias 
 
 Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+
+   ![](Media/7-40.png)
 
 Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
 
