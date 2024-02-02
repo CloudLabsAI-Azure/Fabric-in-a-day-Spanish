@@ -41,9 +41,15 @@ Comencemos con la opción de creación automática de informes. Y, más adelante
 
 3. Se abre el cuadro de diálogo de experiencia de Fabric. Seleccione **Power BI**. Se le llevará al **Inicio de Power BI**.
 
+   ![](Media/7.1.png)
+
 4. Seleccione **Nuevo informe** en el menú superior.
 
+    ![](Media/7-2.png)
+
 5. Se le dirigirá a la **pantalla de creación de su primer informe**. Habrá opciones para introducir datos manualmente y crear un informe o elegir un modelo semántico publicado. Hemos creado un modelo semántico en los laboratorios anteriores. Usemos ese. Seleccione la opción **Selección de un modelo semántico publicado**.
+
+    ![](Media/7-3.png)
 
 6. Se abre la página Elija un conjunto de datos para usar en su informe. Observe que tenemos cuatro opciones. **Seleccione lh_FAIAD**: 
 
@@ -57,7 +63,11 @@ Comencemos con la opción de creación automática de informes. Y, más adelante
 
 7. Haga clic en la flecha **junto al botón Crear informe de forma automática**. Observe que hay dos opciones: Crear informe de forma automática y Crear un informe en blanco. Probemos la creación automática: seleccione **Crear informe de forma automática**.
 
+    ![](Media/7-4.png)
+
 8. Power BI comenzará a crear de forma automática el informe. Observe que hay una opción para seleccionar previamente los datos si así lo queremos. Una vez que el informe esté listo, aparecerá un cuadro de diálogo en la parte superior derecha de la pantalla. Seleccione **Ver informe ahora**.
+
+    ![](Media/7-5.png)
 
    >**Punto de control**: tendrá un informe similar a la captura de pantalla siguiente. Hay algunos KPI y algunos objetos visuales de tendencias. Este es un buen comienzo si está analizando un nuevo modelo y necesita un impulso. 
 
@@ -75,6 +85,8 @@ Comencemos con la opción de creación automática de informes. Y, más adelante
 
 13. Seleccione **Guardar**.
 
+    ![](Media/7-6.png)
+
 ### Tarea 2: Ocultar tablas predeterminadas (métricas) 
 
 Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer desde un lienzo en blanco. Antes de comenzar a crear un informe, eliminemos las tablas predeterminadas (captura de pantalla anterior) de la vista del informe. Esto se hace en la sección de modelado del lakehouse. 
@@ -83,15 +95,21 @@ Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer des
 
 2. Seleccione **Data Engineering**. Se le dirigirá a la página principal de Data Engineering.
 
+    ![](Media/7-7.png)
+
 3. Desplácese hacia abajo hasta la sección **Acceso rápido**. 
 
 4. Seleccione **lh_FAIAD -> Punto de conexión de análisis SQL**. Estaremos en la vista Datos del lakehouse. 
 
 5. Desde la **parte inferior del panel izquierdo**, seleccione **Modelo** para navegar a la vista Modelo. 
 
-Observe que en el lienzo de diseño encontrará las tablas predeterminadas. (Es posible que tenga que desplazarse hacia la derecha o hacia abajo para verlos).
+    Observe que en el lienzo de diseño encontrará las tablas predeterminadas. (Es posible que tenga que desplazarse hacia la derecha o hacia abajo para verlos).
+
+    ![](Media/7-8.png)
 
 6. Haga clic derecho en la tabla **long_running_queries** y seleccione **Ocultar en la vista de Informes**.
+
+    ![](Media/7-9.png)
 
 7. De manera similar, seleccione la opción **Ocultar en la vista de Informes** para las siguientes tablas: 
 
@@ -104,9 +122,13 @@ Observe que en el lienzo de diseño encontrará las tablas predeterminadas. (Es 
 
 1. Podemos comenzar a crear un nuevo informe desde la vista del modelo. En el menú superior, seleccione **Inicio -> Nuevo informe**. Se le dirigirá al lienzo del informe de Power BI en una nueva ventana o pestaña en su explorador.
 
+    ![](Media/7-10.png)
+
 2. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
 
-Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo del lienzo. Crearemos el encabezado del informe, agregaremos un par de KPI y crearemos el gráfico de líneas de Ventas a lo largo del tiempo. Por razones de tiempo y sabiendo que tiene experiencia en la creación de objetos visuales en Power BI Desktop, no crearemos todos los objetos visuales
+    Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo del lienzo. Crearemos el encabezado del informe, agregaremos un par de KPI y crearemos el gráfico de líneas de Ventas a lo largo del tiempo. Por razones de tiempo y sabiendo que tiene experiencia en la creación de objetos visuales en Power BI Desktop, no crearemos todos los objetos visuales
+
+    ![](Media/7-11.png)
 
 3. Vuelva al **lienzo de Power BI** en su explorador. 
 
@@ -123,6 +145,8 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 9. Establezca el menú desplegable **Ajuste de imagen** en **Ajustar**. 
 
 10. Establezca la Transparencia en **0 %**.
+
+    ![](Media/7-12.png)
 
 ### Tarea 4: Agregar un encabezado al informe
 
@@ -142,6 +166,8 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 
 8. Cambie el tamaño del cuadro de texto **para que quepa en el margen superior**.
 
+    ![](Media/7-13.png)
+
 ### Tarea 5: Agregar KPI al informe 
 
 1. Agreguemos KPI de ventas. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del cuadro de texto. 
@@ -151,6 +177,8 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 3. En la sección Datos, expanda la **tabla Sales**. 
 
 4. Seleccione **la medida Sales**.
+
+    ![](Media/7-14.png)
 
 5. Con **el objeto visual de tarjeta de varias filas seleccionado**, seleccione el **icono Dar formato a objeto visual** en la sección Visualizaciones. 
 
@@ -162,9 +190,13 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 
 9. Establezca el valor Hex en **#004753**.
 
+    ![](Media/7-15.png)
+
 10. Expanda la sección **Tarjetas**. 
 
 11. Utilice el control deslizante **Barra de énfasis** para configurarlo en **Desactivado**.
+
+    ![](Media/7-16.png)
 
 12. Seleccione **General** en el panel de Visualizaciones. 
 
@@ -173,6 +205,8 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 14. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**. 
 
 15. Cambie el tamaño del **objeto visual** y muévalo al **cuadro izquierdo como se muestra en la captura de pantalla**.
+
+    ![](Media/7-17.png)
 
 16. Vamos a agregar otro KPI. Seleccione la **Tarjeta de varias filas de Sales** que acabamos de crear. **Copie** el objeto visual mediante la selección de **Ctrl+C** desde tu teclado. 
 
@@ -183,6 +217,8 @@ Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo d
 19. Desde la sección **Datos**, expanda la tabla **Sales** y seleccione la medida **Units**. 
 
 20. Cambie el tamaño del **objeto visual** y **colóquelo en el cuadro debajo del objeto visual Sales**.
+
+    ![](Media/7-18.png)
 
 ### Tarea 6: Agregar un gráfico de líneas al informe 
 
@@ -196,6 +232,8 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
 4. Seleccione el campo **Year**. Tenga en cuenta que Year se suma de forma predeterminada y se agrega al eje Y. Rectifiquemos esto.
 
+    ![](Media/7-19.png)
+
 ### Tarea 7: Configurar la columna Year en la tabla Date 
 
 1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
@@ -208,6 +246,8 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
 5. En el menú desplegable **Resumir por**, seleccione **Ninguno**.
 
+    ![](Media/7-20.png)
+
 6. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
 
 7. En el menú superior, seleccione **Actualizar**. Observe ahora que Year no es un campo de suma.  
@@ -217,6 +257,8 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 9. Seleccione el campo **Year** y se agregará al **eje X**. 
 
 10. Expanda la tabla **Sales** y seleccione la **medida Sales**.
+
+    ![](Media/7-21.png)
 
 ### Tarea 8: Configurar la columna Short_Month_Name en la tabla Date 
 
@@ -230,7 +272,11 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
 5. Seleccione **Ordenar eje -> Orden ascendente**. 
 
+    ![](Media/7-22.png)
+
    >**Nota:** Los meses están ordenados alfabéticamente. Vamos a arreglarlo. 
+
+    ![](Media/7-23.png)
 
 6. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
 
@@ -242,9 +288,13 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
 10. En el menú desplegable **Ordenar por columna** seleccione **Month**.
 
+    ![](Media/7-24.png)
+
 11. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
 
 12. En el menú superior, seleccione **Actualizar**. Observe que ahora los meses están ordenados correctamente.
+
+    ![](Media/7-25.png)
 
 ### Tarea 9: Aplicar formato al gráfico de líneas 
 
@@ -253,6 +303,8 @@ Observe lo fácil que es actualizar el modelo semántico mientras se crean los i
 1. Con el **objeto visual Gráfico de líneas seleccionado**, en la **sección Datos**, expanda la tabla **Reseller**. 
 
 2. Arrastre **Reseller -> Reseller Company** a la sección **Leyenda**.
+
+    ![](Media/7-26.png)
 
 3. Con el **objeto visual Gráfico de líneas seleccionado**, en la sección **Visualizaciones**, seleccione **icono Formato visual -> General**. 
 
@@ -263,6 +315,8 @@ Observe lo fácil que es actualizar el modelo semántico mientras se crean los i
 6. Expanda la sección **Efectos**. 
 
 7. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**.
+
+    ![](Media/7-27.png)
 
 8. En la sección **Visualizaciones**, seleccione el **icono Formato de objeto visual -> Objeto visual**. 
 
@@ -282,6 +336,8 @@ Observe lo fácil que es actualizar el modelo semántico mientras se crean los i
 
 16. Desplácese hacia la derecha en el objeto visual y **observe que tenemos datos hasta abril de 2023**.
 
+    ![](Media/7-28.png)
+
 17. Guardemos el informe: desde el menú, seleccione **Archivo -> Guardar**. 
 
 18. Se abre el cuadro de diálogo Guardar el informe. Nombre el informe como **rpt_Sales_Report**  
@@ -292,8 +348,9 @@ Observe lo fácil que es actualizar el modelo semántico mientras se crean los i
 
 20. Seleccione **Guardar**.
 
-Como se mencionó anteriormente, no crearemos todos los objetos visuales en esta práctica de laboratorio. Siéntase libre de crear más objetos visuales si lo desea.  
+    ![](Media/7-29.png)
 
+Como se mencionó anteriormente, no crearemos todos los objetos visuales en esta práctica de laboratorio. Siéntase libre de crear más objetos visuales si lo desea.  
 ### Tarea 10: Agregar nuevos datos para simular el modo Direct Lake 
 
 Normalmente, en el modo Import, una vez que se actualizan los datos en el origen, necesitamos actualizar el modelo de Power BI y después se actualizan los datos en el informe. Con el modo de Direct Query, una vez que los datos se actualizan en el origen, están disponibles en el informe de Power BI. Sin embargo, el modo de Direct Query suele ser lento. Para resolver este problema, Microsoft Fabric presenta el modo Direct Lake. Direct Lake es una ruta rápida para cargar los datos del lago directamente en el motor de Power BI listos para su análisis. Exploremos más. 
@@ -306,6 +363,8 @@ En un escenario real, los datos se actualizan en el origen. Como estamos en un e
 
 3. Seleccione **df_Sales_ADFS** para que podamos editar el flujo de datos al agregar el nuevo archivo Parquet.
 
+    ![](Media/7-30.png)
+
 4. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
 
 5. En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. 
@@ -313,6 +372,8 @@ En un escenario real, los datos se actualizan en el origen. Como estamos en un e
 6. En el panel izquierdo, en la carpeta **DirectLake**, seleccione la consulta **MayInvoice**. 
 
 7. **Haga clic derecho** y seleccione **Copiar**.
+
+    ![](Media/7-31.png)
 
 8. Vuelva a la **pantalla del flujo de datos** en el explorador. 
 
@@ -328,9 +389,13 @@ Ahora eliminemos la referencia a ADLS Base Folder (2) y usemos ADLS Base Folder.
 
 13. Seleccione la **marca de verificación** al lado de la barra de fórmulas o pulse Enter.
 
+    ![](Media/7-32.png)
+
 14. En el panel izquierdo, en la sección Consultas, **haga clic con el botón derecho en la consulta ADLS Base Folder (2)** y seleccione **Eliminar**. 
 
 15. Aparece el cuadro de diálogo Eliminar consulta. Seleccione **Eliminar** para confirmar.
+
+    ![](Media/7-33.png)
 
 16. Ahora, agreguemos los datos de la factura de mayo a la tabla Invoice. Seleccione la consulta **Invoice** desde la sección Consultas. 
 
@@ -340,13 +405,19 @@ Ahora eliminemos la referencia a ADLS Base Folder (2) y usemos ADLS Base Folder.
 
 19. Seleccione **Aceptar**.
 
+    ![](Media/7-34.png)
+
 20. Seleccione **Publicar** en la esquina inferior derecha para guardar y publicar las actualizaciones.
+
+    ![](Media/7-35.png)
 
     >**Nota**: Una vez publicado, el flujo de datos se actualizará. Esto puede tardar varios minutos. 
 
 21. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
 
 22. En el menú superior, seleccione **Actualizar**. Observe ahora que en el gráfico de líneas hay datos para mayo de 2023. Además, observe que el dólar de ventas ha aumentado.
+
+    ![](Media/7-30.png)
 
 A medida que cada flujo de datos que hemos creado en laboratorios anteriores se actualiza según lo programado, los datos se incorporan al lakehouse. El modelo de datos en el lakehouse y los informes se actualizan. No tenemos que actualizar el modelo de datos ni informar cuando se actualice cada uno de los flujos de datos. Esta es la ventaja de Direct Lake. 
 
