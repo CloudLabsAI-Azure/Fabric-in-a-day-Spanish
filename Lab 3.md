@@ -16,6 +16,7 @@ Flujo de datos Gen2
 - Tarea 10: Cambio del nombre del flujo de datos
 - Tarea 11: Crear consultas restantes en el flujo de datos
 - Tarea 12: Configurar el destino de datos para las consultas restantes
+
 Referencias
 
 ## Presentación 
@@ -335,19 +336,31 @@ También hay un punto de conexión de SQL que se puede utilizar para consultar e
 ![](Media/3.44.png)
 
 Para hacer el proceso más fácil, veamos si podemos copiar las consultas desde Power BI Desktop.
+
 2. 	Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.
+
 3. 	En la cinta de opciones, seleccione **Inicio -> Transformar**. Se abre la ventana de Power Query.
 4. 	Desde el panel **Consultas** de la izquierda, pulse **Ctrl+Seleccionar** mientras sigue las consultas de **ADLSData**.
-a.	Product
-b.	Product Groups
-c.	Product Item Group
-d.	Product Details
-e.	Invoice
-f.	InvoiceLineItems
-g.	Sales
-h.	BuyingGroup
-i.	Reseller
-j.	Date
+
+    a. Product
+
+    b. Product Groups 
+    
+    c. Product Item Group 
+    
+    d. Product Details 
+    
+    e. Invoice 
+    
+    f. InvoiceLineItems 
+    
+    g. Sales 
+    
+    h. BuyingGroup 
+    
+    i. Reseller
+   	 
+    j. Date 
 5. 	**Haga clic derecho** y seleccione **Copiar**.
 
  ![](Media/3.45.png)
@@ -358,11 +371,17 @@ j.	Date
 ![](Media/3.46.png)
  
 8. 	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que haga **clic derecho** en las siguientes consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
-a.	Product
-b.	Product Details
-c.	Reseller
-d.	Date
-e.	Sales
+
+    a. Product 
+    
+    b. Product Details 
+    
+    c. Reseller 
+    
+    d. Date 
+    
+    e. Sales 
+
 
 **Nota:** Si la carga está deshabilitada en Power BI Desktop, no tenemos que deshabilitar el almacenamiento provisional en el flujo de datos. Por lo tanto, no tenemos que deshabilitar el almacenamiento provisional para Product Item Group, Product Groups, etc.
 
@@ -399,10 +418,14 @@ Asegúrese de que **todas las consultas se procesen**. Una vez hecho esto, incor
  
 14. Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el destino de los datos está configurado en el **lakehouse**.
 15. De manera similar, configure el **Destino de datos** para las siguientes consultas:
-a.	Product Details
-b.	Reseller
-c.	Date
-d.	Sales
+
+    a. Product Details 
+    
+    b. Reseller 
+    
+    c. Date 
+    
+    d. Sales 
 16. Tenemos un flujo de datos que ingiere datos de ADLS en el lakehouse. Sigamos adelante y publiquemos este flujo de datos. Seleccione **Publicar** en la esquina inferior derecha.
 
 ![](Media/3.52.png)
