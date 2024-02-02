@@ -1,4 +1,4 @@
-![](Media/6.01.png)
+![](Media/6.001.png)
 
 # ​​Contenido 
 
