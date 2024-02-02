@@ -1,4 +1,6 @@
 
+![](Media/5.1.png)
+
 # Contenido
 
 - Presentación
@@ -43,19 +45,29 @@ Comencemos configurando una actualización programada del flujo de datos de vent
 
 1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8.
 2. Todos los artefactos que ha creado se enumeran aquí. En la parte derecha de la pantalla, en el **cuadro de diálogo de Búsqueda**, introduzca **df**. Esto filtrará los artefactos a flujos de datos.
+
+    ![](Media/5.2.png)
  
 3. Pase el cursor sobre la fila **df_Sales_ADLS**. Observe que los iconos **Actualizar** y **Actualización programada** que conoce están disponibles. Seleccione los **puntos suspensivos (…)**.
-4. 	Observe que hay una opción para eliminar, editar y exportar el flujo de datos. Podemos usar las propiedades para actualizar el nombre y la descripción del flujo de datos. Veremos cómo actualizar el historial en breve. Seleccione **Configuración**.
+4. Observe que hay una opción para eliminar, editar y exportar el flujo de datos. Podemos usar las propiedades para actualizar el nombre y la descripción del flujo de datos. Veremos cómo actualizar el historial en breve. Seleccione **Configuración**.
+
+    ![](Media/5.3.png)
  
 **Nota:** Se abre la página de configuración. En el panel izquierdo, encontrará todos los flujos de datos enumerados. 
 
 5. En el panel central, seleccione el vínculo **Actualizar historial**.
+
+    ![](Media/5.4.png)
  
 6. Se abre el cuadro de diálogo Actualizar historial. Tendrá al menos una actualización en la lista. Esta es la actualización que se produjo cuando se publicó el flujo de datos. Seleccione el vínculo **Hora de inicio**.
 
 **Nota:** La hora de inicio será diferente para usted.
+
+![](Media/5.5.png)
  
 Se abre la pantalla de detalles. Esto proporcionará detalles de la actualización e indica la hora de inicio, finalización y duración. También enumera las tablas o actividades que se actualizaron. En caso de que haya un error, puede hacer clic en el nombre de la tabla o actividad para investigar más a fondo.
+
+![](Media/5.6.png)
  
 7. Puede cerrar la pantalla si hace clic en la **X** de la esquina superior derecha. Se le dirigirá de vuelta a la **página de configuración del flujo de datos**.
 8. En Conexión de puerta de enlace, expanda **Credenciales de origen de datos**. Se muestra una lista de conexiones utilizadas en el flujo de datos. En este caso, lakehouse y ADLS.
@@ -63,6 +75,8 @@ Se abre la pantalla de detalles. Esto proporcionará detalles de la actualizaci�
     a. **Lakehouse:** esta es la conexión para ingerir datos del flujo de datos.
     
     b. **ADLS:** esta es la conexión a los datos de origen de ADLS.
+
+    ![](Media/5.7.png)
  
 9. Expanda **Actualizar**.
 10. Establezca el control deslizante de la **programación Configurar una programación de actualización** en **Activar**.
@@ -76,17 +90,23 @@ Se abre la pantalla de detalles. Esto proporcionará detalles de la actualizaci�
 15. Seleccione **Aplicar** para guardar la configuración.
 
 **Nota:** Al hacer clic en el vínculo Agregar otro horario, puede agregar múltiples horas de actualización. 
+
 También puede enviar notificaciones de error al propietario del flujo de datos y otros contactos.
- 
+
+![](Media/5.8.png) 
 
 ## Tarea 2: Configurar la actualización programada para el flujo de datos de proveedores y clientes
 1. En el panel izquierdo, seleccione **df_Supplier_Snowflake**.
 2. Configure el programa de actualización para actualizar **todos los días a medianoche (12:00 a. m.)**.
 3. Seleccione **Aplicar** para guardar la configuración.
+
+    ![](Media/5.9.png)
  
 4. En el panel izquierdo, seleccione **df_Customer_Dataverse**.
 5. Configure la programación de actualización a cuatro veces al día: **a medianoche (12:00 a. m.), a las 6:00 a. m., a mediodía (12:00 p. m.) y a las 6:00 p. m.**.
 6. Seleccione **Aplicar** para guardar la configuración.
+
+    ![](Media/5.10.png)
  
 Como se mencionó anteriormente, necesitamos crear una lógica personalizada para gestionar el escenario donde el archivo de Empleado en SharePoint no se entrega a tiempo. Usemos la canalización de datos para resolver esto.
 
@@ -95,22 +115,33 @@ Como se mencionó anteriormente, necesitamos crear una lógica personalizada par
 
 1. En la **parte inferior izquierda** de la ventana de su explorador, seleccione **Power BI**.
 2. Se abrirá el cuadro de diálogo de Microsoft Fabric. Seleccione **Data Factory**. Navegará a la página principal de Data Factory.
+
+    ![](Media/5.11.png)
  
 3. Desde el panel superior, seleccione **Canalización de datos** para crear una nueva canalización.
 4. Se abre un nuevo cuadro de diálogo de canalización. Ponga el nombre **pl_Refresh_People_SharePoint** a la canalización.
 5. Seleccione **Crear**.
+
+    ![](Media/5.12.png)
  
 Se le llevará a la **página de Canalización de datos**. Si ha trabajado con Azure Data Factory, esta pantalla le resultará familiar. Hagamos una descripción general rápida del diseño.
 
 Está en la pantalla **Inicio**. Si observa el menú superior, encontrará opciones para agregar las actividades más utilizadas: validar y ejecutar una canalización y ver el historial de ejecución. Además, en el panel central, encontrará opciones rápidas para comenzar a crear la canalización.
+
+![](Media/5.13.png)
  
 6. En el menú superior, seleccione **Actividades**. Ahora, en el menú, encontrará una lista de actividades de uso común. 
 7.	Seleccione los **puntos suspensivos (…)** a la derecha del menú para ver todas las demás actividades disponibles. Usaremos algunas de estas actividades en el laboratorio.
+
+    ![](Media/5.14.png)
  
 8. En el menú superior, haga clic en **Ejecutar**. Encontrará opciones para ejecutar y programar la ejecución de la canalización. También encontrará la opción de ver el historial de ejecución utilizando Ver historial de ejecución.
+
 9. En el menú superior, seleccione **Ver**. Aquí encontrará opciones para ver el código en formato JSON. También encontrará opciones para formatear las actividades.
 
-**Nota:** Si tiene un fondo JSON al final de la práctica de laboratorio, no dude en seleccionar Ver código JSON. Aquí notará que toda la orquestación que está realizando mediante la vista de diseño también se puede escribir en JSON. 
+**Nota:** Si tiene un fondo JSON al final de la práctica de laboratorio, no dude en seleccionar Ver código JSON. Aquí notará que toda la orquestación que está realizando mediante la vista de diseño también se puede escribir en JSON.
+
+![](Media/5.15.png)
  
 
 ## Tarea 4: Crear una canalización de datos simple
@@ -124,7 +155,9 @@ Comencemos a crear la canalización. Necesitamos una actividad para actualizar e
 **Nota:** La opción de notificación está actualmente atenuada. Esta característica se habilitará en breve. Podrá configurar notificaciones sobre el éxito y el fracaso de esta actividad. 
 
 En nuestro escenario, los datos de los empleados no se actualizan según lo programado. A veces hay un retraso. Veamos si podemos solucionar esto.
- 
+
+![](Media/5.16.png)
+
 5. En el **panel inferior**, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
 6. En el campo **Nombre**, introduzca **dfactivity_People_SharePoint**.
 7. En el campo Descripción, introduzca **Actividad de flujo de datos para actualizar el flujo de datos df_People_Sharepoint**.
@@ -137,6 +170,8 @@ En nuestro escenario, los datos de los empleados no se actualizan según lo prog
 11. Expanda la sección **Avanzadas**.
 12. Establezca **Intervalo de reintento (s)** en **600**. 
 13. En el menú, seleccione el icono **Inicio -> Guardar** para guardar la canalización.
+
+    ![](Media/5.17.png)
  
 Observe la ventaja de utilizar la canalización de datos en comparación con configurar el flujo de datos en una actualización programada (como hicimos con los flujos de datos anteriores):
 
@@ -153,6 +188,8 @@ Agreguemos un poco más de complejidad a nuestro escenario. Hemos observado que 
 3. Se abre un nuevo cuadro de diálogo de canalización. **Nombre** la canalización como **pl_Refresh_People_SharePoint_Option**.
 
 4. Seleccione **Crear**.
+
+    ![](Media/5.18.png)
  
 
 ## Tarea 6: Crear actividad Hasta
@@ -163,6 +200,8 @@ Agreguemos un poco más de complejidad a nuestro escenario. Hemos observado que 
 **Hasta:** es una actividad que se utiliza para iterar hasta que se cumpla una condición.
 
 En nuestro escenario, vamos a iterar y actualizar el flujo de datos hasta que tenga éxito o lo hayamos intentado tres veces.
+
+![](Media/5.19.png)
  
 
 ## Tarea 7: Crear variables
@@ -174,6 +213,8 @@ En nuestro escenario, vamos a iterar y actualizar el flujo de datos hasta que te
 6. Introduzca un **Valor predeterminado** de **0**.
 
 **Nota:** Estamos escribiendo "var" en los nombres de las variables, por lo que es fácil encontrarlas y es un procedimiento recomendado.
+
+![](Media/5.20.png)
  
 7. Seleccione **Nuevo** para agregar una nueva variable.
 8. Observe que aparece una fila. Introduzca **varTempCounter** en el **cuadro de texto Nombre**. Vamos a utilizar esta variable de incremento variable varCounter.
@@ -194,9 +235,13 @@ En nuestro escenario, vamos a iterar y actualizar el flujo de datos hasta que te
 3. Introduzca **Iterator** como **Nombre**.
 4. Introduzca **Descripción** como **Iterator to refresh dataflow. It will retry up to 3 times**.
  
+    ![](Media/5.21.png)
+
 5. En el panel inferior, seleccione **Configuración**.
 6. Seleccione el **cuadro de diálogo Expresión**. Necesitamos introducir una expresión en este cuadro de texto que se evaluará como true o false. La actividad Hasta itera mientras esta expresión se evalúa como false. Una vez que la expresión se evalúa como true, la actividad Hasta detiene la iteración.
 7. Seleccione el vínculo **Agregar contenido dinámico** que aparece debajo del cuadro de texto.
+
+    ![](Media/5.22.png)
  
 Necesitamos escribir una expresión que se ejecute hasta que el valor de **varCounter sea 3** o el valor de **varIsSuccess sea Sí**. (varCounter y varIsSuccess son las variables que acabamos de crear).
 
@@ -209,46 +254,66 @@ Necesitamos escribir una expresión que se ejecute hasta que el valor de **varCo
     c. **Funciones:** puede llamar funciones dentro de expresiones. Las funciones se clasifican en funciones de colección, conversión, fecha, lógica, matemáticas y cadena. Por ejemplo, concat es una función de cadena, add es una función matemática, etc.
 
     d. **Variables:** las variables de canalización son valores que se pueden establecer y modificar durante la ejecución de una canalización. A diferencia de los parámetros de canalización, que se definen en el nivel de canalización y no se pueden cambiar durante la ejecución de la misma, las variables de canalización se pueden configurar y modificar dentro de una canalización mediante una actividad Establecer variable. En breve utilizaremos la actividad Establecer variable.
+
+    ![](Media/5.23.png)    
  
 9. Haga clic en **Funciones** el menú inferior.
 10. En la sección **Funciones lógicas**, seleccione la **función or**. Observe que **@or()** se agrega al cuadro de texto de expresión dinámica. La función or toma dos parámetros; estamos trabajando en el primero.
+
+    ![](Media/5.24.png)
  
 11. Coloque el cursor **entre los paréntesis** de la función **@or**.
 12. En la sección Funciones lógicas, seleccione la función **equals**. Observe que se agrega al cuadro de texto de expresión dinámica.
 
 **Nota:** Su función debería verse así **@or(equals())**. La función equals también toma tres parámetros. Comprobaremos si la variable varCounter es igual a 3.
+
+![](Media/5.25.png)
  
 13. Ahora coloque el cursor **entre los paréntesis** de la función **@equals** para agregar los parámetros.
 14. En el menú inferior, seleccione **Variables**.
 15. Seleccione la variable **varCounter** que será el primer parámetro.
 16. Introduzca **3** como segundo parámetro de la función equals. Como en la captura de pantalla siguiente, su expresión será **@or(equals(variables('varCounter'),3))** 
+
+    ![](Media/5.26.png)
  
 17. Necesitamos agregar el segundo parámetro a la función or. **Agregue una coma** entre los dos paréntesis finales. Esta vez intentaremos escribir el nombre de la función. Comience a escribir **equ** y obtendrá un menú desplegable de funciones disponibles (esto se llama IntelliSense). Seleccione la función **equals**.
+
+    ![](Media/5.27.png)
  
 18. El primer parámetro de la función equals es una variable. Coloque el cursor **antes de la coma**.
 19. Comience a escribir **variables(**.
 20. Con la ayuda de IntelliSense, seleccione **variables('varIsSuccess')**.
 21. Después de la coma, introduzcamos el segundo parámetro. Comience a escribir **variables(**.
 22. Con la ayuda de IntelliSense, seleccione **variables('varSuccess')**. Aquí estamos comparando el valor de varIsSuccess con el valor de varSuccess. (varSuccess está predeterminado en Sí).
+
+    ![](Media/5.28.png)
  
 23. Su expresión debería ser:
 **@or(equals(variables('varCounter'),3),equals(variables('varIsSuccess'), variables('varSuccess')))**
 
 24. Seleccione **Aceptar**.
+
+    ![](Media/5.29.png)
  
 
 ## Tarea 9: Configurar la actividad del flujo de datos
 1. Volverá a la pantalla de diseño. Con la **actividad Hasta** seleccionada, en el **panel inferior**, seleccione **Actividades**. Ahora agregaremos las actividades que deben ejecutarse.
 2. Seleccione el icono **Editar** en la primera fila. Volverá a la pantalla de diseño de iterador en blanco.
+
+    ![](Media/5.30.png)
  
 3. En el menú superior, seleccione **Actividades -> Flujo de datos**. La actividad del flujo de datos se agrega al panel de diseño.
 4. Con **la actividad del flujo de datos seleccionada**, en el panel inferior, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
 5. En el campo **Nombre**, introduzca **dfactivity_People_SharePoint**.
 6. En el campo **Descripción**, introduzca **Dataflow activity to refresh df_People_Sharepoint dataflow**.
+
+    ![](Media/5.31.png)
  
 7. Seleccione **Configuración** en el panel inferior.
 8. Asegúrese de que **Área de trabajo** está configurada en su área de trabajo, **FAIAD_<username>**.
 9. En el **menú desplegable Flujo de datos**, seleccione **df_People_SharePoint**. Cuando se ejecute esta actividad del flujo de datos, se actualizará **df_People_SharePoint**.
+
+    ![](Media/5.32.png)
  
 
 ## Tarea 10: Configure la primera actividad de Establecer variable
@@ -271,15 +336,21 @@ Hemos configurado la actividad del flujo de datos como lo hicimos anteriormente 
     d. El icono de la **flecha recta azul** se utiliza al finalizar la actividad.
 
 5. Haga clic en la **marca de verificación verde** desde la actividad del flujo de datos dfactivity_People_SharePoint y arrastre para conectarse a la nueva **actividad de Establecer variable** de **set_varIsSuccess**. Entonces, si la actualización del flujo de datos se lleva a cabo con éxito, queremos ejecutar la actividad Establecer variable.
+
+    ![](Media/5.33.png)
  
 6. Con **la actividad Establecer variable** seleccionada, haga clic en Configuración en el menú inferior.
 7. En el panel inferior, asegúrese de que **Tipo de variable sea Variable de canalización**.
 8. En el campo Nombre, seleccione varIsSuccess. Esta es la variable cuyo valor vamos a establecer.
 9. En el campo **Valor**, seleccione el **cuadro de diálogo**. Seleccione el vínculo **Agregar contenido dinámico**.
+
+    ![](Media/5.34.png)
  
 10. Se abre el cuadro de diálogo Generador de expresiones de canalización. Seleccione el área de texto **Agregue contenido dinámico a continuación con cualquier combinación de expresiones, funciones y variables del sistema**.
 11. En el menú inferior, seleccione **Variables -> varSuccess**. Observe que se introduce @variables('varSuccess') en el área de texto Agregar contenido dinámico debajo. Recuerde que cuando creamos variables, habíamos preestablecido el valor de la variable varSuccess en Sí. Entonces, asignamos el valor Sí a la variable varIsSuccess.
 12. Seleccione **Aceptar**. Volverá al **panel de diseño del iterador**.
+
+    ![](Media/5.35.png)
  
 Ahora necesitamos configurar el contador si falla la actividad del flujo de datos. En la canalización de datos, no podemos hacer referencia a una variable. Lo que significa que no podemos incrementar la variable de contador varCounter si agregamos uno a su valor (varCounter = varCounter + 1). Entonces, utilizamos la variable varTempCounter.
 
@@ -290,6 +361,8 @@ Ahora necesitamos configurar el contador si falla la actividad del flujo de dato
 3. En el campo **Nombre**, introduzca **set_varTempCounter**.
 4.	En el campo **Descripción**, introduzca **Increment variable varTempCounter**.
 5. Haga clic en la **marca roja con forma de x** desde la actividad del flujo de datos hasta la nueva actividad Establecer variable. Entonces, si la actualización del flujo de datos falla, queremos ejecutar esta actividad Establecer variable.
+
+    ![](Media/5.36.png)
  
 6. Con **la actividad Establecer variable** seleccionada, seleccione Configuración en el menú inferior.
 7. En el panel inferior, asegúrese de que **Tipo de variable** sea **Variable de canalización**.
@@ -300,6 +373,8 @@ Ahora necesitamos configurar el contador si falla la actividad del flujo de dato
 **Nota:** Siéntase libre de escribir esta expresión, use el menú para seleccionar las funciones o copiarla y pegarla. 
 
 **Nota:** Esta función establece el valor de la variable varTempCounter al valor de la variable varCounter más uno (varTempCounter = varCounter + 1).
+
+![](Media/5.37.png)
  
 Ahora necesitamos establecer el valor de la variable varCounter en el valor de varTempCounter. 
 
@@ -309,7 +384,9 @@ Ahora necesitamos establecer el valor de la variable varCounter en el valor de v
 2. Con **la actividad Establecer variable** seleccionada, en el panel inferior, seleccione General. Pongamos un nombre y una descripción a la actividad.
 3. En el campo **Nombre**, introduzca **set_varCounter**.
 4. En el campo **Descripción**, introduzca **Increment variable varCounter**.
-5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varTempCounter y arrastre para conectarse a la nueva **actividad de Establecer variable de set_varCounter**. 
+5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varTempCounter y arrastre para conectarse a la nueva **actividad de Establecer variable de set_varCounter**.
+
+    ![](Media/5.38.png)
  
 6. Con **la actividad set_varCounter** seleccionada, haga clic en **Configuración** en el menú inferior.
 7. En el panel inferior, asegúrese de que **Tipo de variable** sea **Variable de canalización**.
@@ -318,6 +395,8 @@ Ahora necesitamos establecer el valor de la variable varCounter en el valor de v
 10.	Se abre el cuadro de diálogo Generador de expresiones de canalización. Introduzca **@variables('varTempCounter')**. Siéntase libre de escribir esta expresión o use el menú para seleccionar las funciones o copiarla y pegarla.
 
 **Nota:** Esta función establece el valor de la variable varCounter al valor de la variable varTempCounter (varCounter = varTempCounter). Al final de cada iteración, tanto varCounter como varTempCounter tienen el mismo valor.
+
+![](Media/5.39.png)
  
 ## Tarea 13: Configurar la actividad Esperar
 A continuación, debemos esperar cinco minutos/300 segundos si la actualización del flujo de datos falla la primera vez antes de volver a intentarlo. Si la actualización del flujo de datos falla una segunda vez, debemos esperar 15 minutos/900 segundos y volver a intentarlo. Usaremos la actividad de espera y la variable varWaitTime para establecer el tiempo de espera.
@@ -326,7 +405,9 @@ A continuación, debemos esperar cinco minutos/300 segundos si la actualización
 2. Con **la actividad Esperar** seleccionada, en el panel inferior, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
 3. En el campo **Nombre**, introduzca **wait_onFailure**.
 4. En el campo **Descripción**, introduzca **Wait for 300 seconds on 2nd try and 900 seconds on 3rd try**.
-5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varCounter y arrastre para conectarse a la nueva **actividad de Esperar wait_onFailure**. 
+5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varCounter y arrastre para conectarse a la nueva **actividad de Esperar wait_onFailure**.
+
+    ![](Media/5.40.png)
  
 6. Con **la actividad Esperar** seleccionada, haga clic en **Configuración** en el menú inferior.
 7. En el campo **Tiempo de espera en segundos**, seleccione el **cuadro de texto** y, después, el vínculo **Agregar contenido dinámico**.
@@ -342,21 +423,30 @@ A continuación, debemos esperar cinco minutos/300 segundos si la actualización
         )
 
 Siéntase libre de escribir esta expresión o use el menú para seleccionar las funciones o copiarla y pegarla.
+
+![](Media/5.41.png)
  
 Aquí usamos dos nuevas funciones:
 
-- greater: toma dos números como parámetros y compara cuál es mayor.
-- mul: esta es una función de multiplicación, necesita dos parámetros para multiplicar. 
+- **greater:** toma dos números como parámetros y compara cuál es mayor.
+- **mul:** esta es una función de multiplicación, necesita dos parámetros para multiplicar. 
 
 La expresión es una declaración if anidada. Está comprobando si el valor de la variable varCounter es mayor que 1. Si es true, comprueba si el valor de la variable varCounter es 2. Si es true, establece el tiempo de espera en varWaitTime multiplicado por 15. Recuerde, habíamos establecido el valor predeterminado de varWaitTime a 60. Eso sería 60*15 = 900 segundos. Si el valor de la variable varCounter no es 2 (es mayor que 2, lo que significa que la actualización del flujo de datos ha fallado 3 veces, hemos terminado de iterar. No tenemos que esperar más), el tiempo de espera se establece en varWaitTime *0. O sea, 0. Si el valor de la variable varCounter es 1, entonces multiplicamos varWaitTime *5. Eso sería 60*5 = 300 segundos.
 
-9.	Seleccione **Aceptar**. 
+9. Seleccione **Aceptar**. 
 
 **Punto de control:** su iterador Hasta debería verse como la captura de pantalla siguiente.
+
+![](Media/5.42.png)
  
-10. Desde la parte superior izquierda del lienzo de diseño, seleccione **pl_Refresh_People_Sharepoint_Option2** para salir del iterador Hasta. 
- 
+10. Desde la parte superior izquierda del lienzo de diseño, seleccione **pl_Refresh_People_Sharepoint_Option2** para 
+salir del iterador Hasta. 
+
+    ![](Media/5.43.png)
+
 11. Hemos terminado de crear la canalización de datos. En el menú superior, seleccione el **icono Inicio -> Guardar** para guardar la canalización de datos.
+
+    ![](Media/5.44.png)
  
 
 ## Tarea 14: Configurar la actualización programada para la canalización de datos
@@ -377,6 +467,8 @@ La expresión es una declaración if anidada. Está comprobando si el valor de l
 
 9. Seleccione **Aplicar**.
 10. Seleccione la marca con forma de **X** en la parte superior derecha del cuadro de diálogo para cerrarlo.
+
+    ![](Media/5.45.png)
  
 11. Seleccione su área de trabajo de Fabric **FAIAD_<username>** en el panel izquierdo para navegar a la pantalla **Inicio de Data Factory**.
 
@@ -387,6 +479,8 @@ Hemos programado actualizaciones para los distintos orígenes de datos. Crearemo
 ## Referencias
 
 Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+
+![](Media/5.46.png)
  
 Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
 
