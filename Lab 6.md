@@ -1,3 +1,5 @@
+![](Media/6.01.png)
+
 # ​​Contenido 
 
 - Presentación  
