@@ -34,12 +34,16 @@ Al final de este laboratorio, habrá aprendido:
 
 3. Verá tres tipos de lh_FAIAD: modelo semántico, punto de conexión SQL y lakehouse. Exploramos la opción lakehouse en un laboratorio anterior. Seleccione la opción **Punto de conexión de análisis SQL lh_FAIAD** para explorar la opción SQL. Esto le llevará a la **vista de SQL** del explorador.
 
+    ![](Media/6.1.png)
+
 Si desea explorar los datos antes de crear un modelo de datos, puede utilizar SQL para hacerlo. Veamos dos opciones para usar SQL, la primera está orientada a desarrolladores y la segunda opción es para analistas. 
 Supongamos que desea conocer rápidamente las unidades vendidas por el proveedor mediante SQL. Tenemos dos opciones: escribir una declaración SQL o usar un objeto visual para crear la declaración SQL. 
 
 Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, puede ver las columnas que componen la tabla. Además, hay opciones para crear vistas, funciones y procedimientos almacenados de SQL. Si tiene experiencia en SQL, no dude en explorar estas opciones. Intentemos escribir una consulta SQL simple. 
 
 4. Desde el **menú superior**, seleccione **Nueva consulta SQL** o desde **la parte inferior izquierda panel**, seleccione **Consulta**. Esto le llevará a la vista de consultas de SQL.
+
+    ![](Media/6.2.png)
 
 5. Copie la **siguiente consulta de SQL** en la **ventana de consultas**. Esta consulta devolverá las unidades por nombre del proveedor. Para conseguirlo, se une la tabla Sales con las tablas Product y Supplier. 
  
@@ -55,11 +59,17 @@ Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, p
 
 8. En el panel del **explorador izquierdo**, en la sección **Queries**, observe que esta consulta se guarda en **Mis consultas** como **SQL query 1**. Esto proporciona una opción para cambiar el nombre de la consulta y guardarla para uso futuro. También hay una opción para ver las consultas que se comparten con usted mediante la carpeta **Consultas compartidas**.
 
+    ![](Media/6.3.png)
+
 ### Tarea 2: visualizar el resultado de T-SQL 
 
 1. También podemos visualizar el resultado de esta consulta. **Resalte la consulta** en el panel de consulta y seleccione **el panel Resultados**; luego seleccione **Visualización de resultados**.
 
+    ![](Media/6.4.png)
+
 2. Se abre el cuadro de diálogo Visualización de resultados. Seleccione **Continuar**.
+
+    ![](Media/6.5.png)
 
 3. Se abre el conocido cuadro de diálogo de vista de informe. Desde el panel **Datos**, expanda **SQL query 1**.
 
@@ -79,6 +89,8 @@ Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, p
 
 10. Seleccione **Guardar**. 
 
+    ![](Media/6.6.png)
+
 ### Tarea 3: Crear consulta de objetos visuales 
 
 Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL. Si no está familiarizado con SQL, puede ejecutar una consulta similar mediante consulta de objeto visual. 
@@ -89,6 +101,8 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
 
 3. Con la tabla **Sales** seleccionada, en el menú del panel Consulta de objeto visual, seleccione **Combinar -> Combinar consultas**.
 
+    ![](Media/6.7.png)
+
 4. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Product**. 
 
 5. Seleccione **StockItemID** de las tablas **Sales y Product**. Esto se hace para combinar las tablas Sales y Product. 
@@ -97,15 +111,21 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
 
 7. Seleccione **Aceptar**.
 
+    ![](Media/6.8.png)
+
 8. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Product**. 
 
 9. Seleccione **SupplierID** en el cuadro de diálogo que se abre. 
 
 10. Seleccione **Aceptar**. Observe que los pasos **Consultas combinadas y Producto expandido** se crean en la tabla **Sales**.
 
+    ![](Media/6.9.png)
+
 11. De manera similar, combinemos la tabla Supplier. Dentro de la tabla **Sales**, seleccione **"+"** (ubicado después del Producto expandido) para agregar un nuevo paso. Se abre un cuadro de diálogo. 
 
 12. Seleccione **Combinar -> Combinar consultas**.
+
+    ![](Media/6.10.png)
 
 13. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Supplier**. 
 
@@ -114,6 +134,8 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
 15. En **Tipo de combinación**, seleccione **Externa**. 
 
 16. Seleccione **Aceptar**.
+
+    ![](Media/6.11.png)
 
 17. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Supplier**. 
 
@@ -127,9 +149,13 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
 
 1. Ahora que tenemos la consulta lista, veamos el resultado. Seleccione **Visualización de resultados** en el panel de resultados.
 
+    ![](Media/6.12.png)
+
 2. Se abre el cuadro de diálogo Visualización de resultados. En el panel **Datos** de la derecha, seleccione los campos **Supplier_Name y Quantity**. 
 
 3. Seleccione el **objeto visual de tabla** en el panel Objeto visual para ver los resultados como una tabla. Observe que el resultado es similar al resultado de la consulta SQL anterior. Si lo desea, puede guardar este informe. Como guardamos un informe similar anteriormente, seleccionaremos **Cancelar**.
+
+    ![](Media/6.13.png)
 
 ### Tarea 5: Crear relaciones 
 
@@ -141,6 +167,8 @@ Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tab
 
 3. Creemos una relación entre las tablas Sales and Reseller. Seleccione **ResellerID** de la tabla **Sales** y arrástrelo a **ResellerID** en la tabla **Reseller**.
 
+    ![](Media/6.14.png)
+
 4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Sales y que la **Columna** sea **ResellerID**. 
 
 5. Asegúrese de que la **Table 2** sea **Reseller** y que la **Columna** sea **ResellerID**. 
@@ -150,6 +178,8 @@ Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tab
 7. Asegúrese de que la **Dirección de filtro cruzado** sea **Único**. 
 
 8. Seleccione **OK**.
+
+    ![](Media/6.15.png)
 
 9. De forma similar, creemos una relación entre las tablas Sales y Date. Seleccione **InvoiceDate** de la tabla **Sales** y arrástrelo a Date en la tabla **Date**. 
 
@@ -163,7 +193,11 @@ Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tab
 
 14. Seleccione **Ok**. 
 
-**Punto de control:** su modelo debe tener dos relaciones entre las tablas Sales y Reseller y las tablas Sales y Date como se muestra en la siguiente captura de pantalla: 
+    ![](Media/6.16.png)
+
+    **Punto de control:** su modelo debe tener dos relaciones entre las tablas Sales y Reseller y las tablas Sales y Date como se muestra en la siguiente captura de pantalla: 
+
+    ![](Media/6.17.png)
 
 Por razones de tiempo, no crearemos todas las relaciones. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las relaciones restantes. 
 
@@ -185,6 +219,8 @@ Agreguemos algunas medidas que necesitamos para crear el panel de Sales.
 
 7. Establezca **Posiciones decimales** en **0**.
 
+    ![](Media/6.18.png)
+
 8. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
 
 9. Introduzca **Units = SUM(Sales[Quantity])** en la **barra de fórmulas**. 
@@ -197,6 +233,8 @@ Agreguemos algunas medidas que necesitamos para crear el panel de Sales.
 
 13. Establezca el **Separador de miles** en **Sí**.
 
+    ![](Media/6.19.png)
+
 14. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
 
 15. Introduzca **Orders = DISTINCTCOUNT(Sales[InvoiceID])** en la **barra de fórmulas**. 
@@ -208,6 +246,8 @@ Agreguemos algunas medidas que necesitamos para crear el panel de Sales.
 18. En el menú desplegable Formato, seleccione **Número entero**. 
 
 19. Establezca el **Separador de miles** en **Sí**.
+
+    ![](Media/6.20.png)
 
 De nuevo, por razones de tiempo, no crearemos todas las medidas. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las medidas restantes. 
 Hemos creado un modelo de datos, el siguiente paso es crear un informe. Lo haremos en el siguiente laboratorio. 
@@ -222,6 +262,8 @@ Agreguemos las relaciones restantes.
 
      **>Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
 
+    ![](Media/6.21.png)
+
 3. Ahora creemos una relación entre las tablas Product y Supplier. Seleccione **SupplierID** de la tabla **Product** y arrástrelo a **SupplierID** en la tabla **Supplier**. 
 
 4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Product y que la **Columna** sea **SupplierID**. 
@@ -233,6 +275,8 @@ Agreguemos las relaciones restantes.
 7. Asegúrese de que la **Dirección de filtro cruzado** sea **Ambas**. 
 
 8. Seleccione **OK**.
+
+    ![](Media/6.22.png)
 
 9. De manera similar, cree una relación **varios a uno** con **Dirección de filtro cruzado** como **Ambas** entre **Product_Details** y **Product**. Seleccione **StockItemID** de **Product_Details** y **StockItemID** de **Product**. 
 
@@ -248,6 +292,8 @@ Agreguemos las relaciones restantes.
 
 15. Seleccione **OK**.
 
+    ![](Media/6.23.png)
+
 16. Ahora creemos una relación entre las tablas Customer y Reseller. Seleccione **ResellerID** de la tabla **Customer** y arrástrelo a **ResellerID** en la tabla **Reseller**. 
 
 17. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Customer y que la **Columna** sea **ResellerID**. 
@@ -260,7 +306,11 @@ Agreguemos las relaciones restantes.
 
 21. Seleccione **OK**.
 
+    ![](Media/6.24.png)
+
       >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+
+    ![](Media/6.25.png)
 
 22. Ahora creemos una relación entre las tablas PO y Date. Seleccione **Order_Date** de la tabla PO y arrástrela sobre **Date** en la tabla **Date**. 
 
@@ -274,12 +324,16 @@ Agreguemos las relaciones restantes.
 
 27. Seleccione **OK**.
 
+    ![](Media/6.26.png)
+
 28. Igualmente, cree una relación varios a uno entre las tablas **PO** y **Product**. Seleccione **StockItemID** de **PO** y **StockItemID** de **Product**. 
 
 29. Igualmente, cree una relación **varios a uno** entre las tablas **PO** y **People**. Seleccione **ContactPersonID** de **PO** y **PersonID** de **People**.  
 Hemos terminado de crear todas las relaciones.  
 
->**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+    >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+
+    ![](Media/6.27.png)
 
 ### Tarea 8: Sección opcional: crear medidas 
 
@@ -293,6 +347,8 @@ Agreguemos las medidas restantes.
 
 4. En el menú desplegable Formato, haga clic en **Moneda**.
 
+    ![](Media/6.28.png)
+
 5. Siga pasos similares para agregar las siguientes medidas: 
 
       - **GM = SUM(Sales[Line_Profit])** con formato **Moneda, posición decimal 2** 
@@ -304,6 +360,8 @@ Agreguemos las medidas restantes.
 ## Referencias 
 
 Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes. 
+
+  ![](Media/6.29.png)
 
 Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
 
