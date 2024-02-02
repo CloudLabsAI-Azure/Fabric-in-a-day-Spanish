@@ -8,7 +8,9 @@
 
    - Tarea 1: Configurar la actualización programada para el flujo de datos de ventas
    - Tarea 2: Configurar la actualización programada para el flujo de datos de proveedores y clientes
+
 - Canalización de datos
+   
    - Tarea 3: Crear una canalización de datos
    - Tarea 4: Crear una canalización de datos simple
    - Tarea 5: Crear una nueva canalización de datos
@@ -21,6 +23,7 @@
    - Tarea 12: Configure la tercera actividad de Establecer variable
    - Tarea 13: Configurar la actividad Esperar
    - Tarea 14: Configurar la actualización programada para la canalización de datos
+
 - Referencias
 
 # Presentación 
