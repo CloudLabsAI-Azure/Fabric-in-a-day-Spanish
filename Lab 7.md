@@ -1,25 +1,24 @@
 # ​​Contenido 
 
-## Presentación  
+- Presentación  
+- Power BI 
 
-## Power BI 
+    - Tarea 1: Crear un informe de forma automática
+    - Tarea 2: Ocultar tablas predeterminadas (métricas)
+    - Tarea 3: Configurar el fondo para un nuevo informe
+    - Tarea 4: Agregar un encabezado al informe
+    - Tarea 5: Agregar KPI al informe
+    - Tarea 6: Agregar un gráfico de líneas al informe
+    - Tarea 7: Configurar la columna Year en la tabla Date
+    - Tarea 8: Configurar la columna Short_Month_Name en la tabla Date
+    - Tarea 9: Aplicar formato al gráfico de líneas
+    - Tarea 10: Agregar nuevos datos para simular el modo Direct Lake
 
-- Tarea 1: Crear un informe de forma automática
-- Tarea 2: Ocultar tablas predeterminadas (métricas)
-- Tarea 3: Configurar el fondo para un nuevo informe
-- Tarea 4: Agregar un encabezado al informe
-- Tarea 5: Agregar KPI al informe
-- Tarea 6: Agregar un gráfico de líneas al informe
-- Tarea 7: Configurar la columna Year en la tabla Date
-- Tarea 8: Configurar la columna Short_Month_Name en la tabla Date
-- Tarea 9: Aplicar formato al gráfico de líneas
-- Tarea 10: Agregar nuevos datos para simular el modo Direct Lake
+- Limpieza del entorno de laboratorio 
 
-## Limpieza del entorno de laboratorio 
+- Referencias 
 
-## Referencias 
-
-## Presentación  
+# Presentación  
 
 Absorbimos datos de diferentes orígenes de datos a un lakehouse, conocimos los lakehouse, creamos un modelo de datos y establecimos una programación de actualización para los orígenes de datos. Ahora vamos a crear un informe. 
 
@@ -29,9 +28,9 @@ Al final de este laboratorio, habrá aprendido:
 - Cómo crear un informe a partir de un lienzo en blanco
 - Cómo usar el modo Direct Lake, que da como resultado una actualización automática de los datos
 
-## Power BI 
+# Power BI 
 
-### Tarea 1: Crear un informe de forma automática 
+## Tarea 1: Crear un informe de forma automática 
 
 Comencemos con la opción de creación automática de informes. Y, más adelante en el laboratorio, volveremos a crear el informe que tenemos en Power BI. 
 
@@ -87,7 +86,7 @@ Comencemos con la opción de creación automática de informes. Y, más adelante
 
     ![](Media/7-6.png)
 
-### Tarea 2: Ocultar tablas predeterminadas (métricas) 
+## Tarea 2: Ocultar tablas predeterminadas (métricas) 
 
 Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer desde un lienzo en blanco. Antes de comenzar a crear un informe, eliminemos las tablas predeterminadas (captura de pantalla anterior) de la vista del informe. Esto se hace en la sección de modelado del lakehouse. 
 
@@ -118,7 +117,7 @@ Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer des
     - exec_requests_history 
     - frequently_run_queries
 
-### Tarea 3: Configurar el fondo para un nuevo informe 
+## Tarea 3: Configurar el fondo para un nuevo informe 
 
 1. Podemos comenzar a crear un nuevo informe desde la vista del modelo. En el menú superior, seleccione **Inicio -> Nuevo informe**. Se le dirigirá al lienzo del informe de Power BI en una nueva ventana o pestaña en su explorador.
 
@@ -148,7 +147,7 @@ Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer des
 
     ![](Media/7-12.png)
 
-### Tarea 4: Agregar un encabezado al informe
+## Tarea 4: Agregar un encabezado al informe
 
 1. Agreguemos el encabezado en el margen superior. En el **menú**, seleccione **Cuadro de texto**. 
 
@@ -168,7 +167,7 @@ Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer des
 
     ![](Media/7-13.png)
 
-### Tarea 5: Agregar KPI al informe 
+## Tarea 5: Agregar KPI al informe 
 
 1. Agreguemos KPI de ventas. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del cuadro de texto. 
 
@@ -220,7 +219,7 @@ Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer des
 
     ![](Media/7-18.png)
 
-### Tarea 6: Agregar un gráfico de líneas al informe 
+## Tarea 6: Agregar un gráfico de líneas al informe 
 
 Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo por empresa revendedora. 
 
@@ -234,7 +233,7 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
     ![](Media/7-19.png)
 
-### Tarea 7: Configurar la columna Year en la tabla Date 
+## Tarea 7: Configurar la columna Year en la tabla Date 
 
 1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
 
@@ -260,7 +259,7 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
     ![](Media/7-21.png)
 
-### Tarea 8: Configurar la columna Short_Month_Name en la tabla Date 
+## Tarea 8: Configurar la columna Short_Month_Name en la tabla Date 
 
 1. Agreguemos Mes a este gráfico. Desde la tabla Date, arrastre el campo **Short_Month_Name** debajo de **Year** en el **eje X**. Observe que el objeto visual está ordenado por Sales. Ordenémoslo por Short_Month_Name. 
 
@@ -296,7 +295,7 @@ Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo 
 
     ![](Media/7-25.png)
 
-### Tarea 9: Aplicar formato al gráfico de líneas 
+## Tarea 9: Aplicar formato al gráfico de líneas 
 
 Observe lo fácil que es actualizar el modelo semántico mientras se crean los informes. Esto proporciona una interacción fluida como Power BI Desktop. 
 
@@ -351,7 +350,8 @@ Observe lo fácil que es actualizar el modelo semántico mientras se crean los i
     ![](Media/7-29.png)
 
 Como se mencionó anteriormente, no crearemos todos los objetos visuales en esta práctica de laboratorio. Siéntase libre de crear más objetos visuales si lo desea.  
-### Tarea 10: Agregar nuevos datos para simular el modo Direct Lake 
+
+## Tarea 10: Agregar nuevos datos para simular el modo Direct Lake 
 
 Normalmente, en el modo Import, una vez que se actualizan los datos en el origen, necesitamos actualizar el modelo de Power BI y después se actualizan los datos en el informe. Con el modo de Direct Query, una vez que los datos se actualizan en el origen, están disponibles en el informe de Power BI. Sin embargo, el modo de Direct Query suele ser lento. Para resolver este problema, Microsoft Fabric presenta el modo Direct Lake. Direct Lake es una ruta rápida para cargar los datos del lago directamente en el motor de Power BI listos para su análisis. Exploremos más. 
 
@@ -424,18 +424,23 @@ A medida que cada flujo de datos que hemos creado en laboratorios anteriores se 
 Revisemos los desafíos que se enumeran en el planteamiento del problema: 
 
 - **Debe actualizar su conjunto de datos al menos tres veces al día para adaptarse a los diferentes tiempos de actualización para los diferentes orígenes de datos**. 
+
 Resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe. 
 
 - **Sus actualizaciones tardan mucho tiempo, ya que necesita hacer una actualización completa cada vez para capturar cualquier actualización que haya ocurrido en los sistemas de origen.** 
+
 De nuevo, resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe, por lo que no tenemos que preocuparnos por la actualización completa.  
 
 - **Cualquier error en cualquiera de los orígenes de datos de los que extrae provocará que se interrumpa la actualización del conjunto de datos. Muchas veces, el archivo del empleado no se carga a tiempo, lo que provoca que se interrumpa la actualización del conjunto de datos**. 
+
 La canalización de datos ayuda a resolver este problema al brindar la capacidad de volver a intentar la actualización en caso de error y en diferentes intervalos. 
 
 - **Se necesita mucho tiempo para hacer cambios en su modelo de datos, ya que Power Query tarda mucho en actualizar sus versiones preliminares, dado el gran tamaño de los datos y las transformaciones complejas**.  
+
 Vimos que los flujos de datos son eficientes y es fácil hacer cambios en ellos. Normalmente, la versión preliminar en flujos de datos no tarda mucho en cargarse. 
 
 - **Necesita que un PO con Windows use Power BI Desktop aunque el estándar corporativo es Mac**. 
+
 Microsoft Fabric es una oferta SaaS. Lo único que necesitamos es un explorador para acceder al servicio. No tenemos que instalar ningún software en nuestros escritorios. 
 
 ## Limpieza del entorno de laboratorio 
@@ -464,7 +469,7 @@ Esto eliminará el área de trabajo y todos los elementos que contenía.
 
    ![](Media/7-39.png)
 
-## Referencias 
+# Referencias 
 
 Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
 
@@ -524,6 +529,6 @@ ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTE
 
 MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
 
-## DECLINACIÓN DE RESPONSABILIDADES 
+**DECLINACIÓN DE RESPONSABILIDADES**
 
 Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.

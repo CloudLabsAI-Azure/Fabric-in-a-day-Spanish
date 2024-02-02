@@ -1,21 +1,20 @@
 # ​​Contenido 
 
-## Presentación  
+- Presentación  
+- Lakehouse 
 
-## Lakehouse 
+    - Tarea 1: Consultar datos con SQL 
+    - Tarea 2: visualizar el resultado de T-SQL 
+    - Tarea 3: Crear consulta de objetos visuales 
+    - Tarea 4: Visualizar los resultados de la consulta 
+    - Tarea 5: Crear relaciones 
+    - Tarea 6: Crear medidas 
+    - Tarea 7: Sección opcional: crear relaciones 
+    - Tarea 8: Sección opcional: crear medidas 
 
-- Tarea 1: Consultar datos con SQL 
-- Tarea 2: visualizar el resultado de T-SQL 
-- Tarea 3: Crear consulta de objetos visuales 
-- Tarea 4: Visualizar los resultados de la consulta 
-- Tarea 5: Crear relaciones 
-- Tarea 6: Crear medidas 
-- Tarea 7: Sección opcional: crear relaciones 
-- Tarea 8: Sección opcional: crear medidas 
+- Referencias 
 
-## Referencias 
-
-## Presentación  
+# Presentación  
 
 Tenemos datos de diferentes orígenes ingeridos en el lakehouse. En esta práctica de laboratorio, trabajará con el modelo de datos. Normalmente, hacemos actividades de modelado como crear relaciones, agregar medidas, etc. en Power BI Desktop. Aquí aprenderemos cómo hacer estas actividades de modelado en el servicio.  
 
@@ -24,9 +23,9 @@ Al final de este laboratorio, habrá aprendido:
   - Cómo explorar la vista de SQL del lakehouse 
   - Cómo explorar el modelado de datos en el lakehouse
 
-## Lakehouse 
+# Lakehouse 
 
-### Tarea 1: Consultar datos con SQL 
+## Tarea 1: Consultar datos con SQL 
 
 1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8. 
 
@@ -61,7 +60,7 @@ Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, p
 
     ![](Media/6.3.png)
 
-### Tarea 2: visualizar el resultado de T-SQL 
+## Tarea 2: visualizar el resultado de T-SQL 
 
 1. También podemos visualizar el resultado de esta consulta. **Resalte la consulta** en el panel de consulta y seleccione **el panel Resultados**; luego seleccione **Visualización de resultados**.
 
@@ -91,7 +90,7 @@ Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, p
 
     ![](Media/6.6.png)
 
-### Tarea 3: Crear consulta de objetos visuales 
+## Tarea 3: Crear consulta de objetos visuales 
 
 Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL. Si no está familiarizado con SQL, puede ejecutar una consulta similar mediante consulta de objeto visual. 
 
@@ -145,7 +144,7 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
  
 >**Nota:** Consulte la primera captura de pantalla en la Tarea 4.
 
-### Tarea 4: Visualizar los resultados de la consulta 
+## Tarea 4: Visualizar los resultados de la consulta 
 
 1. Ahora que tenemos la consulta lista, veamos el resultado. Seleccione **Visualización de resultados** en el panel de resultados.
 
@@ -157,7 +156,7 @@ Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL.
 
     ![](Media/6.13.png)
 
-### Tarea 5: Crear relaciones 
+## Tarea 5: Crear relaciones 
 
 Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tablas y crear medidas. 
 
@@ -252,7 +251,7 @@ Agreguemos algunas medidas que necesitamos para crear el panel de Sales.
 De nuevo, por razones de tiempo, no crearemos todas las medidas. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las medidas restantes. 
 Hemos creado un modelo de datos, el siguiente paso es crear un informe. Lo haremos en el siguiente laboratorio. 
 
-### Tarea 7: Sección opcional: crear relaciones 
+## Tarea 7: Sección opcional: crear relaciones 
 
 Agreguemos las relaciones restantes. 
 
@@ -335,7 +334,7 @@ Hemos terminado de crear todas las relaciones.
 
     ![](Media/6.27.png)
 
-### Tarea 8: Sección opcional: crear medidas 
+## Tarea 8: Sección opcional: crear medidas 
 
 Agreguemos las medidas restantes. 
 
@@ -357,7 +356,7 @@ Agreguemos las medidas restantes.
 
       - **No of Customers** = **COUNTROWS(Customer)** con formato **Número entero** 
 
-## Referencias 
+# Referencias 
 
 Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes. 
 
@@ -417,6 +416,6 @@ ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTE
 
 MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
 
-## DECLINACIÓN DE RESPONSABILIDADES 
+**DECLINACIÓN DE RESPONSABILIDADES**
 
 Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas. 
