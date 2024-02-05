@@ -1,3 +1,5 @@
+
+![](Media/4.1.png)
 # Sommario
 
 - Introduzione
@@ -46,8 +48,10 @@ In questo lab si imparerà a:
 
 1. Torniamo all'area di lavoro di Fabric **FAIAD_<nome utente>** creata nel lab 2, attività 8.
 2.	Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
+
+    ![](Media/4.2.png)
   
-Si apre la pagina Flusso di dati. Ora che abbiamo familiarità con Flusso di dati, procediamo con la copia delle query da Power BI Desktop a Flusso di dati.
+Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di dati, procediamo con la copia delle query da Power BI Desktop a Flusso di dati.
 
 3. Se non lo si è ancora aperto, aprire il file **FAIAD.pbix** contenuto nella cartella Report sul Desktop dell'ambiente lab.
 4. Nella barra multifunzione selezionare **Home -> Trasforma dati**. Si apre la finestra Power Query. Come si è notato nel lab precedente, le query nel pannello di sinistra sono organizzate per origine dati.
@@ -64,6 +68,8 @@ Si apre la pagina Flusso di dati. Ora che abbiamo familiarità con Flusso di dat
     e.	PO Line Items
 
 6. **Fare clic con il pulsante destro del mouse** e selezionare **Copia**.
+
+    ![](Media/4.3.png)
  
 7. Tornare al **browser**.
 8. Nel **riquadro Flusso di dati** selezionare il **riquadro centrale** e premere **CTRL+V** (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
@@ -71,15 +77,21 @@ Si apre la pagina Flusso di dati. Ora che abbiamo familiarità con Flusso di dat
 ## Attività 2 - Creazione della connessione a Snowflake
 Notare che le cinque query vengono incollate e sulla sinistra è visualizzato il pannello Query. Poiché non abbiamo creato una connessione a Snowflake, compare un messaggio di avviso che chiede di configurare la connessione.
 1. Selezionare **Configura connessione**.
+
+    ![](Media/4.4.png)
  
 2. Si apre la finestra di dialogo Connetti a origine dati. Assicurarsi che nel menu a discesa **Connessione** sia selezionato **Crea nuova connessione**.
 3. Il **Tipo di autenticazione** dovrebbe essere impostato su **Snowflake**.
 4. Immettere **nome utente e password di Snowflake** disponibili nella scheda Variabili di ambiente (accanto alla scheda Guida al lab).
 5. Selezionare **Connetti**.
+
+    ![](Media/4.5.png)
  
 Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello di anteprima. Esplorare i Passaggi applicati delle query. In genere, la query Suppliers contiene i dettagli sui fornitori e SupplierCategories contiene le categorie di fornitori. Queste due tabelle vengono unite per creare la dimensione Supplier, con le colonne necessarie. Analogamente, PO Line Items viene unita con PO per creare il fatto PO. Ora dobbiamo inserire i dati di Supplier e PO in Lakehouse.
 
 6. Come indicato in precedenza, non effettuiamo lo staging di questi dati. Quindi **fare clic con il pulsante destro del mouse** sulla query **Supplier** nel riquadro Query e selezionare **Abilita staging** per rimuovere il segno di spunta.
+
+    ![](Media/4.6.png)
  
 7. Allo stesso modo, fare clic con il pulsante destro del mouse sulla query **PO.** Selezionare **Abilita staging** per rimuovere il segno di spunta.
 
@@ -90,47 +102,65 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 1. Seleziona la query **Supplier**.
 2. Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
 3.	Selezionare **Lakehouse** dalla finestra di dialogo.
+
+    ![](Media/4.7.png)
  
 4.	Si apre la finestra di dialogo Connetti alla destinazione dati. Nel **menu a discesa Connessione selezionare Lakehouse (nessuno)**.
 5.	Selezionare **Avanti**.
 
- 
+    ![](Media/4.8.png)
 
 6.	Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia **selezionato**, poiché si sta creando una nuova tabella.
 7. Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
 8. Selezionare **lh_FAIAD**
 9. Lasciare il nome della tabella **Supplier**
 10.	Selezionare **Avanti**.
+
+    ![](Media/4.9.png)
  
 11.	Si apre la finestra di dialogo Scegli le impostazioni di destinazione. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
 12.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
 13.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
+
+    ![](Media/4.10.png)
  
 14.	Si apre nuovamente la **finestra di Power Query**. Nell'angolo in basso a destra notare che la Destinazione dati è impostata su **Lakehouse**. Allo stesso modo, **impostare la Destinazione dati per la query PO**. Al termine, la **Destinazione dati** della query PO dovrebbe essere impostata su **Lakehouse** come illustrato nello screenshot.
+
+    ![](Media/4.11.png)
  
 
 ## Attività 4 - Ridenominazione e pubblicazione del flusso di dati Snowflake
 1. Nella parte superiore dello schermo selezionare la **freccia accanto a Flusso di dati 1** per rinominarlo.
 2. Nella finestra di dialogo cambiarne il nome in **df_Supplier_Snowflake**
 3. Premere **INVIO** per salvare la modifica del nome.
+
+    ![](Media/4.12.png)
  
 4.	Nell'angolo inferiore destro selezionare **Pubblica**.
+
+    ![](Media/4.13.png)
  
 Si aprirà nuovamente la **schermata di Data Factory**. La pubblicazione del flusso di dati potrebbe richiedere alcuni istanti.
 
 **Nota:** talvolta il nome del flusso di dati non viene aggiornato. In questo caso, attenersi alla procedura seguente. Se il flusso di dati viene rinominato, è possibile passare all'attività successiva.
 
 5. Al termine della pubblicazione di Flusso di dati 1, rinominiamolo. Fare clic sui **puntini di sospensione (…)** accanto a Flusso di dati 1. Selezionare **Proprietà**.
+
+    ![](Media/4.14.png)
  
 6. Si apre la finestra di dialogo Proprietà flusso di dati. Cambiarne il nome in **df_Supplier_Snowflake**
 7. Nella casella di testo Descrizione aggiungere **Flusso di dati per inserire i dati sui fornitori da Snowflake in Lakehouse**
 8. Selezionare **Salva**.
+
+    ![](Media/4.15.png)
  
 Si aprirà nuovamente la **schermata di Data Factory**. Ora creiamo un flusso di dati per importare i dati da Dataverse.
 
 ## Attività 5 - Copia di query Dataverse nel flusso di dati
 
 1. Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
+
+    ![](Media/4.16.png)
  
 Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di dati, procediamo con la copia delle query da Power BI Desktop a Flusso di dati.
 
@@ -149,6 +179,8 @@ Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di
     e.	Customer
 
 5.	**Fare clic con il pulsante destro del mouse** e selezionare **Copia**.
+
+    ![](Media/4.17.png)
  
 6.	Tornare alla pagina **Flusso di dati** nel browser.
 7. Nel riquadro **Flusso di dati** premere **CTRL+V** (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
@@ -157,53 +189,72 @@ Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di
 Notare che le cinque query vengono incollate e sulla sinistra è visualizzato il pannello Query. Poiché non abbiamo creato una connessione a Dataverse, compare un messaggio di avviso che chiede di configurare la connessione.
 
 1. Selezionare **Configura connessione**.
+
+    ![](Media/4.18.png)
  
 2. Si apre la finestra di dialogo Connetti a origine dati. Assicurarsi che nel **menu a discesa Connessione sia selezionato Crea nuova connessione**.
 3. Il **Tipo di autenticazione** dovrebbe essere **Account aziendale**.
 4. Selezionare **Connetti**.
+
+    ![](Media/4.19.png)
   
 
 ## Attività 7 - Creazione della destinazione dati per la query Customer
 Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello di anteprima. Esplorare i Passaggi applicati delle query. I dati sui clienti sono disponibili per categoria: BabyBoomer, GenX, GenY e GenZ. Queste quattro query vengono aggiunte per creare la query Customer. Ora dobbiamo inserire i dati di Customer in Lakehouse.
 
 1. Come indicato in precedenza, non effettuiamo lo staging di questi dati. Quindi **fare clic con il pulsante destro del mouse** sulla query **Customer** nel riquadro Query e selezionare **Abilita staging** per rimuovere il segno di spunta.
+
+    ![](Media/4.20.png)
  
 2. Selezionare la query **Customer**.
 3. Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
 4.	Selezionare **Lakehouse** dalla finestra di dialogo.
+
+    ![](Media/4.21.png)
  
 5. Si apre la finestra di dialogo Connetti alla destinazione dati. Nel **menu a discesa Connessione** selezionare **Lakehouse (nessuno)**.
 6. Selezionare **Avanti**.
 
- 
+    ![](Media/4.22.png)
 
 7. Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia selezionato, poiché si sta creando una nuova tabella.
 8.	Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**
 9. Selezionare **lh_FAIAD**
 10.	Lasciare il nome della tabella **Customer**
 11.	Selezionare **Avanti**.
+
+    ![](Media/4.23.png)
  
 12.	Si apre la finestra di dialogo Scegli le impostazioni di destinazione. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
 13.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
 14.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
- 
 
+    ![](Media/4.24.png)
+ 
 ## Attività 8 - Pubblicazione e ridenominazione del flusso di dati Dataverse
 1. Si apre nuovamente la **finestra di Power Query**. Nell'**angolo in basso a destra** notare che la Destinazione dati è impostata su Lakehouse.
 2. Nell'angolo inferiore destro selezionare **Pubblica**.
+
+    ![](Media/4.25.png)
  
 **Nota:** Si aprirà nuovamente la schermata di Data Factory. La pubblicazione del flusso di dati potrebbe richiedere alcuni istanti.
 
 3. Stiamo lavorando in Flusso di dati 1. Rinominiamolo prima di continuare. Fare clic sui **puntini di sospensione (…)** accanto a Flusso di dati 1. Selezionare **Proprietà**.
+
+    ![](Media/4.26.png)
  
 4. Si apre la finestra di dialogo Proprietà flusso di dati. Cambiarne il **Nome** in **df_Customer_Dataverse**
 5. Nella casella di testo **Descrizione** aggiungere **Flusso di dati per inserire i dati sui clienti da Dataverse in Lakehouse**.
 6.	Selezionare **Salva**.
+
+    ![](Media/4.27.png)
  
 Si aprirà nuovamente la **schermata di Data Factory**. Ora creiamo un flusso di dati per importare i dati da SharePoint.
 
 ## Attività 9 - Copia di query SharePoint nel flusso di dati
 1.	Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
+
+    ![](Media/4.28.png)
  
 Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di dati, procediamo con la copia delle query da Power BI Desktop a Flusso di dati.
 
@@ -211,6 +262,8 @@ Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di
 3. Nella barra multifunzione selezionare **Home -> Trasforma dati**. Si apre la finestra Power Query. Come si è notato nel lab precedente, le query nel pannello di sinistra sono organizzate per origine dati.
 4. Si apre la finestra Power Query. Dal pannello di sinistra **selezionare** la query **People** nella cartella SharepointData.
 5. **Fare clic con il pulsante destro del mouse** e selezionare **Copia**.
+
+    ![](Media/4.29.png)
   
 6. Tornare alla schermata **Flusso di dati** nel browser.
 7. Nel riquadro **Flusso di dati** premere **CTRL+V** (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
@@ -219,53 +272,73 @@ Notare che la query viene incollata ed è disponibile nel pannello di sinistra. 
 
 ## Attività 10 - Creazione della connessione a SharePoint
 1.	Selezionare **Configura connessione**.
+
+    ![](Media/4.30.png)
  
 2.	Si apre la finestra di dialogo Connetti a origine dati. Assicurarsi che nel menu a discesa **Connessione** sia selezionato **Crea nuova connessione**.
 3.	Il **Tipo di autenticazione** dovrebbe essere **Account aziendale**.
 4.	Selezionare **Connetti**.
+
+    ![](Media/4.31.png)
  
 
 ## Attività 11 - Configurazione della destinazione dei dati per la query People
 Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello di anteprima. Esplorare i Passaggi applicati delle query. Ora dobbiamo inserire i dati di People in Lakehouse.
 
 1. Come indicato in precedenza, non effettuiamo lo staging di questi dati. Quindi **fare clic con il pulsante destro del mouse** sulla query **People** nel riquadro Query e selezionare **Abilita staging** per rimuovere il segno di spunta.
+
+    ![](Media/4.32.png)
  
 2.	Selezionare la query **People**.
 3.	Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
 4.	Selezionare **Lakehouse** dalla finestra di dialogo.
+
+    ![](Media/4.33.png)
  
 5.	Si apre la finestra di dialogo Connetti alla destinazione dati. Nel menu a discesa Connessione selezionare **Lakehouse (nessuno)**.
 6.	Selezionare **Avanti**.
- 
 
+    ![](Media/4.34.png)
+ 
 7. Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia selezionato, poiché si sta creando una nuova tabella.
 8.	Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
 9.	Selezionare **lh_FAIAD**
 10.	Lasciare il nome della tabella **People**
 11.	Selezionare **Avanti**.
+
+    ![](Media/4.35.png)
  
 12.	Si apre la finestra di dialogo le impostazioni di. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
 13.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
 14.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
+
+    ![](Media/4.36.png)
  
 
 ## Attività 12 - Pubblicazione e ridenominazione del flusso di dati SharePoint
 1. Si apre nuovamente la **finestra di Power Query**. Nell'**angolo in basso a destra** notare che la Destinazione dati è impostata su **Lakehouse**.
 2.	Nell'angolo inferiore destro selezionare **Pubblica**.
+
+    ![](Media/4.37.png)
  
 **Nota:** Si aprirà nuovamente la schermata di Data Factory. La pubblicazione del flusso di dati potrebbe richiedere alcuni istanti.
 
 3. Stiamo lavorando in Flusso di dati 1. Rinominiamolo prima di continuare. Fare clic sui **puntini di sospensione (…)** accanto a Flusso di dati 1. Selezionare **Proprietà**.
 
+    ![](Media/4.38.png)
  
 4. Si apre la finestra di dialogo Proprietà flusso di dati. Cambiarne il **Nome** in **df_People_SharePoint**
 5.	Nella casella di testo **Descrizione** aggiungere **Flusso di dati per inserire i dati del personale da SharePoint in Lakehouse**.
 6.	Selezionare **Salva**.
+
+    ![](Media/4.39.png)
  
 Si aprirà nuovamente la **schermata di Data Factory**. Ora abbiamo inserito tutti i dati in Lakehouse. Nel prossimo lab pianificheremo l'aggiornamento del flusso di dati.
 
 # Riferimenti
 Fabric Analyst in a Day (FAIAD) presenta alcune delle funzionalità chiave disponibili in Microsoft Fabric. Nel menu di servizio, la sezione Guida (?) include collegamenti ad alcune risorse utili.
+
+![](Media/4.40.png)
  
 Di seguito sono riportate ulteriori risorse utili che consentiranno di progredire nell'uso di Microsoft Fabric.
 
