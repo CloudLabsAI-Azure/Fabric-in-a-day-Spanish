@@ -1,269 +1,238 @@
-![](Media/2.1.png)
 
-# Contenido	
-- Presentación
-- Licencia de Fabric
-  - Tarea 1: Habilitar una licencia de prueba de Microsoft Fabric
-- Información general de las experiencias de Fabric
-    - Tarea 2: Experiencia de Data Factory
-    - Tarea 3: Experiencia de Data Activator
-    - Tarea 4: Experiencia de Synapse Data Engineering
-    - Tarea 5: Experiencia de Synapse Data Science
-    - Tarea 6: Experiencia de Data Warehouse de Synapse
-    - Tarea 7: Experiencia de Real-Time Analytics
--  Área de trabajo de Fabric
-    - Tarea 8: Crear un área de trabajo de Fabric
-    - Tarea 9: Crear un lakehouse
-- Referencias
+# Sommario	
+- Introduzione
 
-# Presentación 
-Hoy tendrá ocasión de aprender diversas características clave de Microsoft Fabric. Este es un taller introductorio destinado a presentarle las diversas experiencias de productos y artículos disponibles en Fabric. Al final de este taller, habrá aprendido a utilizar lakehouses, flujos de datos de segunda generación, canalizaciones de datos y la característica DirectLake.
-
-Al final de este laboratorio, habrá aprendido: 
-
-- Cómo crear un área de trabajo de Fabric
-- Cómo crear un lakehouse  
-
-# Licencia de Fabric
-## Tarea 1: Habilitar una licencia de prueba de Microsoft Fabric
-
-1. Abra el **explorador** y vaya a https://app.powerbi.com/. Se le llevará a la página de inicio de sesión.
-
-**Nota:** Si tiene una cuenta de Power BI existente, es posible que desee utilizar el explorador en modo privado/incógnito.
-
-2. Introduzca el **Correo electrónico** proporcionado por el instructor o instructora y haga clic en **Enviar**.
-
-    ![](Media/2.2.png)
- 
-3. Esto le llevará a la pantalla de **Contraseña**. Introduzca la contraseña que el instructor o instructora le compartió. 
-4. Haga clic en **Iniciar sesión** y siga las indicaciones para iniciar sesión en Fabric.
-
-    ![](Media/2.3.png)
- 
-5. Se le dirigirá a la **página principal del servicio Power BI** que ya conoce.
-6. Asumimos que está familiarizado con el diseño del servicio Power BI. Si tiene alguna pregunta, no dude en preguntar.
-
-Actualmente, está en **Mi área de trabajo**. Para trabajar con elementos de Fabric, necesitará una licencia de prueba y un área de trabajo que tenga una licencia de Fabric. Pasemos a la práctica.
-
-7. En la esquina superior derecha de la pantalla, seleccione el **icono** del **usuario**.
-8. Seleccione **Iniciar período de prueba**.
-
-    ![](Media/2.4.png)
- 
-9. Se abre el cuadro de diálogo Actualizar a una prueba Microsoft Fabric gratuita. Seleccione **Iniciar período de prueba**.
- 
-    ![](Media/2.5.png)
-
-10. Se abre el cuadro de diálogo Actualizado correctamente a Microsoft Fabric. Seleccione **Fabric Home Page**.
-
-    ![](Media/2.6.png)
- 
-11. Se le dirigirá a la **página principal de Microsoft Fabric**.
- 
-    ![](Media/2.7.png)
-
-# Información general de las experiencias de Fabric
-
-## Tarea 2: Experiencia de Data Factory
-1. Seleccione el icono de **Microsoft Fabric** en la parte inferior izquierda de su pantalla. Se abrirá un cuadro de diálogo con la lista de experiencias de Fabric. Tenga en cuenta que Power BI, Data Factory y Data Activator son experiencias independientes. Data Engineering, Data Science, Data Warehouse y Real-Time Analytics son experiencias de Synapse y estas cuatro experiencias están impulsadas por Synapse. Exploremos.
-
-2. Seleccione **Data Factory**.
-
-    ![](Media/2.8.png)
- 
-3. Se le dirigirá a la **página principal de Data Factory**. Esta página tiene tres secciones principales.
-
-    a. **Nuevo:** enumera los elementos disponibles en Data Factory: el flujo de datos de segunda generación y la canalización de datos.
+- Licenza di Fabric
     
-    i.	El flujo de datos de segunda generación es la nueva generación de flujos de datos.
-    
-    ii.	La canalización de datos se utiliza para la orquestación de datos.
-    
-    b. **Recomendado:** esta sección proporciona acceso a documentación de aprendizaje de inicio rápido.
-    
-    c. **Acceso rápido:** esta sección enumera los elementos favoritos o usados recientemente.
+    Attività 1 - Abilitazione di una licenza di valutazione per Microsoft Fabric
 
-    ![](Media/2.9.png)
+- Panoramica delle esperienze in Fabric
+    
+    Attività 2 - Esperienza Data Factory
+    
+    Attività 3 - Esperienza Data Activator
+    
+    Attività 4 - Esperienza Synapse Data Engineering
+    
+    Attività 5 - Esperienza Synapse Data Science
+    
+    Attività 6 - Esperienza Synapse Data Warehouse
+    
+    Attività 7 - Esperienza Real-Time Analytics
+
+- Area di lavoro di Fabric
+    
+    Attività 8 - Creazione di un'area di lavoro di Fabric
+    
+    Attività 9 - Creazione di un lakehouse
+
+- Riferimenti
+
+# Introduzione 
+
+Oggi si apprenderanno alcune funzionalità chiave di Microsoft Fabric. Questo è un workshop introduttivo che ha lo scopo di presentare le diverse esperienze di uso del prodotto e i vari elementi disponibili in Fabric. Al termine del workshop, si imparerà a usare le funzionalità Lakehouse, Flusso di dati Gen2, Pipeline di dati e DirectLake.
+
+In questo lab si imparerà a:
+
+- Creare un'area di lavoro Fabric
+- Creare un lakehouse  
+
+# Licenza di Fabric
+
+## Attività 1 - Abilitazione di una licenza di valutazione per Microsoft Fabric
+
+1. Aprire il **browser** e andare all'indirizzo https://app.powerbi.com/. Si aprirà la pagina di accesso.
+
+**Nota:** se si ha un account Power BI esistente, può essere opportuno usare il browser in modalità privata o in incognito.
+
+2. Immettere l'indirizzo **e-mail** fornito dall'istruttore e fare clic su **Invia**.
  
-## Tarea 3: Experiencia de Data Activator
+3. Si aprirà la schermata **Password**. Immettere la password condivisa dall'istruttore. 
+4. Fare clic su **Accedi** e seguire le istruzioni per accedere a Fabric.
 
-1. Seleccione **Data Factory** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-
-    ![](Media/2.10.png)
  
-2. Seleccione **Data Activator** en el cuadro de diálogo. Se le dirigirá a la **página principal de Data Activator**. Data Activator es una experiencia sin código en Microsoft Fabric para tomar acciones automáticamente cuando se detectan patrones o condiciones en los datos cambiantes. Observe que las tres secciones son como la experiencia de Data Factory. En la sección Nuevo, observe los elementos:
+5. Si aprirà la **home page abituale del servizio Power BI**.
+6. 	Si presuppone che si abbia familiarità con il layout del servizio Power BI. Per eventuali domande, rivolgersi all'istruttore.
 
-    a. **Reflejo:** se utiliza para supervisar conjuntos de datos, consultas y flujos de eventos en busca de patrones.
-    
-    b. **Ejemplo de reflejo:** solución de muestra.
+A questo punto, ci si trova nell'**Area di lavoro personale**. Per lavorare con gli elementi di Fabric, è necessaria una licenza di valutazione e un'area di lavoro che disponga della licenza di Fabric. Procediamo per ottenere quanto necessario.
 
-    ![](Media/2.11.png)
+7. Nell'angolo in alto a destra della schermata selezionare l'**icona utente**.
+8. Selezionare **Avvia versione di valutazione**.
  
-
-## Tarea 4: Experiencia de Synapse Data Engineering
-
-1. Seleccione **Data Activator** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-2. Seleccione **Data Engineering**. Se le dirigirá a la **página principal de Data Engineering**. De nuevo, la página tiene tres secciones principales. En la sección Nuevo, observe los elementos: 
-    
-    a. **Lakehouse:** se utiliza para almacenar macrodatos para limpiar, consultar, generar informes y compartir.
-    
-    b. **Bloc de notas:** se utiliza para ejecutar consultas sobre los datos para producir tablas y objetos visuales que se pueden compartir.
-    
-    c. **Definición de trabajo de Spark:** se utiliza para definir, programar y administrar trabajos de Apache.
-    
-    d. **Canalización de datos:** se usa para orquestar una solución de datos.
-    
-    e. **Importar bloc de notas:** se usa para importar blocs de notas desde la máquina local.
-    
-    f. **Usar una muestra:** se usa para crear una muestra.
-
-    ![](Media/2.12.png)
- 
-
-## Tarea 5: Experiencia de Synapse Data Science
-
-1. Seleccione **Data Engineering** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-2. Seleccione **Data Science**. Se le dirigirá a la **página principal de Data Science**. De nuevo, hay tres secciones. En la sección Nuevo, observe los elementos:
-
-    a. **Modelos de ML:** se usa para crear modelos de aprendizaje automático.
-    
-    b. **Experimento:** se utiliza para crear, ejecutar y hacer un seguimiento del desarrollo de múltiples modelos.
-    
-    c. **Bloc de notas:** se utiliza para explorar datos y crear soluciones de aprendizaje automático.
-    
-    d. **Importar bloc de notas:** se usa para importar blocs de notas desde la máquina local.
-    
-    e. **Usar una muestra:** solución de muestra.
-
-    ![](Media/2.13.png)
+9. Si apre la finestra di dialogo Esegui l'aggiornamento a una versione di valutazione gratuita di Microsoft Fabric. Selezionare **Avvia versione di valutazione**.
  
 
-## Tarea 6: Experiencia de Data Warehouse de Synapse
-1. Seleccione **Data Science** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-2. Seleccione **Data Warehouse**. Se le dirigirá a la **página principal de Data Warehouse**. De nuevo, hay tres secciones. En la sección Nuevo, observe los elementos. Vea que la canalización de datos y el flujo de datos de segunda generación también están disponibles aquí.
+10. Si apre la finestra di dialogo Aggiornamento a una versione di valutazione gratuita di Microsoft Fabric riuscito. Selezionare **Fabric Home Page**. 
+ 
+11. Si aprirà la **home page** di **Microsoft Fabric**.
+ 
 
-    a. **Almacén:** se utiliza para proporcionar información estratégica de múltiples orígenes.
+# Panoramica delle esperienze in Fabric
+
+## Attività 2 - Esperienza Data Factory
+
+1. Selezionare l'**icona di Microsoft Fabric** in basso a sinistra nella schermata. Si apre una finestra di dialogo che contiene l'elenco delle esperienze in Fabric. Notare che Power BI, Data Factory e Data Activator sono esperienze indipendenti. Data Engineering, Data Science, Data Warehouse e Real-Time Analytics sono esperienze di Synapse e si basano su Synapse. Procediamo a esaminarle.
+2. Selezionare **Data Factory**.
+ 
+3. Si apre la **home page** di **Data Factory**. La pagina contiene tre sezioni principali. 
+
+    a. **Nuovo:** elenca gli elementi disponibili in Data Factory, ossia Flusso di dati Gen2 e Pipeline di dati.
     
-    b. **Almacén de muestra:** solución de almacén de muestra.
+    i. Flusso di dati Gen2 è la nuova generazione di Flusso di dati.
     
-    c. **Canalización de datos:** se usa para orquestar una solución de datos.
-
-    ![](Media/2.14.png)
- 
-
-## Tarea 7: Experiencia de Real-Time Analytics
-1. Seleccione **Data Warehouse** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-2. Seleccione **Real-Time Analytics**. Se le dirigirá a la **página principal de Real-Time Analytics**. De nuevo, hay tres secciones. En la sección Nuevo, observe los elementos: 
-
-    a. **Base de datos KQL:** se utiliza para cargar rápidamente datos estructurados, no estructurados y de streaming para hacer consultas.
+    ii.	Pipeline di dati si usa per l'orchestrazione dei dati.
     
-    b. **Conjunto de consultas KQL:** se utiliza para ejecutar consultas sobre los datos para producir tablas y objetos visuales que se pueden compartir.
+    b. **Consigliato:** questa sezione fornisce accesso alla documentazione di apprendimento per l'avvio rapido.
     
-    c. **Eventstream:** se utiliza para capturar, transformar y enrutar secuencias de eventos en tiempo real.
+    c. **Accesso rapido:** questa sezione elenca gli elementi preferiti o usati di recente.
+ 
+## Attività 3 - Esperienza Data Activator
+1. Selezionare **Data Factory** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
+ 
+2. Selezionare **Data Activator** nella finestra di dialogo. Si apre la **home page di Data Activator**. Data Activator è un'esperienza senza codice in Microsoft Fabric che consente di effettuare automaticamente azioni quando vengono rilevati schemi o condizioni nei dati che cambiano. Notare che le tre sezioni sono analoghe all'esperienza Data Factory. Nella sezione Nuovo osservare i seguenti elementi:
+
+    a. **Reflex:** consente di monitorare set di dati, query e flussi di eventi per individuare schemi.
+
+    b. **Esempio di Reflex:** soluzione di esempio.
+ 
+
+## Attività 4 - Esperienza Synapse Data Engineering
+
+1. Selezionare **Data Activator** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
+2. Selezionare **Data Engineering**. Si apre la **home page di Data Engineering**. Anche in questo caso, la pagina contiene tre sezioni principali. Nella sezione Nuovo osservare i seguenti elementi: 
     
-    d. **Usar una muestra:** se usa para crear una muestra.
-
-    ![](Media/2.15.png)
+    a. **Lakehouse:** consente di archiviare Big Data per operazioni di pulizia, query, reporting e condivisione.
+    
+    b. **Blocco appunti:** consente di eseguire query sui dati per produrre tabelle e oggetti visivi condivisibili.
+    
+    c. **Definizione processi Spark:** consente di definire, pianificare e gestire i processi Apache.
+    
+    d. **Pipeline di dati:** consente di orchestrare la soluzione di dati.
+    
+    e. **Importa blocco appunti:** consente di importare blocco appunti dal computer locale.
+    
+    f. **Usare un esempio:** consente di creare un esempio.
  
 
-# Área de trabajo de Fabric
-## Tarea 8: Crear un área de trabajo de Fabric
+## Attività 5 - Esperienza Synapse Data Science
+1. Selezionare **Data Engineering** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
+2. Selezionare **Data Science**. Si apre la home page di Data Science. Anche in questo caso sono presenti tre sezioni. Nella sezione Nuovo osservare i seguenti elementi:
 
-1. Ahora creemos un área de trabajo con licencia de Fabric. Seleccione **Áreas de trabajo** en la barra de navegación de la izquierda. Se abre un cuadro de diálogo.
-2. Seleccione **Nueva área de trabajo**.
+    a. **Modello di Machine Learning:** consente di creare modelli di Machine Learning.
+    
+    b.	**Esperimento:** consente di creare, eseguire e monitorare lo sviluppo di più modelli.
+    
+    c.	**Blocco appunti:** consente di esplorare i dati e creare soluzioni di Machine Learning.
+    
+    d.	**Importa blocchi appunti:** consente di importare blocchi appunti dal computer locale.
+    
+    e.	**Esempio:** soluzione di esempio.
  
-    ![](Media/2.16.png)
 
-3. **El cuadro de diálogo Crear un área de trabajo** se abre en el lado derecho del explorador.
-4. En el campo **Nombre**, introduzca **FAIAD_<username>**.
+## Attività 6 - Esperienza Synapse Data Warehouse
+1. Selezionare **Data Science** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
+2. Selezionare **Data Warehouse**. Si apre la **home page di Data Warehouse**. Anche in questo caso sono presenti tre sezioni. Nella sezione Nuovo osservare osservare gli elementi. Notare che Pipeline di dati e Flusso di dati Gen2 sono disponibili anche qui.
 
-**Nota:** El nombre del área de trabajo debe ser único. Vamos a usar FAIAD como nombre del área de trabajo para este documento. Sin embargo, el nombre de su área de trabajo debe ser diferente. Asegúrese de que aparezca una marca de verificación verde con "**Este nombre está disponible**" debajo del campo Nombre.
+    a.	**Warehouse:** consente di fornire approfondimenti strategici da più fonti.
+    
+    b.	**Warehouse di esempio:** soluzione di warehouse di esempio.
+    
+    c.	**Pipeline di dati:** consente di orchestrare la soluzione di dati.
 
-5.	Si lo desea, puede escribir una **Descripción** para el área de trabajo. Este campo es opcional.
-6.	Haga clic para expandir la sección **Avanzado**.
-
-    ![](Media/2.17.png)
  
-7. En **Modo de licencia**, asegúrese de que **Prueba** esté seleccionado. (Debería estar seleccionado por defecto).
-8. Seleccione **Aplicar** para crear un nuevo área de trabajo.
 
-    ![](Media/2.18.png)
+## Attività 7 - Esperienza Real-Time Analytics
+1. Selezionare **Data Warehouse** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
+2. Selezionare **Real-Time Analytics**. Si apre la home page di Real-Time Analytics. Anche in questo caso sono presenti tre sezioni. Nella sezione Nuovo osservare i seguenti elementi: 
+    
+    a.	**Database KQL:** consente di caricare rapidamente dati strutturati, non strutturati e in streaming per l'esecuzione di query.
+    
+    b.	**Set di query KQL:** consente di eseguire query sui dati per produrre tabelle e oggetti visivi condivisibili.
+    
+    c.	**Eventstream:** consente di acquisire, trasformare e instradare il flusso di eventi in tempo reale.
+    
+    d.	**Usare un esempio:** consente di creare un esempio.
  
-Se crea un nuevo área de trabajo y se nos dirige hasta ella. Traeremos datos de los diferentes orígenes de datos a un lakehouse y utilizaremos los datos del lakehouse para crear nuestro modelo y generar informes en él. El primer paso es crear un lakehouse.
 
-## Tarea 9: Crear un lakehouse
-1. Seleccione **Real-Time Analytics** en la parte inferior izquierda de su pantalla. Se abre el cuadro de diálogo de experiencia de Fabric.
-2. Seleccione **Data Engineering** para navegar a la página principal de Data Engineering.
+# Area di lavoro di Fabric
 
-    ![](Media/2.19.png)
+## Attività 8 - Creazione di un'area di lavoro di Fabric
+1. Ora creeremo un'area di lavoro con la licenza di Fabric. Selezionare **Aree di lavoro** nella barra di spostamento a sinistra. Si apre una finestra di dialogo.
+2. Selezionare **Nuova area di lavoro**.
  
-3. Seleccione **Lakehouse**.
+3.	Si apre la finestra di dialogo **Crea un'area di lavoro** sul lato destro del browser.
+4. Nel campo **Nome** immettere **FAIAD_<nomeutente>**
+
+**Nota:** il nome dell'area di lavoro deve essere univoco. In questo documento useremo FAIAD come nome dell'area di lavoro. Tuttavia, il nome dell'area di lavoro usato deve essere diverso. Assicurarsi che sotto il campo Nome sia presente un segno di spunta verde e che sia indicato "**Questo nome è disponibile**".
+
+5. Se lo si desidera, è possibile immettere una **Descrizione** per l'area di lavoro. Questo campo è facoltativo.
+6. Fare clic su **Avanzate** per espandere la sezione.
  
-    ![](Media/2.20.png)
-
-4. Se abre un nuevo cuadro de diálogo de lakehouse. Escriba **lh_FAIAD** en el cuadro de texto Nombre.
-
-**Nota:** lh aquí se refiere a Lakehouse. Vamos a anteponer lh para que sea fácil de identificar y buscar.
-
-5.	Seleccione **Crear**.
-
-    ![](Media/2.21.png)
+7. In **Modalità licenza** assicurarsi che si sia selezionato **Versione di prova** (deve essere selezionato per impostazione predefinita).
+8. Selezionare **Applica** per creare una nuova area di lavoro.
  
-En unos momentos, se crea un lakehouse y se le dirigirá a la interfaz del mismo.
-En el **panel izquierdo**, observe que debajo de su área de trabajo tendrá el icono del lakehouse. Puede navegar fácilmente hasta el lakehouse si hace clic en este icono en cualquier momento.
+Viene creata una nuova area di lavoro e si passa a tale area di lavoro. Importeremo dati da diverse origini dati in Lakehouse e li useremo da Lakehouse per creare il modello e il report relativi. Il primo passaggio consiste nel creare un lakehouse.
 
-Dentro del explorador del lakehouse, verá **Tables y Files**. Lakehouse podría exponer archivos Azure Data Lake Storage Gen2 en la sección de archivos o un flujo de datos podría cargar datos en las tablas del lakehouse. Existen varias opciones disponibles. Le mostraremos algunas de las opciones como en las siguientes prácticas de laboratorio.
+## Attività 9 - Creazione di un lakehouse
+1. Selezionare **Real-Time Analytics** nella parte inferiore sinistra della schermata. Si apre la finestra di dialogo delle esperienze in Fabric.
 
-![](Media/2.22.png)
+2. Selezionare **Data Engineering** per andare alla home page di Data Engineering.
  
-En esta práctica de laboratorio, exploramos la interfaz de Fabric, creamos un área de trabajo de Fabric y un lakehouse. En la siguiente práctica de laboratorio, aprenderemos cómo usar el flujo de datos de segunda generación para conectarnos a ADLS Gen2 para extraer, transformar e ingerir datos en el lakehouse.
+3. Selezionare **Lakehouse**.
+  
+4. Si apre la finestra di dialogo Nuovo lakehouse. Digitare **lh_FAIAD** nella casella di testo Nome.
 
-## Referencias
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+**Nota:** lh indica Lakehouse. Aggiungiamo il prefisso lh per agevolarne l'identificazione e la ricerca.
+
+5. Selezionare **Crea**.
  
-![](Media/2.23.png)
+Dopo qualche istante viene creato un lakehouse e si passerà all'interfaccia di Lakehouse.
+Nel **pannello sinistro** notare che sotto all'area di lavoro è ancora presente l'icona di Lakehouse. È possibile passare agevolmente a Lakehouse facendo clic su questa icona in qualsiasi momento.
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+Nell'interfaccia di esplorazione di Lakehouse si noteranno **Tabelle** e **File**. Lakehouse può esporre file di Azure Data Lake Storage Gen2 nella sezione file oppure un flusso di dati può caricare dati nelle tabelle di Lakehouse. Sono disponibili varie opzioni. Mostreremo alcune di queste opzioni nei lab seguenti.
+ 
+In questo lab abbiamo esplorato l'interfaccia di Fabric, creato uno spazio di lavoro di Fabric e un lakehouse. Nel prossimo lab si imparerà a usare Flusso di dati Gen2 per connettersi ad ADLS Gen2 per estrarre, trasformare e inserire dati nel lakehouse.
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de[ los módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la [comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+# Riferimenti
+Fabric Analyst in a Day (FAIAD) presenta alcune delle funzionalità chiave disponibili in Microsoft Fabric. Nel menu di servizio, la sezione Guida (?) include collegamenti ad alcune risorse utili.
+ 
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+Di seguito sono riportate ulteriori risorse utili che consentiranno di progredire nell'uso di Microsoft Fabric.
 
-- [Experiencia de Data Factory en el blog de Fabric](https://aka.ms/Fabric-Data-Factory-Blog) 
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric ](https://aka.ms/Fabric-DS-Blog)
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+- Vedere il post di blog per leggere l'[annuncio completo sulla disponibilità generale di Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+- Esplorare Fabric attraverso la [Presentazione guidata](https://aka.ms/Fabric-GuidedTour)
+- Iscriversi alla [versione di valutazione gratuita di Microsoft Fabric](https://aka.ms/try-fabric)
+- Visitare il [sito Web di Microsoft Fabric](https://aka.ms/microsoft-fabric)
+- Acquisire nuove competenze esplorando i [moduli di apprendimento su Fabric](https://aka.ms/learn-fabric)
+- Consultare la [documentazione tecnica di Fabric](https://aka.ms/fabric-docs)
+- Leggere l'[e-book gratuito introduttivo a Fabric](https://aka.ms/fabric-get-started-ebook)
+- Unirsi alla [community di Fabric](https://aka.ms/fabric-community) per pubblicare domande, condividere feedback e imparare dagli altri
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+Leggere i blog di annunci più approfonditi sull'esperienza in Fabric:
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+- [Blog sull'esperienza Data Factory in Fabric](https://aka.ms/Fabric-Data-Factory-Blog) 
+- [Blog sull'esperienza Synapse Data Engineering in Fabric ](https://aka.ms/Fabric-DE-Blog)
+- [Blog sull'esperienza Synapse Data Science in Fabric ](https://aka.ms/Fabric-DS-Blog)
+- [Blog sull'esperienza Synapse Data Warehousing in Fabric ](https://aka.ms/Fabric-DW-Blog)
+- [Blog sull'esperienza Synapse Real-Time Analytics in Fabric](https://aka.ms/Fabric-RTA-Blog)
+- [Blog di annunci di Power BI](https://aka.ms/Fabric-PBI-Blog)
+- [Blog sull'esperienza Data Activator in Fabric ](https://aka.ms/Fabric-DA-Blog)
+- [Blog su amministrazione e governance in Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [Blog su OneLake in Fabric](https://aka.ms/Fabric-OneLake-Blog)
+- [Blog sull'integrazione di Dataverse e Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella.
+© 2023 Microsoft Corporation. Tutti i diritti sono riservati.
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+L'uso della demo/del lab implica l'accettazione delle seguenti condizioni:
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+La tecnologia/le funzionalità descritte nella demo/nel lab sono fornite da Microsoft Corporation allo scopo di ottenere feedback dall'utente e offrire un'esperienza di apprendimento. L'utilizzo della demo/del lab è consentito solo per la valutazione delle caratteristiche e delle funzionalità di tale tecnologia e per l'invio di feedback a Microsoft. L'utilizzo per qualsiasi altro scopo non è consentito. È vietato modificare, copiare, distribuire, trasmettere, visualizzare, eseguire, riprodurre, pubblicare, concedere in licenza, usare per la creazione di lavori derivati, trasferire o vendere questa demo/questo lab o parte di essi.
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
+SONO ESPLICITAMENTE PROIBITE LA COPIA E LA RIPRODUZIONE DELLA DEMO/DEL LAB (O DI QUALSIASI PARTE DI ESSI) IN QUALSIASI ALTRO SERVER O IN QUALSIASI ALTRA POSIZIONE PER ULTERIORE RIPRODUZIONE O RIDISTRIBUZIONE.
+QUESTA DEMO/QUESTO LAB RENDONO DISPONIBILI TECNOLOGIE SOFTWARE/FUNZIONALITÀ DI PRODOTTO SPECIFICHE, INCLUSI NUOVI CONCETTI E NUOVE FUNZIONALITÀ POTENZIALI, IN UN AMBIENTE SIMULATO, CON UN'INSTALLAZIONE E UNA CONFIGURAZIONE PRIVE DI COMPLESSITÀ, PER GLI SCOPI DESCRITTI IN PRECEDENZA. LA TECNOLOGIA/I CONCETTI RAPPRESENTATI IN QUESTA DEMO/IN QUESTO LAB POTREBBERO NON CONTENERE LE FUNZIONALITÀ COMPLETE E IL LORO FUNZIONAMENTO POTREBBE NON ESSERE LO STESSO DELLA VERSIONE FINALE. È ANCHE POSSIBILE CHE UNA VERSIONE FINALE DI TALI FUNZIONALITÀ O CONCETTI NON VENGA RILASCIATA. L'ESPERIENZA D'USO DI TALI CARATTERISTICHE E FUNZIONALITÀ PUÒ INOLTRE RISULTARE DIVERSA IN UN AMBIENTE FISICO.
 
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+**FEEDBACK.** L'invio a Microsoft di feedback sulle caratteristiche, sulle funzionalità e/o sui concetti della tecnologia descritti in questa demo/questo lab implica la concessione a Microsoft, a titolo gratuito, del diritto di utilizzare, condividere e commercializzare tale feedback in qualsiasi modo e per qualsiasi scopo. Implica anche la concessione a titolo gratuito a terze parti del diritto di utilizzo di eventuali brevetti necessari per i loro prodotti, le loro tecnologie e i loro servizi al fine di utilizzare o interfacciarsi ai componenti software o ai servizi Microsoft specifici che includono il feedback. L'utente si impegna a non inviare feedback la cui inclusione all'interno di software o documentazione Microsoft imponga a Microsoft di concedere in licenza a terze parti tale software o documentazione. Questi diritti sussisteranno anche dopo la scadenza del presente contratto.
+CON LA PRESENTE MICROSOFT CORPORATION NON RICONOSCE ALCUNA GARANZIA O CONDIZIONE RELATIVAMENTE ALLA DEMO/AL LAB, INCLUSE TUTTE LE GARANZIE E CONDIZIONI DI COMMERCIABILITÀ, DI FATTO ESPRESSE, IMPLICITE O PRESCRITTE DALLA LEGGE, ADEGUATEZZA PER UNO SCOPO SPECIFICO, TITOLARITÀ E NON VIOLABILITÀ. MICROSOFT NON OFFRE GARANZIE O RAPPRESENTAZIONI IN RELAZIONE ALL'ACCURATEZZA DEI RISULTATI E DELL'OUTPUT DERIVANTI DALL'USO DELLA DEMO/DEL LAB O ALL'ADEGUATEZZA DELLE INFORMAZIONI CONTENUTE NELLA DEMO/NEL LAB PER QUALSIASI SCOPO.
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+**CLAUSOLA DI RESPONSABILITÀ**
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
-
-
-
+Questa demo/questo lab contiene solo una parte delle nuove funzionalità e dei miglioramenti in Microsoft Power BI. Alcune funzionalità potrebbero cambiare nelle versioni future del prodotto. In questa demo/in questo lab si apprendono alcune delle nuove funzionalità, ma non tutte.
