@@ -27,7 +27,7 @@ Per ottenere informazioni utili, si estraggono, puliscono e organizzano insieme 
 - **Dati sui clienti:** provengono da Customer Insights e sono archiviati in Dataverse. I dati sono sempre aggiornati.
 - **Dati sui dipendenti:** provengono dal sistema HR e sono archiviati in un file di esportazione in una cartella di SharePoint. Vengono aggiornati ogni mattina alle 9.00. 
 
-![](Media/1.2.png)
+    ![](Media/1.2.png)
 
  
 
