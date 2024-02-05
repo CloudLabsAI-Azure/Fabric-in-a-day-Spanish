@@ -1,218 +1,215 @@
-![](Media/1.1.png)
+![](./Media/1.1.png)
 
-# Contenido
-- Estructura del documento
-- Escenario/planteamiento del problema
-- Información general del informe de Power BI Desktop
-    - Tarea 1: Configurar Power BI Desktop en un entorno de laboratorio
-    - Tarea 2: Analizar el informe de Power BI Desktop
-    - Tarea 3: Revisar consultas de Power Query
-- Referencias
+# Inhalt 
 
+- Dokumentstruktur
+- Anwendungsfall/Problemstellung
+- Überblick über den Power BI Desktop-Bericht
+   - Aufgabe 1: Power BI Desktop in einer Übungsumgebung einrichten
+   - Aufgabe 2: Power BI Desktop-Bericht analysieren
+   - Aufgabe 3: Power Query-Abfragen überprüfen
+- Referenzen
 
-# Estructura del documento
+# Dokumentstruktur
 
-El laboratorio incluye pasos que el usuario debe seguir junto con capturas de pantalla asociadas que sirven de ayuda visual. En cada captura de pantalla, las secciones se resaltan con cuadros de color naranja para indicar en qué áreas debe centrarse el usuario.
+Die Übung enthält die Schritte, die der Benutzer durchführen muss, sowie zugehörige Screenshots zur visuellen Unterstützung. Wichtige Abschnitte sind in den Screenshots mit einem orangefarbenen Kasten gekennzeichnet.
 
-# Escenario/planteamiento del problema
+# Anwendungsfall/Problemstellung
 
-Fabrikam, Inc. es un distribuidor mayorista de artículos novedosos. Como mayorista, los clientes de Fabrikam son en su mayoría empresas que revenden a particulares. Fabrikam vende a clientes minoristas en todo Estados Unidos, incluidas tiendas especializadas, supermercados, tiendas de informática y tiendas de atracciones turísticas. Fabrikam también vende a otros mayoristas a través de una red de agentes que promocionan los productos en nombre de Fabrikam. Si bien todos los clientes de Fabrikam tienen su sede actualmente en los Estados Unidos, la compañía tiene la intención de impulsar la expansión a otros países y regiones.
+Fabrikam, Inc. vertreibt Livestyle-Artikel. Die Kunden von Fabrikam sind zumeist Unternehmen, die die Artikel an den Endverbraucher weiterverkaufen. Fabrikam verkauft an Einzelhandelskunden in den USA, darunter Fachgeschäfte, Supermärkte, Computergeschäfte und Souvenirläden. Fabrikam vertreibt seine Waren über ein Netzwerk von Vertretern, die die Produkte im Namen von Fabrikam bewerben, auch an andere Großhändler. Derzeit sind alle Kunden von Fabrikam in den USA ansässig. Das Unternehmen plant aber eine Expansion in andere Länder oder Regionen.
 
-Es analista de datos en el equipo de ventas. Usted recopila, limpia e interpreta conjuntos de datos para resolver problemas comerciales. También reúne visualizaciones como cuadros y gráficos, escribe informes y los presenta a los encargados de tomar decisiones de la organización.
+Sie arbeiten als Data Analyst im Vertriebsteam. Ihre Aufgabe ist das Sammeln, Bereinigen und Auswerten von Datasets zur Lösung geschäftlicher Probleme. Außerdem fertigen Sie Diagramme und Visualisierungen an, schreiben Berichte und präsentieren diese den Entscheidungsträgern in der Organisation.
 
-Para extraer información valiosa de los datos, se extraen datos de varios sistemas, se limpian y se combinan. Extrae datos de los siguientes orígenes:
+Um wertvolle Erkenntnisse aus den Daten zu ziehen, rufen Sie Daten aus mehreren Systemen ab, bereinigen diese und führen sie zusammen. Dabei beziehen Sie folgende Daten aus folgenden Quellen:
 
-- **Datos de ventas:** estos datos provienen del sistema ERP y los datos se almacenan en una base de datos ADLS Gen2 o Databricks. Se actualiza a mediodía/12:00 todos los días.
-- **Datos de proveedores:** estos datos provienen de diferentes proveedores y se almacenan en una base de datos de Snowflake. Se actualiza a medianoche/00:00 todos los días.
-- **Datos del cliente:** estos datos provienen de Customer Insights y se almacenan en Dataverse. Los datos siempre están actualizados.
-- **Datos de los empleados:** estos datos provienen del sistema de recursos humanos; se almacenan como un archivo de exportación en una carpeta de SharePoint. Se actualiza a todas las mañanas a las 9:00. 
+- **Vertriebsdaten:** Diese stammen aus dem ERP-System und werden in einer ADLS Gen2-Datenbank oder in Databricks abgelegt. Jeden Tag um 12 Uhr mittags werden die Daten aktualisiert.
+- **Lieferantendaten:** Diese kommen von verschiedenen Lieferanten und werden in einer Snowflake-Datenbank gespeichert. Jeden Tag um Mitternacht werden die Daten aktualisiert.
+- **Kundendaten:** Diese stammen aus Customer Insights und werden in Dataverse gespeichert. Die Daten sind immer auf dem neuesten Stand.
+- **Mitarbeiterdaten:** Diese stammen aus dem Personalsystem und werden als Exportdatei in einem SharePoint-Ordner gespeichert. Die Daten werden jeden Morgen um 9 Uhr aktualisiert. 
 
-    ![](Media/1.2.png)
+    ![](./Media/1.2.png)
  
-Actualmente está creando un conjunto de datos en Power BI Premium que extrae los datos de los sistemas de origen anteriores para satisfacer sus necesidades de informes y ofrecer a los usuarios finales la capacidad de autoservicio. Use Power Query para actualizar su modelo. 
+Derzeit arbeiten Sie an einem Dataset in Power BI Premium, mit dem die Daten aus den oben genannten Quellsystemen abgerufen werden sollen, damit Sie Ihre Berichte schreiben können und Endanwender die Möglichkeit erhalten, Self-Service-Angebote zu nutzen. Das Modell aktualisieren Sie mit Power Query. 
 
-**Se enfrenta a lo siguiente:**
+### Nun sind Sie mir folgenden Problemen konfrontiert:
 
-- Debe actualizar su conjunto de datos al menos tres veces al día para adaptarse a los diferentes tiempos de actualización para los diferentes orígenes de datos.
-- Sus actualizaciones tardan mucho tiempo, ya que necesita hacer una actualización completa cada vez para capturar cualquier actualización que haya ocurrido en los sistemas de origen.
-- Cualquier error en cualquiera de los orígenes de datos de los que extrae provocará que se interrumpa la actualización del conjunto de datos. Muchas veces, el archivo del empleado no se carga a tiempo, lo que provoca que se interrumpa la actualización del conjunto de datos. 
-- Se necesita mucho tiempo para hacer cambios en su modelo de datos, ya que Power Query tarda mucho en actualizar sus versiones preliminares, dado el gran tamaño de los datos y las transformaciones complejas. 
-- Necesita que un PC con Windows use Power BI Desktop aunque el estándar corporativo es Mac.
+- Das Dataset muss mindestens dreimal täglich aktualisiert werden, um den verschiedenen Aktualisierungszeiten der Datenquellen Rechnung zu tragen.
+- Die Aktualisierungen dauern lange, weil die Daten jedes Mal komplett aktualisiert werden müssen, um alle Änderungen an den Daten in den Quellsystemen zu erfassen.
+- Tritt in den Datenquellen, aus denen die Daten abgerufen werden, ein Fehler auf, wird die DataSet-Aktualisierung abgebrochen. Oftmals wird die Mitarbeiterdatei nicht pünktlich hochgeladen, was ebenso zum Abbruch der DataSet-Aktualisierung führt. 
+- Änderungen am Datenmodell nehmen sehr viel Zeit in Anspruch, weil Power Query aufgrund der großen Datenmenge und des aufwändigen Transformationsvorgangs sehr lange braucht, um die Vorschauversionen zu aktualisieren. 
+- Für Power BI Desktop brauchen Sie einen PC mit Windows, auch wenn im Unternehmen Mac-Geräte genutzt werden.
 
-Oyó hablar sobre Microsoft Fabric y decidió probar para ver si abordaba sus desafíos.
+Sie haben von Microsoft Fabric gehört und möchten es gerne ausprobieren, um all diese Probleme zu lösen.
 
-# Información general del informe de Power BI Desktop
-Antes de comenzar con Fabric, veamos el informe actual en Power BI Desktop para comprender las transformaciones y el modelo.
+# Überblick über den Power BI Desktop-Bericht
+Bevor wir mit Fabric beginnen, sehen wir uns den aktuellen Bericht in Power BI Desktop an, um die Transformationen und das Modell zu verstehen.
 
-## Tarea 1: Configurar Power BI Desktop en un entorno de laboratorio
-1. Abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. El archivo se abrirá en Power BI Desktop.
+## Aufgabe 1: Power BI Desktop in einer Übungsumgebung einrichten
+
+1. Öffnen Sie in der Übungsumgebung auf dem **Desktop** im Ordner **Report** die Datei **FAIAD.pbix**. Die Datei wird in Power BI Desktop geöffnet.
+
+    ![](./Media/1.3.png)
+
+2. Geben Sie im Dialogfeld Ihre E-Mail-Adresse ein. Öffnen Sie rechts in der Übungsumgebung die Registerkarte **Environment Details**.
+3. Kopieren Sie **Username** und **Credentials**, und fügen Sie beides im Dialogfeld in das Textfeld für die E-Mail-Adresse ein.
+4. Wählen Sie **Continue** aus.
+
+    ![](./Media/1.4.png)
  
-    ![](Media/1.3.png)
+5. Das Dialogfeld für die Anmeldung wird geöffnet. Wählen Sie **Geschäfts- oder Schulkonto** aus.
+6. Wählen Sie **Weiter** aus.
 
-2. Se abre el cuadro de diálogo Escriba su dirección de correo electrónico. Navegue a la pestaña **Detalles del ambiente** en el panel derecho del entorno de laboratorio.
-3. Copie las **credenciales de nombre de usuario** y péguelas en el cuadro de texto Correo electrónico del cuadro de diálogo.
-4. Seleccione **Continuar**.
-
-    ![](Media/1.4.png)
+    ![](./Media/1.5.png)
  
-5. Se abre el cuadro de diálogo Vamos a iniciar sesión. Seleccione **Cuenta profesional o educativa**.
-6. Seleccione **Continuar**.
+7. Das Dialogfeld „Anmelden“ wird geöffnet. Geben Sie **Username** und **Credentials** erneut ein, indem Sie beides aus der Registerkarte **Environment Details** kopieren.
+8. Wählen Sie **Next** aus.
 
-    ![](Media/1.5.png)
+    ![](./Media/1.6.png)
  
-7. Se abre el cuadro de diálogo Iniciar sesión. Copie las **credenciales de nombre de usuario** de la pestaña **Detalles del ambiente** para volver a introducirlas.
-8. Seleccione **Siguiente**.
+9. Geben Sie im nächsten Dialogfeld erneut das **Password** und die **Credentials** ein, indem Sie beides aus der Registerkarte **Environment Details** kopieren.
+10. Wählen Sie **Anmelden** aus.
+11. Das Dialogfeld „Action Required“ wird geöffnet. Darin werden Sie aufgefordert, die Multifaktor-Authentifizierung einzurichten. Weil dies eine Übungsumgebung ist, müssen wir das nicht tun. Wählen Sie **Ask Later** aus.
 
-    ![](Media/1.6.png)
+    ![](./Media/1.7.png)
  
-9. En el siguiente cuadro de diálogo, vuelva a introducir las **credenciales de contraseña** de la pestaña **Detalles del ambiente**.
-10. Seleccione **Iniciar sesión**.
-11. Se abre el cuadro de diálogo Action Required, que solicita configurar la autenticación multifactor. No necesitamos configurar esto, ya que se trata de un entorno de laboratorio. Seleccione **Ask later**.
+12. Wählen Sie im nächsten Dialogfeld die Option **Nein, nur in der App anmelden** aus. Nun wird Power BI Desktop geöffnet.
 
-    ![](Media/1.7.png)
+## Aufgabe 2: Power BI Desktop-Bericht analysieren
+
+Im nachstehenden Bericht werden die Verkäufe von Fabrikam analysiert. Die KPIs stehen oben links auf der Seite. Die restlichen Visuals zeigen die Verkaufszahlen im Laufe der Zeit, nach Gebiet, Produktgruppe und Wiederverkäuferfirma. 
+
+![](./Media/1.8.png)
  
-12. Seleccione **No, iniciar sesión solo en la aplicación** en el siguiente cuadro de diálogo. Ahora se abrirá Power BI Desktop.
+**Hinweis:** Bei diesem Training geht es um die Erfassung, Transformation und Modellierung von Daten mithilfe der in Fabric verfügbaren Tools. Es geht weder um die Anfertigung von Berichten noch die Navigation. Sehen wir uns den Bericht kurz an und fahren dann fort.
 
-## Tarea 2: Analizar el informe de Power BI Desktop
-El siguiente informe analiza las ventas de Fabrikam. Los KPI se enumeran en la parte superior izquierda de la página. Los objetos visuales restantes resaltan Sales a lo largo del tiempo, por territorio, grupo de productos y empresa revendedora. 
+1. Analysieren wir die Daten nach dem Vertriebsgebiet. Wählen Sie im Streudiagramm **Sales Territory** die Region „New England“ aus. Unter „Sales over time“ sehen Sie, dass der Handelspartner Tailspin Toys im Vergleich zu Wingtip Toys in Neuengland mehr Verkäufe erzielt. Wenn Sie sich das Säulendiagramm „Sales YoY%“ ansehen, werden Sie feststellen, dass das Umsatzwachstum von Wingtip Toys im vergangenen Jahr gering war und von Quartal zu Quartal weniger wurde. Nach einer kleinen Erholung im dritten Quartal ging es im vierten Quartal wieder bergab.
 
-![](Media/1.8.png)
+    ![](./Media/1.9.png)
  
-**Nota:** En esta capacitación, nos centraremos en la adquisición, transformación y modelado de datos mediante las herramientas disponibles en Fabric. No nos centraremos en el desarrollo de informes ni en la navegación. Dediquemos un par de minutos a comprender el informe y avancemos a los siguientes pasos.
+2. Vergleichen wir dies mit dem Vertriebsgebiet „Rocky Mountain“. Wählen Sie im Streudiagrammvisual **Sales Territory** die Region „Rocky Mountain“ aus. Beachten Sie im Säulendiagramm „Sales YoY%“, dass die Umsätze von Wingtip Toys im vierten Quartal 2022 enorm zugelegt haben, nachdem sie in den beiden vorangegangenen Quartalen niedrig waren.
 
-1. Analicemos los datos por zona de ventas. Seleccione **New England en el objeto visual Sales Territory** (gráfico de dispersión). Vea que en las Ventas a lo largo del tiempo, el revendedor Tailspin Toys tiene más ventas en comparación con Wingtip Toys en New England. Si observa el gráfico de columnas de YoY% de ventas, notará que el crecimiento de las ventas de Wingtip Toys ha sido bajo y ha disminuido trimestre tras trimestre durante el año pasado. Tras un pequeño repunte en el tercer trimestre, volvió a bajar en el cuarto.
-
-    ![](Media/1.9.png)
+    ![](./Media/1.10.png)
  
-2. Comparemos esto con la zona de las Rocky Mountains. Seleccione **Rocky Mountains en el objeto visual Sales Territory** (gráfico de dispersión). Observe que en el gráfico de columnas YoY% de ventas, las ventas de Wingtip Toys aumentaron drásticamente en el cuarto trimestre de 2022 después de haber sido bajas durante los dos trimestres anteriores.
+3. Wählen Sie im Streudiagramm **Sales Territory** die Region „Rocky Mountain“ aus, um den Filter zu entfernen.
+4. Wählen Sie im Streudiagrammvisual unten in der Mitte des Bildschirms (Sales Orders by Sales) den Ausreißer oben rechts aus (4. Quadrant). Beachten Sie, dass die Marge % 52 % beträgt, was über dem Durchschnitt von 50 % liegt. Außerdem ist der Umsatz im Jahresvergleich in % in den letzten beiden Quartalen des Jahres 2022 gestiegen.
 
-    ![](Media/1.10.png)
+    ![](./Media/1.11.png)
  
-3. Seleccione **Rocky Mountains en el objeto visual Sales Territory** para eliminar el filtro.
-4. Desde el objeto visual Gráfico de dispersión en la parte inferior central de la pantalla (Pedidos de venta por Sales), seleccione el valor atípico en la parte superior derecha (4.º cuadrante). Observe que el porcentaje de margen es del 52 %, que está por encima del promedio del 50 %. Además, el YoY% de ventas ha aumentado en los dos últimos trimestres de 2022.
+5. Wählen Sie im Streudiagrammvisual den Handelspartner mit dem Ausreißer aus, um den **Filter zu entfernen**.
 
-    ![](Media/1.11.png)
+6. Sehen wir nun die Produktinformationen nach Produktgruppe und Wiederverkäufer an. Klicken Sie im Balkendiagrammvisual „Sales by Product Group and Reseller Company“ mit der rechten Maustaste auf den Balken **Packaging Materials** von Tailspin Toys, und wählen Sie im Dialogfeld die Option **Drillthrough ausführen -> Product Detail** aus.
  
-5. Seleccione el revendedor atípico en el objeto visual del gráfico de dispersión para **eliminar el filtro**.
+    ![](./Media/1.12.png)
 
-6. Obtengamos los detalles del producto por grupo de productos y revendedor. En el objeto visual del gráfico de barras de Sales por Product Group y Reseller Company, **haga clic en la barra de Packaging Materials de Tailspin Toys** y, en el cuadro de diálogo, seleccione **Obtener detalles -> Product Detail**.
+Sie gelangen zu der Seite mit den Produktinformationen. Dort sind auch einige zukünftige Bestellungen aufgeführt.
 
-    ![](Media/1.12.png)
+7. Sobald Sie die Informationen gelesen haben, wählen Sie oben auf der Seite den **STRG+Zurückpfeil** aus, um zum Umsatzbericht zurückzukehren.
+
+    ![](./Media/1.13.png)
  
-Se le dirigirá a la página que proporciona los detalles del producto. Tenga en cuenta que también hay algunos pedidos futuros.
-
-7. Una vez que haya terminado de revisar esta página, seleccione **Ctrl+flecha hacia atrás** en la parte superior derecha de la página para volver al informe de ventas.
-
-    ![](Media/1.13.png)
- 
-8. Analice el informe a su gusto. Una vez listo, veamos la vista del modelo. En el panel de la izquierda, seleccione el icono **Vista del modelo**. Observe que hay dos tablas de hechos, Sales y PO.
-
-    a. La granularidad de Sales de ventas se organiza por Date, Reseller, Product y People. Date, Reseller, Product y People se conectan con Sales.
-
-    b. La granularidad de los datos de PO se organiza por Date, Product y People. Date, Product y People se conectan con PO.
+8. Sehen Sie sich den Bericht gerne noch genauer an. Anschließend betrachten wir die Modellansicht. Wählen Sie links das **Symbol für die Modellansicht** aus. Beachten Sie, dass es zwei Faktentabellen gibt: Sales und PO. 
     
-    c. Disponemos de datos de Supplier por Product. Supplier se conecta con Product.
-    
-    d. Contamos con datos de ubicación de Reseller por Geo. Geo se conecta con Reseller.
-    
-    e. Disponemos de información de Customer por Reseller. Customer se conecta con Reseller. 
+    a. Die Genauigkeit der Sales-Daten richtet sich nach Date, Reseller, Product und People. Date, Reseller, Product und People sind mit Sales in Zusammenhang gesetzt.
 
-## Tarea 3: Revisar consultas de Power Query
-1. Echemos un vistazo a Power Query para entender los orígenes de datos. En la cinta de opciones, seleccione **Inicio -> Transformar datos**.
+    b. Die Genauigkeit von PO-Daten richtet sich nach Date, Product und People. Date, Product und People sind mit PO in Zusammenhang gesetzt.
+    
+    c. Wir haben Supplier-Daten nach Product. Supplier steht mit Product in Zusammenhang.
+    
+    d. Wir haben Reseller-Standortdaten nach Geo. Geo steht in Zusammenhang mit Reseller.
+    
+    e. Wir haben Customer-Informationen nach Reseller. Customer steht in Zusammenhang mit Reseller. 
 
-    ![](Media/1.14.png)
+## Aufgabe 3: Power Query-Abfragen überprüfen
+1. Beschäftigen wir uns in Power Query mit den Datenquellen. Klicken Sie im Menüband auf **Start > Daten transformieren**.
+
+    ![](./Media/1.14.png)
  
-2. Se abre la ventana de Power Query. En la cinta de opciones, seleccione **Inicio -> Configuración de origen de datos**. Se abre el cuadro de diálogo Configuración de origen de datos. A medida que se desplaza por la lista, verá que hay cuatro orígenes principales, como se menciona en el planteamiento del problema:
-
+2. Das Power Query-Fenster wird geöffnet. Wählen Sie im Menüband die Option **Start -> Datenquelleneinstellungen** aus. Das Dialogfeld mit den Datenquelleneinstellungen wird geöffnet. Wenn Sie durch die Liste blättern, werden Sie sehen, dass es vier Hauptquellen gibt, die in der Problemstellung genannt sind:
+    
     a.	Snowflake
-
+    
     b.	SharePoint
-
+    
     c.	ADLS Gen2
-
+    
     d.	Dataverse
 
-3. Seleccione **Cerrar** para cerrar el cuadro de diálogo Configuración del origen de datos.
+3. Schließen Sie das Dialogfeld mit den Einstellungen für die Datenquellen mit **Schließen**.
 
-    ![](Media/1.15.png)
+    ![](./Media/1.15.png)
  
-4. En el panel Consultas de la izquierda, observe que las consultas están agrupadas por origen de datos. 
-5. Vea que la carpeta **DataverseData** tiene datos del cliente disponibles en cuatro consultas diferentes: BabyBoomer, GenX, GenY y GenZ. Estas cuatro consultas se adjuntan para crear la consulta Customer.
-6. Puede introducir las credenciales para el origen de datos de Dataverse si escribe el **Nombre de usuario** y **Contraseña** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio). Seleccione la opción de cuenta de Microsoft.
+4. Beachten Sie, dass die Abfragen auf der linken Seite nach Datenquelle angeordnet sind. 
+5. Hinweis: Der Ordner **DataverseData** enthält Kundendaten zu vier verschiedenen Abfragen: BabyBoomer, GenX, GenY und GenZ. Diese vier Abfragen werden angefügt, um eine Customer-Abfrage zu erstellen.
+6. Sie können die Anmeldeinformationen für die Dataverse Datenquelle eingeben, indem Sie den auf der Registerkarte **Environment Variables** (neben der Übungsanleitung) angezeigten **Username** und das **Password** eingeben. Wählen Sie die Option „Microsoft-Konto“ aus.
 
-    ![](Media/1.16.png)
+    ![](./Media/1.16.png)
  
-7. Para el origen de datos ADLS, utilice la opción **Clave de cuenta** e introduzca la **Clave de acceso de la cuenta de almacenamiento de ADLS** que está disponible en las **Variables de entorno** (al lado de la Guía de laboratorio).
+7. Verwenden Sie bei der ADLS-Datenquelle die Option **Kontoschlüssel**, und geben Sie den **Zugriffsschlüssel für das Adls-Speicherkonto** ein. Diesen finden Sie auf der Registerkarte **Environment Variables** (neben der Übungsanleitung).
+8. Beachten Sie, dass der Ordner **ADLSData** mehrere Dimensionen beinhaltet: Geo, Product, Reseller und Date. Zudem ist das Sales-Element enthalten. 
 
-8. Observe que la carpeta **ADLSData** tiene varias dimensiones: Geo, Product, Reseller y Date. También tiene datos de Sales.
+    a. **Die Geo-Dimension** ergibt sich durch die Zusammenführung von Daten aus den Abfragen „Cities“, „Countries“ und „States“.
 
-    a. **Dimensión Geo** se crea mediante la combinación de datos de la consulta de Cities, Countries y States. 
-    
-    b. **Dimensión de Product** se crea mediante la combinación de datos de la consulta Product Groups y Product Item Group.
-    
-    c. **Dimensión de Reseller** se filtra mediante la consulta BuyingGroup.
-    
-    d. **Datos de Sales** se crea mediante la combinación de InvoiceLineItems con la consulta Invoice.
+    b. **Die Product-Dimension** ergibt sich durch die Zusammenführung von Daten aus den Abfragen „Product Groups“ und „Product Item Group“.
 
-9. Para el origen de datos Snowflake, use el **SnowFlake Username** y la **SnowFlake Password** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio).
+    c. **Die Reseller-Dimension** wird mithilfe der Abfrage „BuyingGroup“ gefiltert.
 
-10. Observe que la carpeta **SnowflakeData** tiene la dimensión Supplier y los datos de PO (pedido/gasto).
-    
-    a. **Dimensión de Supplier** se crea mediante la combinación de la consulta de proveedores con la consulta SupplierCategories.
+    d. **Das Sales-Element** ergibt sich durch die Zusammenführung der Abfragen „InvoiceLineItems“ und „Invoice“.
 
-    b. **Datos de PO** se crea mediante la combinación de PO con la consulta PO Line Items.
+9. Bei der Datenquelle „Snowflake“ verwenden Sie den **Snowflake-Benutzernamen** und das **Snowflake-Kennwort** von der Registerkarte **Environment Variables** (neben der Übungsanleitung).
+10. Beachten Sie, dass der Ordner **SnowflakeData** die Dimension „Supplier und das Element „PO“ (Bestellung/Ausgabe) enthält.
 
-11. Para el origen de datos SharePoint, introduzca el **nombre de usuario** y la **contraseña** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio). Seleccione la opción de cuenta de Microsoft.
-12. Observe que la carpeta **SharepointData** tiene la dimensión People.
+    a. Die **Supplier-Dimension** ergibt sich durch die Zusammenführung der Abfragen „Suppliers“ und „SupplierCategories“.
+    b. **Das Element „PO“** ergibt sich durch die Zusammenführung der Abfragen „PO“ und „PO Line Items“.
+11. Bei der SharePoint-Datenquelle geben Sie den auf der Registerkarte **Environment Variables** (neben der Übungsanleitung) angezeigten **Username Password** ein. Wählen Sie die Option „Microsoft-Konto“ aus.
+
+12. Beachten Sie, dass der Ordner **SharepointData** die Dimension „People“ enthält.
+
+    ![](./Media/1.17.png)
  
-    ![](Media/1.17.png)
+Nun wissen wir, worum es geht. In den folgenden Übungen erstellen wir eine ähnliche Power Query unter Nutzung der Dataflow Gen2-Datenbank und eines Modells mit Lakehouse.
 
-Ahora sabemos a qué nos enfrentamos. En los siguientes laboratorios, crearemos una consulta de Power Query similar mediante el flujo de datos de segunda generación y un modelo mediante lakehouse.
+## Referenzen
+Bei Fabric Analyst in a Day (FAIAD) lernen Sie einige der wichtigsten Funktionen von Microsoft Fabric kennen. Im Menü des Dienstes finden Sie in der Hilfe (?) Links zu praktischen Informationen.
 
-## Referencias
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+![](./Media/1.18.png)
 
-![](Media/1.19.png)
+Nachfolgend finden Sie weitere Angebote zur weiteren Arbeit mit Microsoft Fabric.
 
+- Die vollständige https://aka.ms/Fabric-Hero-Blog-Ignite23 finden Sie im Blogbeitrag.
+- Fabric bei einer https://aka.ms/Fabric-GuidedTour kennenlernen
+- Zur https://aka.ms/try-fabric anmelden
+- https://aka.ms/microsoft-fabric besuchen
+- Mit Modulen von https://aka.ms/learn-fabric neue Qualifikationen erwerben
+- https://aka.ms/fabric-docsc lesen
+- https://aka.ms/fabric-get-started-ebook lesen
+- Mitglied der https://aka.ms/fabric-community werden, um Fragen zu stellen, Feedback zu geben und sich mit anderen auszutauschen
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+Lesen Sie die detaillierteren Blogs zur Ankündigung der Fabric-Umgebung:
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la [comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
-
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
-
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric ](https://aka.ms/Fabric-DS-Blog)
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+- https://aka.ms/Fabric-Data-Factory-Blog
+- https://aka.ms/Fabric-DE-Blog
+- https://aka.ms/Fabric-DS-Blog
+- https://aka.ms/Fabric-DW-Blog
+- https://aka.ms/Fabric-RTA-Blog
+- https://aka.ms/Fabric-PBI-Blog
+- https://aka.ms/Fabric-DA-Blog
+- https://aka.ms/Fabric-Admin-Gov-Blog
+- https://aka.ms/Fabric-OneLake-Blog
+- https://aka.ms/Dataverse-Fabric-Blog
 
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+© 2023 Microsoft Corporation. Alle Rechte vorbehalten.
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+Durch die Verwendung der vorliegenden Demo/Übung stimmen Sie den folgenden Bedingungen zu:
+Die in dieser Demo/Übung beschriebene Technologie/Funktionalität wird von der Microsoft Corporation bereitgestellt, um Feedback von Ihnen zu erhalten und Ihnen Wissen zu vermitteln. Sie dürfen die Demo/Übung nur verwenden, um derartige Technologiefeatures und Funktionen zu bewerten und Microsoft Feedback zu geben. Es ist Ihnen nicht erlaubt, sie für andere Zwecke zu verwenden. Es ist Ihnen nicht gestattet, diese Demo/Übung oder einen Teil derselben zu ändern, zu kopieren, zu verbreiten, zu übertragen, anzuzeigen, auszuführen, zu vervielfältigen, zu veröffentlichen, zu lizenzieren, zu transferieren oder zu verkaufen oder aus ihr abgeleitete Werke zu erstellen.
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella.
+DAS KOPIEREN ODER VERVIELFÄLTIGEN DER DEMO/ÜBUNG (ODER EINES TEILS DERSELBEN) AUF EINEN/EINEM ANDEREN SERVER ODER SPEICHERORT FÜR DIE WEITERE VERVIELFÄLTIGUNG ODER VERBREITUNG IST AUSDRÜCKLICH UNTERSAGT.
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+DIESE DEMO/ÜBUNG STELLT BESTIMMTE SOFTWARE-TECHNOLOGIE-/PRODUKTFEATURES UND FUNKTIONEN, EINSCHLIESSLICH POTENZIELLER NEUER FEATURES UND KONZEPTE, IN EINER SIMULIERTEN UMGEBUNG OHNE KOMPLEXE EINRICHTUNG ODER INSTALLATION FÜR DEN OBEN BESCHRIEBENEN ZWECK BEREIT. DIE TECHNOLOGIE/KONZEPTE IN DIESER DEMO/ÜBUNG ZEIGEN MÖGLICHERWEISE NICHT DAS VOLLSTÄNDIGE FUNKTIONSSPEKTRUM UND FUNKTIONIEREN MÖGLICHERWEISE NICHT WIE DIE ENDGÜLTIGE VERSION. UNTER UMSTÄNDEN VERÖFFENTLICHEN WIR AUCH KEINE ENDGÜLTIGE VERSION DERARTIGER FEATURES ODER KONZEPTE. IHRE ERFAHRUNG BEI DER VERWENDUNG DERARTIGER FEATURES UND FUNKTIONEN IN EINER PHYSISCHEN UMGEBUNG KANN FERNER ABWEICHEND SEIN.
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+**FEEDBACK.** Wenn Sie Feedback zu den Technologiefeatures, Funktionen und/oder Konzepten geben, die in dieser Demo/Übung beschrieben werden, gewähren Sie Microsoft das Recht, Ihr Feedback in jeglicher Weise und für jeglichen Zweck kostenlos zu verwenden, zu veröffentlichen und gewerblich zu nutzen. Außerdem treten Sie Dritten kostenlos sämtliche Patentrechte ab, die erforderlich sind, damit deren Produkte, Technologien und Dienste bestimmte Teile einer Software oder eines Dienstes von Microsoft, welche/welcher das Feedback enthält, verwenden oder eine Verbindung zu dieser/diesem herstellen können. Sie geben kein Feedback, das einem Lizenzvertrag unterliegt, aufgrund dessen Microsoft Drittparteien eine Lizenz für seine Software oder Dokumentation gewähren muss, weil wir Ihr Feedback in diese aufnehmen. Diese Rechte bestehen nach Ablauf dieser Vereinbarung fort.
+DIE MICROSOFT CORPORATION LEHNT HIERMIT JEGLICHE GEWÄHRLEISTUNGEN UND GARANTIEN IN BEZUG AUF DIE DEMO/ÜBUNG AB, EINSCHLIESSLICH ALLER AUSDRÜCKLICHEN, KONKLUDENTEN ODER GESETZLICHEN GEWÄHRLEISTUNGEN UND GARANTIEN DER HANDELSÜBLICHKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DES RECHTSANSPRUCHS UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. MICROSOFT MACHT KEINERLEI ZUSICHERUNGEN BZW. ERHEBT KEINERLEI ANSPRÜCHE IM HINBLICK AUF DIE RICHTIGKEIT DER ERGEBNISSE UND DES AUS DER VERWENDUNG DER DEMO/ÜBUNG RESULTIERENDEN ARBEITSERGEBNISSES BZW. BEZÜGLICH DER EIGNUNG DER IN DER DEMO/ÜBUNG ENTHALTENEN INFORMATIONEN FÜR EINEN BESTIMMTEN ZWECK.
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+**HAFTUNGSAUSSCHLUSS**
 
-**DECLINACIÓN DE RESPONSABILIDADES**
-
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+Diese Demo/Übung enthält nur einen Teil der neuen Features und Verbesserungen in Microsoft Power BI. Einige Features können sich unter Umständen in zukünftigen Versionen des Produkts ändern. In dieser Demo/Übung erhalten Sie Informationen über einige, aber nicht über alle neuen Features.

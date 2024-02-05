@@ -1,377 +1,436 @@
-![](Media/4.1.png)
+![](./Media/4.40.png)
 
-# Contenido 
-- Presentación
+# Inhalt
 
-- Flujo de datos Gen2
+- Einführung
 
-    - Tarea 1: Copiar consultas de Snowflake al flujo de datos
-    - Tarea 2: Crear una conexión a Snowflake
-    - Tarea 3: Configurar el destino de datos para las consultas de Supplier y PO
-    - Tarea 4: Cambiar el nombre y publicar el flujo de datos de Snowflake
-    - Tarea 5: Copiar consultas de Dataverse al flujo de datos
-    - Tarea 6: Crear una conexión a Dataverse
-    - Tarea 7: Crear un destino de datos para la consulta Customer
-    - Tarea 8: Publicar y cambiar el nombre del flujo de datos de Dataverse
-    - Tarea 9: Copiar consultas de SharePoint al flujo de datos
-    - Tarea 10: Crear una conexión a SharePoint
-    - Tarea 11: Configurar el destino de datos para la consulta People
-    - Tarea 12: Publicar y cambiar el nombre del flujo de datos de SharePoint
+- Dataflow Gen2
 
-- Referencias
+   - Aufgabe 1: Snowflake-Abfragen in Dataflow kopieren
 
-# Presentación 
+   - Aufgabe 2: Verbindung zu Snowflake erstellen
 
-En nuestro escenario, los datos del proveedor están en Snowflake, los datos del cliente están en Dataverse y los datos de los empleados están en SharePoint. Todos estos orígenes de datos se actualizan en diferentes momentos. Para minimizar la cantidad de actualizaciones de datos de los flujos de datos, crearemos flujos de datos individuales para cada uno de estos orígenes de datos.
+    - Aufgabe 3: Datenziel für die Abfragen „Supplier“ und „PO“ konfigurieren
 
-**Nota:** Se admiten varios orígenes de datos en un único flujo de datos.
-Al final de este laboratorio, habrá aprendido: 
-- Cómo conectarse a Snowflake mediante el flujo de datos Gen2 e ingerir datos en lakehouse
-- Cómo conectarse a SharePoint mediante el flujo de datos Gen2 e ingerir datos en lakehouse
-- Cómo conectarse a Dataverse mediante el flujo de datos Gen2 e ingerir datos en lakehouse
+    - Aufgabe 4: Snowflake-Dataflow umbenennen und veröffentlichen
 
-# Flujo de datos Gen2
-## Tarea 1: Copiar consultas de Snowflake al flujo de datos
-1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8.
-2. En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
+    - Aufgabe 5: Dataverse-Abfragen in Dataflow kopieren
 
-    ![](Media/4.2.png)
- 
-Se le dirigirá de vuelta a la **página de del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
+    - Aufgabe 6: Verbindung zu Dataverse erstellen
 
-3. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-4.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-5.	Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta SnowflakeData **Ctrl+Seleccionar** o Mayús+Seleccionar las siguientes consultas:
+    - Aufgabe 7: Datenziel für die Abfrage „Customer“ erstellen
 
-    a.	SupplierCategories
+    - Aufgabe 8: Dataverse-Dataflow veröffentlichen und umbenennen
+
+    - Aufgabe 9: SharePoint-Abfragen in Dataflow kopieren
+
+    - Aufgabe 10: Verbindung zu SharePoint erstellen
+
+    - Aufgabe 11: Datenziel für die Abfrage „People“ konfigurieren
+
+    - Aufgabe 12: SharePoint-Dataflow veröffentlichen und umbenennen
+
+## Referenzen
+
+Bei unserem Anwendungsfall befinden sich die Lieferantendaten in Snowflake, die Kundendaten in Dataverse und die Mitarbeiterdaten in SharePoint. Alle diese Datenquellen werden zu verschiedenen Zeiten aktualisiert. Um die Anzahl der Datenaktualisierungen von Dataflows zu verringern, erstellen wir für jede dieser Datenquellen individuelle Dataflows.
+Hinweis: Ein einziger Dataflow berücksichtigt dabei mehrere Datenquellen.
+
+**Inhalt dieser Übung:**
+- Mit Dataflow Gen2 eine Verbindung zu Snowflake herstellen und Daten im Lakehouse erfassen
+- Mit Dataflow Gen2 eine Verbindung zu SharePoint herstellen und Daten im Lakehouse erfassen
+- Mit Dataflow Gen2 eine Verbindung zu Dataverse herstellen und Daten im Lakehouse erfassen
+
+# Dataflow Gen2
+
+## Aufgabe 1: Snowflake-Abfragen in Dataflow kopieren
+1. Wechseln wir zurück zum Fabric-Arbeitsbereich **FAIAD_<Benutzername>**, den Sie in Aufgabe 8 von Übung 2 erstellt haben.
+
+2. Wählen Sie im Menü oben die Option **Neu -> Dataflow Gen2 aus**.
+
+   ![](./Media/4.1.png)
+
+ Sie werden zur **Dataflow-Seite** weitergeleitet. Nachdem Sie Dataflow nun kennen, kopieren Sie die Abfragen aus Power BI Desktop in Dataflow.
+
+3. Öffnen Sie, sofern noch nicht geschehen, auf dem **Desktop** Ihrer Übungsumgebung im Ordner **Report** die Datei **FAIAD.pbix**.
+4. Wählen Sie im Menüband **Start > Daten transformieren** aus. Das Power Query-Fenster wird geöffnet.
+5. Das Power Query-Fenster wird geöffnet. Wählen Sie links unter dem Ordner „SnowflakeData“ mit **Strg+Auswahl** oder „Umschalt+Auswahl“ die folgenden Abfragen aus:
+
+   a. SupplierCategories
+   
+   b. Suppliers
+   
+   c. Supplier
+   
+   d. PO
+   
+   e. PO Line Items
+
+6. **Klicken Sie mit der rechten Maustaste**, und wählen Sie **Kopieren** aus.
+
+   ![](./Media/4.2.png)
+
+7. Navigieren Sie zurück zum **Browser**.
+
+8. Wählen Sie im Bereich **Dataflow** den **mittleren Bereich** aus, und drücken Sie **Strg+V** (das Einfügen mittels Rechtklick ist derzeit nicht möglich).
+
+## Aufgabe 2: Verbindung zu Snowflake erstellen
+Beachten Sie, dass die fünf Abfragen eingefügt wurden und dass der Bereich „Abfragen“ jetzt links ist. Weil für Snowflake keine Verbindung erstellt wurde, wird eine Warnmeldung angezeigt, in der Sie aufgefordert werden, eine Verbindung zu konfigurieren.
+
+1. Wählen Sie **Verbindung konfigurieren** aus.
+
+   ![](./Media/4.3.png)
+
+2. Das Dialogfeld „Mit Datenquelle verbinden“ wird geöffnet. Überprüfen Sie, dass im Dropdown-Menü **Verbindung** die Option **Neue Verbindung erstellen** ausgewählt ist.
+
+3. Die **Authentifizierungsart** sollte **Snowflake** lauten.
+
+4. Geben Sie den **Benutzernamen und das Kennwort für Snowflake** ein. Beides finden Sie auf der Registerkarte mit den Environment Variables (neben der Registerkarte mit der Übungsanleitung).
+5. Wählen Sie **Verbinden** aus.
+
+   ![](./Media/4.4.png)
+
+Die Verbindung wird hergestellt, und Sie können die Daten im Vorschaufenster ansehen. Wenn Sie möchten, sehen Sie sich die angewandten Schritte der Abfragen an. Grundsätzlich enthält die Suppliers-Abfrage Lieferanteninformationen und „SupplierCategories“, wie der Name schon sagt, Lieferantenkategorien. Diese beiden Tabellen werden zusammengeführt, um die Dimension „Supplier“ mit den erforderlichen Spalten zu erstellen. Auf ähnliche Weise wird „PO Line Items“ mit „PO“ zusammengeführt, um den Fakt „PO“ zu erstellen. Nun müssen die Daten von „Supplier“ und „PO“ im Lakehouse erfasst werden.
+
+6. Wie bereits erwähnt, stellen wir keine dieser Daten bereit. Klicken Sie im Bereich mit den Abfragen **mit der rechten Maustaste** auf die Abfrage **Supplier**, und wählen Sie **Staging aktivieren** aus, um das Häkchen zu entfernen.
+
+   ![](./Media/4.5.png)
+
+7. Klicken Sie ebenfalls mit der rechten Maustaste auf die Abfrage **PO**. Entfernen Sie durch Auswahl von **Staging aktivieren** das Häkchen.
+
+**Hinweis:** Bei den anderen drei Abfragen muss das Staging nicht deaktiviert werden, weil die Option „Laden aktivieren“ in Power BI Desktop (aus dem diese Abfragen kopiert wurden) deaktiviert war.
+
+## Aufgabe 3: Datenziel für die Abfragen „Supplier“ und „PO“ konfigurieren
+
+1. Wählen Sie die Abfrage **Supplier** aus.
+2. Wählen Sie unten rechts **„+“** neben Datenziel aus.
+3. Wählen Sie im Dialogfeld die Option **Lakehouse** aus.
+
+   ![](./Media/4.6.png)
+
+4. Das Dialogfeld „Herstellen einer Verbindung mit dem Datenziel“ wird geöffnet. Wählen Sie im **Dropdown-Menü** **„Verbindung“** die Option **Lakehouse (keine)** aus.
+5. Wählen Sie Weiter aus.
+
+   ![](./Media/4.7.png)
+
+6. Das Dialogfeld „Ziel auswählen“ wird geöffnet. Stellen Sie sicher, dass das Optionsfeld **Neue Tabelle ausgewählt** ist, weil wir eine neue Tabelle erstellen.
+7. Wir möchten die zuvor erstellte Tabelle in Lakehouse erstellen. Navigieren Sie im linken Bereich zu **Lakehouse -> FAIAD_<Benutzername>**.
+8. Wählen Sie **lh_FAIAD** aus.
+9. Behalten Sie den Tabellennamen **Supplier** bei.
+10. Wählen Sie **Weiter** aus.
+
+    ![](./Media/4.8.png)
+
+11. Das Dialogfeld „Zieleinstellungen auswählen“ wird geöffnet. Bei jeder Aktualisierung von Dataflow Gen2 möchten wir einen vollständigen Ladevorgang durchführen. Stellen Sie sicher, dass **Updatemethode** auf **Ersetzen** festgelegt ist.
+12. Beachten Sie, dass die Warnung „Einige Spaltennamen enthalten nicht unterstützte Zeichen. Sollen wir das Problem für Sie beheben?“ Lakehouse unterstützt keine Spaltennamen mit Leerzeichen. Wählen Sie **Korrigieren** aus, um die Warnung zu entfernen.
+13. Mithilfe der Spaltenzuordnung können Dataflow-Spalten vorhandenen Spalten zugeordnet werden. In unserem Fall handelt es sich um eine neue Tabelle. Daher können wir die Standardwerte verwenden. Wählen Sie **Einstellungen speichern** aus.
+
+    ![](./Media/4.9.png)
+
+14. Sie werden zum **Power Query-Fenster** weitergeleitet. Beachten Sie unten rechts, dass das **Datenziel** auf **Lakehouse** festgelegt ist. Legen Sie ebenso das **Datenziel für die Abfrage „PO“** fest. Sobald das erledigt ist, sollte bei der Abfrage „PO“ das **Datenziel**, wie im Screenshot unten zu sehen, **Lakehouse** lauten.
+
+    ![](./Media/4.10.png)
+
+## Aufgabe 4: Snowflake-Dataflow umbenennen und veröffentlichen
+
+1. Wählen Sie oben auf dem Bildschirm den **Pfeil neben Dataflow 1** aus.
+2. Ändern Sie im Dialogfeld den Namen in **df_Supplier_Snowflake**.
+3. Speichern Sie die Namensänderung durch Drücken der **Eingabetaste**.
+
+   ![](./Media/4.11.png)
+
+4. Wählen Sie unten rechts **Veröffentlichen** aus.
+
+   ![](./Media/4.12.png)
+
+Sie werden zum **Bildschirm „Data Factory“** weitergeleitet. Es kann einige Momente dauern, bis der Dataflow veröffentlicht wird.
+
+**Hinweis:** Manchmal wird der Dataflow-Name nicht geändert. Gehen Sie in diesem Fall wie nachstehend angegeben vor. Wurde der Dataflow umbenannt, können Sie mit der nächsten Aufgabe fortfahren.
+
+5. Sobald Dataflow 1 veröffentlicht wurde, benennen Sie ihn um. Klicken Sie auf die **Auslassungspunkte (…)** neben Dataflow 1. Wählen Sie **Eigenschaften** aus.
+
+   ![](./Media/4.13.png)
+
+6. Das Dialogfeld „Dataflow-Eigenschaften“ wird geöffnet. Ändern Sie den Namen in **df_Supplier_Snowflake**.
+
+7. Ergänzen Sie im Textfeld **Beschreibung** den Text **Dataflow zur Erfassung der Lieferantendaten von Snowflake im Lakehouse**.
+
+8. Klicken Sie auf **Speichern**.
+
+   ![](./Media/4.14.png)
+
+Sie werden zum **Bildschirm „Data Factory“** weitergeleitet. Erstellen wir nun einen Dataflow zur Erfassung der Daten aus Dataverse.
+
+## Aufgabe 5: Dataverse-Abfragen in Dataflow kopieren
+
+1. Wählen Sie im Menü oben die Option **Neu -> Dataflow Gen2** aus.
+
+   ![](./Media/4.15.png)
+
+Sie werden zur **Dataflow-Seite** weitergeleitet. Nachdem Sie Dataflow nun kennen, kopieren Sie die Abfragen aus Power BI Desktop in Dataflow.
+
+2. Öffnen Sie **FAIAD.pbix** im Ordner **Report** auf dem Desktop Ihrer Übungsumgebung, falls dies noch nicht erfolgt ist.
+3. Wählen Sie im Menüband **Start > Daten transformieren** aus. Das Power Query-Fenster wird geöffnet. Wie Sie in der vorherigen Übung festgestellt haben, sind die Abfragen im linken Bereich nach Datenquelle organisiert.
+4. Das Power Query-Fenster wird geöffnet. Wählen Sie links im Ordner „DataverseData“ mit **Strg+Auswahl** die folgenden Abfragen aus:
+
+    a. BabyBoomer
     
-    b.	Suppliers
+    b. GenX
     
-    c.	Supplier
+    c. GenY
     
-    d.	PO
+    d. GenZ
     
-    e.	PO Line Items
+    e. Customer
 
-6.	**Haga clic derecho** y seleccione **Copiar**.
- 
-    ![](Media/4.3.png)
+5. **Klicken Sie mit der rechten Maustaste**, und wählen Sie **Kopieren** aus.
 
-7.	Vuelva al **explorador**.
-8.	En el **panel del flujo de datos**, seleccione el **panel central**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+   ![](./Media/4.16.png)
 
-## Tarea 2: Crear una conexión a Snowflake
-Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas a la izquierda. Como no tenemos una conexión creada para Snowflake, verá un mensaje de advertencia que le solicitará que configure la conexión.
-1.	Seleccione **Configurar conexión**.
+6. Rufen Sie im Browser wieder die **Dataflow-Seite** auf.
+7. Drücken Sie im Bereich **Dataflow** auf **Strg+V** (das Einfügen mittels Rechtsklick ist derzeit nicht möglich).
 
-    ![](Media/4.4.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el menú desplegable **Conexión**, asegúrese de que Crear nueva conexión esté seleccionado.
-3.	**El tipo de autenticación** debe ser **Snowflake**.
-4.	Introduzca el **Nombre de usuario y contraseña de Snowflake** disponibles en la pestaña Variables de entorno (al lado de la pestaña Guía de laboratorio).
-5.	Seleccione **Conectar**.
 
-    ![](Media/4.5.png)
- 
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Básicamente, la consulta Suppliers tiene los detalles de los proveedores y SupplierCategories, como su nombre indica, tiene categorías de proveedores. Estas dos tablas se unen para crear la dimensión Supplier, con las columnas que necesitamos. De manera similar, tenemos PO Line Items combinada con pedidos de compra para crear el dato de PO. Ahora necesitamos incorporar los datos del proveedor y de PO en el lakehouse.
+## Aufgabe 6: Verbindung zu Dataverse erstellen
 
-6.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **Supplier** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+Beachten Sie, dass die fünf Abfragen eingefügt wurden und dass der Bereich „Abfragen“ jetzt links ist. Weil für Dataverse keine Verbindung erstellt wurde, wird eine Warnmeldung angezeigt, in der Sie aufgefordert werden, eine Verbindung zu konfigurieren.
 
-    ![](Media/4.6.png)
- 
-7.	De manera similar, haga clic derecho en la consulta **PO**. Seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+1. Wählen Sie **Verbindung konfigurieren** aus.
 
-**Nota:** No tenemos que deshabilitar el almacenamiento provisional para las otras tres consultas porque Habilitar carga se deshabilitó en Power BI Desktop (desde donde se copiaron estas consultas).
+   ![](./Media/4.17.png)
 
-## Tarea 3: Configurar el destino de datos para las consultas de Supplier y PO
+2. Das Dialogfeld „Mit Datenquelle verbinden“ wird geöffnet. Überprüfen Sie, dass im Dropdown-Menü **Verbindung** die Option **Neue Verbindung erstellen ausgewählt** ist.
 
-1.	Seleccione la consulta de **Supplier**.
-2.	En la esquina inferior derecha, seleccione "+" junto a **Destino de datos**.
-3.	Seleccione **Lakehouse** en el cuadro de diálogo.
+3. Die **Authentifizierungsart** muss **Organisationskonto** lauten.
 
-    ![](Media/4.7.png)
- 
-4.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión**, seleccione **Lakehouse (ninguno)**.
-5.	Seleccione **Siguiente**.
+4. Wählen Sie **Verbinden** aus.
 
-    ![](Media/4.8.png)
- 
-6.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el botón de opción **Nueva tabla** esté **seleccionado**, ya que estamos creando una nueva tabla.
-7.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-8.	Seleccione **lh_FAIAD**.
-9.	Deje el nombre de la tabla como **Supplier**.
-10.	Seleccione **Siguiente**.
+   ![](./Media/4.18.png)
 
-    ![](Media/4.9.png)
- 
-11.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-12.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-13.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+## Aufgabe 7: Datenziel für die Abfrage „Customer“ erstellen
 
-    ![](Media/4.10.png)
- 
-14.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha, el destino de los datos** está configurado en el **lakehouse**. De manera similar, **configure el destino de datos para la consulta de PO**. Una vez hecho esto, su consulta de PO debe tener Destino de datos establecido en **Lakehouse** como se muestra en la siguiente captura de pantalla.
+Die Verbindung wird hergestellt, und Sie können die Daten im Vorschaufenster ansehen. Wenn Sie möchten, sehen Sie sich die angewandten Schritte der Abfragen an. Kundendaten sind nach Kategorie verfügbar: BabyBoomer, GenX, GenY und GenZ. Diese vier Abfragen werden angehängt, um die Customer-Abfrage zu erstellen. Nun müssen die Kundendaten im Lakehouse erfasst werden.
 
-    ![](Media/4.11.png)
- 
-
-## Tarea 4: Cambiar el nombre y publicar el flujo de datos de Snowflake
-
-1. En la parte superior de la pantalla, seleccione la **flecha junto a Dataflow 1** para cambiar el nombre.
-2.	En el cuadro de diálogo, cambie el nombre a **df_Supplier_Snowflake**.
-3.	Haga clic en **Introducir** para guardar el cambio de nombre.
-
-    ![](Media/4.12.png)
- 
-4.	En la esquina inferior derecha, seleccione **Publicar**.
+1. Wie bereits erwähnt, stellen wir keine dieser Daten bereit. Klicken Sie im Bereich mit den Abfragen **mit der rechten Maustaste** auf die Abfrage **Customer**, und wählen Sie **Staging aktivieren** aus, um das Häkchen zu entfernen.
 
-    ![](Media/4.13.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Es posible que el flujo de datos tarde unos minutos en publicarse. 
+   ![](./Media/4.19.png)
 
-**Nota:** A veces, el nombre del flujo de datos no se actualiza. En este caso, siga los pasos a continuación. Si se ha cambiado el nombre del flujo de datos, puede pasar a la siguiente tarea.
+2. Wählen Sie die Abfrage **Customer** aus.
 
-5.	Una vez que el Dataflow 1 termine de publicarse, cambiaremos su nombre. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
+3. Wählen Sie unten rechts **„+“** neben Datenziel aus.
 
-    ![](Media/4.14.png)
- 
-6.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el nombre a **df_Supplier_Snowflake**.
-7.	En el cuadro de texto **Descripción**, agregue **Dataflow to ingest Supplier data from Snowflake to Lakehouse**.
-8.	Seleccione **Guardar**.
+4. Wählen Sie im Dialogfeld die Option **Lakehouse** aus.
 
-    ![](Media/4.15.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora creemos un flujo de datos para traer datos de Dataverse.
+   ![](./Media/4.20.png)
 
-## Tarea 5: Copiar consultas de Dataverse al flujo de datos
+5. Das Dialogfeld „Herstellen einer Verbindung mit dem Datenziel“ wird geöffnet. Wählen Sie im **Dropdown-Menü „Verbindung“** die Option **Lakehouse (keine)** aus.
 
-1.	En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
+6. Wählen Sie **Weiter** aus.
 
-    ![](Media/4.16.png)
- 
-Se le dirigirá de vuelta a la **página del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
+   ![](./Media/4.21.png)
 
-2.	Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-3.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-4.	Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta DataverseData, **Ctrl+Seleccionar** las siguientes consultas:
+7. Das Dialogfeld „Ziel auswählen“ wird geöffnet. Stellen Sie sicher, dass das **Optionsfeld „Neue Tabelle“** ausgewählt ist, da wir eine neue Tabelle erstellen.
 
-    a.	BabyBoomer
-    
-    b.	GenX
-    
-    c.	GenY
-    
-    d.	GenZ
-    
-    e.	Customer
+8. Wir möchten die zuvor erstellte Tabelle in Lakehouse erstellen. Wechseln Sie links zu **Lakehouse -> FAIAD_<Benutzername>**.
 
-5.	**Haga clic derecho** y seleccione **Copiar**.
+9. Wählen Sie **lh_FAIAD** aus.
 
-    ![](Media/4.17.png)
- 
-6.	Vuelva a la ventana **Página del flujo de datos** en su explorador.
-7.	En el **panel del flujo de datos**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+10. Behalten Sie den Tabellennamen **Customer** bei.
 
-## Tarea 6: Crear una conexión a Dataverse
-Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas a la izquierda. Como no tenemos una conexión creada para Dataverse, verá un mensaje de advertencia que le solicitará que configure la conexión.
+11. Wählen Sie **Weiter** aus.
 
-1.	Seleccione **Configurar conexión**.
+    ![](./Media/4.22.png)
 
-    ![](Media/4.18.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el **menú desplegable Conexión**, asegúrese de que Crear nueva conexión esté **seleccionado**.
-3.	**Tipo de autenticación** debería ser **Cuenta de organización**.
-4.	Seleccione **Conectar**.
+12. Das Dialogfeld „Zieleinstellungen auswählen“ wird geöffnet. Bei jeder Aktualisierung von Dataflow Gen2 möchten wir einen vollständigen Ladevorgang durchführen. Stellen Sie sicher, dass **Updatemethode** auf **Ersetzen** festgelegt ist.
 
-    ![](Media/4.19.png)
- 
+13. Beachten Sie, dass die Warnung „Einige Spaltennamen enthalten nicht unterstützte Zeichen. Sollen wir das Problem für Sie beheben?“ Lakehouse unterstützt keine Spaltennamen mit Leerzeichen. Wählen Sie **Korrigieren** aus, um die Warnung zu entfernen.
 
-## Tarea 7: Crear un destino de datos para la consulta Customer
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Los datos de los clientes están disponibles por categoría: BabyBoomer, GenX, GenY y GenZ. Estas cuatro consultas se adjuntan para crear la consulta Customer. Ahora necesitamos incorporar los datos del cliente en el lakehouse.
-
-1.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **Customer** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+14. Mithilfe der Spaltenzuordnung können Dataflow-Spalten vorhandenen Spalten zugeordnet werden. In unserem Fall handelt es sich um eine neue Tabelle. Daher können wir die Standardwerte verwenden. Wählen Sie **Einstellungen speichern** aus.
 
-    ![](Media/4.20.png)
- 
-2.	Seleccione la consulta **Customer**.
-3.	En la esquina inferior derecha, seleccione **"+"** junto a **Destino de datos**.
-4.	Seleccione **lakehouse** en el cuadro de diálogo.
-
-    ![](Media/4.21.png)
- 
-5.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión**, seleccione **Lakehouse (ninguno)**.
-6.	Seleccione **Siguiente**.
-
-    ![](Media/4.22.png)
- 
-7.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el **botón de opción Nueva tabla** esté seleccionado, ya que estamos creando una nueva tabla.
-8.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-9.	Seleccione **lh_FAIAD**.
-10.	Deje el nombre de la tabla como **Customer**.
-11.	Seleccione **Siguiente**.
-
-    ![](Media/4.23.png)
- 
-12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+    ![](./Media/4.23.png)
 
-    ![](Media/4.24.png)
- 
+## Aufgabe 8: Dataverse-Dataflow veröffentlichen und umbenennen
 
-## Tarea 8: Publicar y cambiar el nombre del flujo de datos de Dataverse
-
-1.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el **destino de los datos** está configurado en el **lakehouse**.
-2.	En la esquina inferior derecha, seleccione **Publicar**.
+1. Sie werden zum **Power Query-Fenster** weitergeleitet. Beachten Sie unten rechts, dass das **Datenziel** auf **Lakehouse** festgelegt ist.
 
-    ![](Media/4.25.png)
- 
-**Nota:** Se le dirigirá de nuevo a la pantalla de Data Factory. Es posible que el flujo de datos tarde unos minutos en publicarse.
+2. Wählen Sie unten rechts **Veröffentlichen** aus.
 
-3.	Estamos trabajando con el Dataflow 1. Cambiémosle el nombre antes de continuar. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
- 
-    ![](Media/4.26.png)
+   ![](./Media/4.24.png)
 
-4.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el **Nombre a df_Customer_Dataverse**.
-5.	En el cuadro de texto Descripción, agregue **Dataflow to ingest Customer data from Dataverse to Lakehouse**.
-6.	Seleccione **Guardar**.
+**Hinweis:** Sie werden wieder zum Bildschirm Data Factory geleitet. Es kann einige Momente dauern, bis der Dataflow veröffentlicht wird.
 
-    ![](Media/4.27.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora creemos un flujo de datos para traer datos de SharePoint.
+3. Wir arbeiten mit Dataflow 1. Benennen wir ihn um, bevor wir fortfahren. Klicken Sie auf die **Auslassungspunkte (…)** neben Dataflow 1. Wählen Sie **Eigenschaften** aus.
 
-## Tarea 9: Copiar consultas de SharePoint al flujo de datos
-
-1.	En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
-
-    ![](Media/4.28.png)
- 
-Se le dirigirá de vuelta a la **página de del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
+   ![](./Media/4.25.png)
 
-2.	Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-3.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-4.	Se abre la ventana de Power Query. En el panel izquierdo, en la carpeta SharepointData, **seleccione** la consulta **People**.
-
-5.	**Haga clic derecho** y seleccione **Copiar**.
-
-    ![](Media/4.29.png)
- 
-6.	Vuelva a la **pantalla del flujo de datos** en el explorador.
-7.	En el **panel del flujo de datos**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
-
-Observe la consulta pegada y disponible en el panel izquierdo. Como no tenemos una conexión creada para SharePoint, verá un mensaje de advertencia que le solicitará que configure la conexión.
-
-## Tarea 10: Crear una conexión a SharePoint
-1.	Seleccione **Configurar conexión**.
-
-    ![](Media/4.30.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el menú desplegable **Conexión**, asegúrese de que **Crear nueva conexión** esté seleccionado.
-3.	**Tipo de autenticación** debería ser **Cuenta de organización**.
-4.	Seleccione **Conectar**.
+4. Das Dialogfeld „Dataflow-Eigenschaften“ wird geöffnet. Ändern Sie den **Namen** in **df_Customer_Dataverse**.
 
-    ![](Media/4.31.png)
- 
+5. Ergänzen Sie im Textfeld **Beschreibung** den Text **Dataflow zur Erfassung von Kundendaten aus Dataverse im Lakehouse**.
 
-## Tarea 11: Configurar el destino de datos para la consulta People
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Ahora necesitamos incorporar los datos de las personas en el lakehouse.
+6. Klicken Sie auf **Speichern**.
 
-1.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **People** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+   ![](./Media/4.26.png)
 
-    ![](Media/4.32.png)
- 
-2.	Seleccione la consulta **People**.
-3.	En la esquina inferior derecha, seleccione **"+"** junto a Destino de datos.
-4.	Seleccione Lakehouse en el cuadro de diálogo.
+Sie werden zum **Bildschirm „Data Factory“** weitergeleitet. Erstellen wir nun einen Dataflow zur Erfassung der Daten aus SharePoint.
 
-    ![](Media/4.33.png)
- 
-5.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión, seleccione Lakehouse (ninguno)**.
-6.	Seleccione **Siguiente**.
+## Aufgabe 9: SharePoint-Abfragen in Dataflow kopieren
 
-    ![](Media/4.34.png)
- 
-7.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el botón de opción **Nueva tabla** esté **seleccionado**, ya que estamos creando una nueva tabla.
-8.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-9.	Seleccione **lh_FAIAD**.
-10.	Deje el nombre de la tabla como **People**.
-11.	Seleccione **Siguiente**.
+1. Wählen Sie im Menü oben die Option **Neu -> Dataflow Gen2** aus.
 
-    ![](Media/4.35.png)
- 
-12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+   ![](./Media/4.27.png)
 
-    ![](Media/4.36.png)
- 
+Sie werden zur **Dataflow-Seite** weitergeleitet. Nachdem Sie Dataflow nun kennen, kopieren Sie die Abfragen aus Power BI Desktop in Dataflow.
 
-## Tarea 12: Publicar y cambiar el nombre del flujo de datos de SharePoint
+2. Öffnen Sie, sofern noch nicht geschehen, auf dem **Desktop** Ihrer Übungsumgebung im Ordner Report die Datei **FAIAD.pbix**.
 
-1.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el destino de los datos está configurado en el **lakehouse**.
-2.	En la esquina inferior derecha, seleccione **Publicar**.
+3. Wählen Sie im Menüband **Start > Daten transformieren** aus. Das Power Query-Fenster wird geöffnet. Wie Sie in der vorherigen Übung festgestellt haben, sind die Abfragen im linken Bereich nach Datenquelle organisiert.
 
-    ![](Media/4.37.png)
- 
-**Nota:** Se le dirigirá de nuevo a la pantalla de Data Factory. Es posible que el flujo de datos tarde unos minutos en publicarse.
+4. Das Power Query-Fenster wird geöffnet. Wählen Sie links unter dem Ordner **SharepointData** die Abfrage **People** aus.
 
-3.	Estamos trabajando con el Dataflow 1. Cambiémosle el nombre antes de continuar. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
+5. **Klicken Sie mit der rechten Maustaste**, und wählen Sie **Kopieren** aus.
 
-    ![](Media/4.38.png)
- 
-4.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el **nombre** a **df_People_SharePoint**.
-5.	En el cuadro de texto Descripción, agregue **Dataflow to ingest People data from SharePoint to Lakehouse**.
-6.	Seleccione **Guardar**.
+   ![](./Media/4.28.png)
 
-    ![](Media/4.39.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora hemos ingerido todos los datos en el lakehouse. En la próxima práctica de laboratorio, programaremos la actualización del flujo de datos.
+6. Rufen Sie im Browser wieder das Fenster **Dataflow** auf.
 
-# Referencias
+7. Drücken Sie im Bereich **Dataflow** auf **Strg+V** (das Einfügen mittels Rechtsklick ist derzeit nicht möglich).
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+Beachten Sie, dass die Abfrage links eingefügt wurde. Weil für SharePoint keine Verbindung erstellt wurde, wird eine Warnmeldung angezeigt, in der Sie aufgefordert werden, eine Verbindung zu konfigurieren.
 
-![](Media/4.40.png)
- 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+## Aufgabe 10: Verbindung zu SharePoint erstellen
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la[ comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+1. Wählen Sie **Verbindung konfigurieren** aus.
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+   ![](./Media/4.29.png)
 
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://aka.ms/Fabric-DS-Blog) 
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+2. Das Dialogfeld „Mit Datenquelle verbinden“ wird geöffnet. Überprüfen Sie, dass im Dropdown-Menü **Verbindung** die Option **Neue Verbindung erstellen** ausgewählt ist.
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+3. Die **Authentifizierungsart** muss **Organisationskonto** lauten.
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+4. Wählen Sie **Verbinden** aus.
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco 
-crear trabajos derivados de ella.
+   ![](./Media/4.30.png)
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+## Aufgabe 11: Datenziel für die Abfrage „People“ konfigurieren
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+Die Verbindung wird hergestellt, und Sie können die Daten im Vorschaufenster ansehen. Wenn Sie möchten, sehen Sie sich die angewandten Schritte der Abfragen an. Nun müssen die Personendaten im Lakehouse erfasst werden.
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+1. Wie bereits erwähnt, stellen wir keine dieser Daten bereit. Klicken Sie im Bereich mit den Abfragen **mit der rechten Maustaste** auf die Abfrage **People**, und wählen Sie **Staging aktivieren** aus, um das Häkchen zu entfernen.
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+   ![](./Media/4.31.png)
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+2. Wählen Sie die Abfrage **People** aus.
 
+3. Wählen Sie unten rechts **„+“** neben **Datenziel** aus.
+
+4. Wählen Sie im Dialogfeld die Option **Lakehouse** aus.
+
+   ![](./Media/4.32.png)
+
+5. Das Dialogfeld „Herstellen einer Verbindung mit dem Datenziel“ wird geöffnet. Wählen Sie im **Dropdown-Menü „Verbindung“** die Option **Lakehouse (keine)** aus.
+
+6. Wählen Sie **Weiter** aus.
+
+   ![](./Media/4.33.png)
+
+7. Das Dialogfeld „Ziel auswählen“ wird geöffnet. Stellen Sie sicher, dass das **Optionsfeld „Neue Tabelle“** ausgewählt ist, da wir eine neue Tabelle erstellen.
+
+8. Wir möchten die zuvor erstellte Tabelle in Lakehouse erstellen. Navigieren Sie im linken Bereich zu **Lakehouse -> FAIAD_<Benutzername>**.
+
+9. Wählen Sie **lh_FAIAD** aus.
+
+10. Behalten Sie den Tabellennamen **People** bei.
+
+11. Wählen Sie **Weiter** aus.
+
+    ![](./Media/4.34.png)
+
+12. Das Dialogfeld „Zieleinstellungen auswählen“ wird geöffnet. Bei jeder Aktualisierung von Dataflow Gen2 möchten wir einen vollständigen Ladevorgang durchführen. Stellen Sie sicher, dass **Updatemethode** auf **Ersetzen** festgelegt ist.
+
+13. Beachten Sie, dass die Warnung „Einige Spaltennamen enthalten nicht unterstützte Zeichen. Sollen wir das Problem für Sie beheben?“ Lakehouse unterstützt keine Spaltennamen mit Leerzeichen. Wählen Sie **Korrigieren** aus, um die Warnung zu entfernen.
+
+14. Mithilfe der Spaltenzuordnung können Dataflow-Spalten vorhandenen Spalten zugeordnet werden. In unserem Fall handelt es sich um eine neue Tabelle. Daher können wir die Standardwerte verwenden. Wählen Sie **Einstellungen speichern** aus.
+
+    ![](./Media/4.35.png)
+
+## Aufgabe 12: SharePoint-Dataflow veröffentlichen und umbenennen
+
+1. Sie werden zum **Power Query-Fenster** weitergeleitet. Beachten Sie **unten rechts**, dass das Datenziel auf **Lakehouse** festgelegt ist.
+
+2. Wählen Sie unten rechts **Veröffentlichen** aus.
+
+   ![](./Media/4.36.png)
+
+**Hinweis:** Sie werden wieder zum Bildschirm Data Factory geleitet. Es kann einige Momente dauern, bis der Dataflow veröffentlicht wird.
+
+3. Wir arbeiten mit Dataflow 1. Benennen wir ihn um, bevor wir fortfahren. Klicken Sie auf die **Auslassungspunkte (…)** neben Dataflow 1. Wählen Sie **Eigenschaften** aus.
+
+   ![](./Media/4.37.png)
+
+4. Das Dialogfeld „Dataflow-Eigenschaften“ wird geöffnet. Ändern Sie den **Namen** in **df_People_SharePoint**.
+
+5. Ergänzen Sie im Textfeld **Beschreibung** den Text **Dataflow zur Erfassung der Personendaten aus SharePoint im Lakehouse**.
+
+6. Klicken Sie auf **Speichern**.
+
+   ![](./Media/4.38.png)
+
+Sie werden zum **Bildschirm „Data Factory“** weitergeleitet. Nun sind alle Daten im Lakehouse erfasst. In der nächsten Übung beschäftigen wir uns mit der Planung von Dataflow-Aktualisierungen.
+
+## Referenzen
+Bei Fabric Analyst in a Day (FAIAD) lernen Sie einige der wichtigsten Funktionen von Microsoft Fabric kennen. Im Menü des Dienstes finden Sie in der Hilfe (?) Links zu praktischen Informationen.
+
+   ![](./Media/4.39.png)
+
+Nachfolgend finden Sie weitere Angebote zur weiteren Arbeit mit Microsoft Fabric.
+
+Nachfolgend finden Sie weitere Angebote zur weiteren Arbeit mit Microsoft Fabric.
+
+- Die vollständige Ankündigung https://aka.ms/Fabric-Hero-Blog-Ignite23 finden Sie im Blogbeitrag.
+- Fabric bei einer https://aka.ms/Fabric-GuidedTour kennenlernen
+- Zur https://aka.ms/try-fabric anmelden
+- https://aka.ms/microsoft-fabric besuchen
+- Mit Modulen von https://aka.ms/learn-fabric neue Qualifikationen erwerben
+- https://aka.ms/fabric-docs lesen
+- https://aka.ms/fabric-get-started-ebook lesen
+- Mitglied der https://aka.ms/fabric-community werden, um Fragen zu stellen, Feedback zu geben und sich mit anderen auszutauschen
+
+Lesen Sie die detaillierteren Blogs zur Ankündigung der Fabric-Umgebung:
+
+- https://aka.ms/Fabric-Data-Factory-Blog
+
+- https://aka.ms/Fabric-DE-Blog
+
+- https://aka.ms/Fabric-DS-Blog
+
+- https://aka.ms/Fabric-DW-Blog
+
+- https://aka.ms/Fabric-RTA-Blog
+
+- https://aka.ms/Fabric-PBI-Blog
+
+- https://aka.ms/Fabric-DA-Blog
+
+- https://aka.ms/Fabric-Admin-Gov-Blog
+
+- https://aka.ms/Fabric-OneLake-Blog
+
+- https://aka.ms/Dataverse-Fabric-Blog
+
+
+© 2023 Microsoft Corporation. Alle Rechte vorbehalten.
+
+Durch die Verwendung der vorliegenden Demo/Übung stimmen Sie den folgenden Bedingungen zu:
+
+Die in dieser Demo/Übung beschriebene Technologie/Funktionalität wird von der Microsoft Corporation bereitgestellt, um Feedback von Ihnen zu erhalten und Ihnen Wissen zu vermitteln. Sie dürfen die Demo/Übung nur verwenden, um derartige Technologiefeatures und Funktionen zu bewerten und Microsoft Feedback zu geben. Es ist Ihnen nicht erlaubt, sie für andere Zwecke zu verwenden. Es ist Ihnen nicht gestattet, diese Demo/Übung oder einen Teil derselben zu ändern, zu kopieren, zu verbreiten, zu übertragen, anzuzeigen, auszuführen, zu vervielfältigen, zu veröffentlichen, zu lizenzieren, zu transferieren oder zu verkaufen oder aus ihr abgeleitete Werke zu erstellen.
+
+DAS KOPIEREN ODER VERVIELFÄLTIGEN DER DEMO/ÜBUNG (ODER EINES TEILS DERSELBEN) AUF EINEN/EINEM ANDEREN SERVER ODER SPEICHERORT FÜR DIE WEITERE VERVIELFÄLTIGUNG ODER VERBREITUNG IST AUSDRÜCKLICH UNTERSAGT.
+
+DIESE DEMO/ÜBUNG STELLT BESTIMMTE SOFTWARE-TECHNOLOGIE-/PRODUKTFEATURES UND FUNKTIONEN, EINSCHLIESSLICH POTENZIELLER NEUER FEATURES UND KONZEPTE, IN EINER SIMULIERTEN UMGEBUNG OHNE KOMPLEXE EINRICHTUNG ODER INSTALLATION FÜR DEN OBEN BESCHRIEBENEN ZWECK BEREIT. DIE TECHNOLOGIE/KONZEPTE IN DIESER DEMO/ÜBUNG ZEIGEN MÖGLICHERWEISE NICHT DAS VOLLSTÄNDIGE FUNKTIONSSPEKTRUM UND FUNKTIONIEREN MÖGLICHERWEISE NICHT WIE DIE ENDGÜLTIGE VERSION. UNTER UMSTÄNDEN VERÖFFENTLICHEN WIR AUCH KEINE ENDGÜLTIGE VERSION DERARTIGER FEATURES ODER KONZEPTE. IHRE ERFAHRUNG BEI DER VERWENDUNG DERARTIGER FEATURES UND FUNKTIONEN IN EINER PHYSISCHEN UMGEBUNG KANN FERNER ABWEICHEND SEIN.
+
+**FEEDBACK.** Wenn Sie Feedback zu den Technologiefeatures, Funktionen und/oder Konzepten geben, die in dieser Demo/Übung beschrieben werden, gewähren Sie Microsoft das Recht, Ihr Feedback in jeglicher Weise und für jeglichen Zweck kostenlos zu verwenden, zu veröffentlichen und gewerblich zu nutzen. Außerdem treten Sie Dritten kostenlos sämtliche Patentrechte ab, die erforderlich sind, damit deren Produkte, Technologien und Dienste bestimmte Teile einer Software oder eines Dienstes von Microsoft, welche/welcher das Feedback enthält, verwenden oder eine Verbindung zu dieser/diesem herstellen können. Sie geben kein Feedback, das einem Lizenzvertrag unterliegt, aufgrund dessen Microsoft Drittparteien eine Lizenz für seine Software oder Dokumentation gewähren muss, weil wir Ihr Feedback in diese aufnehmen. Diese Rechte bestehen nach Ablauf dieser Vereinbarung fort.
+
+DIE MICROSOFT CORPORATION LEHNT HIERMIT JEGLICHE GEWÄHRLEISTUNGEN UND GARANTIEN IN BEZUG AUF DIE DEMO/ÜBUNG AB, EINSCHLIESSLICH ALLER AUSDRÜCKLICHEN, KONKLUDENTEN ODER GESETZLICHEN GEWÄHRLEISTUNGEN UND GARANTIEN DER HANDELSÜBLICHKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DES RECHTSANSPRUCHS UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. MICROSOFT MACHT KEINERLEI ZUSICHERUNGEN BZW. ERHEBT KEINERLEI ANSPRÜCHE IM HINBLICK AUF DIE RICHTIGKEIT DER ERGEBNISSE UND DES AUS DER VERWENDUNG DER DEMO/ÜBUNG RESULTIERENDEN ARBEITSERGEBNISSES BZW. BEZÜGLICH DER EIGNUNG DER IN DER DEMO/ÜBUNG ENTHALTENEN INFORMATIONEN FÜR EINEN BESTIMMTEN ZWECK.
+
+**HAFTUNGSAUSSCHLUSS**
+
+Diese Demo/Übung enthält nur einen Teil der neuen Features und Verbesserungen in Microsoft Power BI. Einige Features können sich unter Umständen in zukünftigen Versionen des Produkts ändern. In dieser Demo/Übung erhalten Sie Informationen über einige, aber nicht über alle neuen Features.

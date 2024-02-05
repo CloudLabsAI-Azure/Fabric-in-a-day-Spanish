@@ -1,423 +1,393 @@
-![](Media/6.001.png)
+![](./Media/6.1.png)
 
-# ​​Contenido 
+# Einführung
 
-- Presentación  
-- Lakehouse 
+Wir haben Daten aus verschiedene Datenquellen im Lakehouse erfasst. In dieser Übung arbeiten Sie mit dem Datenmodell. Üblicherweise werden Modellierungsarbeiten wie das Erstellen von Beziehungen, das Hinzufügen von Measures usw. in Power BI Desktop durchgeführt. Nun erfahren Sie, wie Sie diese Vorgänge im Dienst durchführen können.
 
-    - Tarea 1: Consultar datos con SQL 
-    - Tarea 2: visualizar el resultado de T-SQL 
-    - Tarea 3: Crear consulta de objetos visuales 
-    - Tarea 4: Visualizar los resultados de la consulta 
-    - Tarea 5: Crear relaciones 
-    - Tarea 6: Crear medidas 
-    - Tarea 7: Sección opcional: crear relaciones 
-    - Tarea 8: Sección opcional: crear medidas 
+Inhalt dieser Übung:
 
-- Referencias 
+- Lakehouse
+- SQL-Ansicht in Lakehouse
+- Datenmodellierung in Lakehouse
 
-# Presentación  
+# Lakehouse
 
-Tenemos datos de diferentes orígenes ingeridos en el lakehouse. En esta práctica de laboratorio, trabajará con el modelo de datos. Normalmente, hacemos actividades de modelado como crear relaciones, agregar medidas, etc. en Power BI Desktop. Aquí aprenderemos cómo hacer estas actividades de modelado en el servicio.  
+## Aufgabe 1: Daten mithilfe von SQL abfragen
 
-Al final de este laboratorio, habrá aprendido:  
-  - Cómo explorar un lakehouse 
-  - Cómo explorar la vista de SQL del lakehouse 
-  - Cómo explorar el modelado de datos en el lakehouse
+1. Navigieren wir nun zurück zum Fabric-Arbeitsbereich **FAIAD_\<username>**, den Sie in Übung 2, Aufgabe 8, erstellt haben.
 
-# Lakehouse 
+1. Wechseln Sie wieder zum Bildschirm **Data Factory**.
 
-## Tarea 1: Consultar datos con SQL 
+1. Sie sehen drei Arten von lh_FAIAD: semantisches Modell, SQL-Endpunkt und Lakehouse. Lakehouse ist Ihnen schon aus einer früheren Übung bekannt. Um sich mit der SQL-Option zu beschäftigen, wählen Sie **lh_FAIAD SQL-Analyse-Endpunkt** aus. Sie werden zur **SQL-Ansicht** des Explorers weitergeleitet.
 
-1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8. 
+    ![](./Media/6.2.png)
 
-2. Vuelva a la **pantalla de Data Factory**. 
+Wenn Sie sich die Daten vor der Erstellung eines Datenmodells genauer ansehen möchten, können Sie dies mit SQL tun. Betrachten wir jetzt zwei Möglichkeiten zur Nutzung von SQL, von denen die erste besonders für Entwickler geeignet ist, die zweite für Analysten.
 
-3. Verá tres tipos de lh_FAIAD: modelo semántico, punto de conexión SQL y lakehouse. Exploramos la opción lakehouse en un laboratorio anterior. Seleccione la opción **Punto de conexión de análisis SQL lh_FAIAD** para explorar la opción SQL. Esto le llevará a la **vista de SQL** del explorador.
+Angenommen, Sie möchten mithilfe von SQL schnell die von einem Lieferanten verkauften Einheiten ermitteln. Dazu gibt es zwei Möglichkeiten: Sie schreiben eine SQL-Anweisung, oder Sie erstellen diese mit einem visuellen Element.
 
-    ![](Media/6.1.png)
+Beachten Sie, dass Sie links die Tabellen anzeigen können. Wenn Sie diese erweitern, sehen Sie die Spalten der Tabelle. Außerdem lassen sich SQL-Ansichten, Funktionen und gespeicherten Prozeduren erstellen. Wenn Sie bereits Erfahrung mit SQL haben, probieren Sie diese Optionen gerne aus. Schreiben wir nun eine einfache SQL-Abfrage.
 
-Si desea explorar los datos antes de crear un modelo de datos, puede utilizar SQL para hacerlo. Veamos dos opciones para usar SQL, la primera está orientada a desarrolladores y la segunda opción es para analistas. 
-Supongamos que desea conocer rápidamente las unidades vendidas por el proveedor mediante SQL. Tenemos dos opciones: escribir una declaración SQL o usar un objeto visual para crear la declaración SQL. 
+4. Wählen Sie im **Menü oben** die Option **Neue SQL-Abfrage** aus, oder klicken Sie **links unten** auf **Abfrage**. Die Ansicht „SQL-Abfrage“ wird geöffnet.
 
-Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, puede ver las columnas que componen la tabla. Además, hay opciones para crear vistas, funciones y procedimientos almacenados de SQL. Si tiene experiencia en SQL, no dude en explorar estas opciones. Intentemos escribir una consulta SQL simple. 
+    ![](./Media/6.3.png)
 
-4. Desde el **menú superior**, seleccione **Nueva consulta SQL** o desde **la parte inferior izquierda panel**, seleccione **Consulta**. Esto le llevará a la vista de consultas de SQL.
+1. Fügen Sie die unten **stehende SQL-Abfrage** in das **Abfragefenster** ein. Mit dieser Abfrage werden die Units by Supplierenname ermittelt. Dazu wird die Tabelle „Sales“ mit den Tabellen „Product“ und „Supplier“ verknüpft.
 
-    ![](Media/6.2.png)
+    ```
+    SELECT su.Supplier_Name, SUM(Quantity) as Units
+    FROM dbo.Sales s
+    JOIN dbo.Product p on p.StockItemID = s.StockItemID
+    JOIN dbo.Supplier su on su.SupplierID = p.SupplierID
+    GROUP BY su.Supplier_Name
+    ```
 
-5. Copie la **siguiente consulta de SQL** en la **ventana de consultas**. Esta consulta devolverá las unidades por nombre del proveedor. Para conseguirlo, se une la tabla Sales con las tablas Product y Supplier. 
- 
-      - SELECT su.Supplier_Name, SUM(Quantity) as Units 
-      - FROM dbo.Sales s 
-      - JOIN dbo.Product p on p.StockItemID = s.StockItemID 
-      - JOIN dbo.Supplier su on su.SupplierID = p.SupplierID 
-      - GROUP BY su.Supplier_Name 
+1. Zeigen Sie die Ergebnisse mit **Ausführen** an.
 
-6. Haga clic en **Run** para ver los resultados.
+1. Beachten Sie, dass die Abfrage mit der Option **Als Ansicht speichern** gespeichert werden kann.
 
-7. Observe que hay una opción para guardar esta consulta como Vista si selecciona **Guardar como vista**.
+1. Die Abfrage wird dann **links** im Bereich **Explorer** unter dem Abschnitt **Abfragen** unter **Meine Abfragen** als **SQL-Abfrage 1** gespeichert. So kann die Abfrage umbenannt und zur späteren Verwendung gespeichert werden. Es ist auch möglich, Abfragen anzuzeigen, die an Sie freigegeben wurden. Öffnen Sie dazu den Ordner **Freigegebene Abfragen**.
 
-8. En el panel del **explorador izquierdo**, en la sección **Queries**, observe que esta consulta se guarda en **Mis consultas** como **SQL query 1**. Esto proporciona una opción para cambiar el nombre de la consulta y guardarla para uso futuro. También hay una opción para ver las consultas que se comparten con usted mediante la carpeta **Consultas compartidas**.
+    ![](./Media/6.4.png)
 
-    ![](Media/6.3.png)
+## Aufgabe 2: T-SQL-Ergebnis veranschaulichen
 
-## Tarea 2: visualizar el resultado de T-SQL 
+1. Das Ergebnis der Abfrage kann auch bildlich veranschaulicht werden. **Markieren Sie die Abfrage** im Abfragebereich, und wählen Sie erst den Bereich **Ergebnisse** und dann **Visualisieren von Ergebnissen** aus.
 
-1. También podemos visualizar el resultado de esta consulta. **Resalte la consulta** en el panel de consulta y seleccione **el panel Resultados**; luego seleccione **Visualización de resultados**.
+    ![](./Media/6.5.png)
 
-    ![](Media/6.4.png)
+1. Das Dialogfeld „Visualisieren von Ergebnissen“ wird geöffnet. Wählen Sie **Weiter** aus.
 
-2. Se abre el cuadro de diálogo Visualización de resultados. Seleccione **Continuar**.
+    ![](./Media/6.6.png)
 
-    ![](Media/6.5.png)
+1. Das bereits bekannte Dialogfeld mit der Berichtsansicht wird angezeigt. Erweitern Sie im Bereich **Daten** den Eintrag **SQL-Abfrage 1**.
 
-3. Se abre el conocido cuadro de diálogo de vista de informe. Desde el panel **Datos**, expanda **SQL query 1**.
+1. Wählen Sie die Felder **Supplier_Name** und **Units**  aus. Das visuelle Element ist standardmäßig eine Tabelle.
 
-4. Seleccione los **campos Supplier_Name y Units**. El objeto visual de tabla se crea de forma predeterminada. 
+1. Ändern Sie unter **Visualisierung** die Art der Abbildung durch Auswahl des **gestapelten Säulendiagramms**.
 
-5. En la sección **Visualizaciones**, cambie el tipo de objeto visual mediante la selección del **gráfico de Columna apilada**. 
+1. Ändern Sie die **Größe** des visuellen Elements nach Bedarf. 
 
-6. **Cambie el tamaño** del objeto visual según sea necesario.  
- 
-     >**Nota:** Observe que todas las opciones disponibles para dar formato a un objeto visual en el informe de Power BI también están disponibles aquí. 
- 
-7. Seleccione **Guardar como informe** en la esquina inferior derecha. 
+    >**Hinweis:** Beachten Sie, dass alle Möglichkeiten zum Formatieren eines visuellen Elements im Power BI-Bericht auch hier funktionieren.
 
-8. Se abre el cuadro de diálogo Guardar el informe. Escriba **Units by Supplier** en el cuadro de texto **Especifique un nombre para el informe**. 
+1. Klicken Sie unten rechts auf **Als Bericht speichern**.
 
-9. Asegúrese de que el área de trabajo de destino es su área de trabajo de Fabric **FAIAD<username>**. 
+1. Das Dialogfeld „Bericht speichern“ wird geöffnet. Geben Sie im Textfeld **Bericht benennen** den Text **Units by Supplier** ein.
 
-10. Seleccione **Guardar**. 
+1. Überprüfen Sie, dass der Zielarbeitsbereich Ihrem Fabric-Arbeitsbereich **FAIAD\<Benutzername>** entspricht.
 
-    ![](Media/6.6.png)
+1. Klicken Sie auf **Speichern**.
 
-## Tarea 3: Crear consulta de objetos visuales 
+    ![](./Media/6.7.png)
 
-Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL. Si no está familiarizado con SQL, puede ejecutar una consulta similar mediante consulta de objeto visual. 
+## Aufgabe 3: visuelle Abfrage erstellen
 
-1. En el menú superior, seleccione **Nueva consulta de objeto visual**. Se abre un panel de consulta de objeto visual. 
+Sie werden zur Ansicht von SQL-Analyse-Endpunkten weitergeleitet. Wenn Sie SQL nicht kennen, können Sie eine ähnliche Abfrage mithilfe einer visuellen Abfrage durchführen.
 
-2. Desde el panel **Explorador**, arrastre las tablas **Sales, Product y Supplier** al panel de consulta de objeto visual. 
+1. Wählen Sie im Menü oben die Option **Neue visuelle Abfrage** aus. Der Bereich für visuelle Abfragen wird geöffnet.
 
-3. Con la tabla **Sales** seleccionada, en el menú del panel Consulta de objeto visual, seleccione **Combinar -> Combinar consultas**.
+1. Ziehen Sie aus dem Bereich **Explorer** die Tabellen **Sales, Product und Supplier** in den Bereich für visuelle Abfragen.
 
-    ![](Media/6.7.png)
+1. Wählen Sie bei Auswahl der Tabelle **Sales** im Menü des Bereichs für visuelle Abfragen die Option **Kombinieren -> Abfragen zusammenführen** aus.
 
-4. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Product**. 
+    ![](./Media/6.8.png)
 
-5. Seleccione **StockItemID** de las tablas **Sales y Product**. Esto se hace para combinar las tablas Sales y Product. 
+1. Das Dialogfeld zum Zusammenführen wird geöffnet. Wählen Sie in der **Dropdown-Liste Rechte Tabelle zum Zusammenführen** den Eintrag **Produkt** aus.
 
-6. En **Tipo de combinación**, seleccione **Externa**. 
+1. Wählen Sie aus der Tabelle **Sales** und der Tabelle **Product** den Eintrag **StockItemID** aus. Dadurch werden die Tabellen „Product“ und „Sales“ zusammengeführt.
 
-7. Seleccione **Aceptar**.
+1. Wählen Sie als **Art des Joins** die Option **Linker äußerer** aus.
 
-    ![](Media/6.8.png)
+1. Klicken Sie auf **OK**.
 
-8. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Product**. 
+    ![](./Media/6.9.png)
 
-9. Seleccione **SupplierID** en el cuadro de diálogo que se abre. 
+1. Klicken Sie unter **Ergebnisse** auf den **Doppelpfeil** neben der Spalte **Product**.
 
-10. Seleccione **Aceptar**. Observe que los pasos **Consultas combinadas y Producto expandido** se crean en la tabla **Sales**.
+1. Ein Dialogfeld wird geöffnet. Wählen Sie darin **SupplierID** aus.
 
-    ![](Media/6.9.png)
+1. Klicken Sie auf **OK**. Beachten Sie, dass die Schritte **Zusammengeführte Abfragen** und **Erweitert Product** in der Tabelle **Sales** erstellt werden.
 
-11. De manera similar, combinemos la tabla Supplier. Dentro de la tabla **Sales**, seleccione **"+"** (ubicado después del Producto expandido) para agregar un nuevo paso. Se abre un cuadro de diálogo. 
+    ![](./Media/6.10.png)
 
-12. Seleccione **Combinar -> Combinar consultas**.
+1. Führen wir ebenso die Tabelle „Supplier“ zusammen. Erstellen Sie einen neuen Schritt, indem Sie in der Tabelle **Sales** auf das + (nach „Erweitert Product“) klicken. Ein Dialogfeld wird geöffnet.
 
-    ![](Media/6.10.png)
+1. Wählen Sie darin **Kombinieren -> Abfragen zusammenführen** aus.
 
-13. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Supplier**. 
+    ![](./Media/6.11.png)
 
-14. Seleccione **SupplierID** de las tablas **Sales y Supplier**. Esto se hace para combinar las tablas Supplier y Sales. 
+1. Das Dialogfeld zum Zusammenführen wird geöffnet. Wählen Sie in der **Dropdown-Liste Rechte Tabelle zum Zusammenführen** den Eintrag **Supplier** aus.
 
-15. En **Tipo de combinación**, seleccione **Externa**. 
+1. Wählen Sie aus der Tabelle **Sales** und der Tabelle **Supplier** den Eintrag **SupplierID** aus. Dadurch werden die Tabellen „Supplier“ und „Sales“ zusammengeführt.
 
-16. Seleccione **Aceptar**.
+1. Wählen Sie als **Art des Joins** die Option **Linker äußerer** aus.
 
-    ![](Media/6.11.png)
+1. Klicken Sie auf **OK**.
 
-17. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Supplier**. 
+    ![](./Media/6.12.png)
 
-18. Seleccione **Supplier_Name** en el cuadro de diálogo que se abre. 
+1. Klicken Sie unter **Ergebnisse** auf den **Doppelpfeil** neben der Spalte **Supplier**.
 
-19. Seleccione **Aceptar**. Observe que en la tabla Sales, se agregan C**onsultas combinadas** y se registran todos los **pasos**. 
- 
->**Nota:** Consulte la primera captura de pantalla en la Tarea 4.
+1. Ein Dialogfeld wird geöffnet. Wählen Sie darin **Supplier_Name** aus.
 
-## Tarea 4: Visualizar los resultados de la consulta 
+1. Klicken Sie auf **OK**. Beachten Sie, dass in der Tabelle „Sales“ der Eintrag **Zusammengeführte Abfragen** ergänzt und alle **Schritte aufgezeichnet** wurden.
 
-1. Ahora que tenemos la consulta lista, veamos el resultado. Seleccione **Visualización de resultados** en el panel de resultados.
+    >**Hinweis:** Siehe hierzu den ersten Screenshot in Aufgabe 4.
 
-    ![](Media/6.12.png)
+## Aufgabe 4: Abfrageergebnisse visualisieren
 
-2. Se abre el cuadro de diálogo Visualización de resultados. En el panel **Datos** de la derecha, seleccione los campos **Supplier_Name y Quantity**. 
+1. Nachdem die Abfrage nun fertig ist, sehen wir uns das Ergebnis an. Wählen Sie im Ergebnisbereich die Option **Visualisieren von Ergebnissen** aus.
 
-3. Seleccione el **objeto visual de tabla** en el panel Objeto visual para ver los resultados como una tabla. Observe que el resultado es similar al resultado de la consulta SQL anterior. Si lo desea, puede guardar este informe. Como guardamos un informe similar anteriormente, seleccionaremos **Cancelar**.
+    ![](./Media/6.13.png)
 
-    ![](Media/6.13.png)
+1. Das Dialogfeld „Visualisieren von Ergebnissen“ wird geöffnet. Wählen Sie rechts unter **Daten** die Felder **Supplier_Name** und **Quantity** aus.
 
-## Tarea 5: Crear relaciones 
+1. Wählen Sie unter „Visualisierung“ das **Tabellensymbolaus**, um die Ergebnisse als Tabelle anzuzeigen. Beachten Sie, dass das Ergebnis dem SQL-Abfrageergebnis von vorhin ähnelt. An dieser Stelle können Sie den Bericht speichern. Weil wir zuvor einen ähnlichen Bericht gespeichert haben, klicken wir aber auf **Abbrechen**.
 
-Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tablas y crear medidas. 
+    ![](./Media/6.14.png)
 
-1. En la parte **inferior del panel de la izquierda**, seleccione **Modelo**. Verá que el panel central se parece a la vista Modelo que vemos en Power BI Desktop. 
+## Aufgabe 5: Beziehungen erstellen
 
-2. **Cambie el tamaño y mueva** las tablas según sea necesario. 
+Nun können wir das Modell erstellen, Beziehungen zwischen Tabellen festlegen und Measures vorgeben.
 
-3. Creemos una relación entre las tablas Sales and Reseller. Seleccione **ResellerID** de la tabla **Sales** y arrástrelo a **ResellerID** en la tabla **Reseller**.
+1. Klicken Sie **links unten** auf **Modell**. Sie werden feststellen, dass der mittlere Bereich wie die Modellansicht in Power BI Desktop aussieht.
 
-    ![](Media/6.14.png)
+1. Ändern Sie Größe und Position der Tabellen nach Bedarf.
 
-4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Sales y que la **Columna** sea **ResellerID**. 
+1. Erstellen wir jetzt eine Beziehung zwischen den Tabellen „Sales“ und „Reseller“. Wählen Sie in der Tabelle **Sales** den Eintrag **ResellerID** aus, und ziehen Sie ihn in der Tabelle **Reseller** auf den Eintrag **ResellerID**.
 
-5. Asegúrese de que la **Table 2** sea **Reseller** y que la **Columna** sea **ResellerID**. 
+    ![](./Media/6.15.png)
 
-6. Asegúrese de que la **Cardinality** sea **Varios a uno** (*:1). 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 Sales** und bei **Spalte ResellerID** angegeben ist.
 
-7. Asegúrese de que la **Dirección de filtro cruzado** sea **Único**. 
+1. Vergewissern Sie sich, dass unter **Table 2 Reseller** und bei **Spalte ResellerID** angegeben ist.
 
-8. Seleccione **OK**.
+1. Die **Kardinalität** lautet **n:1**.
 
-    ![](Media/6.15.png)
+1. Bei **Kreuzfilterrichtung** muss **Einfach** ausgewählt sein.
 
-9. De forma similar, creemos una relación entre las tablas Sales y Date. Seleccione **InvoiceDate** de la tabla **Sales** y arrástrelo a Date en la tabla **Date**. 
+1. Klicken Sie auf **OK**.
 
-10. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **Sales** y que la **Columna** sea **InvoiceDate**. 
+    ![](./Media/6.16.png)
 
-11. Asegúrese de que la **Table 2** sea Date y que la **Columna** sea **Date**. 
+1. Erstellen wir auf diese Weise auch eine Beziehung zwischen den Tabellen „Sales“ und „Date“. Wählen Sie in der Tabelle **Sales** den Eintrag **InvoiceDate** aus, und ziehen Sie ihn in der Tabelle **Date** auf den Eintrag **Date**.
 
-12. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 Sales** und bei **Spalte InvoiceDate** angegeben ist.
 
-13. Asegúrese de que la **Dirección de filtro cruzado sea Único**. 
+1. Vergewissern Sie sich, dass unter **Table 2 Date** und bei **Spalte Date** angegeben ist.
 
-14. Seleccione **Ok**. 
+1. Die **Kardinalität** lautet **n:1**.
 
-    ![](Media/6.16.png)
+1. Bei **Kreuzfilterrichtung** muss **Einfach** ausgewählt sein.
 
-    **Punto de control:** su modelo debe tener dos relaciones entre las tablas Sales y Reseller y las tablas Sales y Date como se muestra en la siguiente captura de pantalla: 
+1. Klicken Sie auf **OK**.
 
-    ![](Media/6.17.png)
+    ![](./Media/6.17.png)
 
-Por razones de tiempo, no crearemos todas las relaciones. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las relaciones restantes. 
+**Überprüfen Sie:** Das Modell muss die zwei Beziehungen zwischen den Tabellen „Sales“ und „Reseller“ sowie den Tabellen „Sales“ und „Date“ aufweisen, wie im folgenden Screenshot gezeigt:
 
-### Tarea 6: Crear medidas 
+![](./Media/6.18.png)
 
-Agreguemos algunas medidas que necesitamos para crear el panel de Sales. 
+Aus Zeitgründen können wir nicht alle Beziehungen erstellen. Sofern Zeit verbleibt, können Sie den fakultativen Abschnitt am Ende der Übung durcharbeiten. Darin werden die restlichen Beziehungen erstellt.
 
-1. Seleccione la **tabla Sales** desde la vista del modelo. Queremos agregar las medidas a la tabla Sales. 
+## Aufgabe 6: Measures erstellen
 
-2. En el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+Ergänzen wir ein paar Measures, die zur Erstellung des Sales-Dashboards benötigt werden.
 
-3. Introduzca **Sales = SUM(Sales[Sales_Amount])** en la **barra de fórmulas**. 
+1. Wählen Sie in der Modellansicht die Tabelle **Sales** aus. Die Measures sollen in dieser Tabelle ergänzt werden.
 
-4. Haga clic en la **marca de verificación** izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+1. Wählen Sie im Menü oben den Eintrag **Start -> Neues Measure** aus. Die Bearbeitungsleiste wird angezeigt.
 
-5. En el panel Propiedades de la derecha, expanda la sección **Formato**. 
+1. Geben Sie dort **Sales = SUM(Sales[Sales_Amount])** ein.
 
-6. En el menú desplegable Formato, seleccione **Moneda**. 
+1. Klicken Sie links neben der Bearbeitungsleiste auf das **Häkchen**, oder drücken Sie die **Eingabetaste**.
 
-7. Establezca **Posiciones decimales** en **0**.
+1. Erweitern Sie im Eigenschaftsfenster rechts den Abschnitt **Formatierung**.
 
-    ![](Media/6.18.png)
+1. Wählen Sie in der Dropdown-Liste **Format** den Eintrag **Währung** aus.
 
-8. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+1. Legen Sie **Dezimalstellen** auf **0** fest.
 
-9. Introduzca **Units = SUM(Sales[Quantity])** en la **barra de fórmulas**. 
+    ![](./Media/6.19.png)
 
-10. Haga clic en la **marca de verificación** izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+1. Wählen Sie bei Auswahl der Tabelle **Sales** im Menü oben die Option **Start -> Neues Measure** aus. Die Bearbeitungsleiste wird angezeigt.
 
-11. En el panel Propiedades a la derecha, expanda la sección **Formato** (el panel Propiedades puede tardar unos momentos en cargarse). 
+1. Geben Sie dort **Units = SUM(Sales[Quantity])** ein.
 
-12. En el menú desplegable **Formato**, seleccione **Número entero**. 
+1. Klicken Sie links neben der Bearbeitungsleiste auf das **Häkchen**, oder drücken Sie die **Eingabetaste**.
 
-13. Establezca el **Separador de miles** en **Sí**.
+1. Erweitern Sie im Eigenschaftsfenster rechts den Abschnitt **Formatierung** (es kann einen Moment dauern, bis das Eigenschaftsfenster geladen wird).
 
-    ![](Media/6.19.png)
+1. Wählen Sie in der Dropdown-Liste **Format** den Eintrag **Ganze Zahl** aus.
 
-14. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+1. Setzen Sie **Tausendertrennzeichen** auf **Ja**.
 
-15. Introduzca **Orders = DISTINCTCOUNT(Sales[InvoiceID])** en la **barra de fórmulas**. 
+    ![](./Media/6.20.png)
 
-16. Haga clic en la marca de verificación izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+1. Wählen Sie bei Auswahl der Tabelle **Sales** im Menü oben die Option **Start -> Neues Measure** aus. Die Bearbeitungsleiste wird angezeigt.
 
-17. En el panel Propiedades de la derecha, expanda la sección **Formato**. 
+1. Geben Sie dort **Orders = DISTINCTCOUNT(Sales[InvoiceID])** ein.
 
-18. En el menú desplegable Formato, seleccione **Número entero**. 
+1. Klicken Sie links neben der Bearbeitungsleiste auf das **Häkchen**, oder drücken Sie die **Eingabetaste**.
 
-19. Establezca el **Separador de miles** en **Sí**.
+1. Erweitern Sie im Eigenschaftsfenster rechts den Abschnitt **Formatierung**.
 
-    ![](Media/6.20.png)
+1. Wählen Sie in der Dropdown-Liste **Format** den Eintrag **Ganze Zahl** aus.
 
-De nuevo, por razones de tiempo, no crearemos todas las medidas. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las medidas restantes. 
-Hemos creado un modelo de datos, el siguiente paso es crear un informe. Lo haremos en el siguiente laboratorio. 
+1. Setzen Sie **Tausendertrennzeichen** auf **Ja**.
 
-## Tarea 7: Sección opcional: crear relaciones 
+    ![](./Media/6.21.png)
 
-Agreguemos las relaciones restantes. 
+Aus Zeitgründen können wir nicht alle Measures erstellen. Sofern Zeit verbleibt, können Sie den fakultativen Abschnitt am Ende der Übung durcharbeiten. Darin werden die restlichen Measures erstellt.
 
-1. Cree una relación **varios a uno** entre las tablas **Sales** y **Product**. Seleccione **StockItemID** en la tabla **Sales** y **StockItemID** en la tabla **Product**. 
+Nachdem das Datenmodell jetzt erstellt wurde, erstellen wir nun einen Bericht. Dazu arbeiten wir die nächste Übung durch.
 
-2. Igualmente, cree una relación **varios a uno** entre las tablas **Sales** y **People**. Seleccione **SalespersonPersonID** de **Sales** y **PersonID** de **People**. 
+## Aufgabe 7: Fakultativer Abschnitt – Beziehungen erstellen
 
-     **>Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+Ergänzen wir die restlichen Beziehungen.
 
-    ![](Media/6.21.png)
+1. Erstellen Sie eine **n:1-Beziehung** zwischen den Tabellen **Sales** und **Product**. Wählen Sie in der Tabelle **Sales** den Eintrag **StockItemID** und in der Tabelle **Product** den Eintrag **StockItemID** aus.
 
-3. Ahora creemos una relación entre las tablas Product y Supplier. Seleccione **SupplierID** de la tabla **Product** y arrástrelo a **SupplierID** en la tabla **Supplier**. 
+1. Erstellen Sie ebenso eine **n:1-Beziehung** zwischen den Tabellen **Sales** und **People**. Wählen Sie in der Tabelle **Sales** den Eintrag **SalespersonPersonID** und in der Tabelle **People** den Eintrag **PersonID** aus.
 
-4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Product y que la **Columna** sea **SupplierID**. 
+    **Überprüfen Sie:** Das Modell sollte so wie im Screenshot unten aussehen.
 
-5. Asegúrese de que la **Table 2** sea **Supplier** y que la **Columna** sea **SupplierID**. 
+    ![](./Media/6.22.png)
 
-6. Asegúrese de que la **Cardinality** sea **Varios a uno** (*:1). 
+1. Erstellen wir jetzt eine Beziehung zwischen den Tabellen „Product“ und „Supplier“. Wählen Sie in der Tabelle **Product** den Eintrag **SupplierID** aus, und ziehen Sie ihn in der Tabelle **Supplier** auf den Eintrag **SupplierID**.
 
-7. Asegúrese de que la **Dirección de filtro cruzado** sea **Ambas**. 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 Product** und bei **Spalte SupplierID** angegeben ist.
 
-8. Seleccione **OK**.
+1. Vergewissern Sie sich, dass unter **Table 2 Supplier** und bei **Spalte SupplierID** angegeben ist.
 
-    ![](Media/6.22.png)
+1. Die **Kardinalität** lautet **n:1**.
 
-9. De manera similar, cree una relación **varios a uno** con **Dirección de filtro cruzado** como **Ambas** entre **Product_Details** y **Product**. Seleccione **StockItemID** de **Product_Details** y **StockItemID** de **Product**. 
+1. Bei **Kreuzfilterrichtung** muss **Beides** ausgewählt sein.
 
-10. Ahora creemos una relación entre las tablas Reseller y Geo. Seleccione **PostalCityID** de la tabla **Reseller** y arrástrela sobre **CityID** en la tabla **Geo**. 
+1. Klicken Sie auf **OK**.
 
-11. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **Reseller** y que la **Columna** sea **PostalCityID**. 
+    ![](./Media/6.23.png)
 
-12. Asegúrese de que la **Table 2** sea **Geo** y que la **Columna** sea **CityID**. 
+1. Erstellen Sie auf ähnliche Weise eine **n:1-Beziehung** zwischen **Product_Details** und **Product**, wobei die **Kreuzfilterrichtung** auf **Beides** festgelegt wird. Wählen Sie unter **Product_Details** den Eintrag **StockItemID** und unter Product den Eintrag **StockItemID** aus.
 
-13. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+1. Erstellen wir jetzt eine Beziehung zwischen den Tabellen „Reseller“ und „Geo“. Wählen Sie in der Tabelle **Reseller** den Eintrag **PostalCityID** aus, und ziehen Sie ihn in der Tabelle **Geo** auf den Eintrag **CityID**.
 
-14. Asegúrese de que la **Dirección de filtro cruzado** sea **Ambas**. 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 Reseller** und bei **Spalte PostalCityID** angegeben ist.
 
-15. Seleccione **OK**.
+1. Vergewissern Sie sich, dass unter **Table 2 Geo** und bei **Spalte CityID** angegeben ist.
 
-    ![](Media/6.23.png)
+1. Die **Kardinalität** lautet **n:1**.
 
-16. Ahora creemos una relación entre las tablas Customer y Reseller. Seleccione **ResellerID** de la tabla **Customer** y arrástrelo a **ResellerID** en la tabla **Reseller**. 
+1. Bei **Kreuzfilterrichtung** muss **Beides** ausgewählt sein.
 
-17. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Customer y que la **Columna** sea **ResellerID**. 
+1. Klicken Sie auf **OK**.
 
-18. Asegúrese de que la **Table 2** sea **Reseller** y que la Columna sea **ResellerID**. 
+    ![](./Media/6.24.png)
 
-19. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+1. Erstellen wir jetzt eine Beziehung zwischen den Tabellen „Customer“ und „Reseller“. Wählen Sie in der Tabelle **Customer** den Eintrag **ResellerID** aus, und ziehen Sie ihn in der Tabelle **Reseller** auf den Eintrag **ResellerID**.
 
-20. Asegúrese de que la **Dirección de filtro cruzado sea Único**. 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 Customer** und bei **Spalte ResellerID** angegeben ist.
 
-21. Seleccione **OK**.
+1. Vergewissern Sie sich, dass unter Table 2 Reseller und bei Spalte ResellerID angegeben ist
 
-    ![](Media/6.24.png)
+1. Die **Kardinalität** lautet **n:1**.
 
-      >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+1. Bei **Kreuzfilterrichtung** muss **Einfach** ausgewählt sein.
 
-    ![](Media/6.25.png)
+1. Klicken Sie auf **OK**.
 
-22. Ahora creemos una relación entre las tablas PO y Date. Seleccione **Order_Date** de la tabla PO y arrástrela sobre **Date** en la tabla **Date**. 
+    ![](./Media/6.25.png)
 
-23. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **PO** y que la **Columna** sea **Order_Date**. 
+**Überprüfen Sie:** Das Modell sollte so wie im Screenshot unten aussehen.
 
-24. Asegúrese de que la **Table 2** sea **Date** y que la **Columna** sea **Date**. 
+![](./Media/6.26.png)
 
-25. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+22. Erstellen wir jetzt eine Beziehung zwischen den Tabellen „PO“ und „Date“. Wählen Sie in der Tabelle **PO** den Eintrag **Order_Date** aus, und ziehen Sie ihn in der Tabelle **Date** auf den Eintrag Date.
 
-26. Asegúrese de que la **Dirección de filtro cruzado** sea **Único**. 
+1. Das Dialogfeld „Neue Beziehung“ wird geöffnet. Vergewissern Sie sich, dass unter **Table 1 PO** und bei **Spalte Order_Date** angegeben ist.
 
-27. Seleccione **OK**.
+1. Vergewissern Sie sich, dass unter **Table 2 Date** und bei **Spalte Date** angegeben ist.
 
-    ![](Media/6.26.png)
+1. Die **Kardinalität** lautet **n:1**.
 
-28. Igualmente, cree una relación varios a uno entre las tablas **PO** y **Product**. Seleccione **StockItemID** de **PO** y **StockItemID** de **Product**. 
+1. Bei **Kreuzfilterrichtung** muss **Einfach** ausgewählt sein.
 
-29. Igualmente, cree una relación **varios a uno** entre las tablas **PO** y **People**. Seleccione **ContactPersonID** de **PO** y **PersonID** de **People**.  
-Hemos terminado de crear todas las relaciones.  
+1. Klicken Sie auf **OK**.
 
-    >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+    ![](./Media/6.27.png)
 
-    ![](Media/6.27.png)
+1. Erstellen Sie ebenso eine **n:1-Beziehung** zwischen den Tabellen **PO** und **Product**. Wählen Sie unter **PO** den Eintrag **StockItemID** und unter **Product** den Eintrag **StockItemID** aus.
 
-## Tarea 8: Sección opcional: crear medidas 
+1. Erstellen Sie ebenso eine **n:1-Beziehung** zwischen den Tabellen **PO** und People. Wählen Sie unter **PO** den Eintrag **ContactPersonID** und unter People den Eintrag **PersonID** aus. 
 
-Agreguemos las medidas restantes. 
+Nun sind alle Beziehungen erstellt.
 
-1. Introduzca **Avg Order = DIVIDE([Sales], [Orders])** en la barra de fórmulas. 
+**Überprüfen Sie:** Das Modell sollte so wie im Screenshot unten aussehen.
 
-2. Haga clic en la **marca de verificación** en la barra de fórmulas o haga clic en el botón Enter. 
+![](./Media/6.28.png)
 
-3. Una vez guardada la medida, observe la opción Herramientas de medición en el menú superior. Haga clic en **Herramientas de medición**. 
+## Aufgabe 8: Fakultativer Abschnitt – Measures erstellen
 
-4. En el menú desplegable Formato, haga clic en **Moneda**.
+Ergänzen wir die restlichen Measures.
 
-    ![](Media/6.28.png)
+1. Geben Sie auf der Bearbeitungsleiste den Eintrag **Avg Order = DIVIDE([Sales], [Orders])** ein.
 
-5. Siga pasos similares para agregar las siguientes medidas: 
+1. Klicken Sie links neben der Bearbeitungsleiste auf das **Häkchen**, oder drücken Sie die Eingabetaste.
 
-      - **GM = SUM(Sales[Line_Profit])** con formato **Moneda, posición decimal 2** 
+1. Sobald das Measure gespeichert ist, sehen Sie im oberen Menü die Option „Measure-Tools“. Klicken Sie auf **Measure-Tools**.
 
-      - **GM% = DIVIDE([GM], [Sales])** con formato **Porcentaje, posición decimal 2** 
+1. Wählen Sie in der Dropdown-Liste für das Format den Eintrag **Währung** aus.
 
-      - **No of Customers** = **COUNTROWS(Customer)** con formato **Número entero** 
+    ![](./Media/6.29.png)
 
-# Referencias 
+1. Fügen Sie auf gleiche Weise die folgenden Measures hinzu:
+    - **GM = SUM(Sales[Line_Profit])** formatiert als **Währung, zwei Dezimalstellen**
+    - **GM% = DIVIDE([GM], [Sales])** formatiert als **Prozentsatz, zwei Dezimalstellen**
+    - **No of Customers = COUNTROWS(Customer)** formatiert als **Ganze Zahl**
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes. 
+## Referenzen
 
-  ![](Media/6.29.png)
+Bei Fabric Analyst in a Day (FAIAD) lernen Sie einige der wichtigsten Funktionen von Microsoft Fabric kennen. Im Menü des Dienstes finden Sie in der Hilfe (?) Links zu praktischen Informationen.
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
+![](./Media/6.30.png)
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric/blog/2023/11/15/prepare-your-data-for-ai-innovation-with-microsoft-fabric-now-generally-available/) completo. 
+Nachfolgend finden Sie weitere Angebote zur weiteren Arbeit mit Microsoft Fabric.
 
-- Explore Fabric a través de la [Visita guiada](https://guidedtour.microsoft.com/en-us/guidedtour/microsoft-fabric/microsoft-fabric/1/1) 
+- Die vollständige [Ankündigung der allgemeinen Verfügbarkeit von Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) finden Sie im Blogbeitrag.
+- Fabric bei einer [interaktiven Vorstellung](https://aka.ms/Fabric-GuidedTour) kennenlernen
+- Zur [kostenlosen Testversion von Microsoft Fabric](https://aka.ms/try-fabric) anmelden
+- [Website von Microsoft Fabric](https://aka.ms/microsoft-fabric) besuchen
+- Mit Modulen von [Fabric Learning](https://aka.ms/learn-fabric) neue Qualifikationen erwerben
+- [Technische Dokumentation zu Fabric](https://aka.ms/fabric-docs) lesen
+- [Kostenloses E-Book zum Einstieg in Fabric](https://aka.ms/fabric-get-started-ebook) lesen
+- Mitglied der [Fabric-Community](https://aka.ms/fabric-community) werden, um Fragen zu stellen, Feedback zu geben und sich mit anderen auszutauschen
 
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://app.powerbi.com/home?experience=power-bi)
+Lesen Sie die detaillierteren Blogs zur Ankündigung der Fabric-Umgebung:
 
-- Visite el [sitio web de Microsoft Fabric](https://www.microsoft.com/en-in/microsoft-fabric)
+- [Blog zum Data Factory-Funktionsbereich in Fabric](https://aka.ms/Fabric-Data-Factory-Blog)
+- [Blog zum Data Engineering-Funktionsbereich von Synapse in Fabric](https://aka.ms/Fabric-DE-Blog) 
+- [Blog zum Data Science-Funktionsbereich von Synapse in Fabric](https://aka.ms/Fabric-DS-Blog)
+- [Blog zum Data Warehousing-Funktionsbereich von Synapse in Fabric](https://aka.ms/Fabric-DW-Blog)
+- [Blog zum Real-Time Analytics-Funktionsbereich von Synapse in Fabric](https://aka.ms/Fabric-RTA-Blog)
+- [Blog mit Ankündigungen zu Power BI](https://aka.ms/Fabric-PBI-Blog)
+- [Blog zum Data Activator-Funktionsbereich in Fabric](https://aka.ms/Fabric-DA-Blog)
+- [Blog zu Verwaltung und Governance in Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [Blog zu OneLake in Fabric](https://aka.ms/Fabric-OneLake-Blog)
+- [Blog zur Dataverse- und Microsoft Fabric-Integration](https://aka.ms/Dataverse-Fabric-Blog)
 
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://learn.microsoft.com/en-us/training/browse/?products=fabric&resource_type=module) 
+© 2023 Microsoft Corporation. Alle Rechte vorbehalten.
 
-- Explore la [documentación técnica de Fabric](https://learn.microsoft.com/en-us/fabric/) 
+Durch die Verwendung der vorliegenden Demo/Übung stimmen Sie den folgenden Bedingungen zu:
 
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://info.microsoft.com/ww-landing-unlocking-transformative-data-value-with-microsoft-fabric.html)
+Die in dieser Demo/Übung beschriebene Technologie/Funktionalität wird von der Microsoft Corporation bereitgestellt, um Feedback von Ihnen zu erhalten und Ihnen Wissen zu vermitteln. Sie dürfen die Demo/Übung nur verwenden, um derartige Technologiefeatures und Funktionen zu bewerten und Microsoft Feedback zu geben. Es ist Ihnen nicht erlaubt, sie für andere Zwecke zu verwenden. Es ist Ihnen nicht gestattet, diese Demo/Übung oder einen Teil derselben zu ändern, zu kopieren, zu verbreiten, zu übertragen, anzuzeigen, auszuführen, zu vervielfältigen, zu veröffentlichen, zu lizenzieren, zu transferieren oder zu verkaufen oder aus ihr abgeleitete Werke zu erstellen.
 
-- Únase a la [comunidad de Fabric](https://community.fabric.microsoft.com/) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+DAS KOPIEREN ODER VERVIELFÄLTIGEN DER DEMO/ÜBUNG (ODER EINES TEILS DERSELBEN) AUF EINEN/EINEM ANDEREN SERVER ODER SPEICHERORT FÜR DIE WEITERE VERVIELFÄLTIGUNG ODER VERBREITUNG IST AUSDRÜCKLICH UNTERSAGT.
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric: 
+DIESE DEMO/ÜBUNG STELLT BESTIMMTE SOFTWARE-TECHNOLOGIE-/PRODUKTFEATURES UND FUNKTIONEN, EINSCHLIESSLICH POTENZIELLER NEUER FEATURES UND KONZEPTE, IN EINER SIMULIERTEN UMGEBUNG OHNE KOMPLEXE EINRICHTUNG ODER INSTALLATION FÜR DEN OBEN BESCHRIEBENEN ZWECK BEREIT. DIE TECHNOLOGIE/KONZEPTE IN DIESER DEMO/ÜBUNG ZEIGEN MÖGLICHERWEISE NICHT DAS VOLLSTÄNDIGE FUNKTIONSSPEKTRUM UND FUNKTIONIEREN MÖGLICHERWEISE NICHT WIE DIE ENDGÜLTIGE VERSION. UNTER UMSTÄNDEN VERÖFFENTLICHEN WIR AUCH KEINE ENDGÜLTIGE VERSION DERARTIGER FEATURES ODER KONZEPTE. IHRE ERFAHRUNG BEI DER VERWENDUNG DERARTIGER FEATURES UND FUNKTIONEN IN EINER PHYSISCHEN UMGEBUNG KANN FERNER ABWEICHEND SEIN.
 
-- [Experiencia de Data Factory en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-data-factory-in-microsoft-fabric/) 
+**FEEDBACK.** Wenn Sie Feedback zu den Technologiefeatures, Funktionen und/oder Konzepten geben, die in dieser Demo/Übung beschrieben werden, gewähren Sie Microsoft das Recht, Ihr Feedback in jeglicher Weise und für jeglichen Zweck kostenlos zu verwenden, zu veröffentlichen und gewerblich zu nutzen. Außerdem treten Sie Dritten kostenlos sämtliche Patentrechte ab, die erforderlich sind, damit deren Produkte, Technologien und Dienste bestimmte Teile einer Software oder eines Dienstes von Microsoft, welche/welcher das Feedback enthält, verwenden oder eine Verbindung zu dieser/diesem herstellen können. Sie geben kein Feedback, das einem Lizenzvertrag unterliegt, aufgrund dessen Microsoft Drittparteien eine Lizenz für seine Software oder Dokumentation gewähren muss, weil wir Ihr Feedback in diese aufnehmen. Diese Rechte bestehen nach Ablauf dieser Vereinbarung fort.
+DIE MICROSOFT CORPORATION LEHNT HIERMIT JEGLICHE GEWÄHRLEISTUNGEN UND GARANTIEN IN BEZUG AUF DIE DEMO/ÜBUNG AB, EINSCHLIESSLICH ALLER AUSDRÜCKLICHEN, KONKLUDENTEN ODER GESETZLICHEN GEWÄHRLEISTUNGEN UND GARANTIEN DER HANDELSÜBLICHKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DES RECHTSANSPRUCHS UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. MICROSOFT MACHT KEINERLEI ZUSICHERUNGEN BZW. ERHEBT KEINERLEI ANSPRÜCHE IM HINBLICK AUF DIE RICHTIGKEIT DER ERGEBNISSE UND DES AUS DER VERWENDUNG DER DEMO/ÜBUNG RESULTIERENDEN ARBEITSERGEBNISSES BZW. BEZÜGLICH DER EIGNUNG DER IN DER DEMO/ÜBUNG ENTHALTENEN INFORMATIONEN FÜR EINEN BESTIMMTEN ZWECK.
 
-- [Experiencia de Synapse Data Engineering en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-engineering-in-microsoft-fabric/)  
+**HAFTUNGSAUSSCHLUSS**
 
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-science-in-microsoft-fabric/) 
-
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-warehouse-in-microsoft-fabric/)  
-
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/sense-analyze-and-generate-insights-with-synapse-real-time-analytics-in-microsoft-fabric/)
-
-- [Blog de anuncios de Power BI](https://powerbi.microsoft.com/en-us/blog/empower-power-bi-users-with-microsoft-fabric-and-copilot/)
-
-- [Experiencia de Data Activator en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/driving-actions-from-your-data-with-data-activator/)  
-
-- [Administración y gobernanza en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/administration-security-and-governance-in-microsoft-fabric/) 
-
-- [OneLake en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/microsoft-onelake-in-fabric-the-onedrive-for-data/) 
-
-- [Blog de integración de Dataverse y Microsoft Fabric](https://cloudblogs.microsoft.com/dynamics365/it/2023/05/24/new-dataverse-enhancements-and-ai-powered-productivity-with-microsoft-365-copilot/) 
-
-© 2023 Microsoft Corporation. Todos los derechos reservados. 
-
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones: 
-
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella. 
-
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA. 
-
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE. 
-
-**COMENTARIOS**. Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo. 
-
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
-
-**DECLINACIÓN DE RESPONSABILIDADES**
-
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas. 
+Diese Demo/Übung enthält nur einen Teil der neuen Features und Verbesserungen in Microsoft Power BI. Einige Features können sich unter Umständen in zukünftigen Versionen des Produkts ändern. In dieser Demo/Übung erhalten Sie Informationen über einige, aber nicht über alle neuen Features.

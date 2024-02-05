@@ -1,536 +1,492 @@
-![](Media/7.001.png)
+![](./Media/7.1.png)
 
-# ​​Contenido 
+# Inhalt
 
-- Presentación  
-- Power BI 
+- Einführung
 
-    - Tarea 1: Crear un informe de forma automática
-    - Tarea 2: Ocultar tablas predeterminadas (métricas)
-    - Tarea 3: Configurar el fondo para un nuevo informe
-    - Tarea 4: Agregar un encabezado al informe
-    - Tarea 5: Agregar KPI al informe
-    - Tarea 6: Agregar un gráfico de líneas al informe
-    - Tarea 7: Configurar la columna Year en la tabla Date
-    - Tarea 8: Configurar la columna Short_Month_Name en la tabla Date
-    - Tarea 9: Aplicar formato al gráfico de líneas
-    - Tarea 10: Agregar nuevos datos para simular el modo Direct Lake
+- Power BI
 
-- Limpieza del entorno de laboratorio 
+    - Aufgabe 1: Bericht automatisch erstellen
 
-- Referencias 
+    - Aufgabe 2: Standardtabellen (Metriken) ausblenden
+    
+    - Aufgabe 3: Hintergrund für einen neuen Bericht konfigurieren
+    
+    - Aufgabe 4: Dem Bericht eine Kopfzeile hinzufügen
+    
+    - Aufgabe 5: Dem Bericht KPIs hinzufügen
+    
+    - Aufgabe 6: Dem Bericht ein Liniendiagramm hinzufügen
+    
+    - Aufgabe 7: Spalte „Year“ in der Tabelle „Date“ konfigurieren
+    
+    - Aufgabe 8: Die Spalte „Short_Month_Name“ in der Tabelle „Date“ konfigurieren
+    
+    - Aufgabe 9: Liniendiagramm formatieren
+    
+    - Aufgabe 10: Neue Daten hinzufügen, um den Direct Lake-Modus zu simulieren
 
-# Presentación  
+- Übungsumgebung bereinigen
 
-Absorbimos datos de diferentes orígenes de datos a un lakehouse, conocimos los lakehouse, creamos un modelo de datos y establecimos una programación de actualización para los orígenes de datos. Ahora vamos a crear un informe. 
+- Referenzen
 
-Al final de este laboratorio, habrá aprendido:  
+# Einführung 
 
-- Cómo crear un informe de forma automática
-- Cómo crear un informe a partir de un lienzo en blanco
-- Cómo usar el modo Direct Lake, que da como resultado una actualización automática de los datos
+Wir haben Daten aus verschiedenen Datenquellen in Lakehouse erfasst, eine Einführung in Lakehouse erhalten, ein Datenmodell erstellt und einen Aktualisierungsplan für die Datenquellen festgelegt. Jetzt erstellen wir einen Bericht.
 
-# Power BI 
+Inhalt dieser Übung: 
+- So erstellen Sie einen Bericht automatisch
+- So erstellen Sie einen Bericht von einem leeren Canvas ausgehend
+- So erkunden Sie den Direct Lake-Modus, in dem Daten automatisch aktualisiert werden
 
-## Tarea 1: Crear un informe de forma automática 
+# Power BI
 
-Comencemos con la opción de creación automática de informes. Y, más adelante en el laboratorio, volveremos a crear el informe que tenemos en Power BI. 
+## Aufgabe 1: Bericht automatisch erstellen
 
-1. Volvamos **al área de trabajo de Fabric** que creó en el laboratorio anterior. 
+Verwenden wir zunächst die Option „Bericht automatisch erstellen“. Und später in der Übung werden wir den Bericht, den wir in Power BI haben, neu erstellen.
 
-2. Seguramente esté en la página principal de Data Factory. En la parte inferior del panel de navegación de la izquierda, seleccione el **icono de Data Factory**. 
+1. Wir navigieren zurück zum **Fabric-Arbeitsbereich**, den Sie in der vorherigen Übung erstellt haben.
+2. Sie befinden sich wahrscheinlich auf der Data Factory-Startseite. Wählen Sie unten links das **Data Factory-Symbol** aus.
+3. Das Dialogfeld „Fabric-Funktionsbereich“ wird geöffnet. Wählen Sie **Power BI** aus. Sie werden zur **Power BI-Startseite** weitergeleitet.
 
-3. Se abre el cuadro de diálogo de experiencia de Fabric. Seleccione **Power BI**. Se le llevará al **Inicio de Power BI**.
+    ![](./Media/7.2.png)
+ 
+4. Wählen Sie **Neuer Bericht** aus dem oberen Menü aus.
 
-   ![](Media/7.1.png)
+    ![](./Media/7.3.png)
+ 
+5. Sie werden zu **Erstellen Sie Ihren ersten Bericht** weitergeleitet. Dort sind Optionen verfügbar, um Daten manuell einzugeben und einen Bericht zu erstellen oder um ein veröffentlichtes semantisches Modell auszuwählen. In den vorherigen Übungen haben wir ein semantisches Modell erstellt. Lassen Sie uns das verwenden. Wählen Sie die Option **Veröffentlichtes Semantikmodell auswählen** aus.
 
-4. Seleccione **Nuevo informe** en el menú superior.
+    ![](./Media/7.4.png)
+ 
+6. Die Seite „Ein in Ihrem Bericht zu verwendendes DataSet auswählen“ wird geöffnet. Beachten Sie, dass wir über vier Optionen verfügen. **Wählen Sie lh_FAIAD aus:**
 
-    ![](Media/7-2.png)
+    a. **lh_FAIAD:** Dies ist das Lakehouse mit dem DataSet, den wir erstellt haben und für den Bericht verwenden möchten.
 
-5. Se le dirigirá a la **pantalla de creación de su primer informe**. Habrá opciones para introducir datos manualmente y crear un informe o elegir un modelo semántico publicado. Hemos creado un modelo semántico en los laboratorios anteriores. Usemos ese. Seleccione la opción **Selección de un modelo semántico publicado**.
+    b. **Units by Supplier:** Dies ist das DataSet, das wir mit T-SQL erstellt haben.
 
-    ![](Media/7-3.png)
+    c. **DataflowsStagingWarehouse:** Dies ist das Staging Warehouse, das standardmäßig erstellt wird, das wir es nicht verwendet und keine Daten bereitgestellt haben.
+    
+    d. **DataflowsStagingLakehouse:** Dies ist das Staging Lakehouse, das standardmäßig erstellt wird, das wir es nicht verwendet und keine Daten bereitgestellt haben.
 
-6. Se abre la página Elija un conjunto de datos para usar en su informe. Observe que tenemos cuatro opciones. **Seleccione lh_FAIAD**: 
+7. Klicken Sie auf den **Pfeil neben der Schaltfläche „Bericht automatisch erstellen“**. Beachten Sie, dass es zwei Optionen gibt: „Bericht automatisch erstellen“ und „Leeren Bericht erstellen“. Versuchen wir es mit der automatischen Erstellung. Wählen Sie daher **Bericht automatisch erstellen** aus.
 
-    - **lh_FAIAD**: este es el lakehouse con el conjunto de datos que creamos y que queremos usar para el informe. 
+    ![](./Media/7.5.png)
 
-    - **Units by Supplier**: este es el conjunto de datos que creamos con T-SQL. 
+8. Power BI beginnt mit der automatischen Erstellung des Berichts. Beachten Sie, dass bei entsprechender Auswahl eine Option für die Vorauswahl verschiedener Daten vorhanden ist. Sobald der Bericht fertig ist, wird oben rechts auf dem Bildschirm ein Dialogfeld angezeigt. Wählen Sie **Bericht jetzt anzeigen** aus.
 
-    - **DataflowsStagingWarehouse**: este es el almacén de almacenamiento provisional que se crea de forma predeterminada, ya que no lo utilizamos porque no preparamos datos. 
+    ![](./Media/7.6.png)
+ 
+**Prüfpunkt:** Sie erhalten einen Bericht, der wie im folgenden Screenshot aussieht. Es gibt einige KPIs und einige Trendvisualisierungen. Dies ist ein guter Ausgangspunkt, wenn Sie ein neues Modell analysieren und sofort starten müssen.
 
-    - **DataflowsStagingLakehouse**: este es el lakehouse provisional que se crea de forma predeterminada, ya que no lo utilizamos porque no preparamos datos. 
+**Hinweis:** Im oberen Menü haben Sie die Möglichkeit, den Bericht zu bearbeiten oder einige der Daten als Tabellen anzuzeigen. Sehen Sie sich diese Optionen doch einmal genauer an.
 
-7. Haga clic en la flecha **junto al botón Crear informe de forma automática**. Observe que hay dos opciones: Crear informe de forma automática y Crear un informe en blanco. Probemos la creación automática: seleccione **Crear informe de forma automática**.
+9. Sobald Sie fertig sind, **reduzieren** Sie alle Tabellen im Abschnitt **Daten** rechts. Beachten Sie, dass wir fünf neue Tabellen haben, die nicht Teil des von uns erstellten Modells sind. Hierbei handelt es sich um Standardtabellen, die zur Analyse der Leistung hinzugefügt wurden. Wir werden diese in Kürze aus der Berichtsansicht entfernen.
 
-    ![](Media/7-4.png)
+10. Speichern wir diesen Bericht. Wählen Sie im oberen Menü **Speichern** aus.
 
-8. Power BI comenzará a crear de forma automática el informe. Observe que hay una opción para seleccionar previamente los datos si así lo queremos. Una vez que el informe esté listo, aparecerá un cuadro de diálogo en la parte superior derecha de la pantalla. Seleccione **Ver informe ahora**.
+11. Das Dialogfeld „Bericht speichern“ wird geöffnet. Geben Sie dem Bericht den Namen **rpt_Sales_Auto_Report**.
 
-    ![](Media/7-5.png)
+**Hinweis:** Wir stellen dem Berichtsnamen das Präfix „rpt“ voran, was für „Bericht“ steht.
 
-   >**Punto de control**: tendrá un informe similar a la captura de pantalla siguiente. Hay algunos KPI y algunos objetos visuales de tendencias. Este es un buen comienzo si está analizando un nuevo modelo y necesita un impulso. 
+12. Stellen Sie sicher, dass der Bericht unter **<Name Ihres Arbeitsbereichs>** gespeichert wird.
 
-   >**Nota**: Observe que en el menú superior tiene la opción de editar el informe o ver algunos de los datos como tablas. No dude en explorar estas opciones.
+13. Wählen Sie **Speichern** aus.
 
-9. Una vez que esté listo, **contraiga** todas las tablas en la sección **Datos** de la derecha. Observe que tenemos cinco tablas nuevas que no forman parte del modelo que creamos. Son tablas predeterminadas agregadas para ayudar a analizar el rendimiento. Las eliminaremos de la vista del informe en breve. 
+    ![](./Media/7.7.png)
 
-10. Guardemos este informe. En el menú superior, seleccione **Guardar**. 
+## Aufgabe 2: Standardtabellen (Metriken) ausblenden
 
-11. Se abre el cuadro de diálogo Guardar el informe. Nombre el informe como **rpt_Sales_Auto_Report**  
+Erstellen wir einen Bericht wie den in Power BI Desktop. Dazu beginnen wir mit einem leeren Canvas. Bevor wir mit der Erstellung eines Berichts beginnen, entfernen wir die Standardtabellen (siehe Screenshot oben) aus der Berichtsansicht. Dies erfolgt im Modellierungsabschnitt von Lakehouse.
 
-    >**Nota**: Estamos anteponiendo rpt al nombre del informe, que es la abreviatura de informe (en inglés). 
+1. Wählen Sie unten im linken Bereich das **Power BI-Symbol** aus. Das Dialogfeld „Fabric“ wird geöffnet.
 
-12. Asegúrese de que el informe esté guardado en **<your workspace name>**. 
+2. Klicken Sie auf **Data Engineering**. Sie werden zur Startseite von Data Engineering weitergeleitet.
 
-13. Seleccione **Guardar**.
+    ![](./Media/7.8.png)
+ 
+3. Scrollen Sie nach unten zum Abschnitt **Schnellzugriff**.
 
-    ![](Media/7-6.png)
+4. Wählen Sie **lh_FAIAD -> SQL-Analyseendpunkt** aus. Wir befinden uns in der Datenansicht von Lakehouse.
 
-## Tarea 2: Ocultar tablas predeterminadas (métricas) 
+5. Wählen Sie unten **im linken Bereich Modell** aus, um zur Modellansicht zu navigieren.
 
-Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer desde un lienzo en blanco. Antes de comenzar a crear un informe, eliminemos las tablas predeterminadas (captura de pantalla anterior) de la vista del informe. Esto se hace en la sección de modelado del lakehouse. 
+Beachten Sie, dass sich die Standardtabellen im Designcanvas befinden. (Sie müssen möglicherweise nach rechts oder unten scrollen, um sie anzuzeigen.)
 
-1. En la parte inferior del panel de navegación de la izquierda, seleccione **el icono de Power BI**. Se abre el cuadro de diálogo de Fabric. 
+![](./Media/7.9.png)
 
-2. Seleccione **Data Engineering**. Se le dirigirá a la página principal de Data Engineering.
+6. Klicken Sie mit der rechten Maustaste auf die Tabelle **long_running_queries**, und wählen Sie **In Berichtsansicht ausblenden** aus.
 
-    ![](Media/7-7.png)
+    ![](./Media/7.10.png)
+ 
+7. Wählen Sie entsprechend die Option **In Berichtsansicht ausblenden** für die folgenden Tabellen aus:
 
-3. Desplácese hacia abajo hasta la sección **Acceso rápido**. 
+    a. fabric_query_starting
+    
+    b. fabric_query_completed
+    
+    c. exec_requests_history
+    
+    d. frequently_run_queries
 
-4. Seleccione **lh_FAIAD -> Punto de conexión de análisis SQL**. Estaremos en la vista Datos del lakehouse. 
+## Aufgabe 3: Hintergrund für einen neuen Bericht konfigurieren
 
-5. Desde la **parte inferior del panel izquierdo**, seleccione **Modelo** para navegar a la vista Modelo. 
+1. Jetzt können wir einen neuen Bericht übe die Modellansicht erstellen. Wählen Sie im oberen Menü **Start -> Neuer Bericht** aus. Sie werden zum Power BI-Berichtscanvas in einem neuen Fenster/einer neuen Registerkarte in Ihrem Browser weitergeleitet.
 
-    Observe que en el lienzo de diseño encontrará las tablas predeterminadas. (Es posible que tenga que desplazarse hacia la derecha o hacia abajo para verlos).
+    ![](./Media/7.11.png)
+ 
+2. Öffnen Sie, sofern noch nicht geschehen, auf dem **Desktop** Ihrer Übungsumgebung im Ordner **Report** die Datei **FAIAD.pbix**.
 
-    ![](Media/7-8.png)
+Wir werden diesen Bericht als Referenz verwenden. Wir fügen zunächst den Canvashintergrund hinzu. Wir erstellen die Berichtskopfzeile, fügen einige KPIs hinzu und erstellen das Liniendiagramm „Verkäufe im Laufe der Zeit“. Aus Zeitgründen und davon ausgehend, dass Sie bereits Erfahrung mit der Erstellung von Visuals Power BI Desktop haben, werden wir nicht alle Visuals erstellen.
 
-6. Haga clic derecho en la tabla **long_running_queries** y seleccione **Ocultar en la vista de Informes**.
+![](./Media/7.12.png)
+ 
+3. Navigieren Sie zurück zum **Power BI-Canvas** in Ihrem Browser.
 
-    ![](Media/7-9.png)
+4. Wählen Sie im Visualisierungsbereich das 
+**Symbol** für die **Formatseite** aus.
 
-7. De manera similar, seleccione la opción **Ocultar en la vista de Informes** para las siguientes tablas: 
+5. Erweitern Sie den **Abschnitt „Canvas-Hintergrund“** aus.
 
-    - fabric_query_starting 
-    - fabric_query_completed 
-    - exec_requests_history 
-    - frequently_run_queries
+6. Wählen Sie **Durchsuchen** über die Option **Bild** aus. Das Dialogfeld „Datei-Explorer“ wird geöffnet.
 
-## Tarea 3: Configurar el fondo para un nuevo informe 
+7. Navigieren Sie auf dem **Desktop** Ihrer Übungsumgebung zum Ordner **Report**. 
 
-1. Podemos comenzar a crear un nuevo informe desde la vista del modelo. En el menú superior, seleccione **Inicio -> Nuevo informe**. Se le dirigirá al lienzo del informe de Power BI en una nueva ventana o pestaña en su explorador.
+8. Wählen Sie **Summary Background.png** aus.
 
-    ![](Media/7-10.png)
+9. Wählen Sie im Dropdownmenü **Bild anpassen** den Eintrag **Anpassen** aus.
 
-2. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
+10. Legen Sie die Transparenz auf **0 %** fest.
 
-    Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo del lienzo. Crearemos el encabezado del informe, agregaremos un par de KPI y crearemos el gráfico de líneas de Ventas a lo largo del tiempo. Por razones de tiempo y sabiendo que tiene experiencia en la creación de objetos visuales en Power BI Desktop, no crearemos todos los objetos visuales
+    ![](./Media/7.13.png)
+ 
 
-    ![](Media/7-11.png)
+## Aufgabe 4: Dem Bericht eine Kopfzeile hinzufügen
 
-3. Vuelva al **lienzo de Power BI** en su explorador. 
+1. Wir fügen nun die Kopfzeile am oberen Rand hinzu. Wählen Sie im **Menü** die Option **Textfeld** aus.
 
-4. Seleccione el **icono** de **la página Formato** en el panel de Visualizaciones. 
+2. Geben Sie **Fabrikam Company** als erste Zeile in das Textfeld ein.
 
-5. Expanda la **sección Fondo del lienzo**. 
+3. Geben Sie als zweite Zeile **Sales Report** in das Textfeld ein.
 
-6. Seleccione la opción **Examinar** de la opción **Imagen**. Se abre el cuadro de diálogo Explorador de archivos. 
+4. Markieren Sie **Fabrikam Company**, und legen Sie **Schriftart** auf **Segoe UI** und **Schriftgröße** auf **18, Fett** fest.
 
-7. Navegue hasta la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
+5. Markieren Sie Sales Report, und legen Sie **Schriftart** auf **Segoe UI** und **Schriftgröße** auf **14** fest.
 
-8. Seleccione **Summary Background.png**. 
+6. Erweitern Sie bei **ausgewähltem Textfeld** im Bereich „Format“ rechts die Option **Effekte**.
 
-9. Establezca el menú desplegable **Ajuste de imagen** en **Ajustar**. 
+7. Verwenden Sie den Schieberegler **Hintergrund**, um ihn auf **Aus** festzulegen.
 
-10. Establezca la Transparencia en **0 %**.
+8. Passen Sie die Größe des **Textfelds so an, dass es in den oberen Rand passt**.
 
-    ![](Media/7-12.png)
+    ![](./Media/7.14.png)
+ 
 
-## Tarea 4: Agregar un encabezado al informe
+## Aufgabe 5: Dem Bericht KPIs hinzufügen
 
-1. Agreguemos el encabezado en el margen superior. En el **menú**, seleccione **Cuadro de texto**. 
+1. Fügen wir nun Verkauf-KPI hinzu. Wählen Sie den **Leerraum** im Canvas aus, um den Fokus vom Textfeld zu entfernen.
 
-2. Introduzca **Fabrikam Company** como primera línea en el cuadro de texto. 
+2. Wählen Sie im **Abschnitt Visualisierungen** die Option **Mehrzeiliges Kartenvisual** aus.
 
-3. Introduzca **Sales Report** como segunda línea en el cuadro de texto. 
+3. Erweitern Sie im **Abschnitt „Daten“** die **Tabelle Sales**.
 
-4. Resalte **Fabrikam Company** y establezca la **Fuente** en **Segoe UI** y el **tamaño de fuente** a **18**, **negrita**. 
+4. Wählen Sie **Kennzahl „Sales“** aus.
 
-5. Resalte **Informe de ventas** y establezca la **Fuente** en **Segoe UI** y el **tamaño de fuente** a **14**, **negrita**. 
+    ![](./Media/7.15.png)
+ 
+5. Wenn das **mehrzeilige Kartenvisual ausgewählt ist**, wählen Sie das **Symbol „Visual formatieren“** im Abschnitt „Visualisierungen“ aus.
 
-6. Con el **cuadro de texto seleccionado**, en el panel Formato de la derecha, **expanda la sección Efectos**. 
+6. Erweitern Sie den Abschnitt **Kategoriebeschriftungen** aus.
 
-7. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**. 
+7. Erhöhen Sie die **Schriftgröße** auf **14**.
 
-8. Cambie el tamaño del cuadro de texto **para que quepa en el margen superior**.
+8. Wählen Sie das **Dropdownmenü „Farbe“** aus. Das Dialogfeld „Farbpalette“ wird geöffnet.
 
-    ![](Media/7-13.png)
+9. Legen Sie den HEX-Wert auf **#004753** fest.
 
-## Tarea 5: Agregar KPI al informe 
+    ![](./Media/7.16.png)
+ 
+10. Erweitern Sie den Abschnitt **Karten**.
 
-1. Agreguemos KPI de ventas. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del cuadro de texto. 
+11. Verwenden Sie den Schieberegler **Akzentleiste**, um ihn auf Aus festzulegen.
 
-2. En la **sección Visualizaciones**, seleccione el **objeto visual Tarjeta de varias filas**. 
+    ![](./Media/7.17.png)
+ 
+12. Wählen Sie im Visualisierungsbereich **Allgemein** aus.
 
-3. En la sección Datos, expanda la **tabla Sales**. 
+13. Erweitern Sie den **Abschnitt „Effekte“**.
 
-4. Seleccione **la medida Sales**.
+14. Verwenden Sie den Schieberegler **Hintergrund**, um ihn auf **Aus** festzulegen.
 
-    ![](Media/7-14.png)
+15. Ändern Sie die Größe des **Visuals**, und verschieben Sie es in das **linke Feld, wie im Screenshot dargestellt**.
 
-5. Con **el objeto visual de tarjeta de varias filas seleccionado**, seleccione el **icono Dar formato a objeto visual** en la sección Visualizaciones. 
+    ![](./Media/7.18.png)
+ 
+16. Fügen wir nun einen weiteren KPI hinzu. Wählen Sie die soeben erstellte **mehrzeilige Sales-Karte** aus. **Kopieren Sie** das Visual, indem Sie **STRG+C** auf Ihrer Tastatur auswählen.
 
-6. Expanda la sección **Etiquetas de categorías.** 
+17. **Fügen Sie** das Visual ein, indem Sie **STRG+V** auf Ihrer Tastatur auswählen. Beachten Sie, dass das Visual in das Canvas eingefügt wird.
 
-7. Aumente el **tamaño de fuente** a **14**. 
+18. Wenn das **neue Visual hervorgehoben ist**, entfernen Sie im Abschnitt **Visualisierungsbereich -> Visual erstellen -> Felder** die Kennzahl **Sales**.
 
-8. Seleccione el **menú desplegable Color**. Se abre el cuadro de diálogo Paleta de colores. 
+19. Erweitern Sie im Abschnitt **Daten** die Tabelle **Sales**, und wählen Sie die Kennzahl **Units** aus.
 
-9. Establezca el valor Hex en **#004753**.
+20. Ändern Sie die Größe des **Visuals** und **platzieren Sie es im Feld unter dem Sales-Visual**.
 
-    ![](Media/7-15.png)
+    ![](./Media/7.19.png)
 
-10. Expanda la sección **Tarjetas**. 
 
-11. Utilice el control deslizante **Barra de énfasis** para configurarlo en **Desactivado**.
+## Aufgabe 6: Dem Bericht ein Liniendiagramm hinzufügen
 
-    ![](Media/7-16.png)
+Lassen Sie uns ein Liniendiagramm erstellen, um Sales im Zeitverlauf nach Reseller Company zu visualisieren.
+1. Wählen Sie den **Leerraum** im Canvas aus, um den Fokus vom mehrzeiligen Kartenvisual zu entfernen.
+2. Wählen Sie im **Abschnitt Visualisierungen** die Option **Liniendiagramm** aus.
+3. Erweitern Sie im **Abschnitt „Daten“** die Tabelle **Date**.
+4. Wählen Sie das Feld **Year** aus. Beachten Sie, dass „Year“ standardmäßig summiert und der Y-Achse hinzugefügt wird. Lassen Sie uns dies korrigieren.
+  
+    ![](./Media/7.20.png)
 
-12. Seleccione **General** en el panel de Visualizaciones. 
+## Aufgabe 7: Spalte „Year“ in der Tabelle „Date“ konfigurieren
 
-13. Expanda la **sección Efectos**. 
+1. Navigieren Sie über die **Modellansicht von Lakehouse** zur Registerkarte des Browsers.
+2. Erweitern Sie im linken Explorer-Bereich **lhFAIAD -> Schemas -> dbo -> Tables -> Date**.
+3. Wählen Sie die Spalte **Year** aus.
+4. Erweitern Sie im Bereich **Eigenschaften** rechts den Abschnitt **Erweitert**.
+5. Wählen Sie aus der Dropdownliste **Zusammenfassen nach** den Eintrag **Keine** aus.
 
-14. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**. 
+    ![](./Media/7.21.png)
+ 
+6. Navigieren Sie mit dem **Power BI-Canvas** zurück zur Registerkarte des Browsers.
+7. Wählen Sie im oberen Menü **Aktualisieren** aus. Beachten Sie, dass „Year“ kein Summierungsfeld ist. 
+8. Wenn das **Visual „Liniendiagramm“ ausgewählt ist, entfernen Sie „Sum of Year“** von der Y-Achse.
+9. Wählen Sie das Feld **Year** aus, sodass es der **X-Achse** hinzugefügt wird.
+10. Erweitern Sie die Tabelle **Sales**, und wählen Sie die **Kennzahl „Sales“** aus.
+ 
+    ![](./Media/7.22.png)
 
-15. Cambie el tamaño del **objeto visual** y muévalo al **cuadro izquierdo como se muestra en la captura de pantalla**.
+## Aufgabe 8: Die Spalte „Short_Month_Name“ in der Tabelle „Date“ konfigurieren
 
-    ![](Media/7-17.png)
+1. Fügen wir diesem Diagramm „Monat“ hinzu. Ziehen Sie das Feld **Short_Month_Name** unter **Year** aus der Tabelle „Date“ in die **X-Achse**. Beachten Sie dass das Visual nach „Sales“ sortiert ist. Nun sortieren wir es nach Short_Month_Name.
+2. Wählen Sie die **Auslassungspunkte (…)** oben rechts im Visual aus.
+3. Wählen Sie **Sortierachse -> Year Short_Month_Name** aus.
+4. Wählen Sie die **Auslassungspunkte (…)** oben rechts im Visual aus.
+5. Wählen Sie **Sortierachse -> Aufsteigend sortieren** aus.
 
-16. Vamos a agregar otro KPI. Seleccione la **Tarjeta de varias filas de Sales** que acabamos de crear. **Copie** el objeto visual mediante la selección de **Ctrl+C** desde tu teclado. 
+    ![](./Media/7.23.png)
+ 
+**Hinweis:** Die Monate sind alphabetisch sortiert. Lassen Sie uns dieses Problem beheben.
 
-17. **Pegue** el objeto visual mediante la selección de **Ctrl+V** desde tu teclado. Observe que el objeto visual se pega en el lienzo. 
+![](./Media/7.24.png)
+ 
+6. Navigieren Sie über die **Modellansicht von Lakehouse** zur Registerkarte des Browsers.
+7. Erweitern Sie im linken Explorer-Bereich **lhFAIAD -> Schemas -> dbo -> Tables -> Date**.
+8. Wählen Sie die Spalte **Short_Month_Name** aus.
+9. Erweitern Sie im Bereich **Eigenschaften** rechts den Abschnitt **Erweitert**.
+10. Wählen Sie im Dropdownmenü **Nach Spalte sortieren** den Eintrag **Monat** aus.
 
-18. Con el **nuevo objeto visual resaltado**, en la sección **Visualizaciones -> Crear objeto visual -> Campos**, elimine la medida **Sales**. 
+    ![](./Media/7.25.png)
+ 
+11. Navigieren Sie mit dem **Power BI-Canvas** zurück zur Registerkarte des Browsers.
 
-19. Desde la sección **Datos**, expanda la tabla **Sales** y seleccione la medida **Units**. 
+12. Wählen Sie im oberen Menü **Aktualisieren** aus. Beachten Sie, dass die Monate jetzt richtig sortiert sind.
 
-20. Cambie el tamaño del **objeto visual** y **colóquelo en el cuadro debajo del objeto visual Sales**.
+    ![](./Media/7.26.png)
+  
 
-    ![](Media/7-18.png)
+## Aufgabe 9: Liniendiagramm formatieren
+Beachten Sie, wie einfach es ist, das semantische Modell beim Erstellen der Berichte zu aktualisieren. Daraus ergibt sich eine nahtlose Interaktion wie Power BI Desktop.
 
-## Tarea 6: Agregar un gráfico de líneas al informe 
+1. Wenn das **Visual „Liniendiagramm“ ausgewählt ist**, erweitern Sie im Abschnitt **Daten** die Tabelle **Reseller**.
 
-Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo por empresa revendedora. 
+2. Ziehen Sie das Feld **Reseller -> Reseller Company** in den Abschnitt **Legende**.
+ 
+    ![](./Media/7.27.png)
 
-1. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del objeto visual de tarjeta de varias filas. 
+3. Wenn das **Visual „Liniendiagramm“ ausgewählt ist**, wählen Sie im Abschnitt **Visualisierung** das **Symbol „Visual formatieren“ -> Allgemein** aus.
+4. Erweitern Sie den Abschnitt **Titel**.
+5. Legen Sie den **Titeltext** auf **Verkäufe im Zeitverlauf** fest.
+6. Erweitern Sie den Abschnitt **Effekte**.
+7. Verwenden Sie den Schieberegler **Hintergrund**, um ihn auf **Aus** festzulegen.
 
-2. En la **sección Visualizaciones**, seleccione **Gráfico de líneas**. 
+    ![](./Media/7.28.png)
+ 
+8. Wählen Sie im Abschnitt **Visualisierung Symbol „Visual formatieren“ -> Visual** aus.
+9. Erweitern Sie den Abschnitt **X-Achse**.
+10. Verwenden Sie den Schieberegler **Titel**, um ihn auf **Aus** festzulegen.
+11. Erweitern Sie den Abschnitt **Linien**.
+12. Erweitern Sie den Abschnitt **Farben**.
+13. Legen Sie die Farbe von **Wingtip Toys** auf **#004753** fest.
+14. Legen Sie die Farbe von **Tailspin Toys** auf **#F17925** fest.
+15. Ändern Sie die Größe des Visuals, und verschieben Sie es in das **obere rechte Feld, wie im Screenshot dargestellt**.
+16. Scrollen Sie im Visual nach rechts und **beachten Sie, dass Daten bis April 2023 verfügbar sind**.
 
-3. En la **sección Datos**, expanda la tabla **Date**. 
+    ![](./Media/7.29.png)
 
-4. Seleccione el campo **Year**. Tenga en cuenta que Year se suma de forma predeterminada y se agrega al eje Y. Rectifiquemos esto.
+17. Lassen Sie uns den Bericht speichern, indem wird im Menü **Datei -> Speichern** auswählen.
+18. Das Dialogfeld „Bericht speichern“ wird geöffnet. Geben Sie dem Bericht den Namen **rpt_Sales_Report**.
 
-    ![](Media/7-19.png)
+**Hinweis:** Wir stellen dem Berichtsnamen das Präfix „rpt“ voran, was für „Bericht“ steht.
 
-## Tarea 7: Configurar la columna Year en la tabla Date 
+19. Stellen Sie sicher, dass der Bericht unter **<Name Ihres Arbeitsbereichs>** gespeichert wird.
+20. Wählen Sie **Speichern** aus.
 
-1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
+    ![](./Media/7.30.png)
+ 
+Wie bereits erwähnt, werden wir nicht alle Visuals in dieser Übung erstellen. Sie können nach Belieben weitere Visuals erstellen. 
 
-2. En el panel izquierdo del explorador, expanda **lhFAIAD -> Schemas -> dbo -> Tables -> Date**. 
+## Aufgabe 10: Neue Daten hinzufügen, um den Direct Lake-Modus zu simulieren
+Normalerweise müssen wir im Import-Modus, sobald die Daten in der Quelle aktualisiert wurden, das Power BI-Modell aktualisieren, woraufhin die Daten im Bericht aktualisiert werden. Im Direct Query-Modus sind die Daten im Power BI-Bericht verfügbar, nachdem sie in der Quelle aktualisiert wurden. Der Direct Query-Modus ist in der Regel jedoch langsam. Um dieses Problem zu beheben, hat Microsoft Fabric den Direct Lake-Modus eingeführt. Direct Lake ermöglicht das schnelle Laden der Daten aus dem Lake direkt in das Power BI-Modul, wo sie für die Analyse bereit sind. Untersuchen wir dies genauer.
 
-3. Seleccione la columna **Year**. 
+In einem realen Szenario werden die Daten an der Quelle aktualisiert. Da wir uns in einer Trainingsumgebung befinden, simulieren wir dies, indem wir eine Verbindung mit einer Parquet-Datei mit Daten für Mai 2023 herstellen.
 
-4. En el panel **Propiedades** de la derecha, expanda la sección **Avanzado**. 
+1. Navigieren Sie über die **Modellansicht von Lakehouse** zur Registerkarte des Browsers.
+2. Wählen Sie im linken Bereich **<Arbeitsbereiche>** aus.
+3. Wählen Sie **df_Sales_ADFS** aus, damit wir den Dataflow bearbeiten können, indem wir die neue Parquet-Datei hinzufügen.
 
-5. En el menú desplegable **Resumir por**, seleccione **Ninguno**.
+    ![](./Media/7.31.png)
+ 
+4. Öffnen Sie, sofern noch nicht geschehen, auf dem **Desktop** Ihrer Übungsumgebung im Ordner **Report** die Datei **FAIAD.pbix**. 
+5. Wählen Sie im Menüband **Start > Daten transformieren** aus. Das Power Query-Fenster wird geöffnet.
+6. Wählen Sie links unter dem Ordner **DirectLake** die Abfrage **MayInvoice** aus.
+7. **Klicken Sie mit der rechten Maustaste**, und wählen Sie **Kopieren** aus.
 
-    ![](Media/7-20.png)
+    ![](./Media/7.32.png)
+ 
+8. Rufen Sie im Browser wieder das Fenster **Dataflow** auf.
 
-6. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
+9. Drücken Sie im Bereich „Dataflow“ auf **STRG+V** (das Einfügen mittels Rechtsklick ist derzeit nicht möglich).
 
-7. En el menú superior, seleccione **Actualizar**. Observe ahora que Year no es un campo de suma.  
+Entfernen wir nun den Verweis auf den „ADLS Base Folder (2)“ und verwenden wir den „ADLS Base Folder“.
 
-8. Con el **objeto visual Gráfico de líneas seleccionado**, **elimine la Sum of Year** del eje Y. 
+10. Wählen Sie die Abfrage **MayInvoice** aus.
 
-9. Seleccione el campo **Year** y se agregará al **eje X**. 
+11. Wählen Sie im rechten Bereich unter **Angewendete Schritte** die Option **Quelle** aus.
 
-10. Expanda la tabla **Sales** y seleccione la **medida Sales**.
+12. Ändern Sie in der Formelleiste **#"ADLS Base Folder (2)"** in **#"ADLS Base Folder"**.
 
-    ![](Media/7-21.png)
+13. Klicken Sie auf das **Häkchen** neben der Formelleiste, oder drücken Sie die Eingabetaste.
 
-## Tarea 8: Configurar la columna Short_Month_Name en la tabla Date 
+    ![](./Media/7.33.png)
+ 
+14. Klicken Sie im linken Bereich unter dem Abschnitt „Abfragen“ mit der rechten Maustaste auf die **ADLS Base Folder (2)**-Abfrage, und wählen Sie **Löschen** aus.
 
-1. Agreguemos Mes a este gráfico. Desde la tabla Date, arrastre el campo **Short_Month_Name** debajo de **Year** en el **eje X**. Observe que el objeto visual está ordenado por Sales. Ordenémoslo por Short_Month_Name. 
+15. Das Dialogfeld „Abfrage löschen“ wird angezeigt. Wählen Sie zur Bestätigung **Löschen** aus.
 
-2. Haga clic en los **puntos suspensivos (…)** en la esquina superior derecha del objeto visual. 
+    ![](./Media/7.34.png)
+ 
+16. Fügen wir nun die Rechnungsdaten vom Mai an die Invoice-Tabelle an. Wählen Sie im Abschnitt „Abfragen“ die Abfrage **„Invoice“** aus.
 
-3. Seleccione **Ordenar eje -> Year Short_Month_Name**. 
+17. Wählen Sie im Menüband **Start -> Anfragen** anfügen aus.
 
-4. Haga clic en los **puntos suspensivos (…)** en la esquina superior derecha del objeto visual. 
+18. Das Dialogfeld „Abfrage anfügen“ wird angezeigt. Wählen Sie aus der Dropdown-Liste **Anzufügende Tabelle** den Eintrag **MayInvoice** aus.
 
-5. Seleccione **Ordenar eje -> Orden ascendente**. 
+19. Wählen Sie **OK** aus.
 
-    ![](Media/7-22.png)
+    ![](./Media/7.35.png)
+ 
+20. Wählen Sie in der unteren rechten Ecke **Veröffentlichen** aus, um die Änderungen zu speichern und zu veröffentlichen.
 
-   >**Nota:** Los meses están ordenados alfabéticamente. Vamos a arreglarlo. 
+    ![](./Media/7.36.png)
+ 
+**Hinweis:** Nach der Veröffentlichung wird der Dataflow aktualisiert. Dies kann einige Minuten dauern.
 
-    ![](Media/7-23.png)
+21. Navigieren Sie mit dem **Power BI-Canvas** zurück zur Registerkarte des Browsers.
 
-6. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
+22. Wählen Sie im oberen Menü **Aktualisieren** aus. Beachten Sie, dass im Liniendiagramm jetzt Daten für Mai 2023 vorhanden sind. Beachten Sie auch, dass der Verkaufswert gestiegen ist.
 
-7. En el panel izquierdo del explorador, expanda **lhFAIAD -> Schemes -> dbo -> Tables -> Date**. 
+    ![](./Media/7.37.png)
+ 
+Da jeder Dataflow, den wir in früheren Übungen erstellt haben, termingerecht aktualisiert wird, werden die Daten in Lakehouse erfasst. Das Datenmodell in Lakehouse wird aktualisiert und die Berichte werden aktualisiert. Wir müssen das Datenmodell und den Bericht nicht aktualisieren, wenn jeder Dataflow aktualisiert wird. Dies ist der Vorteil von Direct Lake.
 
-8. Seleccione la columna **Short_Month_Name**. 
+Sehen wir uns noch einmal die Herausforderungen an, die in der Problemstellung aufgeführt sind:
 
-9. En el panel **Propiedades** de la derecha, expanda la sección **Avanzado**. 
+- **Das Dataset muss mindestens dreimal täglich aktualisiert werden, um den verschiedenen Aktualisierungszeiten der Datenquellen Rechnung zu tragen**.
 
-10. En el menú desplegable **Ordenar por columna** seleccione **Month**.
+Wir haben dieses Problem mithilfe von Direct Lake gelöst. Jeder einzelne Dataflow wird nach seinem Zeitplan aktualisiert. Das DataSet und der Bericht müssen nicht aktualisiert werden.
 
-    ![](Media/7-24.png)
+- **Die Aktualisierungen dauern lange, weil die Daten jedes Mal komplett aktualisiert werden müssen, um alle Änderungen an den Daten in den Quellsystemen zu erfassen**.
 
-11. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
+Auch hier haben wir dieses Problem mithilfe von Direct Lake gelöst. Jeder einzelne Dataflow wird nach seinem Zeitplan aktualisiert. Das DataSet und der Bericht müssen nicht aktualisiert werden, sodass wir uns keine Sorgen über eine vollständige Aktualisierung machen müssen. 
 
-12. En el menú superior, seleccione **Actualizar**. Observe que ahora los meses están ordenados correctamente.
+- **Tritt in den Datenquellen, aus denen die Daten abgerufen werden, ein Fehler auf, wird die DataSet-Aktualisierung abgebrochen. Oftmals wird die Mitarbeiterdatei nicht pünktlich hochgeladen, was ebenso zum Abbruch der DataSet-Aktualisierung führt**. 
 
-    ![](Media/7-25.png)
+Die Datenpipeline hilft, dieses Problem zu lösen, indem es die Möglichkeit bietet, die Aktualisierung bei Fehlern und in verschiedenen Intervallen zu wiederholen.
 
-## Tarea 9: Aplicar formato al gráfico de líneas 
+- **Änderungen am Datenmodell nehmen sehr viel Zeit in Anspruch, weil Power Query aufgrund der großen Datenmenge und des aufwändigen Transformationsvorgangs sehr lange braucht, um die Vorschauversionen zu aktualisieren**.
 
-Observe lo fácil que es actualizar el modelo semántico mientras se crean los informes. Esto proporciona una interacción fluida como Power BI Desktop. 
+Wir haben festgestellt, dass Dataflows effizient und einfach zu ändern sind. Das Laden der Vorschauversion in Dataflows dauert in der Regel nicht lange.
 
-1. Con el **objeto visual Gráfico de líneas seleccionado**, en la **sección Datos**, expanda la tabla **Reseller**. 
+- **Für Power BI Desktop brauchen Sie einen PC mit Windows, auch wenn im Unternehmen Mac-Geräte genutzt werden**.
 
-2. Arrastre **Reseller -> Reseller Company** a la sección **Leyenda**.
+Microsoft Fabric ist ein SaaS-Angebot. Wir benötigen lediglich einen Browser, um auf den Dienst zuzugreifen. Wir müssen keine Software auf unseren Desktops installieren.
 
-    ![](Media/7-26.png)
+## Übungsumgebung bereinigen
 
-3. Con el **objeto visual Gráfico de líneas seleccionado**, en la sección **Visualizaciones**, seleccione **icono Formato visual -> General**. 
+Wenn Sie bereit sind, die Übungsumgebung zu bereinigen, führen Sie die folgenden Schritte aus.
 
-4. Expanda la sección **Título**. 
+1. Navigieren Sie mit dem **Power BI-Canvas** zurück zur Registerkarte des Browsers. **Schließen Sie diese Registerkarte**.
 
-5. Establezca el texto **Título** en **Ventas a lo largo del tiempo**. 
+2. Navigieren Sie über die **Modellansicht von Lakehouse** zur Registerkarte.
 
-6. Expanda la sección **Efectos**. 
+3. Wählen Sie im linken Bereich **<Name Ihres Arbeitsbereichs>** aus, um zur Startseite zu navigieren.
 
-7. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**.
+    ![](./Media/7.38.png)
+ 
+4. Klicken im oberen Menü auf die **Auslassungspunkte (…)** neben „Zugriff verwalten“, und wählen Sie **Arbeitsbereichseinstellungen** aus.
 
-    ![](Media/7-27.png)
+    ![](./Media/7.39.png)
+ 
+5. Das Dialogfeld „Arbeitsbereichseinstellungen“ wird geöffnet. Wählen Sie im linken Menü **Weitere** aus.
+6. Wählen Sie **Diesen Arbeitsbereich entfernen** aus.
+7. Das Dialogfeld „Arbeitsbereich löschen“ wird angezeigt. Wählen Sie **Löschen** aus.
 
-8. En la sección **Visualizaciones**, seleccione el **icono Formato de objeto visual -> Objeto visual**. 
+Dadurch werden der Arbeitsbereich und alle darin enthaltenen Elemente gelöscht.
 
-9. Expanda la sección **Eje X**. 
+![](./Media/7.40.png)
+ 
 
-10. Utilice el control deslizante Título para configurarlo en **Desactivado**. 
+## Referenzen
+Bei Fabric Analyst in a Day (FAIAD) lernen Sie einige der wichtigsten Funktionen von Microsoft Fabric kennen. Im Menü des Dienstes finden Sie in der Hilfe (?) Links zu praktischen Informationen.
 
-11. Expanda la sección **Líneas**. 
+![](./Media/7.41.png)
 
-12. Expanda la sección **Colores**. 
+Nachfolgend finden Sie weitere Angebote zur weiteren Arbeit mit Microsoft Fabric.
 
-13. Establezca el color de **Wingtip Toys** en **#004753**. 
+- Die vollständige https://aka.ms/Fabric-Hero-Blog-Ignite23 finden Sie im Blogbeitrag.
+- Fabric bei einer https://aka.ms/Fabric-GuidedTour kennenlernen
+- Zur https://aka.ms/try-fabric anmelden
+- https://aka.ms/microsoft-fabric besuchen
+- Mit Modulen von https://aka.ms/learn-fabric neue Qualifikationen erwerben
+- https://aka.ms/fabric-docs lesen
+- https://aka.ms/fabric-get-started-ebook lesen
+- Mitglied der https://aka.ms/fabric-community werden, um Fragen zu stellen, Feedback zu geben und sich mit anderen auszutauschen
 
-14. Establezca el color de **Tailspin Toys** en **#F17925**. 
+Lesen Sie die detaillierteren Blogs zur Ankündigung der Fabric-Umgebung:
 
-15. Cambie el tamaño del **objeto visual** y muévalo al **cuadro superior derecho como se muestra en la captura de pantalla**. 
+- https://aka.ms/Fabric-Data-Factory-Blog
+- https://aka.ms/Fabric-DE-Blog
+- https://aka.ms/Fabric-DS-Blog
+- https://aka.ms/Fabric-DW-Blog
+- https://aka.ms/Fabric-RTA-Blog
+- https://aka.ms/Fabric-PBI-Blog
+- https://aka.ms/Fabric-DA-Blog
+- https://aka.ms/Fabric-Admin-Gov-Blog
+- https://aka.ms/Fabric-OneLake-Blog
+- https://aka.ms/Dataverse-Fabric-Blog
 
-16. Desplácese hacia la derecha en el objeto visual y **observe que tenemos datos hasta abril de 2023**.
+© 2023 Microsoft Corporation. Alle Rechte vorbehalten.
 
-    ![](Media/7-28.png)
+Durch die Verwendung der vorliegenden Demo/Übung stimmen Sie den folgenden Bedingungen zu:
 
-17. Guardemos el informe: desde el menú, seleccione **Archivo -> Guardar**. 
+Die in dieser Demo/Übung beschriebene Technologie/Funktionalität wird von der Microsoft Corporation bereitgestellt, um Feedback von Ihnen zu erhalten und Ihnen Wissen zu vermitteln. Sie dürfen die Demo/Übung nur verwenden, um derartige Technologiefeatures und Funktionen zu bewerten und Microsoft Feedback zu geben. Es ist Ihnen nicht erlaubt, sie für andere Zwecke zu verwenden. Es ist Ihnen nicht gestattet, diese Demo/Übung oder einen Teil derselben zu ändern, zu kopieren, zu verbreiten, zu übertragen, anzuzeigen, auszuführen, zu vervielfältigen, zu veröffentlichen, zu lizenzieren, zu transferieren oder zu verkaufen oder aus ihr abgeleitete Werke zu erstellen.
 
-18. Se abre el cuadro de diálogo Guardar el informe. Nombre el informe como **rpt_Sales_Report**  
+DAS KOPIEREN ODER VERVIELFÄLTIGEN DER DEMO/ÜBUNG (ODER EINES TEILS DERSELBEN) AUF EINEN/EINEM ANDEREN SERVER ODER SPEICHERORT FÜR DIE WEITERE VERVIELFÄLTIGUNG ODER VERBREITUNG IST AUSDRÜCKLICH UNTERSAGT.
 
-    >**Nota**: Estamos anteponiendo rpt al nombre del informe, que es la abreviatura de informe (en inglés). 
+DIESE DEMO/ÜBUNG STELLT BESTIMMTE SOFTWARE-TECHNOLOGIE-/PRODUKTFEATURES UND FUNKTIONEN, EINSCHLIESSLICH POTENZIELLER NEUER FEATURES UND KONZEPTE, IN EINER SIMULIERTEN UMGEBUNG OHNE KOMPLEXE EINRICHTUNG ODER INSTALLATION FÜR DEN OBEN BESCHRIEBENEN ZWECK BEREIT. DIE TECHNOLOGIE/KONZEPTE IN DIESER DEMO/ÜBUNG ZEIGEN MÖGLICHERWEISE NICHT DAS VOLLSTÄNDIGE FUNKTIONSSPEKTRUM UND FUNKTIONIEREN MÖGLICHERWEISE NICHT WIE DIE ENDGÜLTIGE VERSION. UNTER UMSTÄNDEN VERÖFFENTLICHEN WIR AUCH KEINE ENDGÜLTIGE VERSION DERARTIGER FEATURES ODER KONZEPTE. IHRE ERFAHRUNG BEI DER VERWENDUNG DERARTIGER FEATURES UND FUNKTIONEN IN EINER PHYSISCHEN UMGEBUNG KANN FERNER ABWEICHEND SEIN.
 
-19. Asegúrese de que el informe esté guardado en **<your workspace name>**. 
+**FEEDBACK.** Wenn Sie Feedback zu den Technologiefeatures, Funktionen und/oder Konzepten geben, die in dieser Demo/Übung beschrieben werden, gewähren Sie Microsoft das Recht, Ihr Feedback in jeglicher Weise und für jeglichen Zweck kostenlos zu verwenden, zu veröffentlichen und gewerblich zu nutzen. Außerdem treten Sie Dritten kostenlos sämtliche Patentrechte ab, die erforderlich sind, damit deren Produkte, Technologien und Dienste bestimmte Teile einer Software oder eines Dienstes von Microsoft, welche/welcher das Feedback enthält, verwenden oder eine Verbindung zu dieser/diesem herstellen können. Sie geben kein Feedback, das einem Lizenzvertrag unterliegt, aufgrund dessen Microsoft Drittparteien eine Lizenz für seine Software oder Dokumentation gewähren muss, weil wir Ihr Feedback in diese aufnehmen. Diese Rechte bestehen nach Ablauf dieser Vereinbarung fort.
+DIE MICROSOFT CORPORATION LEHNT HIERMIT JEGLICHE GEWÄHRLEISTUNGEN UND GARANTIEN IN BEZUG AUF DIE DEMO/ÜBUNG AB, EINSCHLIESSLICH ALLER AUSDRÜCKLICHEN, KONKLUDENTEN ODER GESETZLICHEN GEWÄHRLEISTUNGEN UND GARANTIEN DER HANDELSÜBLICHKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK, DES RECHTSANSPRUCHS UND DER NICHTVERLETZUNG VON RECHTEN DRITTER. MICROSOFT MACHT KEINERLEI ZUSICHERUNGEN BZW. ERHEBT KEINERLEI ANSPRÜCHE IM HINBLICK AUF DIE RICHTIGKEIT DER ERGEBNISSE UND DES AUS DER VERWENDUNG DER DEMO/ÜBUNG RESULTIERENDEN ARBEITSERGEBNISSES BZW. BEZÜGLICH DER EIGNUNG DER IN DER DEMO/ÜBUNG ENTHALTENEN INFORMATIONEN FÜR EINEN BESTIMMTEN ZWECK.
 
-20. Seleccione **Guardar**.
+**HAFTUNGSAUSSCHLUSS**
 
-    ![](Media/7-29.png)
+Diese Demo/Übung enthält nur einen Teil der neuen Features und Verbesserungen in Microsoft Power BI. Einige Features können sich unter Umständen in zukünftigen Versionen des Produkts ändern. In dieser Demo/Übung erhalten Sie Informationen über einige, aber nicht über alle neuen Features.
 
-Como se mencionó anteriormente, no crearemos todos los objetos visuales en esta práctica de laboratorio. Siéntase libre de crear más objetos visuales si lo desea.  
-
-## Tarea 10: Agregar nuevos datos para simular el modo Direct Lake 
-
-Normalmente, en el modo Import, una vez que se actualizan los datos en el origen, necesitamos actualizar el modelo de Power BI y después se actualizan los datos en el informe. Con el modo de Direct Query, una vez que los datos se actualizan en el origen, están disponibles en el informe de Power BI. Sin embargo, el modo de Direct Query suele ser lento. Para resolver este problema, Microsoft Fabric presenta el modo Direct Lake. Direct Lake es una ruta rápida para cargar los datos del lago directamente en el motor de Power BI listos para su análisis. Exploremos más. 
-
-En un escenario real, los datos se actualizan en el origen. Como estamos en un entorno de entrenamiento, lo simularemos mediante la conexión a un archivo Parquet con datos de mayo de 2023.  
-
-1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
-
-2. Seleccione **<your workspace name>** en el panel izquierdo. 
-
-3. Seleccione **df_Sales_ADFS** para que podamos editar el flujo de datos al agregar el nuevo archivo Parquet.
-
-    ![](Media/7-30.png)
-
-4. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
-
-5. En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. 
-
-6. En el panel izquierdo, en la carpeta **DirectLake**, seleccione la consulta **MayInvoice**. 
-
-7. **Haga clic derecho** y seleccione **Copiar**.
-
-    ![](Media/7-31.png)
-
-8. Vuelva a la **pantalla del flujo de datos** en el explorador. 
-
-9. En el panel del flujo de datos, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible). 
-
-Ahora eliminemos la referencia a ADLS Base Folder (2) y usemos ADLS Base Folder. 
-
-10. Seleccione consulta **MayInvoice**. 
-
-11. Desde el panel derecho, en **Pasos aplicados**, seleccione **Source**. 
-
-12. En la barra de fórmulas, cambie de **#"ADLS Base Folder (2)"** a **#"ADLS Base Folder"**. 
-
-13. Seleccione la **marca de verificación** al lado de la barra de fórmulas o pulse Enter.
-
-    ![](Media/7-32.png)
-
-14. En el panel izquierdo, en la sección Consultas, **haga clic con el botón derecho en la consulta ADLS Base Folder (2)** y seleccione **Eliminar**. 
-
-15. Aparece el cuadro de diálogo Eliminar consulta. Seleccione **Eliminar** para confirmar.
-
-    ![](Media/7-33.png)
-
-16. Ahora, agreguemos los datos de la factura de mayo a la tabla Invoice. Seleccione la consulta **Invoice** desde la sección Consultas. 
-
-17. En la cinta de opciones, seleccione **Inicio - Anexar** consultas. 
-
-18. Aparece el cuadro de diálogo Anexar consulta. Desde el menú desplegable **Tabla para anexar**, seleccione **MayInvoice**. 
-
-19. Seleccione **Aceptar**.
-
-    ![](Media/7-34.png)
-
-20. Seleccione **Publicar** en la esquina inferior derecha para guardar y publicar las actualizaciones.
-
-    ![](Media/7-35.png)
-
-    >**Nota**: Una vez publicado, el flujo de datos se actualizará. Esto puede tardar varios minutos. 
-
-21. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
-
-22. En el menú superior, seleccione **Actualizar**. Observe ahora que en el gráfico de líneas hay datos para mayo de 2023. Además, observe que el dólar de ventas ha aumentado.
-
-    ![](Media/7-36.png)
-
-A medida que cada flujo de datos que hemos creado en laboratorios anteriores se actualiza según lo programado, los datos se incorporan al lakehouse. El modelo de datos en el lakehouse y los informes se actualizan. No tenemos que actualizar el modelo de datos ni informar cuando se actualice cada uno de los flujos de datos. Esta es la ventaja de Direct Lake. 
-
-Revisemos los desafíos que se enumeran en el planteamiento del problema: 
-
-- **Debe actualizar su conjunto de datos al menos tres veces al día para adaptarse a los diferentes tiempos de actualización para los diferentes orígenes de datos**. 
-
-Resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe. 
-
-- **Sus actualizaciones tardan mucho tiempo, ya que necesita hacer una actualización completa cada vez para capturar cualquier actualización que haya ocurrido en los sistemas de origen.** 
-
-De nuevo, resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe, por lo que no tenemos que preocuparnos por la actualización completa.  
-
-- **Cualquier error en cualquiera de los orígenes de datos de los que extrae provocará que se interrumpa la actualización del conjunto de datos. Muchas veces, el archivo del empleado no se carga a tiempo, lo que provoca que se interrumpa la actualización del conjunto de datos**. 
-
-La canalización de datos ayuda a resolver este problema al brindar la capacidad de volver a intentar la actualización en caso de error y en diferentes intervalos. 
-
-- **Se necesita mucho tiempo para hacer cambios en su modelo de datos, ya que Power Query tarda mucho en actualizar sus versiones preliminares, dado el gran tamaño de los datos y las transformaciones complejas**.  
-
-Vimos que los flujos de datos son eficientes y es fácil hacer cambios en ellos. Normalmente, la versión preliminar en flujos de datos no tarda mucho en cargarse. 
-
-- **Necesita que un PO con Windows use Power BI Desktop aunque el estándar corporativo es Mac**. 
-
-Microsoft Fabric es una oferta SaaS. Lo único que necesitamos es un explorador para acceder al servicio. No tenemos que instalar ningún software en nuestros escritorios. 
-
-## Limpieza del entorno de laboratorio 
-
-Una vez que esté todo listo para limpiar el entorno del laboratorio, siga los pasos a continuación. 
-
-1. Vuelva a la pestaña del explorador con el **lienzo de Power BI. Cierre esta pestaña**. 
-
-2. Navegue a la pestaña con la **vista del modelo del lakehouse**. 
-
-3. Seleccione **<your workspace name>** en el panel izquierdo para navegar a la página de inicio.
-
-   ![](Media/7-37.png)
-
-4. En el menú superior, seleccione **puntos suspensivos (…)** al lado de Administrar acceso y seleccione **Configuración del área de trabajo**.
-
-   ![](Media/7-38.png)
-
-5. Se abre el cuadro de diálogo de Configuración del área de trabajo. Seleccione **Otros** en el menú izquierdo. 
-
-6. Seleccione **Quitar esta área de trabajo**. 
-
-7. Se abrirá el cuadro de diálogo de eliminar área de trabajo. Seleccione **Eliminar**. 
-
-Esto eliminará el área de trabajo y todos los elementos que contenía. 
-
-   ![](Media/7-39.png)
-
-# Referencias 
-
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
-
-   ![](Media/7-40.png)
-
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
-
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric/blog/2023/11/15/prepare-your-data-for-ai-innovation-with-microsoft-fabric-now-generally-available/) completo. 
-
-- Explore Fabric a través de la [Visita guiada](https://guidedtour.microsoft.com/en-us/guidedtour/microsoft-fabric/microsoft-fabric/1/1) 
-
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://app.powerbi.com/home?experience=power-bi)
-
-- Visite el [sitio web de Microsoft Fabric](https://www.microsoft.com/en-in/microsoft-fabric)
-
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://learn.microsoft.com/en-us/training/browse/?products=fabric&resource_type=module) 
-
-- Explore la [documentación técnica de Fabric](https://learn.microsoft.com/en-us/fabric/) 
-
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://info.microsoft.com/ww-landing-unlocking-transformative-data-value-with-microsoft-fabric.html)
-
-- Únase a la [comunidad de Fabric](https://community.fabric.microsoft.com/) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
-
-Obtenga más información en los blogs de anuncios de la experiencia Fabric: 
-
-- [Experiencia de Data Factory en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-data-factory-in-microsoft-fabric/) 
-
-- [Experiencia de Synapse Data Engineering en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-engineering-in-microsoft-fabric/)  
-
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-science-in-microsoft-fabric/) 
-
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-warehouse-in-microsoft-fabric/)  
-
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/sense-analyze-and-generate-insights-with-synapse-real-time-analytics-in-microsoft-fabric/)
-
-- [Blog de anuncios de Power BI](https://powerbi.microsoft.com/en-us/blog/empower-power-bi-users-with-microsoft-fabric-and-copilot/)
-
-- [Experiencia de Data Activator en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/driving-actions-from-your-data-with-data-activator/)  
-
-- [Administración y gobernanza en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/administration-security-and-governance-in-microsoft-fabric/) 
-
-- [OneLake en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/microsoft-onelake-in-fabric-the-onedrive-for-data/) 
-
-- [Blog de integración de Dataverse y Microsoft Fabric](https://cloudblogs.microsoft.com/dynamics365/it/2023/05/24/new-dataverse-enhancements-and-ai-powered-productivity-with-microsoft-365-copilot/) 
-
-© 2023 Microsoft Corporation. Todos los derechos reservados. 
-
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones: 
-
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella. 
-
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA. 
-
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE. 
-
-**COMENTARIOS**. Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo. 
-
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
-
-**DECLINACIÓN DE RESPONSABILIDADES**
-
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
