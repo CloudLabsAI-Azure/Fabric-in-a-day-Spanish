@@ -114,7 +114,7 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 7. Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
 8. Selezionare **lh_FAIAD**
 9. Lasciare il nome della tabella **Supplier**
-10.	Selezionare **Avanti**.
+10. Selezionare **Avanti**.
 
     ![](Media/4.9.png)
  

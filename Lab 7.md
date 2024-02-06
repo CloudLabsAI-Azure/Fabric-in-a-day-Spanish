@@ -122,12 +122,19 @@ Useremo questo report come riferimento. Inizieremo aggiungendo lo sfondo del can
 ![](Media/7.12.png)
  
 3. Tornare al **Power BI canvas** nel browser.
+
 4. Selezionare l'icona **Formatta pagina** nel riquadro Visualizzazioni.
+
 5. Espandere la sezione **Sfondo canvas**.
+
 6. Selezionare **Sfoglia** dall'opzione **Immagine**. Si apre la finestra di dialogo Esplora file.
+
 7. Andare alla cartella  Report sul Desktop dell'ambiente lab. 
+
 8. Selezionare **Summary Background.png**.
+
 9. Impostare il menu a discesa **Adattamento immagine** su **Adatta**.
+
 10. Impostare la trasparenza allo **0%**.
 
     ![](Media/7.13.png)
