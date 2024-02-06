@@ -8,8 +8,6 @@
     - Tarefa 3: Revisar Power Queries
 - Referências
 
-
-
 # Estrutura do documento
 O laboratório inclui etapas a serem seguidas pelo usuário juntamente com as capturas de tela associadas que fornecem auxílio visual. Em cada captura de tela, as seções estão destacadas com caixas laranjas para indicar as áreas nas quais o usuário deve se concentrar.
 
@@ -137,27 +135,27 @@ O Fabric Analyst in a Day (FAIAD) apresenta algumas das principais funções dis
  
 Veja aqui mais alguns recursos que ajudarão você com as próximas etapas do Microsoft Fabric.
 
-- Veja a postagem do blog para ler o anúncio completo de GA do Microsoft Fabric
-- Explore o Fabric por meio do Tour Guiado
-- Inscreva-se para a avaliação gratuita do Microsoft Fabric
-- Visite o site do Microsoft Fabric
-- Aprenda novas habilidades explorando os módulos de Aprendizagem do Fabric
-- Explore a documentação técnica do Fabric
-- Leia o livro eletrônico gratuito sobre como começar a usar o Fabric
-- Participe da comunidade do Fabric para postar suas perguntas, compartilhar seus comentários e aprender com outras pessoas
+- Veja a postagem do blog para ler o [anúncio completo de GA do Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+- Explore o Fabric por meio do [Tour Guiado](https://aka.ms/Fabric-GuidedTour)
+- Inscreva-se para a [avaliação gratuita do Microsoft Fabric](https://aka.ms/try-fabric)
+- Visite o [site do Microsoft Fabric](https://aka.ms/microsoft-fabric)
+- Aprenda novas habilidades explorando os [módulos de Aprendizagem do Fabric](https://aka.ms/learn-fabric)
+- Explore a [documentação técnica do Fabric](https://aka.ms/fabric-docs)
+- Leia o [livro eletrônico gratuito sobre como começar a usar o Fabric](https://aka.ms/fabric-get-started-ebook)
+- Participe da [comunidade do Fabric](https://aka.ms/fabric-community) para postar suas perguntas, compartilhar seus comentários e aprender com outras pessoas
 
 Leia os blogs de comunicados de experiências do Fabric em mais detalhes:
 
-- Experiência do Data Factory no blog do Fabric 
-- Experiência do Synapse Data Engineering no blog do Fabric 
-- Experiência do Synapse Data Science no blog do Fabric 
-- Experiência do Synapse Data Warehousing no blog do Fabric 
-- Experiência do Synapse Real-Time Analytics no blog do Fabric
-- Blog de comunicado do Power BI
-- Experiência do Data Activator no blog do Fabric 
-- Administração e governança no blog do Fabric
-- OneLake no blog do Fabric
-- Blog de integração do Dataverse e Microsoft Fabric
+- [Experiência do Data Factory no blog do Fabric](https://aka.ms/Fabric-Data-Factory-Blog) 
+- [Experiência do Synapse Data Engineering no blog do Fabric](https://aka.ms/Fabric-DE-Blog) 
+- [Experiência do Synapse Data Science no blog do Fabric](https://aka.ms/Fabric-DS-Blog) 
+- [Experiência do Synapse Data Warehousing no blog do Fabric](https://aka.ms/Fabric-DW-Blog) 
+- [Experiência do Synapse Real-Time Analytics no blog do Fabric](https://aka.ms/Fabric-RTA-Blog)
+- [Blog de comunicado do Power BI](https://aka.ms/Fabric-PBI-Blog)
+- [Experiência do Data Activator no blog do Fabric](https://aka.ms/Fabric-DA-Blog) 
+- [Administração e governança no blog do Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [OneLake no blog do Fabric](https://aka.ms/Fabric-OneLake-Blog)
+- [Blog de integração do Dataverse e Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
 
 © 2023 Microsoft Corporation. Todos os direitos reservados.
 
