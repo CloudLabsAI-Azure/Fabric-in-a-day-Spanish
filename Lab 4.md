@@ -110,11 +110,10 @@ Se establece la conexión y puede ver los datos en el panel de versión prelimin
 
     ![](Media/4.10.png)
  
-14.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha, el destino de los datos** está configurado en el **lakehouse**. De manera similar, **configure el destino de datos para la consulta de PO**. Una vez hecho esto, su consulta de PO debe tener Destino de datos establecido en **Lakehouse** como se muestra en la siguiente captura de pantalla.
+14. Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha, el destino de los datos** está configurado en el **lakehouse**. De manera similar, **configure el destino de datos para la consulta de PO**. Una vez hecho esto, su consulta de PO debe tener Destino de datos establecido en **Lakehouse** como se muestra en la siguiente captura de pantalla.
 
     ![](Media/4.11.png)
  
-
 ## Tarea 4: Cambiar el nombre y publicar el flujo de datos de Snowflake
 
 1. En la parte superior de la pantalla, seleccione la **flecha junto a Dataflow 1** para cambiar el nombre.
@@ -214,7 +213,7 @@ Se establece la conexión y puede ver los datos en el panel de versión prelimin
  
 12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
 13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+14. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
 
     ![](Media/4.24.png)
  
@@ -295,13 +294,13 @@ Se establece la conexión y puede ver los datos en el panel de versión prelimin
 8. Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
 9. Seleccione **lh_FAIAD**.
 10. Deje el nombre de la tabla como **People**.
-11.	Seleccione **Siguiente**.
+11. Seleccione **Siguiente**.
 
     ![](Media/4.35.png)
  
 12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
 13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+14. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
 
     ![](Media/4.36.png)
  
