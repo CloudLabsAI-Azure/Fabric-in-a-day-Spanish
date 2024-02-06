@@ -179,8 +179,8 @@ Actualmente, está en **Mi área de trabajo**. Para trabajar con elementos de Fa
 
 **Nota:** El nombre del área de trabajo debe ser único. Vamos a usar FAIAD como nombre del área de trabajo para este documento. Sin embargo, el nombre de su área de trabajo debe ser diferente. Asegúrese de que aparezca una marca de verificación verde con "**Este nombre está disponible**" debajo del campo Nombre.
 
-5.	Si lo desea, puede escribir una **Descripción** para el área de trabajo. Este campo es opcional.
-6.	Haga clic para expandir la sección **Avanzado**.
+5. Si lo desea, puede escribir una **Descripción** para el área de trabajo. Este campo es opcional.
+6. Haga clic para expandir la sección **Avanzado**.
 
     ![](Media/2.17.png)
  
@@ -205,7 +205,7 @@ Se crea un nuevo área de trabajo y se nos dirige hasta ella. Traeremos datos de
 
 **Nota:** lh aquí se refiere a Lakehouse. Vamos a anteponer lh para que sea fácil de identificar y buscar.
 
-5.	Seleccione **Crear**.
+5. Seleccione **Crear**.
 
     ![](Media/2.21.png)
  
