@@ -145,164 +145,192 @@ Useremo questo report come riferimento. Inizieremo aggiungendo lo sfondo del can
 
 ## Attività 6 - Aggiunta di un grafico a linee al report
 Creiamo un grafico a linee per visualizzare le vendite nel tempo per azienda rivenditrice.
-1. 	Selezionare lo spazio vuoto nel canvas per spostare lo stato attivo fuori dall'oggetto visivo scheda con più righe.
-2. 	Nella sezione Visualizzazioni selezionare Grafico a linee.
-3. 	Nella sezione Dati espandere la tabella Date.
-4. 	Selezionare il campo Year. Notare che Year viene sommato per impostazione predefinita e aggiunto all'asse Y. Correggiamo questo aspetto.
+
+1. Selezionare lo **spazio vuoto** nel canvas per spostare lo stato attivo fuori dall'oggetto visivo scheda con più righe.
+2. Nella sezione **Visualizzazioni** selezionare **Grafico a linee**.
+3. Nella sezione **Dati** espandere la tabella **Date**.
+4. Selezionare il campo **Year**. Notare che Year viene sommato per impostazione predefinita e aggiunto all'asse Y. Correggiamo questo aspetto.
   
 
-Attività 7 - Configurazione della colonna Year nella tabella Date
-1. 	Passare alla scheda del browser con la vista modello del lakehouse.
-2. 	Nel riquadro Explorer di sinistra espandere lhFAIAD -> Schemi -> dbo -> Tables -> Date.
-3. 	Selezionare la colonna Year.
-4. 	Nel riquadro Proprietà a destra espandere la sezione Avanzate.
-5. 	Nel menu a discesa Riepiloga per selezionare Nessuno.
+## Attività 7 - Configurazione della colonna Year nella tabella Date
+1. Passare alla scheda del browser con la **vista modello del lakehouse**.
+2. Nel riquadro Explorer di sinistra espandere **lhFAIAD -> Schemi -> dbo -> Tables -> Date**.
+3. Selezionare la colonna **Year**.
+4. Nel riquadro **Proprietà** a destra espandere la sezione **Avanzate**.
+5. Nel menu a discesa **Riepiloga per** selezionare **Nessuno**.
  
-6. 	Tornare alla scheda del browser con il canvas di Power BI.
-7. 	Nel menu in alto selezionare Aggiorna. Notare che Year non è un campo di somma. 
-8. 	Con l'oggetto visivo grafico a linee selezionato, rimuovere Somma di Year dall'asse Y.
-9. 	Selezionare il campo Year per aggiungerlo all'asse X.
-10. 	Espandere la tabella Sales e selezionare la misura Sales.
+6. Tornare alla scheda del browser con il **canvas di Power BI**.
+7. Nel menu in alto selezionare **Aggiorna**. Notare che Year non è un campo di somma. 
+8. Con l'**oggetto visivo grafico a linee selezionato, rimuovere Somma di Year** dall'asse Y.
+9. Selezionare il campo **Year** per aggiungerlo all'**asse X**.
+10. Espandere la tabella **Sales** e selezionare la **misura Sales**.
  
 
-Attività 8 - Configurazione della colonna Short_Month_Name nella tabella Date
-1. 	Aggiungiamo il mese al grafico. Nella tabella Date trascinare il campo Short_Month_Name sotto Year sull'asse X. Notare che l'oggetto visivo è ordinato in base a Sales. Ordiniamolo in base a Short_Month_Name.
-2. 	Selezionare i puntini di sospensione (…) nell'angolo superiore destro dell'oggetto visivo.
-3. 	Selezionare Ordina asse -> Year Short_Month_Name.
-4. 	Selezionare i puntini di sospensione (…) nell'angolo superiore destro dell'oggetto visivo.
-5. 	Selezionare Ordina asse -> Ordinamento crescente.
+## Attività 8 - Configurazione della colonna Short_Month_Name nella tabella Date
+1. Aggiungiamo il mese al grafico. Nella tabella Date trascinare il campo **Short_Month_Name** sotto **Year** sull'**asse X**. Notare che l'oggetto visivo è ordinato in base a Sales. Ordiniamolo in base a Short_Month_Name.
+2. Selezionare i **puntini di sospensione (…)** nell'angolo superiore destro dell'oggetto visivo.
+3. Selezionare **Ordina asse -> Year Short_Month_Name**.
+4. Selezionare i **puntini di sospensione (…)** nell'angolo superiore destro dell'oggetto visivo.
+5. Selezionare **Ordina asse -> Ordinamento crescente**.
  
-Nota: i mesi sono ordinati in ordine alfabetico. Correggiamo questo aspetto.
+**Nota:** i mesi sono ordinati in ordine alfabetico. Correggiamo questo aspetto.
  
-6. 	Passare alla scheda del browser con la vista modello del lakehouse.
-7. 	Nel riquadro Explorer di sinistra espandere lhFAIAD -> Schemi -> dbo -> Tables -> Date.
-8. 	Selezionare la colonna Short_Month_Name.
-9. 	Nel riquadro Proprietà a destra espandere la sezione Avanzate.
-10. 	Nel menu a discesa Ordina per colonna selezionare Month.
+6. Passare alla scheda del browser con la **vista modello del lakehouse**.
+7. Nel riquadro Explorer di sinistra espandere **lhFAIAD -> Schemi -> dbo -> Tables -> Date**.
+8. Selezionare la colonna **Short_Month_Name**.
+9. Nel riquadro **Proprietà** a destra espandere la sezione **Avanzate**.
+10. Nel menu a discesa **Ordina per colonna** selezionare **Month**.
  
-11. 	Tornare alla scheda del browser con il canvas di Power BI.
-12. 	Nel menu in alto selezionare Aggiorna. Notare che i mesi vengono ordinati correttamente.
+11. Tornare alla scheda del browser con il **canvas di Power BI**.
+12. Nel menu in alto selezionare **Aggiorna**. Notare che i mesi vengono ordinati correttamente.
   
 
-Attività 9 - Formattazione del grafico a linee
+## Attività 9 - Formattazione del grafico a linee
 È molto semplice aggiornare il modello semantico durante la creazione dei report. Ciò fornisce un'interazione fluida come Power BI Desktop.
-1. 	Con l'oggetto visivo grafico a linee selezionato, nella sezione Dati espandere la tabella Reseller.
-2. 	Trascinare il campo Reseller -> Reseller Company nella sezione Legenda.
+1. Con l'**oggetto visivo grafico a linee selezionato**, nella sezione **Dati** espandere la tabella **Reseller**.
+2. Trascinare il campo **Reseller -> Reseller Company** nella sezione **Legenda**.
  
-3. 	Con l'oggetto visivo grafico a linee selezionato, nella sezione Visualizzazioni selezionare l'icona Formatta oggetto visivo -> Generale.
-4. 	Espandere la sezione Titolo.
-5. 	Impostare il testo di Titolo su Sales over time.
-6. 	Espandere la sezione Effetti.
-7. 	Usare il dispositivo di scorrimento Sfondo su Disattivato.
+3. Con l'**oggetto visivo grafico a linee selezionato**, nella sezione **Visualizzazioni** selezionare l'icona **Formatta oggetto visivo -> Generale**.
+4. Espandere la sezione **Titolo**.
+5. Impostare il testo di **Titolo** su **Sales over time**.
+6. Espandere la sezione **Effetti**.
+7. Usare il dispositivo di scorrimento **Sfondo** su **Disattivato**.
  
-8. 	Nella sezione Visualizzazioni selezionare l'icona Formatta oggetto visivo -> Oggetto visivo.
-9. 	Espandere la sezione asse X.
-10. 	Impostare il dispositivo di scorrimento Titolo su Disattivato.
-11. 	Espandere la sezione Righe.
-12. 	Espandere la sezione Colori.
-13. 	Impostare il colore di Wingtip Toys su #004753
-14. 	Impostare il colore di Tailspin Toys su #F17925
-15. 	Ridimensionare l'oggetto visivo e spostarlo nella casella in alto a destra come illustrato nello screenshot.
-16. 	Scorrere verso destra l'oggetto visivo e notare che sono presenti dati fino ad aprile 2023.
+8. Nella sezione **Visualizzazioni** selezionare l'icona **Formatta oggetto visivo -> Oggetto visivo**.
+9. Espandere la sezione **asse X**.
+10. Impostare il dispositivo di scorrimento **Titolo** su **Disattivato**.
+11. Espandere la sezione **Righe**.
+12. Espandere la sezione **Colori**.
+13. Impostare il colore di **Wingtip Toys** su **#004753**
+14. Impostare il colore di **Tailspin Toys** su **#F17925**
+15. Ridimensionare l'**oggetto visivo** e spostarlo nella **casella in alto a destra come illustrato nello screenshot**.
+16. Scorrere verso destra l'oggetto visivo e **notare che sono presenti dati fino ad aprile 2023**.
  
-17. 	Per salvare il report, nel menu selezionare File -> Salva.
-18. 	Si apre la finestra di dialogo Salva report. Assegnare al report il nome rpt_Sales_Report 
-Nota: all'inizio del nome del report aggiungiamo il prefisso rpt, ossia l'abbreviazione di report.
-19. 	Assicurarsi che il report sia salvato in <nome della propria area di lavoro>.
-20. 	Selezionare Salva.
+17. Per salvare il report, nel menu selezionare **File -> Salva**.
+18. Si apre la finestra di dialogo Salva report. Assegnare al report il nome **rpt_Sales_Report** 
+
+**Nota:** all'inizio del nome del report aggiungiamo il prefisso rpt, ossia l'abbreviazione di report.
+
+19. Assicurarsi che il report sia salvato in **<nome della propria area di lavoro>**.
+20. Selezionare **Salva**.
  
 Come indicato in precedenza, non creeremo tutti gli oggetti visivi in questo lab. Se si desidera, aggiungere ulteriori oggetti visivi. 
-Attività 10 - Aggiunta di nuovi dati per simulare la modalità Direct Lake
+
+## Attività 10 - Aggiunta di nuovi dati per simulare la modalità Direct Lake
 In genere, in modalità Import, dopo aver aggiornato i dati nell'origine è necessario aggiornare il modello di Power BI dopodiché vengono aggiornati i dati nel report. Con la modalità Direct Query, quando i dati vengono aggiornati nell'origine sono disponibili nel report Power BI. Tuttavia, la modalità Direct Query è in genere lenta. Per risolvere questo problema, Microsoft Fabric ha introdotto la modalità Direct Lake. Direct Lake è un percorso rapido per caricare i dati dal lake al motore di Power BI per poter procedere immediatamente con l'analisi. Vediamolo.
+
 In uno scenario reale, i dati vengono aggiornati nell'origine. Poiché ci troviamo in un ambiente di formazione, simuleremo questo comportamento collegando un file Parquet con dati relativi a maggio 2023. 
-1. 	Passare alla scheda del browser con la vista modello del lakehouse.
-2. 	Selezionare <nome della propria area di lavoro> dal pannello di sinistra.
-3. 	Selezionare df_Sales_ADFS per poter modificare il flusso di dati aggiungendo il nuovo file Parquet.
+
+1. Passare alla scheda del browser con la **vista modello del lakehouse**.
+2. Selezionare **<nome della propria area di lavoro>** dal pannello di sinistra.
+3. Selezionare **df_Sales_ADFS** per poter modificare il flusso di dati aggiungendo il nuovo file Parquet.
  
-4. 	Se non lo si è ancora aperto, aprire il file FAIAD.pbix contenuto nella cartella Report sul Desktop dell'ambiente lab. 
-5. 	Nella barra multifunzione selezionare Home -> Trasforma dati. Si apre la finestra Power Query.
-6. 	Dal pannello di sinistra, nella cartella DirectLake selezionare la query MayInvoice.
-7. 	Fare clic con il pulsante destro del mouse e selezionare Copia. 
+4. Se non lo si è ancora aperto, aprire il file **FAIAD.pbix** contenuto nella cartella **Report** sul **Desktop** dell'ambiente lab. 
+5. Nella barra multifunzione selezionare **Home -> Trasforma dati**. Si apre la finestra Power Query.
+6. Dal pannello di sinistra, nella cartella **DirectLake** selezionare la query **MayInvoice**.
+7. **Fare clic con il pulsante destro del mouse** e selezionare **Copia**. 
  
-8. 	Tornare alla schermata Flusso di dati nel browser.
-9. 	Nel riquadro Flusso di dati premere CTRL+V (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
+8. Tornare alla schermata **Flusso di dati** nel browser.
+9. Nel riquadro Flusso di dati premere **CTRL+V** (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
+
 Ora rimuoviamo il riferimento a ADLS Base Folder (2) e usiamo ADLS Base Folder.
-10. 	Selezionare la query MayInvoice.
-11. 	Nel pannello di destra, in Passaggi applicati, selezionare Source.
-12. 	Nella barra della formula modificare #"ADLS Base Folder (2)" in  #"ADLS Base Folder".
-13. 	Selezionare il segno di spunta accanto alla barra della formula o premere INVIO.
+
+10. Selezionare la query **MayInvoice**.
+11. Nel pannello di destra, in **Passaggi applicati**, selezionare **Source**.
+12. Nella barra della formula modificare **#"ADLS Base Folder (2)"** in  **#"ADLS Base Folder"**.
+13. Selezionare il **segno di spunta** accanto alla barra della formula o premere INVIO.
  
-14. 	Nel pannello di sinistra, nella sezione Query, fare clic con il pulsante destro del mouse sulla query ADLS Base Folder (2) e selezionare Elimina.
-15. 	Si apre la finestra di dialogo Elimina query. Selezionare Elimina per confermare.
+14. Nel pannello di sinistra, nella sezione Query, fare clic con il pulsante destro del mouse sulla **query ADLS Base Folder (2)** e selezionare **Elimina**.
+15. Si apre la finestra di dialogo **Elimina** query. Selezionare Elimina per confermare.
  
-16. 	Ora aggiungiamo i dati della fattura di maggio alla tabella Invoice. Selezionare la query Invoice dalla sezione Query.
-17. 	Nella barra multifunzione selezionare Home -> Accoda query.
-18. 	Si apre la finestra di dialogo Accoda. Nel menu a discesa Tabella da accodare selezionare MayInvoice.
-19. 	Selezionare OK.
+16. Ora aggiungiamo i dati della fattura di maggio alla tabella Invoice. Selezionare la query **Invoice** dalla sezione Query.
+17. Nella barra multifunzione selezionare **Home -> Accoda query**.
+18. Si apre la finestra di dialogo Accoda. Nel menu a discesa **Tabella da accodare** selezionare MayInvoice.
+19. Selezionare **OK**.
  
-20. 	Selezionare Pubblica nell'angolo inferiore destro per salvare e pubblicare gli aggiornamenti. 
+20. Selezionare **Pubblica** nell'angolo inferiore destro per salvare e pubblicare gli aggiornamenti. 
  
-Nota: una volta pubblicato, il flusso di dati verrà aggiornato. Questa operazione potrebbe richiedere alcuni minuti.
-21. 	Tornare alla scheda del browser con il canvas di Power BI.
-22. 	Nel menu in alto selezionare Aggiorna. Notare che ora nel grafico a linee sono presenti dati per maggio 2023. Inoltre, notare che il valore in dollari delle vendite è aumentato.
+**Nota:** una volta pubblicato, il flusso di dati verrà aggiornato. Questa operazione potrebbe richiedere alcuni minuti.
+
+21. Tornare alla scheda del browser con il **canvas di Power BI**.
+22. Nel menu in alto selezionare **Aggiorna**. Notare che ora nel grafico a linee sono presenti dati per maggio 2023. Inoltre, notare che il valore in dollari delle vendite è aumentato.
  
 Man mano che ogni flusso di dati creato nei lab precedenti viene aggiornato secondo pianificazione, i dati vengono inseriti nel lakehouse. Il modello di dati nel lakehouse e i report vengono aggiornati. Non è necessario aggiornare il modello di dati e il report quando ciascun flusso di dati viene aggiornato. Questo è il vantaggio di Direct Lake.
+
 Ricontrolliamo le problematiche elencate nell'esposizione del problema:
-•	È necessario aggiornare il set di dati almeno tre volte al giorno per adattarsi ai diversi tempi di aggiornamento delle diverse origini dati.
+
+- **È necessario aggiornare il set di dati almeno tre volte al giorno per adattarsi ai diversi tempi di aggiornamento delle diverse origini dati**.
+
 Abbiamo risolto questo problema usando Direct Lake. Ogni singolo flusso di dati viene aggiornato in base alla propria pianificazione. Non è necessario aggiornare il set di dati e il report.
-•	Gli aggiornamenti richiedono molto tempo in quanto è necessario eseguire un aggiornamento completo ogni volta per acquisire eventuali aggiornamenti dei sistemi di origine.
+- **Gli aggiornamenti richiedono molto tempo in quanto è necessario eseguire un aggiornamento completo ogni volta per acquisire eventuali aggiornamenti dei sistemi di origine**.
+
 Abbiamo risolto anche questo problema usando Direct Lake. Ogni singolo flusso di dati viene aggiornato in base alla propria pianificazione. Non è necessario aggiornare il set di dati e il report, perciò non è richiesto un aggiornamento completo. 
-•	Se si verificano errori in qualsiasi delle origini dati da cui si estraggono i dati, l'aggiornamento del set di dati si interrompe. Spesso il file dei dipendenti non viene caricato in tempo e ciò causa l'interruzione dell'aggiornamento del set di dati. 
+- **Se si verificano errori in qualsiasi delle origini dati da cui si estraggono i dati, l'aggiornamento del set di dati si interrompe. Spesso il file dei dipendenti non viene caricato in tempo e ciò causa l'interruzione dell'aggiornamento del set di dati**.
+
 Pipeline di dati aiuta a risolvere questo problema, consentendo di provare più volte a eseguire l'aggiornamento a intervalli diversi.
-•	Eventuali modifiche al modello di dati richiedono molto tempo in quanto Power Query richiede molto tempo per l'aggiornamento delle anteprime, date le dimensioni elevate dei dati e le trasformazioni complesse. 
+- **Eventuali modifiche al modello di dati richiedono molto tempo in quanto Power Query richiede molto tempo per l'aggiornamento delle anteprime, date le dimensioni elevate dei dati e le trasformazioni complesse**.
+
 Abbiamo notato che i flussi di dati sono efficienti e facili da modificare. In genere, il caricamento dell'anteprima nei flussi di dati non richiede molto tempo.
-•	È necessario un PC Windows per usare Power BI Desktop anche se lo standard aziendale è Mac.
+- **È necessario un PC Windows per usare Power BI Desktop anche se lo standard aziendale è Mac**.
+
 Microsoft Fabric è un'offerta SaaS. Tutto ciò di cui abbiamo bisogno è un browser per accedere al servizio. Non dobbiamo installare alcun software nei nostri desktop.
 
-Pulizia dell'ambiente lab
+# Pulizia dell'ambiente lab
 Quando si è pronti a eseguire la pulizia dell'ambiente lab, effettuare i passaggi seguenti.
-1. 	Tornare alla scheda del browser con il canvas di Power BI. Chiudere questa scheda.
-2. 	Passare alla scheda con la vista modello del lakehouse.
-3. 	Selezionare <nome della propria area di lavoro> dal pannello di sinistra per andare alla home page.
+1. Tornare alla scheda del browser con il **canvas di Power BI. Chiudere questa scheda**.
+2. Passare alla scheda con la **vista modello del lakehouse**.
+3. Selezionare **<nome della propria area di lavoro>** dal pannello di sinistra per andare alla home page.
  
-4. 	Nel menu in alto selezionare i puntini di sospensione (…) accanto a Gestisci accesso e selezionare Impostazioni area di lavoro.
+4. Nel menu in alto selezionare i **puntini di sospensione (…)** accanto a Gestisci accesso e selezionare **Impostazioni area di lavoro**.
  
-5. 	Si apre la finestra di dialogo Impostazioni area di lavoro. Nel menu a sinistra selezionare Altro.
-6. 	Selezionare Rimuovere questa area di lavoro.
-7. 	Si apre la finestra di dialogo Elimina area di lavoro. Selezionare Elimina.
+5. Si apre la finestra di dialogo Impostazioni area di lavoro. Nel menu a sinistra selezionare **Altro**.
+6. Selezionare **Rimuovere questa area di lavoro**.
+7. Si apre la finestra di dialogo Elimina area di lavoro. Selezionare **Elimina**.
+
 In questo modo si elimineranno l'area di lavoro e tutti gli elementi che contiene.
  
 
-Riferimenti
+# Riferimenti
 Fabric Analyst in a Day (FAIAD) presenta alcune delle funzionalità chiave disponibili in Microsoft Fabric. Nel menu di servizio, la sezione Guida (?) include collegamenti ad alcune risorse utili.
  
 Di seguito sono riportate ulteriori risorse utili che consentiranno di progredire nell'uso di Microsoft Fabric.
-•	Vedere il post di blog per leggere l'annuncio completo sulla disponibilità generale di Microsoft Fabric
-•	Esplorare Fabric attraverso la Presentazione guidata
-•	Iscriversi alla versione di valutazione gratuita di Microsoft Fabric
-•	Visitare il sito Web di Microsoft Fabric
-•	Acquisire nuove competenze esplorando i moduli di apprendimento su Fabric
-•	Consultare la documentazione tecnica di Fabric
-•	Leggere l'e-book gratuito introduttivo a Fabric
-•	Unirsi alla community di Fabric per pubblicare domande, condividere feedback e imparare dagli altri
+
+- Vedere il post di blog per leggere l'annuncio completo sulla disponibilità generale di Microsoft Fabric
+- Esplorare Fabric attraverso la Presentazione guidata
+- Iscriversi alla versione di valutazione gratuita di Microsoft Fabric
+- Visitare il sito Web di Microsoft Fabric
+- Acquisire nuove competenze esplorando i moduli di apprendimento su Fabric
+- Consultare la documentazione tecnica di Fabric
+- Leggere l'e-book gratuito introduttivo a Fabric
+- Unirsi alla community di Fabric per pubblicare domande, condividere feedback e imparare dagli altri
+
 Leggere i blog di annunci più approfonditi sull'esperienza in Fabric:
-•	Blog sull'esperienza Data Factory in Fabric 
-•	Blog sull'esperienza Synapse Data Engineering in Fabric 
-•	Blog sull'esperienza Synapse Data Science in Fabric 
-•	Blog sull'esperienza Synapse Data Warehousing in Fabric 
-•	Blog sull'esperienza Synapse Real-Time Analytics in Fabric
-•	Blog di annunci di Power BI
-•	Blog sull'esperienza Data Activator in Fabric 
-•	Blog su amministrazione e governance in Fabric
-•	Blog su OneLake in Fabric
-•	Blog sull'integrazione di Dataverse e Microsoft Fabric
+
+- Blog sull'esperienza Data Factory in Fabric 
+- Blog sull'esperienza Synapse Data Engineering in Fabric 
+- Blog sull'esperienza Synapse Data Science in Fabric 
+- Blog sull'esperienza Synapse Data Warehousing in Fabric 
+- Blog sull'esperienza Synapse Real-Time Analytics in Fabric
+- Blog di annunci di Power BI
+- Blog sull'esperienza Data Activator in Fabric 
+- Blog su amministrazione e governance in Fabric
+- Blog su OneLake in Fabric
+- Blog sull'integrazione di Dataverse e Microsoft Fabric
 
 © 2023 Microsoft Corporation. Tutti i diritti sono riservati.
+
 L'uso della demo/del lab implica l'accettazione delle seguenti condizioni:
+
 La tecnologia/le funzionalità descritte nella demo/nel lab sono fornite da Microsoft Corporation allo scopo di ottenere feedback dall'utente e offrire un'esperienza di apprendimento. L'utilizzo della demo/del lab è consentito solo per la valutazione delle caratteristiche e delle funzionalità di tale tecnologia e per l'invio di feedback a Microsoft. L'utilizzo per qualsiasi altro scopo non è consentito. È vietato modificare, copiare, distribuire, trasmettere, visualizzare, eseguire, riprodurre, pubblicare, concedere in licenza, usare per la creazione di lavori derivati, trasferire o vendere questa demo/questo lab o parte di essi.
+
 SONO ESPLICITAMENTE PROIBITE LA COPIA E LA RIPRODUZIONE DELLA DEMO/DEL LAB (O DI QUALSIASI PARTE DI ESSI) IN QUALSIASI ALTRO SERVER O IN QUALSIASI ALTRA POSIZIONE PER ULTERIORE RIPRODUZIONE O RIDISTRIBUZIONE.
+
 QUESTA DEMO/QUESTO LAB RENDONO DISPONIBILI TECNOLOGIE SOFTWARE/FUNZIONALITÀ DI PRODOTTO SPECIFICHE, INCLUSI NUOVI CONCETTI E NUOVE FUNZIONALITÀ POTENZIALI, IN UN AMBIENTE SIMULATO, CON UN'INSTALLAZIONE E UNA CONFIGURAZIONE PRIVE DI COMPLESSITÀ, PER GLI SCOPI DESCRITTI IN PRECEDENZA. LA TECNOLOGIA/I CONCETTI RAPPRESENTATI IN QUESTA DEMO/IN QUESTO LAB POTREBBERO NON CONTENERE LE FUNZIONALITÀ COMPLETE E IL LORO FUNZIONAMENTO POTREBBE NON ESSERE LO STESSO DELLA VERSIONE FINALE. È ANCHE POSSIBILE CHE UNA VERSIONE FINALE DI TALI FUNZIONALITÀ O CONCETTI NON VENGA RILASCIATA. L'ESPERIENZA D'USO DI TALI CARATTERISTICHE E FUNZIONALITÀ PUÒ INOLTRE RISULTARE DIVERSA IN UN AMBIENTE FISICO.
-FEEDBACK. L'invio a Microsoft di feedback sulle caratteristiche, sulle funzionalità e/o sui concetti della tecnologia descritti in questa demo/questo lab implica la concessione a Microsoft, a titolo gratuito, del diritto di utilizzare, condividere e commercializzare tale feedback in qualsiasi modo e per qualsiasi scopo. Implica anche la concessione a titolo gratuito a terze parti del diritto di utilizzo di eventuali brevetti necessari per i loro prodotti, le loro tecnologie e i loro servizi al fine di utilizzare o interfacciarsi ai componenti software o ai servizi Microsoft specifici che includono il feedback. L'utente si impegna a non inviare feedback la cui inclusione all'interno di software o documentazione Microsoft imponga a Microsoft di concedere in licenza a terze parti tale software o documentazione. Questi diritti sussisteranno anche dopo la scadenza del presente contratto.
+
+**FEEDBACK.** L'invio a Microsoft di feedback sulle caratteristiche, sulle funzionalità e/o sui concetti della tecnologia descritti in questa demo/questo lab implica la concessione a Microsoft, a titolo gratuito, del diritto di utilizzare, condividere e commercializzare tale feedback in qualsiasi modo e per qualsiasi scopo. Implica anche la concessione a titolo gratuito a terze parti del diritto di utilizzo di eventuali brevetti necessari per i loro prodotti, le loro tecnologie e i loro servizi al fine di utilizzare o interfacciarsi ai componenti software o ai servizi Microsoft specifici che includono il feedback. L'utente si impegna a non inviare feedback la cui inclusione all'interno di software o documentazione Microsoft imponga a Microsoft di concedere in licenza a terze parti tale software o documentazione. Questi diritti sussisteranno anche dopo la scadenza del presente contratto.
+
 CON LA PRESENTE MICROSOFT CORPORATION NON RICONOSCE ALCUNA GARANZIA O CONDIZIONE RELATIVAMENTE ALLA DEMO/AL LAB, INCLUSE TUTTE LE GARANZIE E CONDIZIONI DI COMMERCIABILITÀ, DI FATTO ESPRESSE, IMPLICITE O PRESCRITTE DALLA LEGGE, ADEGUATEZZA PER UNO SCOPO SPECIFICO, TITOLARITÀ E NON VIOLABILITÀ. MICROSOFT NON OFFRE GARANZIE O RAPPRESENTAZIONI IN RELAZIONE ALL'ACCURATEZZA DEI RISULTATI E DELL'OUTPUT DERIVANTI DALL'USO DELLA DEMO/DEL LAB O ALL'ADEGUATEZZA DELLE INFORMAZIONI CONTENUTE NELLA DEMO/NEL LAB PER QUALSIASI SCOPO.
-CLAUSOLA DI RESPONSABILITÀ
+
+**CLAUSOLA DI RESPONSABILITÀ**
+
 Questa demo/questo lab contiene solo una parte delle nuove funzionalità e dei miglioramenti in Microsoft Power BI. Alcune funzionalità potrebbero cambiare nelle versioni future del prodotto. In questa demo/in questo lab si apprendono alcune delle nuove funzionalità, ma non tutte.
