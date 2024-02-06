@@ -328,9 +328,10 @@ También hay un punto de conexión de SQL que se puede utilizar para consultar e
 **Nota:** anteponemos el nombre del flujo de datos con "**df**". Esto hará que sea más fácil buscar y ordenar.
 
 4. En el cuadro de texto **Descripción**, agregue **Dataflow to ingest Sales Data from ADLS to Lakehouse**.
+
 5. Seleccione **Guardar**.
  
-   ![](Media/3.43.png)
+    ![](Media/3.43.png)
 
 ## Tarea 11: Crear consultas restantes en el flujo de datos
 
