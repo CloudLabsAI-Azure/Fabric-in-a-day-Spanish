@@ -47,7 +47,7 @@ In questo lab si imparerà a:
 ## Attività 1 - Copia di query di Snowflake nel flusso di dati
 
 1. Torniamo all'area di lavoro di Fabric **FAIAD_<nome utente>** creata nel lab 2, attività 8.
-2.	Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
+2. Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
 
     ![](Media/4.2.png)
   
@@ -101,16 +101,16 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 
 1. Seleziona la query **Supplier**.
 2. Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
-3.	Selezionare **Lakehouse** dalla finestra di dialogo.
+3. Selezionare **Lakehouse** dalla finestra di dialogo.
 
     ![](Media/4.7.png)
  
-4.	Si apre la finestra di dialogo Connetti alla destinazione dati. Nel **menu a discesa Connessione selezionare Lakehouse (nessuno)**.
-5.	Selezionare **Avanti**.
+4. Si apre la finestra di dialogo Connetti alla destinazione dati. Nel **menu a discesa Connessione selezionare Lakehouse (nessuno)**.
+5. Selezionare **Avanti**.
 
     ![](Media/4.8.png)
 
-6.	Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia **selezionato**, poiché si sta creando una nuova tabella.
+6. Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia **selezionato**, poiché si sta creando una nuova tabella.
 7. Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
 8. Selezionare **lh_FAIAD**
 9. Lasciare il nome della tabella **Supplier**
@@ -120,15 +120,14 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
  
 11.	Si apre la finestra di dialogo Scegli le impostazioni di destinazione. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
 12.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
-13.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
+13. È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
 
     ![](Media/4.10.png)
  
-14.	Si apre nuovamente la **finestra di Power Query**. Nell'angolo in basso a destra notare che la Destinazione dati è impostata su **Lakehouse**. Allo stesso modo, **impostare la Destinazione dati per la query PO**. Al termine, la **Destinazione dati** della query PO dovrebbe essere impostata su **Lakehouse** come illustrato nello screenshot.
+14. Si apre nuovamente la **finestra di Power Query**. Nell'angolo in basso a destra notare che la Destinazione dati è impostata su **Lakehouse**. Allo stesso modo, **impostare la Destinazione dati per la query PO**. Al termine, la **Destinazione dati** della query PO dovrebbe essere impostata su **Lakehouse** come illustrato nello screenshot.
 
     ![](Media/4.11.png)
  
-
 ## Attività 4 - Ridenominazione e pubblicazione del flusso di dati Snowflake
 1. Nella parte superiore dello schermo selezionare la **freccia accanto a Flusso di dati 1** per rinominarlo.
 2. Nella finestra di dialogo cambiarne il nome in **df_Supplier_Snowflake**
@@ -136,7 +135,7 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 
     ![](Media/4.12.png)
  
-4.	Nell'angolo inferiore destro selezionare **Pubblica**.
+4. Nell'angolo inferiore destro selezionare **Pubblica**.
 
     ![](Media/4.13.png)
  
@@ -178,11 +177,11 @@ Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di
     
     e.	Customer
 
-5.	**Fare clic con il pulsante destro del mouse** e selezionare **Copia**.
+5. **Fare clic con il pulsante destro del mouse** e selezionare **Copia**.
 
     ![](Media/4.17.png)
  
-6.	Tornare alla pagina **Flusso di dati** nel browser.
+6. Tornare alla pagina **Flusso di dati** nel browser.
 7. Nel riquadro **Flusso di dati** premere **CTRL+V** (l'opzione Incolla del menu del pulsante destro non è attualmente supportata).
 
 ## Attività 6 - Creazione della connessione a Dataverse
@@ -197,7 +196,6 @@ Notare che le cinque query vengono incollate e sulla sinistra è visualizzato il
 4. Selezionare **Connetti**.
 
     ![](Media/4.19.png)
-  
 
 ## Attività 7 - Creazione della destinazione dati per la query Customer
 Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello di anteprima. Esplorare i Passaggi applicati delle query. I dati sui clienti sono disponibili per categoria: BabyBoomer, GenX, GenY e GenZ. Queste quattro query vengono aggiunte per creare la query Customer. Ora dobbiamo inserire i dati di Customer in Lakehouse.
@@ -208,7 +206,7 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
  
 2. Selezionare la query **Customer**.
 3. Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
-4.	Selezionare **Lakehouse** dalla finestra di dialogo.
+4. Selezionare **Lakehouse** dalla finestra di dialogo.
 
     ![](Media/4.21.png)
  
@@ -221,13 +219,15 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 8.	Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**
 9. Selezionare **lh_FAIAD**
 10.	Lasciare il nome della tabella **Customer**
-11.	Selezionare **Avanti**.
+
+11. Selezionare **Avanti**.
 
     ![](Media/4.23.png)
  
 12.	Si apre la finestra di dialogo Scegli le impostazioni di destinazione. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
 13.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
-14.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
+
+14. È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
 
     ![](Media/4.24.png)
  
@@ -245,14 +245,14 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
  
 4. Si apre la finestra di dialogo Proprietà flusso di dati. Cambiarne il **Nome** in **df_Customer_Dataverse**
 5. Nella casella di testo **Descrizione** aggiungere **Flusso di dati per inserire i dati sui clienti da Dataverse in Lakehouse**.
-6.	Selezionare **Salva**.
+6. Selezionare **Salva**.
 
     ![](Media/4.27.png)
  
 Si aprirà nuovamente la **schermata di Data Factory**. Ora creiamo un flusso di dati per importare i dati da SharePoint.
 
 ## Attività 9 - Copia di query SharePoint nel flusso di dati
-1.	Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
+1. Nel menu in alto selezionare **Nuovo -> Flusso di dati Gen2**.
 
     ![](Media/4.28.png)
  
@@ -271,17 +271,16 @@ Si apre la pagina **Flusso di dati**. Ora che abbiamo familiarità con Flusso di
 Notare che la query viene incollata ed è disponibile nel pannello di sinistra. Poiché non abbiamo creato una connessione a SharePoint, compare un messaggio di avviso che chiede di configurare la connessione.
 
 ## Attività 10 - Creazione della connessione a SharePoint
-1.	Selezionare **Configura connessione**.
+1. Selezionare **Configura connessione**.
 
     ![](Media/4.30.png)
  
-2.	Si apre la finestra di dialogo Connetti a origine dati. Assicurarsi che nel menu a discesa **Connessione** sia selezionato **Crea nuova connessione**.
-3.	Il **Tipo di autenticazione** dovrebbe essere **Account aziendale**.
-4.	Selezionare **Connetti**.
+2. Si apre la finestra di dialogo Connetti a origine dati. Assicurarsi che nel menu a discesa **Connessione** sia selezionato **Crea nuova connessione**.
+3. Il **Tipo di autenticazione** dovrebbe essere **Account aziendale**.
+4. Selezionare **Connetti**.
 
     ![](Media/4.31.png)
  
-
 ## Attività 11 - Configurazione della destinazione dei dati per la query People
 Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello di anteprima. Esplorare i Passaggi applicati delle query. Ora dobbiamo inserire i dati di People in Lakehouse.
 
@@ -289,35 +288,35 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
 
     ![](Media/4.32.png)
  
-2.	Selezionare la query **People**.
-3.	Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
-4.	Selezionare **Lakehouse** dalla finestra di dialogo.
+2. Selezionare la query **People**.
+3. Nell'angolo inferiore destro selezionare "**+**" accanto a **Destinazione dati**.
+4. Selezionare **Lakehouse** dalla finestra di dialogo.
 
     ![](Media/4.33.png)
  
-5.	Si apre la finestra di dialogo Connetti alla destinazione dati. Nel menu a discesa Connessione selezionare **Lakehouse (nessuno)**.
-6.	Selezionare **Avanti**.
+5. Si apre la finestra di dialogo Connetti alla destinazione dati. Nel menu a discesa Connessione selezionare **Lakehouse (nessuno)**.
+6. Selezionare **Avanti**.
 
     ![](Media/4.34.png)
  
 7. Si apre la finestra di dialogo Scegliere il target di destinazione. Assicurarsi che il pulsante di opzione **Nuova tabella** sia selezionato, poiché si sta creando una nuova tabella.
-8.	Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
-9.	Selezionare **lh_FAIAD**
-10.	Lasciare il nome della tabella **People**
-11.	Selezionare **Avanti**.
+8. Vogliamo creare la tabella nel Lakehouse creato in precedenza. Nel pannello di sinistra andare a **Lakehouse -> FAIAD_<nomeutente>**. 
+9. Selezionare **lh_FAIAD**
+10. Lasciare il nome della tabella **People**
+11. Selezionare **Avanti**.
 
     ![](Media/4.35.png)
  
-12.	Si apre la finestra di dialogo le impostazioni di. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
-13.	Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
-14.	È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
+12. Si apre la finestra di dialogo le impostazioni di. Ogni volta che Flusso di dati Gen2 si aggiorna, occorre eseguire un caricamento completo. Assicurarsi che **Metodo di aggiornamento** sia impostato su **Sostituisci**.
+13. Notare che compare l'avviso: "Alcuni nomi di colonna contengono caratteri non supportati. È necessario correggerli automaticamente?" Lakehouse non supporta i nomi di colonna che contengono spazi. Selezionare **Correggere**, per rimuovere l'avviso.
+
+14. È possibile usare il mapping delle colonne per mappare le colonne del flusso di dati alle colonne esistenti. Nel nostro caso, si tratta di una nuova tabella. Pertanto possiamo usare le impostazioni predefinite. Selezionare **Salva impostazioni**.
 
     ![](Media/4.36.png)
  
-
 ## Attività 12 - Pubblicazione e ridenominazione del flusso di dati SharePoint
 1. Si apre nuovamente la **finestra di Power Query**. Nell'**angolo in basso a destra** notare che la Destinazione dati è impostata su **Lakehouse**.
-2.	Nell'angolo inferiore destro selezionare **Pubblica**.
+2. Nell'angolo inferiore destro selezionare **Pubblica**.
 
     ![](Media/4.37.png)
  
@@ -328,8 +327,8 @@ Viene stabilita la connessione ed è possibile visualizzare i dati nel pannello 
     ![](Media/4.38.png)
  
 4. Si apre la finestra di dialogo Proprietà flusso di dati. Cambiarne il **Nome** in **df_People_SharePoint**
-5.	Nella casella di testo **Descrizione** aggiungere **Flusso di dati per inserire i dati del personale da SharePoint in Lakehouse**.
-6.	Selezionare **Salva**.
+5. Nella casella di testo **Descrizione** aggiungere **Flusso di dati per inserire i dati del personale da SharePoint in Lakehouse**.
+6. Selezionare **Salva**.
 
     ![](Media/4.39.png)
  

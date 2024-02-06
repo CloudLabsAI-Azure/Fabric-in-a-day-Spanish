@@ -56,7 +56,7 @@ In questo lab si imparerà a:
 
  
 5. Si aprirà la **home page abituale del servizio Power BI**.
-6. 	Si presuppone che si abbia familiarità con il layout del servizio Power BI. Per eventuali domande, rivolgersi all'istruttore.
+6. Si presuppone che si abbia familiarità con il layout del servizio Power BI. Per eventuali domande, rivolgersi all'istruttore.
 
 A questo punto, ci si trova nell'**Area di lavoro personale**. Per lavorare con gli elementi di Fabric, è necessaria una licenza di valutazione e un'area di lavoro che disponga della licenza di Fabric. Procediamo per ottenere quanto necessario.
 
