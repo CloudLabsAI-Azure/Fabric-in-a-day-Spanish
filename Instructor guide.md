@@ -29,7 +29,9 @@ Se qualsiasi partecipante sceglie di completare i lab in un ambiente alternativo
 I partecipanti avranno bisogno del nome utente e della password associati al proprio account Lab per connettersi a Dataverse e SharePoint
 
 Nome utente Snowflake: **TE_SNOWFLAKE**
+
 Password Snowflake: **8UpfRpExVDXv2AC**
+
 Chiave dell'account ADLS Gen2: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6rF200bTop3LpKpsIno/T+AStx6cz6w==**
  
 # Importazione del modello di flusso di dati
