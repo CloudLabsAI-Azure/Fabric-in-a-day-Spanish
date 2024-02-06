@@ -41,24 +41,24 @@ Se le dirigirá de vuelta a la **página de del flujo de datos**. Ahora que esta
 
 3. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
 4.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-5.	Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta SnowflakeData **Ctrl+Seleccionar** o Mayús+Seleccionar las siguientes consultas:
+5. Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta SnowflakeData **Ctrl+Seleccionar** o Mayús+Seleccionar las siguientes consultas:
+   
+    a. SupplierCategories
+    
+    b. Suppliers
+    
+    c. Supplier
+    
+    d. PO
+    
+    e. PO Line Items
 
-    a.	SupplierCategories
-    
-    b.	Suppliers
-    
-    c.	Supplier
-    
-    d.	PO
-    
-    e.	PO Line Items
-
-6.	**Haga clic derecho** y seleccione **Copiar**.
+7.	**Haga clic derecho** y seleccione **Copiar**.
  
     ![](Media/4.3.png)
 
-7.	Vuelva al **explorador**.
-8.	En el **panel del flujo de datos**, seleccione el **panel central**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+8.	Vuelva al **explorador**.
+9.	En el **panel del flujo de datos**, seleccione el **panel central**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
 
 ## Tarea 2: Crear una conexión a Snowflake
 Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas a la izquierda. Como no tenemos una conexión creada para Snowflake, verá un mensaje de advertencia que le solicitará que configure la conexión.
