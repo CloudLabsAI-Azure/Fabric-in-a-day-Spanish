@@ -1,4 +1,5 @@
 
+![](Media/0.1.png)
 
 # Sommario
 - Introduzione
