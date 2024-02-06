@@ -3,15 +3,23 @@
 # ​​Contenido 
 
 - Presentación  
+
 - Lakehouse 
 
     - Tarea 1: Consultar datos con SQL 
+    
     - Tarea 2: visualizar el resultado de T-SQL 
+    
     - Tarea 3: Crear consulta de objetos visuales 
+    
     - Tarea 4: Visualizar los resultados de la consulta 
+    
     - Tarea 5: Crear relaciones 
+    
     - Tarea 6: Crear medidas 
+    
     - Tarea 7: Sección opcional: crear relaciones 
+    
     - Tarea 8: Sección opcional: crear medidas 
 
 - Referencias 

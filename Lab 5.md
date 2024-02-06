@@ -134,7 +134,7 @@ Está en la pantalla **Inicio**. Si observa el menú superior, encontrará opcio
 ![](Media/5.13.png)
  
 6. En el menú superior, seleccione **Actividades**. Ahora, en el menú, encontrará una lista de actividades de uso común. 
-7.	Seleccione los **puntos suspensivos (…)** a la derecha del menú para ver todas las demás actividades disponibles. Usaremos algunas de estas actividades en el laboratorio.
+7. Seleccione los **puntos suspensivos (…)** a la derecha del menú para ver todas las demás actividades disponibles. Usaremos algunas de estas actividades en el laboratorio.
 
     ![](Media/5.14.png)
  
