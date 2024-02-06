@@ -184,7 +184,6 @@ Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas 
 
     ![](Media/4.19.png)
  
-
 ## Tarea 7: Crear un destino de datos para la consulta Customer
 Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Los datos de los clientes están disponibles por categoría: BabyBoomer, GenX, GenY y GenZ. Estas cuatro consultas se adjuntan para crear la consulta Customer. Ahora necesitamos incorporar los datos del cliente en el lakehouse.
 
@@ -213,11 +212,11 @@ Se establece la conexión y puede ver los datos en el panel de versión prelimin
  
 12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
 13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
+
 14. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
 
     ![](Media/4.24.png)
  
-
 ## Tarea 8: Publicar y cambiar el nombre del flujo de datos de Dataverse
 
 1. Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el **destino de los datos** está configurado en el **lakehouse**.
@@ -294,17 +293,18 @@ Se establece la conexión y puede ver los datos en el panel de versión prelimin
 8. Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
 9. Seleccione **lh_FAIAD**.
 10. Deje el nombre de la tabla como **People**.
+
 11. Seleccione **Siguiente**.
 
     ![](Media/4.35.png)
  
 12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
 13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
+
 14. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
 
     ![](Media/4.36.png)
  
-
 ## Tarea 12: Publicar y cambiar el nombre del flujo de datos de SharePoint
 
 1. Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el destino de los datos está configurado en el **lakehouse**.
