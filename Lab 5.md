@@ -1,528 +1,701 @@
+# 目录 {#目录 .TOC-Heading}
 
-![](Media/5.1.png)
+简介 
 
-# Contenido
+- 数据流 Gen2 
 
-- Presentación
-- Flujo de datos de segunda generación
+    - 任务 1：为销售数据流配置计划刷新
 
-   - Tarea 1: Configurar la actualización programada para el flujo de datos de ventas
-   - Tarea 2: Configurar la actualización programada para el flujo de datos de proveedores y clientes
+    - 任务 2：为供应商和客户数据流配置计划刷新
 
-- Canalización de datos
-   
-   - Tarea 3: Crear una canalización de datos
-   - Tarea 4: Crear una canalización de datos simple
-   - Tarea 5: Crear una nueva canalización de datos
-   - Tarea 6: Crear actividad Hasta
-   - Tarea 7: Crear variables
-   - Tarea 8: Configurar la actividad Hasta
-   - Tarea 9: Configurar la actividad del flujo de datos
-   - Tarea 10: Configure la primera actividad de Establecer variable
-   - Tarea 11: Configure la segunda actividad de Establecer variable
-   - Tarea 12: Configure la tercera actividad de Establecer variable
-   - Tarea 13: Configurar la actividad Esperar
-   - Tarea 14: Configurar la actualización programada para la canalización de datos
 
-- Referencias
+- 数据管道 
 
-# Presentación 
+    - 任务 3：创建数据管道 
 
-Hemos ingerido datos de diferentes orígenes de datos en un lakehouse. En este laboratorio, configurará un programa de actualización para los orígenes de datos. Solo para recapitular el requisito:
+    - 任务 4：生成简单的数据管道
 
-- **Datos de ventas:** se actualizan en ADLS al mediodía (12:00) todos los días.
-- **Datos del proveedor:** se actualizan en Snowflake a la medianoche (00:00) todos los días.
-- **Datos del cliente:** siempre están actualizados en Dataverse. Necesitamos actualizar estos datos cuatro veces al día: a medianoche (00:00), a las 06:00, a mediodía (12:00) y a las 18:00.
-- **Datos del empleado:** se actualizan en SharePoint a las 09:00 todos los días. Sin embargo, hemos notado que a veces hay un retraso de 15 a 30 minutos. Necesitamos crear un programa de actualización para dar cabida a esto.
 
-Al final de este laboratorio, habrá aprendido: 
+    - 任务 5：创建新数据管道
 
-- Cómo configurar una actualización programada del flujo de datos de segunda generación
-- Cómo crear una canalización de datos
-- Cómo configurar una actualización programada de una canalización de datos
+    - 任务 6：创建 Until 活动 
 
-# Flujo de datos de segunda generación
-## Tarea 1: Configurar la actualización programada para el flujo de datos de ventas
-
-Comencemos configurando una actualización programada del flujo de datos de ventas.
-
-1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8.
-2. Todos los artefactos que ha creado se enumeran aquí. En la parte derecha de la pantalla, en el **cuadro de diálogo de Búsqueda**, introduzca **df**. Esto filtrará los artefactos a flujos de datos.
-
-    ![](Media/5.2.png)
- 
-3. Pase el cursor sobre la fila **df_Sales_ADLS**. Observe que los iconos **Actualizar** y **Actualización programada** que conoce están disponibles. Seleccione los **puntos suspensivos (…)**.
-4. Observe que hay una opción para eliminar, editar y exportar el flujo de datos. Podemos usar las propiedades para actualizar el nombre y la descripción del flujo de datos. Veremos cómo actualizar el historial en breve. Seleccione **Configuración**.
-
-    ![](Media/5.3.png)
- 
-**Nota:** Se abre la página de configuración. En el panel izquierdo, encontrará todos los flujos de datos enumerados. 
-
-5. En el panel central, seleccione el vínculo **Actualizar historial**.
-
-    ![](Media/5.4.png)
- 
-6. Se abre el cuadro de diálogo Actualizar historial. Tendrá al menos una actualización en la lista. Esta es la actualización que se produjo cuando se publicó el flujo de datos. Seleccione el vínculo **Hora de inicio**.
-
-**Nota:** La hora de inicio será diferente para usted.
-
-![](Media/5.5.png)
- 
-Se abre la pantalla de detalles. Esto proporcionará detalles de la actualización e indica la hora de inicio, finalización y duración. También enumera las tablas o actividades que se actualizaron. En caso de que haya un error, puede hacer clic en el nombre de la tabla o actividad para investigar más a fondo.
-
-![](Media/5.6.png)
- 
-7. Puede cerrar la pantalla si hace clic en la **X** de la esquina superior derecha. Se le dirigirá de vuelta a la **página de configuración del flujo de datos**.
-8. En Conexión de puerta de enlace, expanda **Credenciales de origen de datos**. Se muestra una lista de conexiones utilizadas en el flujo de datos. En este caso, lakehouse y ADLS.
-
-    a. **Lakehouse:** esta es la conexión para ingerir datos del flujo de datos.
+    - 任务 7：创建变量 
     
-    b. **ADLS:** esta es la conexión a los datos de origen de ADLS.
+    - 任务 8：配置 Until 活动 
 
-    ![](Media/5.7.png)
- 
-9. Expanda **Actualizar**.
-10. Establezca el control deslizante de la **programación Configurar una programación de actualización** en **Activar**.
-11. Establezca el **menú desplegable Frecuencia de actualización** en **Diaria**. Vea que también hay una opción para configurarla como Semanal.
-12. Establezca **Zona horaria** a su zona horaria preferida. 
+    - 任务 9：配置数据流活动
 
-**Nota:** dado que se trata de un entorno de laboratorio, puede configurar la zona horaria según su zona horaria preferida. En un escenario real, configurará la zona horaria según la ubicación de su origen de datos.
+    - 任务 10：配置第 1 个设置变量活动
 
-13. Haga clic en el vínculo **Agregar otra hora**. Observe que se muestra la opción **Hora**.
-14. Establezca **Hora** en **mediodía (12:00 p. m.)**. Tenga en cuenta que puede configurar la actualización al final de la hora o media hora.
-15. Seleccione **Aplicar** para guardar la configuración.
+    - 任务 11：配置第 2 个设置变量活动
 
-**Nota:** Al hacer clic en el vínculo Agregar otro horario, puede agregar múltiples horas de actualización. 
+    - 任务 12：配置第 3 个设置变量活动
 
-También puede enviar notificaciones de error al propietario del flujo de datos y otros contactos.
+    - 任务 13：配置等待活动 
 
-![](Media/5.8.png) 
+    - 任务 14：为数据管道配置计划刷新
 
-## Tarea 2: Configurar la actualización programada para el flujo de datos de proveedores y clientes
-1. En el panel izquierdo, seleccione **df_Supplier_Snowflake**.
-2. Configure el programa de actualización para actualizar **todos los días a medianoche (12:00 a. m.)**.
-3. Seleccione **Aplicar** para guardar la configuración.
+参考 
 
-    ![](Media/5.9.png)
- 
-4. En el panel izquierdo, seleccione **df_Customer_Dataverse**.
-5. Configure la programación de actualización a cuatro veces al día: **a medianoche (12:00 a. m.), a las 6:00 a. m., a mediodía (12:00 p. m.) y a las 6:00 p. m.**.
-6. Seleccione **Aplicar** para guardar la configuración.
+# 简介
 
-    ![](Media/5.10.png)
- 
-Como se mencionó anteriormente, necesitamos crear una lógica personalizada para gestionar el escenario donde el archivo de Empleado en SharePoint no se entrega a tiempo. Usemos la canalización de datos para resolver esto.
+我们已将来自不同数据源的数据引入到
+Lakehouse。在本实验中，您将为数据源设置刷新计划。简单回顾一下要求：
 
-# Canalización de datos
-## Tarea 3: Crear una canalización de datos
+-   **销售数据：** 存储在 ADLS 中，每天中午 12 点更新。
 
-1. En la **parte inferior izquierda** de la ventana de su explorador, seleccione **Power BI**.
-2. Se abrirá el cuadro de diálogo de Microsoft Fabric. Seleccione **Data Factory**. Navegará a la página principal de Data Factory.
+-   **供应商数据：** 存储在 Snowflake 中，每天半夜/凌晨 12 点更新。
 
-    ![](Media/5.11.png)
- 
-3. Desde el panel superior, seleccione **Canalización de datos** para crear una nueva canalización.
-4. Se abre un nuevo cuadro de diálogo de canalización. Ponga el nombre **pl_Refresh_People_SharePoint** a la canalización.
-5. Seleccione **Crear**.
+-   **客户数据：** 存储在 Dataverse
+    中，随时更新。我们每天需要刷新四次，分别在半夜/凌晨 12 点、上午 6
+    点、中午 12 点和下午 6 点。
 
-    ![](Media/5.12.png)
- 
-Se le llevará a la **página de Canalización de datos**. Si ha trabajado con Azure Data Factory, esta pantalla le resultará familiar. Hagamos una descripción general rápida del diseño.
+-   **员工数据：** 存储在 SharePoint 中，每天上午 9
+    点更新。但我们注意到有时会有 15 至 30
+    分钟的延迟。我们需要创建一个刷新计划来进行调整。
 
-Está en la pantalla **Inicio**. Si observa el menú superior, encontrará opciones para agregar las actividades más utilizadas: validar y ejecutar una canalización y ver el historial de ejecución. Además, en el panel central, encontrará opciones rápidas para comenzar a crear la canalización.
+本实验结束后，您将学会：
 
-![](Media/5.13.png)
- 
-6. En el menú superior, seleccione **Actividades**. Ahora, en el menú, encontrará una lista de actividades de uso común. 
-7.	Seleccione los **puntos suspensivos (…)** a la derecha del menú para ver todas las demás actividades disponibles. Usaremos algunas de estas actividades en el laboratorio.
+-   如何为数据流 Gen2 配置计划刷新
 
-    ![](Media/5.14.png)
- 
-8. En el menú superior, haga clic en **Ejecutar**. Encontrará opciones para ejecutar y programar la ejecución de la canalización. También encontrará la opción de ver el historial de ejecución utilizando Ver historial de ejecución.
+-   如何创建数据管道
 
-9. En el menú superior, seleccione **Ver**. Aquí encontrará opciones para ver el código en formato JSON. También encontrará opciones para formatear las actividades.
+-   如何为数据管道配置计划刷新
 
-**Nota:** Si tiene un fondo JSON al final de la práctica de laboratorio, no dude en seleccionar Ver código JSON. Aquí notará que toda la orquestación que está realizando mediante la vista de diseño también se puede escribir en JSON.
+# 数据流 Gen2
 
-![](Media/5.15.png)
- 
+### 任务 1：为销售数据流配置计划刷新
 
-## Tarea 4: Crear una canalización de datos simple
-Comencemos a crear la canalización. Necesitamos una actividad para actualizar el flujo de datos. Busquemos una actividad que podamos utilizar.
+我们首先配置销售数据流的计划刷新。
 
-1. En el menú superior, seleccione **Actividades -> Flujo de datos**. La actividad del flujo de datos se agrega al panel de diseño central. Observe que el panel inferior ahora tiene opciones de configuración de la actividad de flujo de datos.
-2. Vamos a configurar la actividad para conectarse a la actividad df_People_SharePoint. En el **panel inferior**, seleccione **Configuración**.
-3. Asegúrese de que **Área de trabajo** está configurada en su área de trabajo de Fabric, **FAIAD_<username>**.
-4. En el **menú desplegable Flujo de datos**, seleccione **df_People_SharePoint**. Cuando se ejecute esta actividad del flujo de datos, se actualizará **df_People_SharePoint**. Fácil, ¿verdad?
- 😊
-**Nota:** La opción de notificación está actualmente atenuada. Esta característica se habilitará en breve. Podrá configurar notificaciones sobre el éxito y el fracaso de esta actividad. 
+1.  让我们导航回到您在实验 2 任务 8 中创建的 Fabric 工作区
+    **FAIAD\_\<username\>**。
 
-En nuestro escenario, los datos de los empleados no se actualizan según lo programado. A veces hay un retraso. Veamos si podemos solucionar esto.
+2.  此处列出了您创建的所有项目。在屏幕右侧的**搜索框**中，输入
+    **df**。这会将项目筛选到数据流。
 
-![](Media/5.16.png)
+3.  将光标悬停在 **df_Sales_ADLS**
+    行上。请注意，这里显示熟悉的**刷新**和**计划刷新图标**。选择**省略号
+    (...)**。
 
-5. En el **panel inferior**, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
-6. En el campo **Nombre**, introduzca **dfactivity_People_SharePoint**.
-7. En el campo Descripción, introduzca **Actividad de flujo de datos para actualizar el flujo de datos df_People_Sharepoint**.
-8. Observe que hay una opción para desactivar una actividad. Esta característica es útil durante las pruebas o la depuración. Déjela como **Activado**.
-9. Hay una opción para configurar un **Tiempo de espera**. Dejemos el **valor predeterminado** como está, lo que debería dar tiempo suficiente para que el flujo de datos se actualice.
+4.  请注意，有"删除"、"编辑"和"导出数据流"选项。我们可以使用"属性"来更新数据流的名称和描述。我们稍后会查看刷新历史记录。选择**设置**。
 
-**Nota:** Si los datos no están disponibles según lo programado, configuremos la actividad para que se vuelva a ejecutar cada 10 minutos, tres veces. Si también falla en el tercer intento, se informará de un error.
+    **注意：** 设置页面打开。在左侧面板中，您将看到所有列出的数据流。
 
-10. Establezca **Reintentar** en **3**. 
-11. Expanda la sección **Avanzadas**.
-12. Establezca **Intervalo de reintento (s)** en **600**. 
-13. En el menú, seleccione el icono **Inicio -> Guardar** para guardar la canalización.
+5.  在中间窗格中，选择**刷新历史记录**链接。
 
-    ![](Media/5.17.png)
- 
-Observe la ventaja de utilizar la canalización de datos en comparación con configurar el flujo de datos en una actualización programada (como hicimos con los flujos de datos anteriores):
+6.  "刷新历史记录"对话框随即打开。至少会列出一项刷新。这是发布数据流时发生的刷新。选择**开始时间**链接。
 
-- La canalización ofrece la opción de reintentar varias veces antes de que falle la actualización.
-- La canalización brinda la capacidad de actualizar en segundos, mientras que con el flujo de datos, la actualización programada es cada 30 minutos.
+    **注意：** 您的开始时间会有所不同。
 
-## Tarea 5: Crear una nueva canalización de datos
-Agreguemos un poco más de complejidad a nuestro escenario. Hemos observado que si los datos no están disponibles a las 09:00, normalmente lo estarán en cinco minutos. Si se pierde la ventana de tiempo, el archivo tardará 15 minutos en estar disponible. Queremos programar los reintentos a los cinco y 15 minutos. Veamos cómo se puede lograr esto mediante la creación de una nueva canalización de datos.
+详细信息屏幕将打开。这将提供刷新的详细信息，其中列出了开始时间、结束时间和持续时间。还列出了刷新的表/活动。如果出现故障，您可以点击表/活动的名称进一步调查。
 
-1. En el panel izquierdo, haga clic en **FAIAD_<username>**, luego se le dirigirá a la página principal de Data Factory.
+7.  我们点击右上角的 **X** 离开此页面。您将导航回到**数据流设置页面**。
 
-2. En el menú superior, haga clic en **Nuevo** y en el **menú desplegable**, haga clic en **Canalización de datos**.
+8.  在"网关连接"下，展开**数据源凭据**。将显示数据流中使用的连接列表。在本例中，是
+    Lakehouse 和 ADLS。
 
-3. Se abre un nuevo cuadro de diálogo de canalización. **Nombre** la canalización como **pl_Refresh_People_SharePoint_Option**.
+    a.  **Lakehouse：**这是从数据流引入数据的连接。
 
-4. Seleccione **Crear**.
+    b.  **ADLS：**这是与 ADLS 源数据的连接。
 
-    ![](Media/5.18.png)
- 
+9.  展开**刷新。**
 
-## Tarea 6: Crear actividad Hasta
-1. Esto le llevará a la pantalla de la canalización de datos. En el menú, seleccione **Actividades**.
-2. Haga clic en los **puntos suspensivos (…)** a la derecha.
-3. En la lista de actividades, haga clic en **Hasta**. 
+10. 将**配置刷新计划**滑块设置为**开**。
 
-**Hasta:** es una actividad que se utiliza para iterar hasta que se cumpla una condición.
+11. 将**刷新频率下拉列表**设置为**每天**。请注意，此处还有一个"设置为每周"的选项。
 
-En nuestro escenario, vamos a iterar y actualizar el flujo de datos hasta que tenga éxito o lo hayamos intentado tres veces.
+12. 将**时区**设置为您的首选时区。\
+    \
+    **注意**：由于这是实验环境，因此您可以将时区设置为您的首选时区。在实际应用场景中，您将根据您本人/数据源的位置设置时区。
 
-![](Media/5.19.png)
- 
+13. 点击**添加其他时间**链接。请注意，**时间**选项已显示。
 
-## Tarea 7: Crear variables
-1. Necesitamos crear variables que se utilizarán para iterar y establecer el estado. Seleccione el **área en blanco** en el panel de diseño de la canalización.
-2. Observe que el menú en el panel inferior cambia. Seleccione **Variables**.
-3. Seleccione **Nuevo** para agregar una variable.
-4. Observe que aparece una fila. Escriba **varCounter** en el **cuadro de texto Nombre**. Usaremos esta variable para iterar tres veces.
-5. En el **menú desplegable Tipo**, seleccione **Integer**.
-6. Introduzca un **Valor predeterminado** de **0**.
+14. 将**时间**设置为**中午**。请注意，您可以将刷新设置为一小时或半小时。
 
-**Nota:** Estamos escribiendo "var" en los nombres de las variables, por lo que es fácil encontrarlas y es un procedimiento recomendado.
+15. 选择**应用**以保存此设置。
 
-![](Media/5.20.png)
- 
-7. Seleccione **Nuevo** para agregar una nueva variable.
-8. Observe que aparece una fila. Introduzca **varTempCounter** en el **cuadro de texto Nombre**. Vamos a utilizar esta variable de incremento variable varCounter.
-9. En el **menú desplegable Tipo**, seleccione **Integer**.
-10. Introduzca un Valor **predeterminado** de **0**.
-11. Siga los mismos pasos para agregar tres variables más:
+**注意：** 通过点击"添加其他时间"链接，您可以添加多个刷新时间。
 
-    a. **varIsSuccess** de tipo **String** y valor predeterminado **No**. Esta variable se utilizará para indicar si la actualización del flujo de datos se llevó a cabo correctamente.
-    
-    b. **varSuccess** de tipo **String** y valor predeterminado **Yes**. Esta variable se utilizará para establecer el valor de varIsSuccess si la actualización del flujo de datos se realiza correctamente.
-    
-    c. **varWaitTime** de tipo **Integer** y valor predeterminado **60**. Esta variable se utilizará para establecer el tiempo de espera si el flujo de datos falla. (Ya sea cinco minutos/300 segundos o 15 minutos/900 segundos).
+您还可以向数据流所有者和其他联系人发送失败通知。
 
-## Tarea 8: Configurar la actividad Hasta
 
-1. Seleccione la actividad **Hasta**. 
-2. En el panel inferior, seleccione **General**.
-3. Introduzca **Iterator** como **Nombre**.
-4. Introduzca **Descripción** como **Iterator to refresh dataflow. It will retry up to 3 times**.
- 
-    ![](Media/5.21.png)
+### 任务 2：为供应商和客户数据流配置计划刷新
 
-5. En el panel inferior, seleccione **Configuración**.
-6. Seleccione el **cuadro de diálogo Expresión**. Necesitamos introducir una expresión en este cuadro de texto que se evaluará como true o false. La actividad Hasta itera mientras esta expresión se evalúa como false. Una vez que la expresión se evalúa como true, la actividad Hasta detiene la iteración.
-7. Seleccione el vínculo **Agregar contenido dinámico** que aparece debajo del cuadro de texto.
+1.  在左侧面板中，选择 **df_Supplier_Snowflake**。
 
-    ![](Media/5.22.png)
- 
-Necesitamos escribir una expresión que se ejecute hasta que el valor de **varCounter sea 3** o el valor de **varIsSuccess sea Sí**. (varCounter y varIsSuccess son las variables que acabamos de crear).
+2.  将刷新计划配置为**每天半夜/凌晨 12 点**刷新。
 
-8. Se abre el cuadro de diálogo **Generador de expresiones de canalización**. En la mitad inferior del cuadro de diálogo, tendrá un menú:
+3.  选择**应用**以保存此设置。
 
-    a. **Parámetros:** son constantes en una factoría de datos que una canalización puede consumir en cualquier expresión.
-    
-    b. **Variables del sistema:** estas variables se pueden usar en expresiones al definir entidades dentro de cualquiera de los servicios. Por ejemplo, id. de la canalización, nombre de la canalización, nombre del desencadenador, etc.
+4.  在左侧面板中，选择 **df_Customer_Dataverse**。
 
-    c. **Funciones:** puede llamar funciones dentro de expresiones. Las funciones se clasifican en funciones de colección, conversión, fecha, lógica, matemáticas y cadena. Por ejemplo, concat es una función de cadena, add es una función matemática, etc.
+5.  将刷新计划配置为每天刷新四次：**半夜/凌晨 12 点、上午 6 点、中午 12
+    点和下午 6 点**。
 
-    d. **Variables:** las variables de canalización son valores que se pueden establecer y modificar durante la ejecución de una canalización. A diferencia de los parámetros de canalización, que se definen en el nivel de canalización y no se pueden cambiar durante la ejecución de la misma, las variables de canalización se pueden configurar y modificar dentro de una canalización mediante una actividad Establecer variable. En breve utilizaremos la actividad Establecer variable.
+6.  选择**应用**以保存此设置。
 
-    ![](Media/5.23.png)    
- 
-9. Haga clic en **Funciones** el menú inferior.
-10. En la sección **Funciones lógicas**, seleccione la **función or**. Observe que **@or()** se agrega al cuadro de texto de expresión dinámica. La función or toma dos parámetros; estamos trabajando en el primero.
+前面提到，我们需要构建一个自定义逻辑来处理 SharePoint
+中的员工文件未按时送达的应用场景。我们使用数据管道来解决此问题。
 
-    ![](Media/5.24.png)
- 
-11. Coloque el cursor **entre los paréntesis** de la función **@or**.
-12. En la sección Funciones lógicas, seleccione la función **equals**. Observe que se agrega al cuadro de texto de expresión dinámica.
+# 数据管道
 
-**Nota:** Su función debería verse así **@or(equals())**. La función equals también toma tres parámetros. Comprobaremos si la variable varCounter es igual a 3.
+### 任务 3：创建数据管道
 
-![](Media/5.25.png)
- 
-13. Ahora coloque el cursor **entre los paréntesis** de la función **@equals** para agregar los parámetros.
-14. En el menú inferior, seleccione **Variables**.
-15. Seleccione la variable **varCounter** que será el primer parámetro.
-16. Introduzca **3** como segundo parámetro de la función equals. Como en la captura de pantalla siguiente, su expresión será **@or(equals(variables('varCounter'),3))** 
+1.  在浏览器窗口的**左下角**，选择 **Power BI**。
 
-    ![](Media/5.26.png)
- 
-17. Necesitamos agregar el segundo parámetro a la función or. **Agregue una coma** entre los dos paréntesis finales. Esta vez intentaremos escribir el nombre de la función. Comience a escribir **equ** y obtendrá un menú desplegable de funciones disponibles (esto se llama IntelliSense). Seleccione la función **equals**.
+2.  Microsoft Fabric 对话框随即打开。选择 **Data Factory**。您将导航到
+    Data Factory 主页。
 
-    ![](Media/5.27.png)
- 
-18. El primer parámetro de la función equals es una variable. Coloque el cursor **antes de la coma**.
-19. Comience a escribir **variables(**.
-20. Con la ayuda de IntelliSense, seleccione **variables('varIsSuccess')**.
-21. Después de la coma, introduzcamos el segundo parámetro. Comience a escribir **variables(**.
-22. Con la ayuda de IntelliSense, seleccione **variables('varSuccess')**. Aquí estamos comparando el valor de varIsSuccess con el valor de varSuccess. (varSuccess está predeterminado en Sí).
+3.  从顶部面板中，选择**数据管道**以创建新管道。
 
-    ![](Media/5.28.png)
- 
-23. Su expresión debería ser:
-**@or(equals(variables('varCounter'),3),equals(variables('varIsSuccess'), variables('varSuccess')))**
+4.  "新建管道"对话框随即打开。将管道命名为
+    **pl_Refresh_People_SharePoint**
 
-24. Seleccione **Aceptar**.
-
-    ![](Media/5.29.png)
- 
-
-## Tarea 9: Configurar la actividad del flujo de datos
-1. Volverá a la pantalla de diseño. Con la **actividad Hasta** seleccionada, en el **panel inferior**, seleccione **Actividades**. Ahora agregaremos las actividades que deben ejecutarse.
-2. Seleccione el icono **Editar** en la primera fila. Volverá a la pantalla de diseño de iterador en blanco.
-
-    ![](Media/5.30.png)
- 
-3. En el menú superior, seleccione **Actividades -> Flujo de datos**. La actividad del flujo de datos se agrega al panel de diseño.
-4. Con **la actividad del flujo de datos seleccionada**, en el panel inferior, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
-5. En el campo **Nombre**, introduzca **dfactivity_People_SharePoint**.
-6. En el campo **Descripción**, introduzca **Dataflow activity to refresh df_People_Sharepoint dataflow**.
-
-    ![](Media/5.31.png)
- 
-7. Seleccione **Configuración** en el panel inferior.
-8. Asegúrese de que **Área de trabajo** está configurada en su área de trabajo, **FAIAD_<username>**.
-9. En el **menú desplegable Flujo de datos**, seleccione **df_People_SharePoint**. Cuando se ejecute esta actividad del flujo de datos, se actualizará **df_People_SharePoint**.
-
-    ![](Media/5.32.png)
- 
-
-## Tarea 10: Configure la primera actividad de Establecer variable
-
-Hemos configurado la actividad del flujo de datos como lo hicimos anteriormente en el laboratorio. Ahora agregaremos nueva lógica. Si la actualización del flujo de datos se realiza correctamente, debemos salir del iterador Hasta. Recuerde que una de las condiciones para que exista el iterador es establecer el valor de la variable varIsSuccess en Sí.
-
-1. En el menú superior, seleccione **Actividades -> Establecer variable**. La actividad variable establecida se agrega al lienzo de diseño.
-2. Con **la actividad Establecer variable** seleccionada, en el panel inferior, seleccione General. Pongamos un nombre y una descripción a la actividad.
-3. En el campo **Nombre**, introduzca **set_varIsSuccess**.
-4. En el campo **Descripción**, introduzca **Set variable varIsSuccess to Yes**.
-
-    **Nota:** Pase el cursor por encima de **la actividad del flujo de datos**. A la derecha del cuadro de actividad hay cuatro iconos. Según el resultado de la actividad, se pueden utilizar para conectarse a la siguiente:
-
-    a. El icono de la **flecha curva gris** se utiliza para omitir la actividad.
-        
-    b. El icono de la **marca de verificación verde** se utiliza en caso de éxito de la actividad.
-    
-    c. El icono de la **marca roja con forma de x** se utiliza en caso de fallo de la actividad.
-    
-    d. El icono de la **flecha recta azul** se utiliza al finalizar la actividad.
-
-5. Haga clic en la **marca de verificación verde** desde la actividad del flujo de datos dfactivity_People_SharePoint y arrastre para conectarse a la nueva **actividad de Establecer variable** de **set_varIsSuccess**. Entonces, si la actualización del flujo de datos se lleva a cabo con éxito, queremos ejecutar la actividad Establecer variable.
-
-    ![](Media/5.33.png)
- 
-6. Con **la actividad Establecer variable** seleccionada, haga clic en Configuración en el menú inferior.
-7. En el panel inferior, asegúrese de que **Tipo de variable sea Variable de canalización**.
-8. En el campo Nombre, seleccione varIsSuccess. Esta es la variable cuyo valor vamos a establecer.
-9. En el campo **Valor**, seleccione el **cuadro de diálogo**. Seleccione el vínculo **Agregar contenido dinámico**.
-
-    ![](Media/5.34.png)
- 
-10. Se abre el cuadro de diálogo Generador de expresiones de canalización. Seleccione el área de texto **Agregue contenido dinámico a continuación con cualquier combinación de expresiones, funciones y variables del sistema**.
-11. En el menú inferior, seleccione **Variables -> varSuccess**. Observe que se introduce @variables('varSuccess') en el área de texto Agregar contenido dinámico debajo. Recuerde que cuando creamos variables, habíamos preestablecido el valor de la variable varSuccess en Sí. Entonces, asignamos el valor Sí a la variable varIsSuccess.
-12. Seleccione **Aceptar**. Volverá al **panel de diseño del iterador**.
+5.  选择**创建**。
 
-    ![](Media/5.35.png)
- 
-Ahora necesitamos configurar el contador si falla la actividad del flujo de datos. En la canalización de datos, no podemos hacer referencia a una variable. Lo que significa que no podemos incrementar la variable de contador varCounter si agregamos uno a su valor (varCounter = varCounter + 1). Entonces, utilizamos la variable varTempCounter.
+您将导航到**数据管道页面**。如果您使用过 Azure
+数据工厂，您会熟悉此屏幕。让我们快速了解一下布局。
 
-## Tarea 11: Configure la segunda actividad de Establecer variable
+您位于**主页**屏幕。在顶部菜单上，您会看到添加常用活动的选项：验证、运行管道以及查看运行历史记录。此外，在中间窗格中，您会看到开始生成管道的快速选项。
 
-1. En el menú superior, seleccione **Actividades -> Establecer** variable. La actividad variable establecida se agrega al lienzo de diseño.
-2.	Con **la actividad Establecer variable** seleccionada, en el panel inferior, seleccione General. Pongamos un nombre y una descripción a la actividad.
-3. En el campo **Nombre**, introduzca **set_varTempCounter**.
-4.	En el campo **Descripción**, introduzca **Increment variable varTempCounter**.
-5. Haga clic en la **marca roja con forma de x** desde la actividad del flujo de datos hasta la nueva actividad Establecer variable. Entonces, si la actualización del flujo de datos falla, queremos ejecutar esta actividad Establecer variable.
+6.  从顶部菜单中选择**活动**。现在，您会在菜单中看到常用活动的列表。
 
-    ![](Media/5.36.png)
- 
-6. Con **la actividad Establecer variable** seleccionada, seleccione Configuración en el menú inferior.
-7. En el panel inferior, asegúrese de que **Tipo de variable** sea **Variable de canalización**.
-8. En el campo **Nombre**, seleccione **varTempCounter**. Esta es la variable cuyo valor vamos a establecer.
-9. En el campo **Valor**, seleccione el **cuadro de diálogo**. Seleccione el vínculo **Agregar contenido dinámico**.
-10. Se abre el cuadro de diálogo Generador de expresiones de canalización. Introduzca **@add(variables('varCounter'),1)**
+7.  选择菜单右侧的**省略号
+    (...)**，以查看所有其他可用的活动。我们将在实验中使用其中一些活动。
 
-**Nota:** Siéntase libre de escribir esta expresión, use el menú para seleccionar las funciones o copiarla y pegarla. 
+8.  点击顶部菜单中的**运行**。您将找到运行和计划管道执行的选项。还可以找到使用"查看运行历史记录"来查看执行历史记录的选项。
 
-**Nota:** Esta función establece el valor de la variable varTempCounter al valor de la variable varCounter más uno (varTempCounter = varCounter + 1).
+9.  从顶部菜单中选择**视图**。在这里可以找到以 JSON
+    格式查看代码的选项。还可以找到设置活动格式的选项。
 
-![](Media/5.37.png)
- 
-Ahora necesitamos establecer el valor de la variable varCounter en el valor de varTempCounter. 
+**注意：** 如果您在完成本实验后掌握了一些 JSON 背景知识，请自行选择"查看
+JSON 代码"。在这里，您会注意到使用设计视图进行的所有编排也可以用 JSON
+编写。
 
-## Tarea 12: Configure la tercera actividad de Establecer variable
 
-1. En el menú superior, seleccione **Actividades -> Establecer variable**. La actividad variable establecida se agrega al lienzo de diseño.
-2. Con **la actividad Establecer variable** seleccionada, en el panel inferior, seleccione General. Pongamos un nombre y una descripción a la actividad.
-3. En el campo **Nombre**, introduzca **set_varCounter**.
-4. En el campo **Descripción**, introduzca **Increment variable varCounter**.
-5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varTempCounter y arrastre para conectarse a la nueva **actividad de Establecer variable de set_varCounter**.
+### 任务 4：生成简单的数据管道
 
-    ![](Media/5.38.png)
- 
-6. Con **la actividad set_varCounter** seleccionada, haga clic en **Configuración** en el menú inferior.
-7. En el panel inferior, asegúrese de que **Tipo de variable** sea **Variable de canalización**.
-8. En el campo **Nombre**, seleccione **varCounter**. Esta es la variable cuyo valor vamos a establecer.
-9. En el campo **Valor**, seleccione el **cuadro de diálogo**. Seleccione el vínculo **Agregar contenido dinámico**.
-10.	Se abre el cuadro de diálogo Generador de expresiones de canalización. Introduzca **@variables('varTempCounter')**. Siéntase libre de escribir esta expresión o use el menú para seleccionar las funciones o copiarla y pegarla.
+我们开始生成管道。我们需要一个活动来刷新数据流。让我们找到一个可以使用的活动。
 
-**Nota:** Esta función establece el valor de la variable varCounter al valor de la variable varTempCounter (varCounter = varTempCounter). Al final de cada iteración, tanto varCounter como varTempCounter tienen el mismo valor.
+1.  在顶部菜单中，选择**活动 -\>
+    数据流**。数据流活动已添加到中心设计窗格中。请注意，底部窗格现在具有数据流活动的配置选项。
 
-![](Media/5.39.png)
- 
-## Tarea 13: Configurar la actividad Esperar
-A continuación, debemos esperar cinco minutos/300 segundos si la actualización del flujo de datos falla la primera vez antes de volver a intentarlo. Si la actualización del flujo de datos falla una segunda vez, debemos esperar 15 minutos/900 segundos y volver a intentarlo. Usaremos la actividad de espera y la variable varWaitTime para establecer el tiempo de espera.
+2.  我们将配置该活动以连接到 df_People_SharePoint
+    活动。在**底部窗格**中选择**设置**。
 
-1. En el menú superior, seleccione **Actividades -> puntos suspensivos (…) -> Esperar**. La actividad Esperar se agrega al lienzo de diseño.
-2. Con **la actividad Esperar** seleccionada, en el panel inferior, seleccione **General**. Pongamos un nombre y una descripción a la actividad.
-3. En el campo **Nombre**, introduzca **wait_onFailure**.
-4. En el campo **Descripción**, introduzca **Wait for 300 seconds on 2nd try and 900 seconds on 3rd try**.
-5. Haga clic en la **marca de verificación verde** desde la actividad Establecer variable set_varCounter y arrastre para conectarse a la nueva **actividad de Esperar wait_onFailure**.
+3.  确保将**工作区**设置为您的 Fabric 工作区 **FAIAD\_\<username\>。**
 
-    ![](Media/5.40.png)
- 
-6. Con **la actividad Esperar** seleccionada, haga clic en **Configuración** en el menú inferior.
-7. En el campo **Tiempo de espera en segundos**, seleccione el **cuadro de texto** y, después, el vínculo **Agregar contenido dinámico**.
-8. Se abre el cuadro de diálogo Generador de expresiones de canalización. Introducir 
+4.  从**数据流下拉列表**中，选择
+    **df_People_SharePoint**。执行此数据流活动时，它将刷新
+    **df_People_SharePoint。**这很容易，对吧？
 
-        @if(
-            greater(variables(‘varCounter’), 1),
-            if(equals(variables(‘varCounter’), 2),
-                mul(variables(‘varWaitTime’),15 ), 
-                mul(variables(‘varWaitTime’), 0)
-            ),
-            mul(variables(‘varWaitTime’),5 )
-        )
+**注意：** 通知选项目前呈灰色。该功能将很快启用。您将能够配置有关此活动成功和失败的通知。
 
-Siéntase libre de escribir esta expresión o use el menú para seleccionar las funciones o copiarla y pegarla.
+在我们的应用场景中，员工数据未按计划更新。有时会有延迟。我们来看看如何调整。
 
-![](Media/5.41.png)
- 
-Aquí usamos dos nuevas funciones:
+5.  在**底部窗格**中选择**常规**。我们为活动指定名称和说明。
 
-- **greater:** toma dos números como parámetros y compara cuál es mayor.
-- **mul:** esta es una función de multiplicación, necesita dos parámetros para multiplicar. 
+6.  在**名称**字段中，输入 **dfactivity_People_SharePoint**
 
-La expresión es una declaración if anidada. Está comprobando si el valor de la variable varCounter es mayor que 1. Si es true, comprueba si el valor de la variable varCounter es 2. Si es true, establece el tiempo de espera en varWaitTime multiplicado por 15. Recuerde, habíamos establecido el valor predeterminado de varWaitTime a 60. Eso sería 60*15 = 900 segundos. Si el valor de la variable varCounter no es 2 (es mayor que 2, lo que significa que la actualización del flujo de datos ha fallado 3 veces, hemos terminado de iterar. No tenemos que esperar más), el tiempo de espera se establece en varWaitTime *0. O sea, 0. Si el valor de la variable varCounter es 1, entonces multiplicamos varWaitTime *5. Eso sería 60*5 = 300 segundos.
+7.  在**说明**字段中，输入 **Dataflow activity to refresh
+    df_People_Sharepoint dataflow**。
 
-9. Seleccione **Aceptar**. 
+8.  请注意，有一个停用活动的选项。此功能在测试或调试期间非常有用。将其保留为**已激活**。
 
-**Punto de control:** su iterador Hasta debería verse como la captura de pantalla siguiente.
+9.  有一个设置**超时**的选项。我们保留**默认值**，这样可以为数据流刷新提供足够的时间。
 
-![](Media/5.42.png)
- 
-10. Desde la parte superior izquierda del lienzo de diseño, seleccione **pl_Refresh_People_Sharepoint_Option2** para 
-salir del iterador Hasta. 
+**注意：** 如果数据无法按计划提供，我们将活动设置为每 10
+分钟重新执行一次，共 3 次。如果第三次尝试也失败，那么它将报告失败。
 
-    ![](Media/5.43.png)
+10. 将**重试次数**设置为 **3**
 
-11. Hemos terminado de crear la canalización de datos. En el menú superior, seleccione el **icono Inicio -> Guardar** para guardar la canalización de datos.
+11. 展开**高级**部分。
 
-    ![](Media/5.44.png)
- 
+12. 将**重试间隔（秒）**设置为 **600**。
 
-## Tarea 14: Configurar la actualización programada para la canalización de datos
+13. 从菜单中选择**主页 -\> 保存**图标以保存管道。
 
-1. Podemos probar la canalización de datos si seleccionamos **Inicio -> Ejecutar**. 
+请注意，与将数据流设置为按计划刷新相比（如同我们对早期数据流所做的那样），使用数据管道具有以下优势：
 
-**Nota:** Es posible que la actualización de la canalización de datos tarde unos minutos. Este es un entorno de capacitación, por lo que el archivo en SharePoint siempre está disponible. Por lo tanto, su canalización de datos nunca fallará.
+-   管道提供在刷新失败之前重试多次的选项。
 
-2. Podemos configurar la canalización de datos para que se ejecute según una programación. En el menú superior, seleccione **Inicio -> Programar**. Se abre el cuadro de diálogo de programación.
-3. Establezca el botón de opción **Ejecución programada** en **Activar**.
-4. Establezca **el menú desplegable Repetir** en **Diario**.
-5. Establezca **Hora** en **09:00**.
-6. Establezca la **Fecha y hora de** inicio en **Hoy**.
-7. Establezca **Fecha y hora de finalización** en una **fecha futura**.
-8. Establezca su **Zona horaria**.
+-   管道能够在几秒钟内刷新一次，而数据流每 30 分钟按计划刷新一次。
 
-**Nota:** dado que se trata de un entorno de laboratorio, puede configurar la zona horaria según su zona horaria preferida. En un escenario real, configurará la zona horaria según la ubicación de su origen de datos.
+### 任务 5：创建新数据管道
 
-9. Seleccione **Aplicar**.
-10. Seleccione la marca con forma de **X** en la parte superior derecha del cuadro de diálogo para cerrarlo.
+我们为应用场景加大难度。我们注意到，如果在上午 9
+点还未提供数据，那么通常在五分钟内会提供。如果错过该时段，则需要 15
+分钟后才能获得文件。我们希望将重试时间安排在 5 分钟和 15
+分钟。让我们看看如何通过创建新的数据管道来实现这一点。
 
-    ![](Media/5.45.png)
- 
-11. Seleccione su área de trabajo de Fabric **FAIAD_<username>** en el panel izquierdo para navegar a la pantalla **Inicio de Data Factory**.
+1.  在左侧面板中，点击 **FAIAD\_\<username\>**，然后您将导航到 Data
+    Factory 主页。
 
-**Nota:** En la pantalla Programación, no hay ninguna opción para notificar sobre el éxito o el error (como la programación de flujos de datos). La notificación se puede llevar a cabo mediante una actividad en la canalización de datos. No lo haremos en este laboratorio, ya que es un entorno de laboratorio.
+2.  从顶部菜单中，点击**新建**，然后从**下拉列表**中，点击**数据管道**。
 
-Hemos programado actualizaciones para los distintos orígenes de datos. Crearemos relaciones, medidas y haremos otras actividades de modelado en el próximo laboratorio.
+3.  "新建管道"对话框随即打开。将管道**命名**为
+    **pl_Refresh_People_SharePoint_Option2**
 
-## Referencias
+4.  选择**创建**。
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+### 任务 6：创建截止活动
 
-![](Media/5.46.png)
- 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+1.  您将导航到数据管道屏幕。从菜单中选择**活动**。
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el sitio web de Microsoft Fabric
-- Adquiera nuevas capacidades mediante la exploración de los[ módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la [comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+2.  点击右侧的**省略号 (...)**。
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+3.  从活动列表中，点击**截止时间**。
 
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric ](https://aka.ms/Fabric-DS-Blog)
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+**截止**：这是一个用于迭代直到满足条件的活动。
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+在我们的应用场景中，我们将迭代并刷新数据流，直到成功或者已经尝试三次。
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+### 任务 7：创建变量
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella.
+1.  我们需要创建变量用于迭代和设置状态。选择管道设计窗格中的**空白区域**。
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+2.  请注意底部窗格中的菜单有变化。选择**变量**。
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+3.  选择**新建**以添加新的变量。
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
+4.  请注意此时会出现一行。在**名称文本框**中输入
+    **varCounter**。我们将使用该变量迭代三次。
 
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+5.  从**类型下拉列表**选择 **Integer**。
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+6.  输入**默认值** **0**。
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+**注意：** 我们在变量名称前面加上 var
+是为了方便查找，这是一个有用的做法。
+
+7.  选择**新建**以添加另一个新的变量。
+
+8.  请注意此时会出现一行。在**名称文本框**中输入
+    **varTempCounter**。我们将使用该变量递增 varCounter 变量。
+
+9.  从**类型下拉列表**选择 **Integer**。
+
+10. 输入**默认值** **0**。
+
+11. 按照相似的步骤添加另外三个变量：
+
+    a.  **varIsSuccess** 类型为 **String**，默认值为
+        **No**。该变量将用于指示数据流刷新是否成功。
+
+    b.  **varSuccess** 类型为 **String**，默认值为
+        **Yes**。此变量将用于设置数据流刷新成功时 varIsSuccess 的值。
+
+    c.  **varWaitTime** 类型为 **Integer**，默认值为
+        **60**。该变量将用于设置数据流失败时的等待时间。（5 分钟/300
+        秒或 15 分钟/900 秒。）
+
+### 任务 8：配置截止活动
+
+1.  选择**截止**活动。
+
+2.  在**底部窗格**中选择**常规**。
+
+3.  在**名称**中输入 **Iterator**
+
+4.  在**说明**中输入 **Iterator to refresh dataflow. It will retry up to
+    3 times**。
+
+5.  在底部窗格中选择**设置**。
+
+6.  选择**表达式文本框**。我们需要在此文本框中输入一个表达式，该表达式的评估结果为
+    true 或 false。截止活动迭代程序，此时表达式的评估结果为
+    false。一旦表达式评估结果为 true，截止活动就会停止迭代。
+
+7.  选择文本框下方显示的**添加动态内容**链接。
+
+我们需要编写一个表达式，该表达式的执行截止条件为值 **varCounter 为 3**
+或者值 **varIsSuccess 为"Yes"。**（varCounter 和 varIsSuccess
+是我们刚刚创建的变量。）
+
+8.  **管道表达式生成器**对话框随即打开。在对话框的下半部分将会显示一个菜单：
+
+    a.  **参数：** 是数据工厂中的常量，可由任何表达式中的管道使用。
+
+    b.  **系统变量：** 在任一服务中定义实体时，可以在表达式中使用这些变量。例如，管道
+        ID、管道名称、触发器名称等。
+
+    c.  **函数：** 您可以在表达式中调用函数。函数分为几类：集合函数、转换函数、日期函数、逻辑函数、数学函数和字符串函数。例如，concat
+        是一个字符串函数，add 是一个数学函数，诸如此类。
+
+    d.  **变量：** 管道变量是在管道运行期间可以设置和修改的值。它与管道参数不同，管道参数在管道级别定义，且在管道运行期间无法更改，而管道变量可以通过"设置变量"活动在管道内进行设置和修改。我们稍后将使用"设置变量"活动。
+
+9.  在底部菜单中点击**函数**。
+
+10. 从 **Logical 函数**部分中，选择 **or 函数**。请注意，**\@or()**
+    已添加到动态表达式文本框中。or
+    函数有两个参数，我们现在使用的是第一个参数。
+
+11. 将光标置于 **\@or** 函数的**括号之间**。
+
+12. 从 **Logical 函数**部分中，选择 **equals**
+    函数。请注意，它已添加到动态表达式文本框中。
+
+**注意：** 您的函数应类似于 **\@or(equals())**。equals
+函数也有三个参数。我们将检查变量 varCounter 是否等于 3。
+
+13. 现在将光标置于 **\@equals** 函数的**括号之间**以添加参数。
+
+14. 在底部菜单中选择**变量**。
+
+15. 选择 **varCounter** 变量作为第一个参数。
+
+16. 输入 **3** 作为 equals 函数的第二个参数。您的表达式将为
+    **\@or(equals(variables(\'varCounter\'),3))**，类似于下面的屏幕截图所示
+
+![](./media/image30.png){width="3.0in" height="2.990049212598425in"}
+
+17. 我们需要将第二个参数添加到 or
+    函数中。在结尾的两个括号之间**添加逗号**。这次我们将尝试输入函数名称。首先输入
+    **equ**，您将看到可用函数的下拉列表（称为 IntelliSense）。选择
+    **equals** 函数。
+
+18. equals 函数的第一个参数是一个变量。将**光标置于逗号之前**。
+
+19. 开始输入 **variables(**
+
+20. 在 IntelliSense 的帮助下，选择 **variables(\'varIsSuccess\')**
+
+21. 在逗号之后，输入第二个参数。开始输入 **variables(**
+
+22. 在 IntelliSense 的帮助下，选择
+    **variables(\'varSuccess\')**。这里我们将 varIsSuccess 的值与
+    varSuccess 的值进行比较。（varSuccess 默认为"Yes"。）
+
+23. 您的表达式应该是：
+
+**\@or(equals(variables(\'varCounter\'),3),equals(variables(\'varIsSuccess\'),
+variables(\'varSuccess\')))**
+
+24. 选择**确定**。
+
+### 任务 9：配置数据流活动
+
+1.  您将导航回到设计屏幕。选择**截止活动**后，从**底部窗格**中选择**活动**。我们现在将添加需要执行的活动。
+
+2.  选择第一行中的**编辑图标**。您将导航到空白迭代程序设计屏幕。
+
+3.  在顶部菜单中，选择**活动 -\>
+    数据流**。数据流活动已添加到设计窗格中。
+
+4.  **选择数据流活动**后，在底部窗格中选择**常规**。我们为活动指定名称和说明。
+
+5.  在**名称**字段中，输入 **dfactivity_People_SharePoint**
+
+6.  在**说明**字段中，输入 **Dataflow activity to refresh
+    df_People_Sharepoint dataflow**。
+
+7.  从底部窗格中选择**设置**。
+
+8.  确保将**工作区**设置为您的工作区 **FAIAD\_\<username\>。**
+
+9.  从**数据流下拉列表**中，选择
+    **df_People_SharePoint**。执行此数据流活动时，它将刷新
+    **df_People_SharePoint。**
+
+### 任务 10：配置第 1 个设置变量活动
+
+像之前在实验中所做的那样，我们已经配置了数据流活动。我们再来添加一个新逻辑。如果数据流刷新成功，我们需要存在于截止迭代程序之外。请注意，迭代程序存在的条件之一是将
+varIsSuccess 变量的值设置为"Yes"。
+
+1.  从顶部菜单中，选择**活动 -\>
+    设置变量**。设置变量活动已添加到设计画布中。
+
+2.  选择**设置变量活动**后，在底部窗格中选择**常规**。我们为活动指定名称和说明。
+
+3.  在**名称**字段中，输入 **set_varIsSuccess**
+
+4.  在**说明**字段中，输入 **Set variable varIsSuccess to Yes。**
+
+**注意：** 将光标悬停在**数据流活动**上。活动框的右侧有四个图标。这些图标可用于根据活动的结果连接到下一个活动：
+
+ - a. **灰色弯曲箭头**图标用于跳过活动。
+
+ - b. **绿色复选标记**图标表示活动成功。
+
+ - c. **红色 x 标记**图标表示活动失败。
+
+ - d. **蓝色直箭头**图标表示活动已完成。
+
+5.  点击 dfactivity_People_SharePoint
+    数据流活动中的**绿色复选标记**，并拖动以连接到新的
+    **set_varIsSuccess**
+    **设置变量活动**。因此，在数据流刷新成功后，我们要执行"设置变量"活动。
+
+6.  选择**设置变量活动**后，点击底部菜单中的**设置**。
+
+7.  在底部窗格中，确保**变量类型**为**管道变量**。
+
+8.  在**名称**字段中，选择 **varIsSucces。**这是我们要设置其值的变量。
+
+9.  在**值**字段中，选择**文本框**。选择**添加动态内容**链接。
+
+10. 管道表达式生成器对话框随即打开。选择**使用表达式、函数和系统变量文本区域的任意组合在下面添加动态内容**。
+
+11. 在底部菜单中选择**变量 -\>
+    varSuccess**。请注意，"在下方添加动态内容"文本区域中输入了
+    \@variables('varSuccess')。请注意，在创建变量时，我们已将 varSuccess
+    变量的值预设为"Yes"。因此，我们要将"Yes"值赋给 varIsSuccess 变量。
+
+12. 选择**确定**。您将导航回到**迭代程序设计窗格**。
+
+现在，如果数据流活动失败，我们需要设置计数器。在数据管道中，我们不能自引用变量。这意味着我们不能通过将计数器变量
+varCounter 的值加 1 (varCounter = varCounter + 1)
+来递增它的值。因此，我们使用 varTempCounter 变量。
+
+### 任务 11：配置第 2 个设置变量活动
+
+1.  从顶部菜单中，选择**活动 -\>
+    设置变量**。设置变量活动已添加到设计画布中。
+
+2.  选择**设置变量活动**后，在底部窗格中选择**常规**。我们为活动指定名称和说明。
+
+3.  在**名称**字段中，输入 **set_varTempCounter**
+
+4.  在**说明**字段中，输入 **Increment variable varTempCounter。**
+
+5.  点击数据流活动中的**红色 x
+    标记**前往新的设置变量活动。因此，在数据流刷新失败后，我们要执行此"设置变量"活动。
+
+6.  选择**设置变量活动**后，选择底部菜单中的**设置**。
+
+7.  在底部窗格中，确保**变量类型**为**管道变量**。
+
+8.  在**名称**字段中，选择
+    **varTempCounter。**这是我们要设置其值的变量。
+
+9.  在**值**字段中，选择**文本框**。选择**添加动态内容**链接。
+
+10. 管道表达式生成器对话框随即打开。输入
+    **\@add(variables('varCounter'),1)**\
+    \
+    **注意：** 自由输入此表达式，使用菜单选择函数，或者复制并粘贴它。
+
+**注意：** 该函数将变量 varTempCounter 的值设置为变量 varCounter 的值加
+1，(varTempCounter = varCounter + 1)。
+
+现在我们需要将 varCounter 变量的值设置为 varTempCounter 的值。
+
+### 任务 12：配置第 3 个设置变量活动
+
+1.  从顶部菜单中，选择**活动 -\>
+    设置变量**。设置变量活动已添加到设计画布中。
+
+2.  选择**设置变量活动**后，在底部窗格中选择**常规**。我们为活动指定名称和说明。
+
+3.  在**名称**字段中，输入 **set_varCounter**
+
+4.  在**说明**字段中，输入 **Increment variable varCounter。**
+
+5.  点击 set_varTempCounter
+    设置变量活动中的**绿色复选标记**，并拖动以连接到新的
+    **set_varCounter 设置变量活动**。
+
+6.  选择**set_varCounter 设置变量活动**后，点击底部菜单中的**设置**。
+
+7.  在底部窗格中，确保**变量类型**为**管道变量**。
+
+8.  在**名称**字段中，选择 **varCounter**。这是我们要设置其值的变量。
+
+9.  在**值**字段中，选择**文本框**。选择**添加动态内容**链接。
+
+10. 管道表达式生成器对话框随即打开。输入
+    **\@variables('varTempCounter')**。自由输入此表达式，使用菜单选择函数，或者复制并粘贴它。
+
+**注意：** 该函数将变量 varCounter 的值设置为变量 varTempCounter 的值
+(varCounter = varTempCounter)。每次迭代结束时，varCounter 和
+varTempCounter 的值都相同。
+
+### 任务 13：配置等待活动
+
+接下来，如果第一次数据流刷新失败，我们需要等待 5 分钟/300
+秒，然后再重试。如果第二次数据流刷新失败，我们需要等待 15 分钟/900
+秒，然后再重试。我们将使用等待活动和变量 varWaitTime 来设置等待时间。
+
+1.  从顶部菜单中，选择**活动 -\> 省略号 (...) -\>
+    等待**。等待活动已添加到设计画布中。
+
+2.  选择**等待活动**后，在底部窗格中选择**常规**。我们为活动指定名称和说明。
+
+3.  在**名称**字段中，输入 **wait_onFailure**。
+
+4.  在**说明**字段中，输入 **Wait for 300 seconds on 2nd try and 900
+    seconds on 3rd try。**
+
+5.  点击 set_varCounter
+    设置变量活动中的**绿色复选标记**，并拖动以连接到新的
+    **wait_onFailure 等待活动**。
+
+6.  选择**等待活动**后，点击底部菜单中的**设置**。
+
+7.  在**等待时间（以秒为单位）**字段中，选择**文本框**，并选择**添加动态内容**链接。
+
+8.  管道表达式生成器对话框随即打开。输入
+
+> **\@if(**
+>
+> **greater(variables('varCounter'), 1),**
+>
+> **if(equals(variables('varCounter'), 2),**
+>
+> **mul(variables('varWaitTime'),15 ),**
+>
+> **mul(variables('varWaitTime'), 0)**
+>
+> **),**
+>
+> **mul(variables('varWaitTime'),5 )**
+>
+> **)**
+
+自由输入此表达式，使用菜单选择函数，或者复制并粘贴它。
+
+我们在这里使用两个新函数：
+
+-   **greater：** 以两个数字为参数，比较哪个数字更大。
+
+-   **mul：** 这是一个乘法函数，它使用两个参数相乘。
+
+该表达式是一个嵌套的 if 语句。它检查 varCounter 变量的值是否大于
+1。如果为 true，则检查 varCounter 变量的值是否为 2。如果为
+true，则将等待时间设置为 varWaitTime 乘以 15。请注意，我们已经默认了
+varWaitTime 值设置为 60。因此 60\*15 = 900 秒。如果 varCounter
+变量的值不是 2（大于 2，这意味着数据流刷新已失败 3
+次），我们就结束迭代。不再继续等待），等待时间设置为 varWaitTime \*
+0，因此设置为 0。如果 varCounter 变量的值为 1，便乘以 varWaitTime \*
+5，那就是 60\*5 = 300 秒。
+
+9.  选择**确定**。
+
+**检查点：** 您的截止迭代程序应类似于下面的屏幕截图所示。
+
+10. 从设计画布的左上角选择 **pl_Refresh_People_Sharepoint_Option2**
+    以离开截止迭代程序。
+
+11. 我们已经完成了数据管道的创建。从顶部菜单中，选择**主页 -\>
+    保存图标**以保存数据管道。
+
+### 任务 14：为数据管道配置计划刷新
+
+1.  我们可以通过选择**主页 -\> 运行来测试数据管道。**\
+    \
+    **注意：** 数据管道可能需要几分钟才能完成刷新。这是一个培训环境，因此
+    SharePoint 中的文件始终可用。因此，您的数据管道永远不会失败。
+
+2.  我们可以将数据管道设置为按计划执行。从顶部菜单中，选择**主页 -\>
+    计划**。计划对话框随即打开。
+
+3.  将**计划的运行**单选按钮设置为**开**。
+
+4.  将**重复下拉列表**设置为**每天**。
+
+5.  将**时间**设置为 **9 AM**。
+
+6.  将**开始日期和时间**设置为**今天**。
+
+7.  将**结束日期和时间**设置为**未来的日期**。
+
+8.  设置您的**时区**。
+
+**注意**：由于这是实验环境，因此您可以将时区设置为您的首选时区。在实际应用场景中，您将根据您本人/数据源的位置设置时区。
+
+9.  选择**应用**。
+
+10. 选择对话框右上角的 **X** 标记将其关闭。
+
+11. 在左侧面板中，选择您的 Fabric 工作区 **FAIAD\_\<username\>**
+    以导航到 **Data Factory 主页**屏幕。
+
+**注意**：在计划屏幕中，没有通知成功或失败的选项（和数据流计划一样）。可以通过在数据管道中添加活动来提供通知。我们不在本实验中进行此操作，因为它是实验环境。
+
+我们已经计划了各种数据源的刷新。在下一个实验中，我们将创建关系、度量并执行其他建模活动。
+
+# 参考
+
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
+
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
+
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
+
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
+
+阅读更多深度 Fabric 体验公告博客：
+
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
+
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
+
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
+
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
+
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
+
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
+
+© 2023 Microsoft Corporation.保留所有权利。
+
+使用此演示/实验即表示您已同意以下条款：
+
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft
+提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
+
+严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
+
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
+
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+ 无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
+
+对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
+
+**免责声明**
+
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。

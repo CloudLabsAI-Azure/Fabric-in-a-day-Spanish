@@ -1,536 +1,542 @@
-![](Media/7.001.png)
+# 目录 
 
-# ​​Contenido 
+简介 
 
-- Presentación  
 - Power BI 
 
-    - Tarea 1: Crear un informe de forma automática
-    - Tarea 2: Ocultar tablas predeterminadas (métricas)
-    - Tarea 3: Configurar el fondo para un nuevo informe
-    - Tarea 4: Agregar un encabezado al informe
-    - Tarea 5: Agregar KPI al informe
-    - Tarea 6: Agregar un gráfico de líneas al informe
-    - Tarea 7: Configurar la columna Year en la tabla Date
-    - Tarea 8: Configurar la columna Short_Month_Name en la tabla Date
-    - Tarea 9: Aplicar formato al gráfico de líneas
-    - Tarea 10: Agregar nuevos datos para simular el modo Direct Lake
+    - 任务 1：自动创建报表 
 
-- Limpieza del entorno de laboratorio 
+    - 任务 2：隐藏默认（指标）表
 
-- Referencias 
+    - 任务 3：为新报表配置背景
 
-# Presentación  
+    - 任务 4：向报表中添加标头
 
-Absorbimos datos de diferentes orígenes de datos a un lakehouse, conocimos los lakehouse, creamos un modelo de datos y establecimos una programación de actualización para los orígenes de datos. Ahora vamos a crear un informe. 
+    - 任务 5：向报表中添加 KPI
 
-Al final de este laboratorio, habrá aprendido:  
+    - 任务 6：向报表中添加折线图
 
-- Cómo crear un informe de forma automática
-- Cómo crear un informe a partir de un lienzo en blanco
-- Cómo usar el modo Direct Lake, que da como resultado una actualización automática de los datos
+    - 任务 7：配置 Date 表中的 Year 列
 
-# Power BI 
+    - 任务 8：在 Date 表中配置 Short_Month_Name 列
 
-## Tarea 1: Crear un informe de forma automática 
+    - 任务 9：设置折线图的格式
 
-Comencemos con la opción de creación automática de informes. Y, más adelante en el laboratorio, volveremos a crear el informe que tenemos en Power BI. 
+    - 任务 10：添加新数据以模拟 Direct Lake 模式
 
-1. Volvamos **al área de trabajo de Fabric** que creó en el laboratorio anterior. 
+清理实验环境 
 
-2. Seguramente esté en la página principal de Data Factory. En la parte inferior del panel de navegación de la izquierda, seleccione el **icono de Data Factory**. 
+参考 
+   
+# 简介
 
-3. Se abre el cuadro de diálogo de experiencia de Fabric. Seleccione **Power BI**. Se le llevará al **Inicio de Power BI**.
+我们已将来自不同数据源的数据引入
+Lakehouse，创建数据模型，并为数据源设置刷新计划。我们接下来创建报表。
 
-   ![](Media/7.1.png)
+本实验结束后，您将学会：
 
-4. Seleccione **Nuevo informe** en el menú superior.
+-   如何自动创建报表
 
-    ![](Media/7-2.png)
+-   如何从空白画布开始生成报表
 
-5. Se le dirigirá a la **pantalla de creación de su primer informe**. Habrá opciones para introducir datos manualmente y crear un informe o elegir un modelo semántico publicado. Hemos creado un modelo semántico en los laboratorios anteriores. Usemos ese. Seleccione la opción **Selección de un modelo semántico publicado**.
+-   如何体验 Direct Lake 模式以自动刷新数据
 
-    ![](Media/7-3.png)
+# Power BI
 
-6. Se abre la página Elija un conjunto de datos para usar en su informe. Observe que tenemos cuatro opciones. **Seleccione lh_FAIAD**: 
+### 任务 1：自动创建报表
 
-    - **lh_FAIAD**: este es el lakehouse con el conjunto de datos que creamos y que queremos usar para el informe. 
+我们先使用自动创建报表选项。稍后在实验中，我们将重新创建 Power BI
+中的报表。
 
-    - **Units by Supplier**: este es el conjunto de datos que creamos con T-SQL. 
+1.  我们导航回到您在之前的实验中创建的 **Fabric 工作区**。
 
-    - **DataflowsStagingWarehouse**: este es el almacén de almacenamiento provisional que se crea de forma predeterminada, ya que no lo utilizamos porque no preparamos datos. 
+2.  您可能位于 Data Factory 主页。在左侧面板底部选择 **Data Factory
+    图标**。
 
-    - **DataflowsStagingLakehouse**: este es el lakehouse provisional que se crea de forma predeterminada, ya que no lo utilizamos porque no preparamos datos. 
+3.  Fabric 体验对话框随即打开。选择 **Power BI**。您将导航到 **Power BI
+    主页**。
 
-7. Haga clic en la flecha **junto al botón Crear informe de forma automática**. Observe que hay dos opciones: Crear informe de forma automática y Crear un informe en blanco. Probemos la creación automática: seleccione **Crear informe de forma automática**.
+4.  从顶部菜单中选择**新建报告**。
 
-    ![](Media/7-4.png)
+5.  您将导航到**生成第一个报表屏幕**。可以选择手动输入数据并生成报表，或选择已发布的语义模型。我们在之前的实验中创建了一个语义模型。我们来使用该模型。选择**选择发布的语义模型**选项。
 
-8. Power BI comenzará a crear de forma automática el informe. Observe que hay una opción para seleccionar previamente los datos si así lo queremos. Una vez que el informe esté listo, aparecerá un cuadro de diálogo en la parte superior derecha de la pantalla. Seleccione **Ver informe ahora**.
+6.  "选择要在报表中使用的数据集"页面随即打开。请注意，我们有四个选项。**选择
+    lh_FAIAD**：
 
-    ![](Media/7-5.png)
+    a.  **lh_FAIAD：** 这是
+        Lakehouse，其中包含我们创建并希望用于报表的数据集。
 
-   >**Punto de control**: tendrá un informe similar a la captura de pantalla siguiente. Hay algunos KPI y algunos objetos visuales de tendencias. Este es un buen comienzo si está analizando un nuevo modelo y necesita un impulso. 
+    b.  **Units by Supplier：** 这是我们使用 T-SQL 创建的数据集。
 
-   >**Nota**: Observe que en el menú superior tiene la opción de editar el informe o ver algunos de los datos como tablas. No dude en explorar estas opciones.
+    c.  **DataflowsStagingWarehouse：** 这是默认创建的暂存仓库，因为我们没有暂存数据，所以没有使用它。
 
-9. Una vez que esté listo, **contraiga** todas las tablas en la sección **Datos** de la derecha. Observe que tenemos cinco tablas nuevas que no forman parte del modelo que creamos. Son tablas predeterminadas agregadas para ayudar a analizar el rendimiento. Las eliminaremos de la vista del informe en breve. 
+    d.  **DataflowsStagingLakehouse：** 这是默认创建的暂存
+        lakehouse，因为我们没有暂存数据，所以没有使用它。
 
-10. Guardemos este informe. En el menú superior, seleccione **Guardar**. 
+7.  点击 **"自动创建报表"按钮旁边的箭头**。请注意，有两个选项："自动创建报表"和"创建空白报表"。我们来尝试自动创建报表，因此选择**自动创建报表**。
 
-11. Se abre el cuadro de diálogo Guardar el informe. Nombre el informe como **rpt_Sales_Auto_Report**  
+8.  Power BI
+    将开始自动创建报表。请注意，您可以选择此处的"预先选择数据"选项。报表准备好后，屏幕右上角会出现一个对话框。选择**立即查看报表**。
 
-    >**Nota**: Estamos anteponiendo rpt al nombre del informe, que es la abreviatura de informe (en inglés). 
+**检查点：** 您将得到一份与下面的屏幕截图相似的报表。有一些 KPI
+和一些趋势视觉图。如果您要分析新模型并需要快速启动，可以从这里入手。
 
-12. Asegúrese de que el informe esté guardado en **<your workspace name>**. 
+**注意：** 请注意，在顶部菜单上，您可以选择"编辑报表"或以表的形式查看某些数据。请自行浏览这些选项。
 
-13. Seleccione **Guardar**.
+9.  准备就绪后，**折叠**右侧**数据**部分中的所有表。请注意，我们有五个新表，它们不属于我们创建的模型的一部分。这些是为了帮助分析性能而添加的默认表。我们稍后会从报表视图中删除这些表。
 
-    ![](Media/7-6.png)
+10. 我们保存该报表。从顶部菜单中选择**保存**。
 
-## Tarea 2: Ocultar tablas predeterminadas (métricas) 
+11. "保存报表"对话框随即打开。将报表命名为 **rpt_Sales_Auto_Report**\
+    **注意：** 我们在报表名称前加上 rpt（报表的缩写）作为前缀。
 
-Creemos un informe como el que tenemos en Power BI Desktop. Lo vamos a hacer desde un lienzo en blanco. Antes de comenzar a crear un informe, eliminemos las tablas predeterminadas (captura de pantalla anterior) de la vista del informe. Esto se hace en la sección de modelado del lakehouse. 
+12. 确保将报表保存在 **\<您的工作区名称\>中。**
 
-1. En la parte inferior del panel de navegación de la izquierda, seleccione **el icono de Power BI**. Se abre el cuadro de diálogo de Fabric. 
+13. 选择**保存。**
 
-2. Seleccione **Data Engineering**. Se le dirigirá a la página principal de Data Engineering.
+### 任务 2：隐藏默认（指标）表
 
-    ![](Media/7-7.png)
+我们现在创建一个类似于 Power BI Desktop
+中的报表。我们将使用空白画布完成此任务。在开始创建报表之前，我们从报表视图中删除默认表（上方屏幕截图所示）。这是在
+Lakehouse 的建模部分完成的。
 
-3. Desplácese hacia abajo hasta la sección **Acceso rápido**. 
+1.  在左侧面板底部选择 **Power BI 图标**。Fabric 对话框随即打开。
 
-4. Seleccione **lh_FAIAD -> Punto de conexión de análisis SQL**. Estaremos en la vista Datos del lakehouse. 
+2.  选择 **Data Engineering**。您将导航到 Data Engineering 主页。
 
-5. Desde la **parte inferior del panel izquierdo**, seleccione **Modelo** para navegar a la vista Modelo. 
+3.  向下滚动到**快速访问**部分。
 
-    Observe que en el lienzo de diseño encontrará las tablas predeterminadas. (Es posible que tenga que desplazarse hacia la derecha o hacia abajo para verlos).
+4.  选择 **lh_FAIAD -\> SQL 分析终结点**。我们将进入 Lakehouse
+    的数据视图。
 
-    ![](Media/7-8.png)
+5.  从**左侧面板底部**，选择**模型**以导航到模型视图。
 
-6. Haga clic derecho en la tabla **long_running_queries** y seleccione **Ocultar en la vista de Informes**.
+请注意，在设计画布上可以找到默认表。（您可能需要滚动到右侧或底部才能看到它们）
 
-    ![](Media/7-9.png)
+6.  右键单击表 **long_running_queries**，选择**在报表视图中隐藏**。
 
-7. De manera similar, seleccione la opción **Ocultar en la vista de Informes** para las siguientes tablas: 
+7.  同样，为以下表选择**在报表视图中隐藏**选项：
 
-    - fabric_query_starting 
-    - fabric_query_completed 
-    - exec_requests_history 
-    - frequently_run_queries
+    a.  fabric_query_starting
 
-## Tarea 3: Configurar el fondo para un nuevo informe 
+    b.  fabric_query_completed
 
-1. Podemos comenzar a crear un nuevo informe desde la vista del modelo. En el menú superior, seleccione **Inicio -> Nuevo informe**. Se le dirigirá al lienzo del informe de Power BI en una nueva ventana o pestaña en su explorador.
+    c.  exec_requests_history
 
-    ![](Media/7-10.png)
+    d.  frequently_run_queries
 
-2. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
+### 任务 3：为新报表配置背景
 
-    Vamos a utilizar este informe como referencia. Comenzaremos agregando el fondo del lienzo. Crearemos el encabezado del informe, agregaremos un par de KPI y crearemos el gráfico de líneas de Ventas a lo largo del tiempo. Por razones de tiempo y sabiendo que tiene experiencia en la creación de objetos visuales en Power BI Desktop, no crearemos todos los objetos visuales
+1.  我们可以先从模型视图创建新报表。从顶部菜单中，选择**主页 -\>
+    新建报告**。您将导航到浏览器新窗口/选项卡中的 Power BI 报表画布。
 
-    ![](Media/7-11.png)
+2.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
 
-3. Vuelva al **lienzo de Power BI** en su explorador. 
+我们将使用这份报表作为参考。先添加画布背景。我们将创建报表标头，添加几个
+KPI，并创建随时间变化的销售额折线图。为了节省时间，并且鉴于您具有在
+Power BI Desktop 中生成视觉对象的经验，我们不会创建所有视觉对象。
 
-4. Seleccione el **icono** de **la página Formato** en el panel de Visualizaciones. 
+3.  在浏览器中导航到 **Power BI 画布**。
 
-5. Expanda la **sección Fondo del lienzo**. 
+4.  在"可视化"窗格中，选择**设置页面格式图标**。
 
-6. Seleccione la opción **Examinar** de la opción **Imagen**. Se abre el cuadro de diálogo Explorador de archivos. 
+5.  展开**画布背景部分**。
 
-7. Navegue hasta la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
+6.  从**图像**选项中选择**浏览**。"文件资源管理器"对话框随即打开。
 
-8. Seleccione **Summary Background.png**. 
+7.  导航到实验环境的**桌面**上的**报表**文件夹。
 
-9. Establezca el menú desplegable **Ajuste de imagen** en **Ajustar**. 
+8.  选择 **Summary Background.png。**
 
-10. Establezca la Transparencia en **0 %**.
+9.  将**图像匹配度**下拉菜单设置为**正常**。
 
-    ![](Media/7-12.png)
+10. 然后将透明度设置为 **0%**。
 
-## Tarea 4: Agregar un encabezado al informe
+### 任务 4：向报表中添加标头
 
-1. Agreguemos el encabezado en el margen superior. En el **menú**, seleccione **Cuadro de texto**. 
+1.  我们在上边距中添加标头。从**菜单**中选择**文本框**。
 
-2. Introduzca **Fabrikam Company** como primera línea en el cuadro de texto. 
+2.  在文本框的第一行输入 **Fabrikam Company**。
 
-3. Introduzca **Sales Report** como segunda línea en el cuadro de texto. 
+3.  在文本框的第二行输入 **Sales Report**。
 
-4. Resalte **Fabrikam Company** y establezca la **Fuente** en **Segoe UI** y el **tamaño de fuente** a **18**, **negrita**. 
+4.  突出显示 **Fabrikam Company**，并将**字体**设置为 **Segoe
+    UI**，**字体大小**设置为 **18，粗体**。
 
-5. Resalte **Informe de ventas** y establezca la **Fuente** en **Segoe UI** y el **tamaño de fuente** a **14**, **negrita**. 
+5.  突出显示 **Sales Report**，并将**字体**设置为 **Segoe
+    UI**，**字体大小**设置为 **14。**
 
-6. Con el **cuadro de texto seleccionado**, en el panel Formato de la derecha, **expanda la sección Efectos**. 
+6.  **选中文本框**后，在右侧的格式窗格中，**展开效果**。
 
-7. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**. 
+7.  使用**背景**滑块将其设置为**关闭**。
 
-8. Cambie el tamaño del cuadro de texto **para que quepa en el margen superior**.
+8.  调整**文本框的大小以适合上边距**。
 
-    ![](Media/7-13.png)
+### 任务 5：向报表中添加 KPI
 
-## Tarea 5: Agregar KPI al informe 
+1.  我们添加销售 KPI。选择画布中的**空白区域**，以将焦点从文本框上移开。
 
-1. Agreguemos KPI de ventas. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del cuadro de texto. 
+2.  从**可视化部分**，选择**多行卡视觉对象**。
 
-2. En la **sección Visualizaciones**, seleccione el **objeto visual Tarjeta de varias filas**. 
+3.  从**数据部分**展开 **Sales 表**。
 
-3. En la sección Datos, expanda la **tabla Sales**. 
+4.  选择 **Sales 度量**。
 
-4. Seleccione **la medida Sales**.
+5.  选择**多行卡视觉对象**后，从"可视化"部分选择**设置视觉对象格式图标**。
 
-    ![](Media/7-14.png)
+6.  展开**类别标签**部分。
 
-5. Con **el objeto visual de tarjeta de varias filas seleccionado**, seleccione el **icono Dar formato a objeto visual** en la sección Visualizaciones. 
+7.  将**字体大小**增大到 **14**。
 
-6. Expanda la sección **Etiquetas de categorías.** 
+8.  选择**颜色下拉列表**。调色板对话框随即打开。
 
-7. Aumente el **tamaño de fuente** a **14**. 
+9.  将十六进制值设置为 **#004753**。
 
-8. Seleccione el **menú desplegable Color**. Se abre el cuadro de diálogo Paleta de colores. 
+10. 展开**卡**部分。
 
-9. Establezca el valor Hex en **#004753**.
+11. 使用**强调栏**滑块将其设置为**关闭**。
 
-    ![](Media/7-15.png)
+12. 在"可视化"窗格中选择**常规**。
 
-10. Expanda la sección **Tarjetas**. 
+13. 展开**效果部分**。
 
-11. Utilice el control deslizante **Barra de énfasis** para configurarlo en **Desactivado**.
+14. 使用**背景**滑块将其设置为**关闭**。
 
-    ![](Media/7-16.png)
+15. 对**视觉对象**调整大小，并将其移到**左侧框，如屏幕截图所示**。
 
-12. Seleccione **General** en el panel de Visualizaciones. 
+16. 我们再添加一个 KPI。选择我们刚刚创建的 **Sales
+    多行卡片**。通过从键盘中选择 **Ctrl+C** 来**复制**视觉对象。
 
-13. Expanda la **sección Efectos**. 
+17. 通过从键盘中选择 **Ctrl+V**
+    来**粘贴**视觉对象。请注意，视觉对象已粘贴到画布上。
 
-14. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**. 
+18. **突出显示新视觉对象**后，在**可视化窗格 -\> 生成视觉对象 -\>
+    字段**部分删除 **Sales** 度量。
 
-15. Cambie el tamaño del **objeto visual** y muévalo al **cuadro izquierdo como se muestra en la captura de pantalla**.
+19. 从**数据**部分展开 **Sales** 表，并选择 **Units** 度量。
 
-    ![](Media/7-17.png)
+20. 对**视觉对象**调整大小，并将其**放置在 Sales 视觉对象下方的框中**。
 
-16. Vamos a agregar otro KPI. Seleccione la **Tarjeta de varias filas de Sales** que acabamos de crear. **Copie** el objeto visual mediante la selección de **Ctrl+C** desde tu teclado. 
+### 任务 6：向报表中添加折线图
 
-17. **Pegue** el objeto visual mediante la selección de **Ctrl+V** desde tu teclado. Observe que el objeto visual se pega en el lienzo. 
+我们创建一个折线图来可视化经销商公司随时间变化的销售额。
 
-18. Con el **nuevo objeto visual resaltado**, en la sección **Visualizaciones -> Crear objeto visual -> Campos**, elimine la medida **Sales**. 
+1.  选择画布中的**空白区域**，以将焦点从多行卡片视觉对象上移开。
 
-19. Desde la sección **Datos**, expanda la tabla **Sales** y seleccione la medida **Units**. 
+2.  在**可视化部分**中选择**折线图**。
 
-20. Cambie el tamaño del **objeto visual** y **colóquelo en el cuadro debajo del objeto visual Sales**.
+3.  从**数据部分**展开 **Date** 表。
 
-    ![](Media/7-18.png)
+4.  选择 **Year** 字段。请注意，Year 默认为求和值并添加到 Y
+    轴。我们来更正一下吧。
 
-## Tarea 6: Agregar un gráfico de líneas al informe 
+### 任务 7：配置 Date 表中的 Year 列
 
-Creemos un gráfico de líneas para visualizar las ventas a lo largo del tiempo por empresa revendedora. 
+1.  导航到 **Lakehouse 模型视图**的浏览器选项卡。
 
-1. Seleccione el **espacio en blanco** en el lienzo para quitar el foco del objeto visual de tarjeta de varias filas. 
+2.  从左侧 Explorer 窗格中，展开 **lhFAIAD -\> Schemas -\> dbo -\>
+    Tables -\> Date**。
 
-2. En la **sección Visualizaciones**, seleccione **Gráfico de líneas**. 
+3.  选择 **Year** 列。
 
-3. En la **sección Datos**, expanda la tabla **Date**. 
+4.  在右侧**属性**窗格中，展开**高级**部分。
 
-4. Seleccione el campo **Year**. Tenga en cuenta que Year se suma de forma predeterminada y se agrega al eje Y. Rectifiquemos esto.
+5.  在**汇总依据**下拉列表中，选择**无**。
 
-    ![](Media/7-19.png)
+6.  导航回到 **Power BI 画布**的浏览器选项卡。
 
-## Tarea 7: Configurar la columna Year en la tabla Date 
+7.  从顶部菜单中选择**刷新**。请注意，现在 Year 不是求和字段。
 
-1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
+8.  选择**折线图视觉对象**后，从 Y 轴**删除 Year 的总和**。
 
-2. En el panel izquierdo del explorador, expanda **lhFAIAD -> Schemas -> dbo -> Tables -> Date**. 
+9.  选择 **Year** 字段，它将添加到 **X 轴**。
 
-3. Seleccione la columna **Year**. 
+10. 展开 **Sales** 表，并选择 **Sales 度量**。
 
-4. En el panel **Propiedades** de la derecha, expanda la sección **Avanzado**. 
+### 任务 8：在 Date 表中配置 Short_Month_Name 列
 
-5. En el menú desplegable **Resumir por**, seleccione **Ninguno**.
+1.  我们向该图表添加月份。从 Date 表中，将 **Short_Month_Name** 字段拖到
+    **X 轴**中的 **Year** 下方。请注意，视觉对象是按 Sales
+    排序的。我们将其按 Short_Month_Name 排序。
 
-    ![](Media/7-20.png)
+2.  选择视觉对象右上角的**省略号 (...)**。
 
-6. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
+3.  选择**排序列 -\> Year Short_Month_Name**。
 
-7. En el menú superior, seleccione **Actualizar**. Observe ahora que Year no es un campo de suma.  
+4.  选择视觉对象右上角的**省略号 (...)**。
 
-8. Con el **objeto visual Gráfico de líneas seleccionado**, **elimine la Sum of Year** del eje Y. 
+5.  选择**排列轴 -\> 以升序排序**。
 
-9. Seleccione el campo **Year** y se agregará al **eje X**. 
+**注意：** 月份按字母顺序排序。让我们来解决这个问题。
 
-10. Expanda la tabla **Sales** y seleccione la **medida Sales**.
+6.  导航到 **Lakehouse 模型视图**的浏览器选项卡。
 
-    ![](Media/7-21.png)
+7.  从左侧 Explorer 窗格中，展开 **lhFAIAD -\> Schemas -\> dbo -\>
+    Tables -\> Date**。
 
-## Tarea 8: Configurar la columna Short_Month_Name en la tabla Date 
+8.  选择 **Short_Month_Name** 列。
 
-1. Agreguemos Mes a este gráfico. Desde la tabla Date, arrastre el campo **Short_Month_Name** debajo de **Year** en el **eje X**. Observe que el objeto visual está ordenado por Sales. Ordenémoslo por Short_Month_Name. 
+9.  在右侧**属性**窗格中，展开**高级**部分。
 
-2. Haga clic en los **puntos suspensivos (…)** en la esquina superior derecha del objeto visual. 
+10. 在**按列排序**下拉列表中，选择 **Month**。
 
-3. Seleccione **Ordenar eje -> Year Short_Month_Name**. 
+11. 导航回到 **Power BI 画布**的浏览器选项卡。
 
-4. Haga clic en los **puntos suspensivos (…)** en la esquina superior derecha del objeto visual. 
+12. 从顶部菜单中选择**刷新**。请注意，现在月份已正确排序。
 
-5. Seleccione **Ordenar eje -> Orden ascendente**. 
+### 任务 9：设置折线图的格式
 
-    ![](Media/7-22.png)
+请注意，在生成报表时，更新语义模型很容易。这实现了像 Power BI Desktop
+一样的无缝交互。
 
-   >**Nota:** Los meses están ordenados alfabéticamente. Vamos a arreglarlo. 
+1.  **选择折线图视觉对象**后，在**数据部分**，展开 **Reseller** 表。
 
-    ![](Media/7-23.png)
+2.  将 **Reseller -\> Reseller Company** 字段拖到**图例**部分。
 
-6. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
+3.  **选择折线图视觉对象**后，从**可视化**部分选择**设置视觉对象格式图标
+    -\> 常规**。
 
-7. En el panel izquierdo del explorador, expanda **lhFAIAD -> Schemes -> dbo -> Tables -> Date**. 
+4.  展开**标题**部分。
 
-8. Seleccione la columna **Short_Month_Name**. 
+5.  将**标题**文本设置为 **Sales over time**。
 
-9. En el panel **Propiedades** de la derecha, expanda la sección **Avanzado**. 
+6.  展开**效果**部分。
 
-10. En el menú desplegable **Ordenar por columna** seleccione **Month**.
+7.  使用**背景**滑块将其设置为**关闭**。
 
-    ![](Media/7-24.png)
+8.  在**可视化**部分中，选择**设置视觉对象格式图标 -\> 视觉对象**。
 
-11. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
+9.  展开 **X 轴**部分。
 
-12. En el menú superior, seleccione **Actualizar**. Observe que ahora los meses están ordenados correctamente.
+10. 使用**标题**滑块将其设置为**关闭**。
 
-    ![](Media/7-25.png)
+11. 展开**行**部分。
 
-## Tarea 9: Aplicar formato al gráfico de líneas 
+12. 展开**颜色**部分。
 
-Observe lo fácil que es actualizar el modelo semántico mientras se crean los informes. Esto proporciona una interacción fluida como Power BI Desktop. 
+13. 将 **Wingtip Toys** 颜色设置为 **#004753**
 
-1. Con el **objeto visual Gráfico de líneas seleccionado**, en la **sección Datos**, expanda la tabla **Reseller**. 
+14. 将 **Tailspin Toys** 颜色设置为 **#F17925**
 
-2. Arrastre **Reseller -> Reseller Company** a la sección **Leyenda**.
+15. 对**视觉对象**调整大小，并将其移到**右上方框，如屏幕截图所示**。
 
-    ![](Media/7-26.png)
+16. 滚动到视觉对象的右侧，**请注意，我们拥有截至 2023 年 4 月的数据**。
 
-3. Con el **objeto visual Gráfico de líneas seleccionado**, en la sección **Visualizaciones**, seleccione **icono Formato visual -> General**. 
+17. 我们保存报表，从菜单中选择**文件 -\> 保存**。
 
-4. Expanda la sección **Título**. 
+18. "保存报表"对话框随即打开。将报表命名为 **rpt_Sales_Report**\
+    **注意：** 我们在报表名称前加上 rpt（报表的缩写）作为前缀。
 
-5. Establezca el texto **Título** en **Ventas a lo largo del tiempo**. 
+19. 确保将报表保存在 **\<您的工作区名称\>中。**
 
-6. Expanda la sección **Efectos**. 
+20. 选择**保存。**
 
-7. Utilice el control deslizante **Fondo** para configurarlo en **Desactivado**.
+如前所述，我们不会在本实验中生成所有视觉对象。如果您有时间，可以自行生成更多视觉对象。
 
-    ![](Media/7-27.png)
+### 任务 10：添加新数据以模拟 Direct Lake 模式
 
-8. En la sección **Visualizaciones**, seleccione el **icono Formato de objeto visual -> Objeto visual**. 
+在 Import 模式下，刷新源中的数据后，我们通常需要刷新 Power BI
+模型，以更新报表中的数据。通过使用 Direct Query
+模式，刷新源中的数据后，这些数据就可以在 Power BI
+报表中使用。然而，direct query 模式通常很慢。为了解决这个问题，Microsoft
+Fabric 引入了 Direct Lake 模式。Direct Lake 是一种将数据从湖中直接加载到
+Power BI 引擎中以供分析的快速路径。我们来探索一下。
 
-9. Expanda la sección **Eje X**. 
+在实际应用场景中，数据是在源进行更新的。由于我们处于训练环境中，因此我们在模拟时，将其连接到包含
+2023 年 5 月数据的 parquet 文件。
 
-10. Utilice el control deslizante Título para configurarlo en **Desactivado**. 
+1.  导航到 **Lakehouse 模型视图**的浏览器选项卡。
 
-11. Expanda la sección **Líneas**. 
+2.  从左侧面板中选择 **\<您的工作区名称\>**。
 
-12. Expanda la sección **Colores**. 
+3.  选择 **df_Sales_ADFS**，以便我们可以通过添加新的 Parquet
+    文件来编辑数据流。
 
-13. Establezca el color de **Wingtip Toys** en **#004753**. 
+4.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
 
-14. Establezca el color de **Tailspin Toys** en **#F17925**. 
+5.  从功能区中选择**主页 -\> 转换数据**。Power Query 窗口随即打开。
 
-15. Cambie el tamaño del **objeto visual** y muévalo al **cuadro superior derecho como se muestra en la captura de pantalla**. 
+6.  从左侧面板的 **DirectLake** 文件夹下，选择 **MayInvoice** 查询。
 
-16. Desplácese hacia la derecha en el objeto visual y **observe que tenemos datos hasta abril de 2023**.
+7.  **右键单击**并选择**复制。**
 
-    ![](Media/7-28.png)
+8.  导航回到浏览器中的**数据流屏幕**。
 
-17. Guardemos el informe: desde el menú, seleccione **Archivo -> Guardar**. 
+9.  在数据流窗格中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
 
-18. Se abre el cuadro de diálogo Guardar el informe. Nombre el informe como **rpt_Sales_Report**  
+现在，我们删除对 ADLS Base Folder (2) 的引用，并使用 ADLS Base Folder。
 
-    >**Nota**: Estamos anteponiendo rpt al nombre del informe, que es la abreviatura de informe (en inglés). 
+10. 选择 **MayInvoice** 查询。
 
-19. Asegúrese de que el informe esté guardado en **<your workspace name>**. 
+11. 在右侧面板的**已应用步骤**下，选择 **Source**。
 
-20. Seleccione **Guardar**.
+12. 在编辑栏中，将 **#"ADLS Base Folder (2)"** 更改为  **#"ADLS Base
+    Folder"**
 
-    ![](Media/7-29.png)
+13. 选择编辑栏旁边的**复选标记**或按下 Enter 键。
 
-Como se mencionó anteriormente, no crearemos todos los objetos visuales en esta práctica de laboratorio. Siéntase libre de crear más objetos visuales si lo desea.  
+14. 在左侧面板的"查询"部分下，**右键单击 ADLS Base Folder (2)**
+    查询，并选择**删除**。
 
-## Tarea 10: Agregar nuevos datos para simular el modo Direct Lake 
+15. "删除查询"对话框随即打开。选择**删除**进行确认。
 
-Normalmente, en el modo Import, una vez que se actualizan los datos en el origen, necesitamos actualizar el modelo de Power BI y después se actualizan los datos en el informe. Con el modo de Direct Query, una vez que los datos se actualizan en el origen, están disponibles en el informe de Power BI. Sin embargo, el modo de Direct Query suele ser lento. Para resolver este problema, Microsoft Fabric presenta el modo Direct Lake. Direct Lake es una ruta rápida para cargar los datos del lago directamente en el motor de Power BI listos para su análisis. Exploremos más. 
+16. 现在，我们将 5 月份的发票数据追加到 Invoice 表中。从"查询"部分选择
+    **Invoice** 查询。
 
-En un escenario real, los datos se actualizan en el origen. Como estamos en un entorno de entrenamiento, lo simularemos mediante la conexión a un archivo Parquet con datos de mayo de 2023.  
+17. 在功能区中，选择**主页 -\> 追加**查询。
 
-1. Navegue a la pestaña del explorador con la **vista del modelo del lakehouse**. 
+18. "追加查询"对话框随即打开。从**要追加的表**下拉列表中，选择
+    **MayInvoice**。
 
-2. Seleccione **<your workspace name>** en el panel izquierdo. 
+19. 选择**确定**。
 
-3. Seleccione **df_Sales_ADFS** para que podamos editar el flujo de datos al agregar el nuevo archivo Parquet.
+20. 在右下角，选择**发布**以保存和发布更新。
 
-    ![](Media/7-30.png)
+**注意：** 发布后，数据流将刷新。这可能需要几分钟的时间。
 
-4. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.  
+21. 导航回到 **Power BI 画布**的浏览器选项卡。
 
-5. En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. 
+22. 从顶部菜单中选择**刷新**。请注意，折线图中现在有 2023 年 5
+    月的数据。此外还要注意，销售额有所增加。
 
-6. En el panel izquierdo, en la carpeta **DirectLake**, seleccione la consulta **MayInvoice**. 
+当我们在之前的实验中创建的每个数据流按计划刷新时，数据就会被引入到
+Lakehouse。Lakehouse
+中的数据模型已更新，报表也已刷新。当每个数据流刷新时，我们不必刷新数据模型和报表。这是
+Direct Lake 的优点。
 
-7. **Haga clic derecho** y seleccione **Copiar**.
+我们来回顾一下问题陈述中列出的挑战：
 
-    ![](Media/7-31.png)
+-   **您每天要刷新数据集至少 3 次，以适应不同数据源的不同更新时间。**
 
-8. Vuelva a la **pantalla del flujo de datos** en el explorador. 
+我们使用 Direct Lake
+解决了这个问题。每个单独的数据流都按计划刷新。数据集和报表无需刷新。
 
-9. En el panel del flujo de datos, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible). 
+-   **刷新需要很长时间，因为您每次都需要完全刷新，以捕获源系统中的所有更新。**
 
-Ahora eliminemos la referencia a ADLS Base Folder (2) y usemos ADLS Base Folder. 
+我们仍然使用 Direct Lake
+解决了这个问题。每个单独的数据流都按计划刷新。数据集和报表无需刷新，因此我们无需执行完全刷新。
 
-10. Seleccione consulta **MayInvoice**. 
+-   **用于提取数据的任何数据源中一旦发生任何错误，都将导致数据集刷新中断。很多时候，员工文件没有按时上传，导致数据集刷新中断。**
 
-11. Desde el panel derecho, en **Pasos aplicados**, seleccione **Source**. 
+数据管道解决了这个问题，因为它能够在刷新失败时以不同时间间隔再次尝试刷新。
 
-12. En la barra de fórmulas, cambie de **#"ADLS Base Folder (2)"** a **#"ADLS Base Folder"**. 
+-   **由于数据量大且转换复杂，对数据模型进行任何更改都需要很长时间，因为
+    Power Query 需要很长时间刷新预览。**
 
-13. Seleccione la **marca de verificación** al lado de la barra de fórmulas o pulse Enter.
+我们注意到，数据流不仅高效，而且方便更改。数据流中加载预览通常不需要很长时间。
 
-    ![](Media/7-32.png)
+-   **您需要使用 Windows PC 才能使用 Power BI Desktop，但企业标配的是
+    Mac。**
 
-14. En el panel izquierdo, en la sección Consultas, **haga clic con el botón derecho en la consulta ADLS Base Folder (2)** y seleccione **Eliminar**. 
+Microsoft Fabric 是一种 SaaS
+产品/服务。我们只需要使用浏览器来访问该服务即可。无需在桌面上安装任何软件。
 
-15. Aparece el cuadro de diálogo Eliminar consulta. Seleccione **Eliminar** para confirmar.
+# 清理实验环境
 
-    ![](Media/7-33.png)
+准备好清理实验环境后，请按照以下步骤操作。
 
-16. Ahora, agreguemos los datos de la factura de mayo a la tabla Invoice. Seleccione la consulta **Invoice** desde la sección Consultas. 
+1.  导航回到 **Power BI 画布**的浏览器选项卡。**关闭此选项卡。**
 
-17. En la cinta de opciones, seleccione **Inicio - Anexar** consultas. 
+2.  导航到 **Lakehouse** **模型视图**的选项卡。
 
-18. Aparece el cuadro de diálogo Anexar consulta. Desde el menú desplegable **Tabla para anexar**, seleccione **MayInvoice**. 
+3.  从左侧面板中选择 **<您的工作区名称>** 以导航到主页。
 
-19. Seleccione **Aceptar**.
+4.  从顶部菜单中，选择"管理访问权限"旁边的**省略号
+    (...)**，然后选择**工作区设置**。
 
-    ![](Media/7-34.png)
+5.  "工作区设置"对话框随即打开。从左侧菜单中选择**其他**。
 
-20. Seleccione **Publicar** en la esquina inferior derecha para guardar y publicar las actualizaciones.
+6.  选择**删除此工作区**。
 
-    ![](Media/7-35.png)
+7.  "删除工作区"对话框随即打开。选择**删除**。
 
-    >**Nota**: Una vez publicado, el flujo de datos se actualizará. Esto puede tardar varios minutos. 
+这将删除工作区以及工作区中包含的所有项目。
 
-21. Vuelva a la pestaña del explorador con el **lienzo de Power BI**. 
 
-22. En el menú superior, seleccione **Actualizar**. Observe ahora que en el gráfico de líneas hay datos para mayo de 2023. Además, observe que el dólar de ventas ha aumentado.
+# 参考
 
-    ![](Media/7-36.png)
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
 
-A medida que cada flujo de datos que hemos creado en laboratorios anteriores se actualiza según lo programado, los datos se incorporan al lakehouse. El modelo de datos en el lakehouse y los informes se actualizan. No tenemos que actualizar el modelo de datos ni informar cuando se actualice cada uno de los flujos de datos. Esta es la ventaja de Direct Lake. 
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
 
-Revisemos los desafíos que se enumeran en el planteamiento del problema: 
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
 
-- **Debe actualizar su conjunto de datos al menos tres veces al día para adaptarse a los diferentes tiempos de actualización para los diferentes orígenes de datos**. 
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
 
-Resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe. 
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
 
-- **Sus actualizaciones tardan mucho tiempo, ya que necesita hacer una actualización completa cada vez para capturar cualquier actualización que haya ocurrido en los sistemas de origen.** 
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
 
-De nuevo, resolvimos esto con Direct Lake. Cada flujo de datos individual se actualiza según su programación. No es necesario actualizar el conjunto de datos y el informe, por lo que no tenemos que preocuparnos por la actualización completa.  
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
 
-- **Cualquier error en cualquiera de los orígenes de datos de los que extrae provocará que se interrumpa la actualización del conjunto de datos. Muchas veces, el archivo del empleado no se carga a tiempo, lo que provoca que se interrumpa la actualización del conjunto de datos**. 
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
 
-La canalización de datos ayuda a resolver este problema al brindar la capacidad de volver a intentar la actualización en caso de error y en diferentes intervalos. 
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
 
-- **Se necesita mucho tiempo para hacer cambios en su modelo de datos, ya que Power Query tarda mucho en actualizar sus versiones preliminares, dado el gran tamaño de los datos y las transformaciones complejas**.  
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
 
-Vimos que los flujos de datos son eficientes y es fácil hacer cambios en ellos. Normalmente, la versión preliminar en flujos de datos no tarda mucho en cargarse. 
+阅读更多深度 Fabric 体验公告博客：
 
-- **Necesita que un PO con Windows use Power BI Desktop aunque el estándar corporativo es Mac**. 
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
 
-Microsoft Fabric es una oferta SaaS. Lo único que necesitamos es un explorador para acceder al servicio. No tenemos que instalar ningún software en nuestros escritorios. 
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
 
-## Limpieza del entorno de laboratorio 
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
 
-Una vez que esté todo listo para limpiar el entorno del laboratorio, siga los pasos a continuación. 
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
 
-1. Vuelva a la pestaña del explorador con el **lienzo de Power BI. Cierre esta pestaña**. 
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
 
-2. Navegue a la pestaña con la **vista del modelo del lakehouse**. 
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
 
-3. Seleccione **<your workspace name>** en el panel izquierdo para navegar a la página de inicio.
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
 
-   ![](Media/7-37.png)
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
 
-4. En el menú superior, seleccione **puntos suspensivos (…)** al lado de Administrar acceso y seleccione **Configuración del área de trabajo**.
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
 
-   ![](Media/7-38.png)
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
 
-5. Se abre el cuadro de diálogo de Configuración del área de trabajo. Seleccione **Otros** en el menú izquierdo. 
+© 2023 Microsoft Corporation.保留所有权利。
 
-6. Seleccione **Quitar esta área de trabajo**. 
+使用此演示/实验即表示您已同意以下条款：
 
-7. Se abrirá el cuadro de diálogo de eliminar área de trabajo. Seleccione **Eliminar**. 
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft
+提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
 
-Esto eliminará el área de trabajo y todos los elementos que contenía. 
+严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
 
-   ![](Media/7-39.png)
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
 
-# Referencias 
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
 
-   ![](Media/7-40.png)
+**免责声明**
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
-
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric/blog/2023/11/15/prepare-your-data-for-ai-innovation-with-microsoft-fabric-now-generally-available/) completo. 
-
-- Explore Fabric a través de la [Visita guiada](https://guidedtour.microsoft.com/en-us/guidedtour/microsoft-fabric/microsoft-fabric/1/1) 
-
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://app.powerbi.com/home?experience=power-bi)
-
-- Visite el [sitio web de Microsoft Fabric](https://www.microsoft.com/en-in/microsoft-fabric)
-
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://learn.microsoft.com/en-us/training/browse/?products=fabric&resource_type=module) 
-
-- Explore la [documentación técnica de Fabric](https://learn.microsoft.com/en-us/fabric/) 
-
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://info.microsoft.com/ww-landing-unlocking-transformative-data-value-with-microsoft-fabric.html)
-
-- Únase a la [comunidad de Fabric](https://community.fabric.microsoft.com/) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
-
-Obtenga más información en los blogs de anuncios de la experiencia Fabric: 
-
-- [Experiencia de Data Factory en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-data-factory-in-microsoft-fabric/) 
-
-- [Experiencia de Synapse Data Engineering en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-engineering-in-microsoft-fabric/)  
-
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-science-in-microsoft-fabric/) 
-
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-warehouse-in-microsoft-fabric/)  
-
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/sense-analyze-and-generate-insights-with-synapse-real-time-analytics-in-microsoft-fabric/)
-
-- [Blog de anuncios de Power BI](https://powerbi.microsoft.com/en-us/blog/empower-power-bi-users-with-microsoft-fabric-and-copilot/)
-
-- [Experiencia de Data Activator en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/driving-actions-from-your-data-with-data-activator/)  
-
-- [Administración y gobernanza en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/administration-security-and-governance-in-microsoft-fabric/) 
-
-- [OneLake en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/microsoft-onelake-in-fabric-the-onedrive-for-data/) 
-
-- [Blog de integración de Dataverse y Microsoft Fabric](https://cloudblogs.microsoft.com/dynamics365/it/2023/05/24/new-dataverse-enhancements-and-ai-powered-productivity-with-microsoft-365-copilot/) 
-
-© 2023 Microsoft Corporation. Todos los derechos reservados. 
-
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones: 
-
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella. 
-
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA. 
-
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE. 
-
-**COMENTARIOS**. Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo. 
-
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
-
-**DECLINACIÓN DE RESPONSABILIDADES**
-
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。

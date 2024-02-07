@@ -1,377 +1,470 @@
-![](Media/4.1.png)
-
-# Contenido 
-- Presentación
-
-- Flujo de datos Gen2
-
-    - Tarea 1: Copiar consultas de Snowflake al flujo de datos
-    - Tarea 2: Crear una conexión a Snowflake
-    - Tarea 3: Configurar el destino de datos para las consultas de Supplier y PO
-    - Tarea 4: Cambiar el nombre y publicar el flujo de datos de Snowflake
-    - Tarea 5: Copiar consultas de Dataverse al flujo de datos
-    - Tarea 6: Crear una conexión a Dataverse
-    - Tarea 7: Crear un destino de datos para la consulta Customer
-    - Tarea 8: Publicar y cambiar el nombre del flujo de datos de Dataverse
-    - Tarea 9: Copiar consultas de SharePoint al flujo de datos
-    - Tarea 10: Crear una conexión a SharePoint
-    - Tarea 11: Configurar el destino de datos para la consulta People
-    - Tarea 12: Publicar y cambiar el nombre del flujo de datos de SharePoint
-
-- Referencias
-
-# Presentación 
-
-En nuestro escenario, los datos del proveedor están en Snowflake, los datos del cliente están en Dataverse y los datos de los empleados están en SharePoint. Todos estos orígenes de datos se actualizan en diferentes momentos. Para minimizar la cantidad de actualizaciones de datos de los flujos de datos, crearemos flujos de datos individuales para cada uno de estos orígenes de datos.
-
-**Nota:** Se admiten varios orígenes de datos en un único flujo de datos.
-Al final de este laboratorio, habrá aprendido: 
-- Cómo conectarse a Snowflake mediante el flujo de datos Gen2 e ingerir datos en lakehouse
-- Cómo conectarse a SharePoint mediante el flujo de datos Gen2 e ingerir datos en lakehouse
-- Cómo conectarse a Dataverse mediante el flujo de datos Gen2 e ingerir datos en lakehouse
-
-# Flujo de datos Gen2
-## Tarea 1: Copiar consultas de Snowflake al flujo de datos
-1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8.
-2. En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
-
-    ![](Media/4.2.png)
- 
-Se le dirigirá de vuelta a la **página de del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
-
-3. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-4.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-5.	Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta SnowflakeData **Ctrl+Seleccionar** o Mayús+Seleccionar las siguientes consultas:
-
-    a.	SupplierCategories
-    
-    b.	Suppliers
-    
-    c.	Supplier
-    
-    d.	PO
-    
-    e.	PO Line Items
-
-6.	**Haga clic derecho** y seleccione **Copiar**.
- 
-    ![](Media/4.3.png)
-
-7.	Vuelva al **explorador**.
-8.	En el **panel del flujo de datos**, seleccione el **panel central**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
-
-## Tarea 2: Crear una conexión a Snowflake
-Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas a la izquierda. Como no tenemos una conexión creada para Snowflake, verá un mensaje de advertencia que le solicitará que configure la conexión.
-1.	Seleccione **Configurar conexión**.
-
-    ![](Media/4.4.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el menú desplegable **Conexión**, asegúrese de que Crear nueva conexión esté seleccionado.
-3.	**El tipo de autenticación** debe ser **Snowflake**.
-4.	Introduzca el **Nombre de usuario y contraseña de Snowflake** disponibles en la pestaña Variables de entorno (al lado de la pestaña Guía de laboratorio).
-5.	Seleccione **Conectar**.
-
-    ![](Media/4.5.png)
- 
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Básicamente, la consulta Suppliers tiene los detalles de los proveedores y SupplierCategories, como su nombre indica, tiene categorías de proveedores. Estas dos tablas se unen para crear la dimensión Supplier, con las columnas que necesitamos. De manera similar, tenemos PO Line Items combinada con pedidos de compra para crear el dato de PO. Ahora necesitamos incorporar los datos del proveedor y de PO en el lakehouse.
-
-6.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **Supplier** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
-
-    ![](Media/4.6.png)
- 
-7.	De manera similar, haga clic derecho en la consulta **PO**. Seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
-
-**Nota:** No tenemos que deshabilitar el almacenamiento provisional para las otras tres consultas porque Habilitar carga se deshabilitó en Power BI Desktop (desde donde se copiaron estas consultas).
-
-## Tarea 3: Configurar el destino de datos para las consultas de Supplier y PO
-
-1.	Seleccione la consulta de **Supplier**.
-2.	En la esquina inferior derecha, seleccione "+" junto a **Destino de datos**.
-3.	Seleccione **Lakehouse** en el cuadro de diálogo.
-
-    ![](Media/4.7.png)
- 
-4.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión**, seleccione **Lakehouse (ninguno)**.
-5.	Seleccione **Siguiente**.
-
-    ![](Media/4.8.png)
- 
-6.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el botón de opción **Nueva tabla** esté **seleccionado**, ya que estamos creando una nueva tabla.
-7.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-8.	Seleccione **lh_FAIAD**.
-9.	Deje el nombre de la tabla como **Supplier**.
-10.	Seleccione **Siguiente**.
+# 目录 
 
-    ![](Media/4.9.png)
- 
-11.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-12.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-13.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
-
-    ![](Media/4.10.png)
- 
-14.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha, el destino de los datos** está configurado en el **lakehouse**. De manera similar, **configure el destino de datos para la consulta de PO**. Una vez hecho esto, su consulta de PO debe tener Destino de datos establecido en **Lakehouse** como se muestra en la siguiente captura de pantalla.
-
-    ![](Media/4.11.png)
- 
-
-## Tarea 4: Cambiar el nombre y publicar el flujo de datos de Snowflake
-
-1. En la parte superior de la pantalla, seleccione la **flecha junto a Dataflow 1** para cambiar el nombre.
-2.	En el cuadro de diálogo, cambie el nombre a **df_Supplier_Snowflake**.
-3.	Haga clic en **Introducir** para guardar el cambio de nombre.
-
-    ![](Media/4.12.png)
- 
-4.	En la esquina inferior derecha, seleccione **Publicar**.
+简介 
 
-    ![](Media/4.13.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Es posible que el flujo de datos tarde unos minutos en publicarse. 
+- 数据流 Gen2 
 
-**Nota:** A veces, el nombre del flujo de datos no se actualiza. En este caso, siga los pasos a continuación. Si se ha cambiado el nombre del flujo de datos, puede pasar a la siguiente tarea.
+    - 任务 1：将 Snowflake 查询复制到数据流
 
-5.	Una vez que el Dataflow 1 termine de publicarse, cambiaremos su nombre. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
+    - 任务 2：创建与 Snowflake 的连接
 
-    ![](Media/4.14.png)
- 
-6.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el nombre a **df_Supplier_Snowflake**.
-7.	En el cuadro de texto **Descripción**, agregue **Dataflow to ingest Supplier data from Snowflake to Lakehouse**.
-8.	Seleccione **Guardar**.
+    - 任务 3：为 Supplier 和 PO 查询配置数据目标
 
-    ![](Media/4.15.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora creemos un flujo de datos para traer datos de Dataverse.
+    - 任务 4：重命名并发布 Snowflake 数据流
 
-## Tarea 5: Copiar consultas de Dataverse al flujo de datos
+    - 任务 5：将 Dataverse 查询复制到数据流
 
-1.	En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
+    - 任务 6：创建与 Dataverse 的连接
 
-    ![](Media/4.16.png)
- 
-Se le dirigirá de vuelta a la **página del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
+    - 任务 7：为 Customer 查询创建数据目标
 
-2.	Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-3.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-4.	Se abre la ventana de Power Query. Desde el panel izquierdo, en la carpeta DataverseData, **Ctrl+Seleccionar** las siguientes consultas:
+    - 任务 8：发布并重命名 Dataverse 数据流
 
-    a.	BabyBoomer
-    
-    b.	GenX
-    
-    c.	GenY
-    
-    d.	GenZ
-    
-    e.	Customer
+    - 任务 9：将 SharePoint 查询复制到数据流
 
-5.	**Haga clic derecho** y seleccione **Copiar**.
+    - 任务 10：创建 SharePoint 连接
 
-    ![](Media/4.17.png)
- 
-6.	Vuelva a la ventana **Página del flujo de datos** en su explorador.
-7.	En el **panel del flujo de datos**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+    - 任务 11：为 People 查询配置数据目标
 
-## Tarea 6: Crear una conexión a Dataverse
-Observe que las cinco consultas están pegadas y ahora tiene el panel Consultas a la izquierda. Como no tenemos una conexión creada para Dataverse, verá un mensaje de advertencia que le solicitará que configure la conexión.
+    - 任务 12：发布并重命名 SharePoint 数据流
 
-1.	Seleccione **Configurar conexión**.
+参考 
 
-    ![](Media/4.18.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el **menú desplegable Conexión**, asegúrese de que Crear nueva conexión esté **seleccionado**.
-3.	**Tipo de autenticación** debería ser **Cuenta de organización**.
-4.	Seleccione **Conectar**.
+# 简介
 
-    ![](Media/4.19.png)
- 
+在我们的应用场景中，供应商数据位于 Snowflake 中，客户数据位于 Dataverse
+中，员工数据位于 SharePoint
+中。所有这些数据源都会在不同时间更新。为了最大限度地减少数据流的数据刷新次数，我们将为每个数据源创建单独的数据流。
 
-## Tarea 7: Crear un destino de datos para la consulta Customer
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Los datos de los clientes están disponibles por categoría: BabyBoomer, GenX, GenY y GenZ. Estas cuatro consultas se adjuntan para crear la consulta Customer. Ahora necesitamos incorporar los datos del cliente en el lakehouse.
+**注意：** 单个数据流支持多个数据源。
 
-1.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **Customer** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+本实验结束后，您将学会：
 
-    ![](Media/4.20.png)
- 
-2.	Seleccione la consulta **Customer**.
-3.	En la esquina inferior derecha, seleccione **"+"** junto a **Destino de datos**.
-4.	Seleccione **lakehouse** en el cuadro de diálogo.
+-   如何使用数据流 Gen2 连接到 Snowflake 并将数据引入 Lakehouse
 
-    ![](Media/4.21.png)
- 
-5.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión**, seleccione **Lakehouse (ninguno)**.
-6.	Seleccione **Siguiente**.
+-   如何使用数据流 Gen2 连接到 SharePoint 并将数据引入 Lakehouse
 
-    ![](Media/4.22.png)
- 
-7.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el **botón de opción Nueva tabla** esté seleccionado, ya que estamos creando una nueva tabla.
-8.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-9.	Seleccione **lh_FAIAD**.
-10.	Deje el nombre de la tabla como **Customer**.
-11.	Seleccione **Siguiente**.
+-   如何使用数据流 Gen2 连接到 Dataverse 并将数据引入 Lakehouse
 
-    ![](Media/4.23.png)
- 
-12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+# 数据流 Gen2
 
-    ![](Media/4.24.png)
- 
+### 任务 1：将 Snowflake 查询复制到数据流
 
-## Tarea 8: Publicar y cambiar el nombre del flujo de datos de Dataverse
+1.  让我们导航回到您在实验 2 任务 8 中创建的 Fabric 工作区
+    **FAIAD\_\<username\>**。
 
-1.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el **destino de los datos** está configurado en el **lakehouse**.
-2.	En la esquina inferior derecha, seleccione **Publicar**.
+2.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
 
-    ![](Media/4.25.png)
- 
-**Nota:** Se le dirigirá de nuevo a la pantalla de Data Factory. Es posible que el flujo de datos tarde unos minutos en publicarse.
+您将导航到**数据流页面**。现在我们已经熟悉了数据流，我们接下来从 Power
+BI Desktop 复制查询到数据流。
 
-3.	Estamos trabajando con el Dataflow 1. Cambiémosle el nombre antes de continuar. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
- 
-    ![](Media/4.26.png)
+3.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
 
-4.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el **Nombre a df_Customer_Dataverse**.
-5.	En el cuadro de texto Descripción, agregue **Dataflow to ingest Customer data from Dataverse to Lakehouse**.
-6.	Seleccione **Guardar**.
+4.  从功能区中选择**主页 -\> 转换数据**。Power Query
+    窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-    ![](Media/4.27.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora creemos un flujo de datos para traer datos de SharePoint.
+5.  Power Query 窗口随即打开。从左侧面板中的 SnowflakeData 文件夹下，按
+    **Ctrl+ 选择**或 Shift+ 选择以下查询：
 
-## Tarea 9: Copiar consultas de SharePoint al flujo de datos
+    a.  SupplierCategories
 
-1.	En el menú superior, seleccione **Nuevo -> Flujo de datos Gen2**.
+    b.  Suppliers
 
-    ![](Media/4.28.png)
- 
-Se le dirigirá de vuelta a la **página de del flujo de datos**. Ahora que estamos familiarizados con el flujo de datos, sigamos adelante y copiemos las consultas de Power BI Desktop en el flujo de datos.
+    c.  Supplier
 
-2.	Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-3.	En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
-4.	Se abre la ventana de Power Query. En el panel izquierdo, en la carpeta SharepointData, **seleccione** la consulta **People**.
+    d.  PO
 
-5.	**Haga clic derecho** y seleccione **Copiar**.
+    e.  PO Line Items
 
-    ![](Media/4.29.png)
- 
-6.	Vuelva a la **pantalla del flujo de datos** en el explorador.
-7.	En el **panel del flujo de datos**, introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+6.  **右键单击**并选择**复制**。
 
-Observe la consulta pegada y disponible en el panel izquierdo. Como no tenemos una conexión creada para SharePoint, verá un mensaje de advertencia que le solicitará que configure la conexión.
+7.  导航回到**浏览器**。
 
-## Tarea 10: Crear una conexión a SharePoint
-1.	Seleccione **Configurar conexión**.
+8.  在**数据流窗格**中，选择**中间窗格**，然后输入
+    **Ctrl+V**（目前不支持右键单击粘贴）。
 
-    ![](Media/4.30.png)
- 
-2.	Se abre el cuadro de diálogo del origen de datos. En el menú desplegable **Conexión**, asegúrese de que **Crear nueva conexión** esté seleccionado.
-3.	**Tipo de autenticación** debería ser **Cuenta de organización**.
-4.	Seleccione **Conectar**.
+### 任务 2：创建与 Snowflake 的连接
 
-    ![](Media/4.31.png)
- 
+请注意，五个查询已粘贴，现在左侧显示"查询"面板。由于我们没有为 Snowflake
+创建连接，因此您将看到一条警告消息，要求您配置连接。
 
-## Tarea 11: Configurar el destino de datos para la consulta People
-Se establece la conexión y puede ver los datos en el panel de versión preliminar. Siéntase libre de navegar por los pasos aplicados de las consultas. Ahora necesitamos incorporar los datos de las personas en el lakehouse.
+1.  选择**配置连接**。
 
-1.	Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **People** en el panel Consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+2.  "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
 
-    ![](Media/4.32.png)
- 
-2.	Seleccione la consulta **People**.
-3.	En la esquina inferior derecha, seleccione **"+"** junto a Destino de datos.
-4.	Seleccione Lakehouse en el cuadro de diálogo.
+3.  **身份验证种类**应为 **Snowflake**。
 
-    ![](Media/4.33.png)
- 
-5.	Se abre el cuadro de diálogo Conectarse al destino de datos. Desde el **menú desplegable de Conexión, seleccione Lakehouse (ninguno)**.
-6.	Seleccione **Siguiente**.
+4.  输入 **Snowflake
+    用户名和密码**，其位于"环境变量"选项卡中（"实验指南"选项卡旁边）。
 
-    ![](Media/4.34.png)
- 
-7.	Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el botón de opción **Nueva tabla** esté **seleccionado**, ya que estamos creando una nueva tabla.
-8.	Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**. 
-9.	Seleccione **lh_FAIAD**.
-10.	Deje el nombre de la tabla como **People**.
-11.	Seleccione **Siguiente**.
+5.  选择**连接**。
 
-    ![](Media/4.35.png)
- 
-12.	Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-13.	Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-14.	La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+连接已建立，您可以在预览面板中查看数据。请自行浏览查询的应用步骤。Suppliers
+查询基本上包含供应商的详细信息，SupplierCategories
+顾名思义包含供应商的类别。这两个表与我们需要的列联接，以创建 Supplier
+维度。同样，我们将 PO Line Items 与 PO 合并，以创建 PO
+事实。现在我们需要将 Supplier 和 PO 数据引入到 Lakehouse。
 
-    ![](Media/4.36.png)
- 
+6.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+    **Supplier** 查询，并选择**启用暂存**以删除复选标记。
 
-## Tarea 12: Publicar y cambiar el nombre del flujo de datos de SharePoint
+7.  同样，右键单击 **PO** 查询。选择**启用暂存**以删除复选标记。
 
-1.	Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el destino de los datos está configurado en el **lakehouse**.
-2.	En la esquina inferior derecha, seleccione **Publicar**.
+**注意：** 我们不必为其他三个查询禁用暂存，因为在 Power BI
+Desktop（这些查询是从这里复制而来）中已经禁用了"启用加载"。
 
-    ![](Media/4.37.png)
- 
-**Nota:** Se le dirigirá de nuevo a la pantalla de Data Factory. Es posible que el flujo de datos tarde unos minutos en publicarse.
+### 任务 3：为 Supplier 和 PO 查询配置数据目标
 
-3.	Estamos trabajando con el Dataflow 1. Cambiémosle el nombre antes de continuar. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
+1.  选择 **Supplier** 查询。
 
-    ![](Media/4.38.png)
- 
-4.	Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el **nombre** a **df_People_SharePoint**.
-5.	En el cuadro de texto Descripción, agregue **Dataflow to ingest People data from SharePoint to Lakehouse**.
-6.	Seleccione **Guardar**.
+2.  在右下角选择**数据目标**旁边的**"+"**。
 
-    ![](Media/4.39.png)
- 
-Se le dirigirá de nuevo a la **pantalla de Data Factory**. Ahora hemos ingerido todos los datos en el lakehouse. En la próxima práctica de laboratorio, programaremos la actualización del flujo de datos.
+3.  在对话框中选择**湖屋**。
 
-# Referencias
+4.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+    **Lakehouse（无）**。
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+5.  选择**下一步**。
 
-![](Media/4.40.png)
- 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+6.  "选择目标"对话框随即打开。务必**选中新建表单选按钮**，因为我们要创建一个新表。
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la[ comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+7.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
+    -\> FAIAD\_\<username\>。**
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+8.  选择 **lh_FAIAD**
 
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://aka.ms/Fabric-DS-Blog) 
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+9.  将表名称保留为 **Supplier**
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+10. 选择**下一步**。
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+11. "选择目标设置"对话框随即打开。每次刷新数据流 Gen2
+    时，我们都希望执行完整加载。确保将**更新方法**设置为**替换**。
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco 
-crear trabajos derivados de ella.
+12. 请注意，有一条警告"某些列名包含不受支持的字符。我们是否应该修复它们？"湖屋不支持包含空格的列名称。选择**修复**以清除警告。
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+13. 可使用列映射将数据流列映射到现有列。在我们的案例中，它是一个新表。因此，我们可以使用默认值。选择**保存设置**。
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+14. 您将会导航回到 **Power Query
+    窗口**。请注意，**右下角的数据目标**设置为**湖屋**。同样，**为 PO
+    查询设置数据目标**。完成后，您的 PO
+    查询应将**数据目标**设置为**湖屋**，如下面的屏幕截图所示。
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+### 任务 4：重命名并发布 Snowflake 数据流
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+1.  从屏幕顶部，选择 **Dataflow 1 旁边的箭头**重命名。
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+2.  在对话框中，将名称更改为 **df_Supplier_Snowflake**
 
+3.  点击 **Enter** 键以保存名称更改。
+
+4.  在右下角，选择**发布**。
+
+您将导航回到 **Data Factory 屏幕**。发布数据流可能需要一些时间。
+
+**注意：** 数据流名称有时不会更新。在这种情况下，请按照以下步骤操作。如果数据流已重命名，您可以移至下一个任务。
+
+5.  Dataflow 1 发布完成后，我们将其重命名。点击 Dataflow 1
+    旁边的**省略号 (...)**。选择**属性**。
+
+6.  "数据流属性"对话框随即打开。将名称更改为 **df_Supplier_Snowflake**
+
+7.  在**说明**文本框中，添加 **Dataflow to ingest Supplier data from
+    Snowflake to Lakehouse**
+
+8.  选择**保存**。
+
+您将导航回到 **Data Factory 屏幕**。现在我们创建一个从 Dataverse
+引入数据的数据流。
+
+### 任务 5：将 Dataverse 查询复制到数据流
+
+1.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
+
+您将导航到**数据流页面。**现在我们已经熟悉了数据流，我们接下来从 Power
+BI Desktop 复制查询到数据流。
+
+2.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
+
+3.  从功能区中选择**主页 -\> 转换数据**。Power Query
+    窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
+
+4.  Power Query 窗口随即打开。在左侧面板中的 DataverseData 文件夹下，按
+    **Ctrl+ 选择**以下查询：
+
+    a.  BabyBoomer
+
+    b.  GenX
+
+    c.  GenY
+
+    d.  GenZ
+
+    e.  Customer
+
+5.  **右键单击**并选择**复制**。
+
+6.  导航回到浏览器中的**数据流页面**。
+
+7.  在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
+
+### 任务 6：创建与 Dataverse 的连接
+
+请注意，五个查询已粘贴，现在左侧显示"查询"面板。由于我们没有为 Dataverse
+创建连接，因此您将看到一条警告消息，要求您配置连接。
+
+1.  选择**配置连接**。
+
+2.  "连接到数据源"对话框随即打开。在**连接下拉列表**中，确保**选择创建新连接**。
+
+3.  **身份验证种类**中应为**组织帐户**。
+
+4.  选择**连接**。
+
+### 任务 7：为 Customer 查询创建数据目标
+
+连接已建立，您可以在预览面板中查看数据。请自行浏览查询的应用步骤。客户数据按类别提供：BabyBoomer、GenX、GenY
+和 GenZ。追加这四个查询以创建 Customer
+查询。现在我们需要将客户数据引入到 Lakehouse。
+
+1.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+    **Customer** 查询，并选择**启用暂存**以删除复选标记。
+
+2.  选择 **Customer** 查询。
+
+3.  在右下角选择**数据目标**旁边的 **"+"**。
+
+4.  在对话框中选择**湖屋**。
+
+5.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+    **Lakehouse（无）**。
+
+6.  选择**下一步**。
+
+7.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+
+8.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
+    -\> FAIAD\_\<username\>**
+
+9.  选择 **lh_FAIAD**
+
+10. 将表名称保留为 **Customer**
+
+11. 选择**下一步**。
+
+12. "选择目标设置"对话框随即打开。每次刷新数据流 Gen2
+    时，我们都希望执行完整加载。确保将**更新方法**设置为**替换**。
+
+13. 请注意，有一条警告"某些列名包含不受支持的字符。我们是否应该修复它们？"湖屋不支持包含空格的列名称。选择**修复**以清除警告。
+
+14. 可使用列映射将数据流列映射到现有列。在我们的案例中，它是一个新表。因此，我们可以使用默认值。选择**保存设置**。
+
+### 任务 8：发布并重命名 Dataverse 数据流
+
+1.  您将会导航回到 **Power Query
+    窗口**。请注意，**右下角**的**数据目标**设置为**湖屋**。
+
+2.  在右下角，选择**发布**。
+
+**注意：** 您将导航回到 **Data Factory
+屏幕**。发布数据流可能需要一些时间。
+
+3.  我们正在使用的数据流是 Dataflow
+    1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
+    旁边的**省略号 (...)**。选择**属性**。
+
+4.  "数据流属性"对话框随即打开。将**名称**更改为
+    **df_Customer_Dataverse**
+
+5.  在**说明**文本框中，添加 **Dataflow to ingest Customer data from
+    Dataverse to Lakehouse**。
+
+6.  选择**保存**。
+
+您将导航回到 **Data Factory 屏幕**。现在我们创建一个从 SharePoint
+引入数据的数据流。
+
+### 任务 9：将 SharePoint 查询复制到数据流
+
+1.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
+
+您将导航到**数据流页面**。现在我们已经熟悉了数据流，我们接下来从 Power
+BI Desktop 复制查询到数据流。
+
+2.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
+
+3.  从功能区中选择**主页 -\> 转换数据**。Power Query
+    窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
+
+4.  Power Query 窗口随即打开。在左侧面板的 SharepointData
+    文件夹下，**选择 People** 查询。
+
+5.  **右键单击**并选择**复制**。
+
+6.  导航回到浏览器中的**数据流屏幕**。
+
+7.  在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
+
+请注意，查询已粘贴并在左侧面板中可用。由于我们没有为 SharePoint
+创建连接，因此您将看到一条警告消息，要求您配置连接。
+
+### 任务 10：创建 SharePoint 连接
+
+1.  选择**配置连接**。
+
+2.  "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
+
+3.  **身份验证种类**中应为**组织帐户**。
+
+4.  选择**连接**。
+
+### 任务 11：为 People 查询配置数据目标
+
+连接已建立，您可以在预览面板中查看数据。请自行浏览查询的应用步骤。现在我们需要将人员数据引入到
+Lakehouse。
+
+1.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+    **People** 查询，并选择**启用暂存**以删除复选标记。
+
+2.  选择 **People** 查询。
+
+3.  在右下角选择**数据目标**旁边的 **"+"**。
+
+4.  在对话框中选择**湖屋**。
+
+5.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+    **Lakehouse（无）**。
+
+6.  选择**下一步**。
+
+7.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+
+8.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
+    -\> FAIAD\_\<username\>。**
+
+9.  选择 **lh_FAIAD**
+
+10. 将表名称保留为 **People**
+
+11. 选择**下一步**。
+
+12. "选择目标设置"对话框随即打开。每次刷新数据流 Gen2
+    时，我们都希望执行完整加载。确保将**更新方法**设置为**替换**。
+
+13. 请注意，有一条警告"某些列名包含不受支持的字符。我们是否应该修复它们？"湖屋不支持包含空格的列名称。选择**修复**以清除警告。
+
+14. 可使用列映射将数据流列映射到现有列。在我们的案例中，它是一个新表。因此，我们可以使用默认值。选择**保存设置**。
+
+### 任务 12：发布并重命名 SharePoint 数据流
+
+1.  您将会导航回到 **Power Query
+    窗口**。请注意，**右下角**的数据目标设置为**湖屋**。
+
+2.  在右下角，选择**发布**。
+
+    **注意：** 您将导航回到 **Data Factory
+屏幕**。发布数据流可能需要一些时间。
+
+3.  我们正在使用的数据流是 Dataflow
+    1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
+    旁边的**省略号 (...)**。选择**属性**。
+
+4.  "数据流属性"对话框随即打开。将**名称**更改为
+    **df_People_SharePoint**
+
+5.  在**说明**文本框中，添加 **Dataflow to ingest People data from
+    SharePoint to Lakehouse**。
+
+6.  选择**保存**。
+
+您将导航回到 **Data Factory 屏幕**。我们现在已将所有数据引入到
+Lakehouse。在下一个实验中，我们将安排数据流刷新。
+
+# 参考
+
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
+
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
+
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
+
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
+
+阅读更多深度 Fabric 体验公告博客：
+
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
+
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
+
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
+
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
+
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
+
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
+
+© 2023 Microsoft Corporation.保留所有权利。
+
+使用此演示/实验即表示您已同意以下条款：
+
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft
+提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
+
+严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
+
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
+
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
+
+对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
+
+**免责声明**
+
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。

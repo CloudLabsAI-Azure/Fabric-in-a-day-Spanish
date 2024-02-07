@@ -1,423 +1,466 @@
-![](Media/6.001.png)
+# 目录 {#目录 .TOC-Heading}
 
-# ​​Contenido 
+简介 
 
-- Presentación  
 - Lakehouse 
 
-    - Tarea 1: Consultar datos con SQL 
-    - Tarea 2: visualizar el resultado de T-SQL 
-    - Tarea 3: Crear consulta de objetos visuales 
-    - Tarea 4: Visualizar los resultados de la consulta 
-    - Tarea 5: Crear relaciones 
-    - Tarea 6: Crear medidas 
-    - Tarea 7: Sección opcional: crear relaciones 
-    - Tarea 8: Sección opcional: crear medidas 
+    - 任务 1：使用 SQL 查询数据
 
-- Referencias 
+    - 任务 2：可视化 T-SQL 结果
 
-# Presentación  
+    - 任务 3：创建视觉对象查询
 
-Tenemos datos de diferentes orígenes ingeridos en el lakehouse. En esta práctica de laboratorio, trabajará con el modelo de datos. Normalmente, hacemos actividades de modelado como crear relaciones, agregar medidas, etc. en Power BI Desktop. Aquí aprenderemos cómo hacer estas actividades de modelado en el servicio.  
+    - 任务 4：可视化查询结果
 
-Al final de este laboratorio, habrá aprendido:  
-  - Cómo explorar un lakehouse 
-  - Cómo explorar la vista de SQL del lakehouse 
-  - Cómo explorar el modelado de datos en el lakehouse
+    - 任务 5：创建关系 
 
-# Lakehouse 
+    - 任务 6：创建度量 
 
-## Tarea 1: Consultar datos con SQL 
+    - 任务 7：可选部分 - 创建关系
 
-1. Volvamos al área de trabajo de Fabric, **FAIAD_<username>**, que creó en el Laboratorio 2, Tarea 8. 
+    - 任务 8：可选部分 - 创建度量
 
-2. Vuelva a la **pantalla de Data Factory**. 
+参考  
 
-3. Verá tres tipos de lh_FAIAD: modelo semántico, punto de conexión SQL y lakehouse. Exploramos la opción lakehouse en un laboratorio anterior. Seleccione la opción **Punto de conexión de análisis SQL lh_FAIAD** para explorar la opción SQL. Esto le llevará a la **vista de SQL** del explorador.
+# 简介
 
-    ![](Media/6.1.png)
+我们已将来自不同来源的数据引入到
+Lakehouse。在本实验中，您将使用数据模型。我们通常在 Power BI Desktop
+中执行建模活动，例如创建关系、添加度量等。接下来我们将学习如何在该服务中执行这些建模活动。
 
-Si desea explorar los datos antes de crear un modelo de datos, puede utilizar SQL para hacerlo. Veamos dos opciones para usar SQL, la primera está orientada a desarrolladores y la segunda opción es para analistas. 
-Supongamos que desea conocer rápidamente las unidades vendidas por el proveedor mediante SQL. Tenemos dos opciones: escribir una declaración SQL o usar un objeto visual para crear la declaración SQL. 
+本实验结束后，您将学会：
 
-Observe que en el panel izquierdo puede ver las Tablas. Si expande las tablas, puede ver las columnas que componen la tabla. Además, hay opciones para crear vistas, funciones y procedimientos almacenados de SQL. Si tiene experiencia en SQL, no dude en explorar estas opciones. Intentemos escribir una consulta SQL simple. 
+-   如何探索 Lakehouse
 
-4. Desde el **menú superior**, seleccione **Nueva consulta SQL** o desde **la parte inferior izquierda panel**, seleccione **Consulta**. Esto le llevará a la vista de consultas de SQL.
+-   如何探索 Lakehouse 的 SQL 视图
 
-    ![](Media/6.2.png)
+-   如何探索 Lakehouse 中的数据建模
 
-5. Copie la **siguiente consulta de SQL** en la **ventana de consultas**. Esta consulta devolverá las unidades por nombre del proveedor. Para conseguirlo, se une la tabla Sales con las tablas Product y Supplier. 
- 
-      - SELECT su.Supplier_Name, SUM(Quantity) as Units 
-      - FROM dbo.Sales s 
-      - JOIN dbo.Product p on p.StockItemID = s.StockItemID 
-      - JOIN dbo.Supplier su on su.SupplierID = p.SupplierID 
-      - GROUP BY su.Supplier_Name 
+# Lakehouse
 
-6. Haga clic en **Run** para ver los resultados.
+### 任务 1：使用 SQL 查询数据
 
-7. Observe que hay una opción para guardar esta consulta como Vista si selecciona **Guardar como vista**.
+1.  让我们导航回到您在实验 2 任务 8 中创建的 Fabric 工作区
+    **FAIAD\_\<username\>**。
 
-8. En el panel del **explorador izquierdo**, en la sección **Queries**, observe que esta consulta se guarda en **Mis consultas** como **SQL query 1**. Esto proporciona una opción para cambiar el nombre de la consulta y guardarla para uso futuro. También hay una opción para ver las consultas que se comparten con usted mediante la carpeta **Consultas compartidas**.
+2.  导航回到 **Data Factory 屏幕**。
 
-    ![](Media/6.3.png)
+3.  您将看到三种类型的 lh_FAIAD - 语义模型、SQL 终结点和
+    Lakehouse。我们在之前的实验中探索了 Lakehouse 选项。选择 **lh_FAIAD
+    SQL 分析终结点**选项来探索 SQL 选项。您将导航到 Explorer 的 **SQL
+    视图**。
 
-## Tarea 2: visualizar el resultado de T-SQL 
+如果您想在创建数据模型之前探索数据，可以使用 SQL
+执行此操作。我们来看一下使用 SQL
+的两个选项，第一个选项适合开发人员，第二个选项适合分析师。
 
-1. También podemos visualizar el resultado de esta consulta. **Resalte la consulta** en el panel de consulta y seleccione **el panel Resultados**; luego seleccione **Visualización de resultados**.
+假设您想要使用 SQL 快速找出供应商销售的单位数量。我们有两种选项，编写
+SQL 语句或使用视觉对象创建 SQL 语句。
 
-    ![](Media/6.4.png)
+请注意，在左侧面板上，您可以查看表。展开表后，可以查看组成表的列。此外，还有创建
+SQL 视图、函数和存储过程的选项。如果您具备 SQL
+背景知识，请随意探索这些选项。我们来尝试编写一个简单的 SQL 查询。
 
-2. Se abre el cuadro de diálogo Visualización de resultados. Seleccione **Continuar**.
+4.  从**顶部菜单**选择**新建 SQL
+    查询**，或从**左下角面板**选择**查询**。您将导航到 SQL 查询视图。
 
-    ![](Media/6.5.png)
 
-3. Se abre el conocido cuadro de diálogo de vista de informe. Desde el panel **Datos**, expanda **SQL query 1**.
+5.  将**以下 SQL
+    查询**粘贴到**查询窗口**中。此查询将按供应商名称返回单位数量。它将
+    Sales 表与 Product 和 Supplier 表联接起来以实现此目的。
+```
+SELECT su.Supplier_Name, SUM(Quantity) as Units
 
-4. Seleccione los **campos Supplier_Name y Units**. El objeto visual de tabla se crea de forma predeterminada. 
+FROM dbo.Sales s
 
-5. En la sección **Visualizaciones**, cambie el tipo de objeto visual mediante la selección del **gráfico de Columna apilada**. 
+JOIN dbo.Product p on p.StockItemID = s.StockItemID
 
-6. **Cambie el tamaño** del objeto visual según sea necesario.  
- 
-     >**Nota:** Observe que todas las opciones disponibles para dar formato a un objeto visual en el informe de Power BI también están disponibles aquí. 
- 
-7. Seleccione **Guardar como informe** en la esquina inferior derecha. 
+JOIN dbo.Supplier su on su.SupplierID = p.SupplierID
+```
 
-8. Se abre el cuadro de diálogo Guardar el informe. Escriba **Units by Supplier** en el cuadro de texto **Especifique un nombre para el informe**. 
+按 su.Supplier_Name 分组
 
-9. Asegúrese de que el área de trabajo de destino es su área de trabajo de Fabric **FAIAD<username>**. 
+6.  点击 **Run** 查看结果。
 
-10. Seleccione **Guardar**. 
+7.  请注意，可以通过选择**另存为视图**来将此查询另存为视图。
 
-    ![](Media/6.6.png)
+8.  在**左侧** **Explorer**
+    面板上的**查询**部分，请注意此查询保存在**我的查询**下，为 **SQL
+    query
+    1**。这里提供一个选项用于重命名并保存该查询以供将来使用。还有一个选项用于使用**共享查询**文件夹查看与您共享的查询。
 
-## Tarea 3: Crear consulta de objetos visuales 
+###  任务 2：可视化 T-SQL 结果
 
-Se le dirigirá de vuelta a la vista del punto de conexión de análisis de SQL. Si no está familiarizado con SQL, puede ejecutar una consulta similar mediante consulta de objeto visual. 
+1.  我们还可以可视化该查询的结果。在查询窗格中**突出显示查询**，然后选择**结果窗格**，然后选择**可视化结果**。
 
-1. En el menú superior, seleccione **Nueva consulta de objeto visual**. Se abre un panel de consulta de objeto visual. 
+2.  可视化结果对话框随即打开。选择**继续**。
 
-2. Desde el panel **Explorador**, arrastre las tablas **Sales, Product y Supplier** al panel de consulta de objeto visual. 
+3.  熟悉的报表视图对话框打开。在**数据窗格**中，展开 **SQL query 1**。
 
-3. Con la tabla **Sales** seleccionada, en el menú del panel Consulta de objeto visual, seleccione **Combinar -> Combinar consultas**.
+4.  选择 **Supplier_Name** 和 **Units
+    字段**。默认情况下会创建表视觉对象。
 
-    ![](Media/6.7.png)
+5.  从**可视化**部分，选择**堆积柱形图**以更改视觉对象类型。
 
-4. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Product**. 
+6.  根据需要对视觉对象**调整大小**。\
+    \
+    **注意**：请注意，可用于对 Power BI
+    报表中的视觉对象设置格式的所有选项也可在此处使用。
 
-5. Seleccione **StockItemID** de las tablas **Sales y Product**. Esto se hace para combinar las tablas Sales y Product. 
+7.  选择右下角的**另存为报表**。
 
-6. En **Tipo de combinación**, seleccione **Externa**. 
+8.  "保存报表"对话框随即打开。在**为报表输入名称文本框**中，输入 **Units
+    by Supplier**。
 
-7. Seleccione **Aceptar**.
+9.  确保将目标工作区设置为您的 Fabric 工作区 **FAIAD\<username\>**
 
-    ![](Media/6.8.png)
+10. 选择**保存**。
 
-8. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Product**. 
+### 任务 3：创建视觉对象查询
 
-9. Seleccione **SupplierID** en el cuadro de diálogo que se abre. 
+您将导航回到 **SQL 分析终结点视图**。如果您不熟悉
+SQL，可以使用视觉对象查询执行类似的查询。
 
-10. Seleccione **Aceptar**. Observe que los pasos **Consultas combinadas y Producto expandido** se crean en la tabla **Sales**.
+1.  在顶部菜单中，选择**新建视觉对象查询**。视觉对象查询窗格随即打开。
 
-    ![](Media/6.9.png)
+2.  从 **Explorer** 窗格中，将 **Sales、Product 和 Supplier**
+    表拖至视觉对象查询窗格。
 
-11. De manera similar, combinemos la tabla Supplier. Dentro de la tabla **Sales**, seleccione **"+"** (ubicado después del Producto expandido) para agregar un nuevo paso. Se abre un cuadro de diálogo. 
+3.  选择 **Sales** 表后，从视觉对象查询窗格菜单中，选择**组合 -\>
+    合并查询**。
 
-12. Seleccione **Combinar -> Combinar consultas**.
+4.  合并对话框随即打开。从**用于合并的右表下拉菜单**中，选择
+    **Product**。
 
-    ![](Media/6.10.png)
+5.  从 **Sales** 和 **Product** 表中，选择 **StockItemID**。这将合并
+    Product 和 Sales 表。
 
-13. Se abrirá el cuadro de diálogo Combinar. Desde el **menú desplegable Tabla derecha para combinación**, seleccione **Supplier**. 
+6.  在**联接种类**中，选择**左外**。
 
-14. Seleccione **SupplierID** de las tablas **Sales y Supplier**. Esto se hace para combinar las tablas Supplier y Sales. 
+7.  选择**确定**。
 
-15. En **Tipo de combinación**, seleccione **Externa**. 
+8.  在**结果**窗格中，点击 **Product** 列旁边的**双箭头**。
 
-16. Seleccione **Aceptar**.
+9.  对话框随即打开，从对话框中选择 **SupplierID**。
 
-    ![](Media/6.11.png)
+10. 选择**确定**。注意，在 **Sales**
+    表中创建了**合并查询**和**展开的产品**步骤。
 
-17. En el panel **resultados**, haga clic en la **doble flecha** al lado de la columna **Supplier**. 
+11. 我们按同样的步骤来合并 Supplier 表。在 **Sales**
+    表中，选择**"+"**（位于展开的产品之后）以添加新步骤。对话框随即打开。
 
-18. Seleccione **Supplier_Name** en el cuadro de diálogo que se abre. 
+12. 选择**组合 -\> 合并查询**。
 
-19. Seleccione **Aceptar**. Observe que en la tabla Sales, se agregan C**onsultas combinadas** y se registran todos los **pasos**. 
- 
->**Nota:** Consulte la primera captura de pantalla en la Tarea 4.
+13. 合并对话框随即打开。从**用于合并的右表下拉菜单**中，选择
+    **Supplier**。
 
-## Tarea 4: Visualizar los resultados de la consulta 
+14. 从 **Sales** 和 **Supplier** 表中，选择 **SupplierID**。这将合并
+    Supplier 和 Sales 表。
 
-1. Ahora que tenemos la consulta lista, veamos el resultado. Seleccione **Visualización de resultados** en el panel de resultados.
+15. 在**联接种类**中，选择**左外**。
 
-    ![](Media/6.12.png)
+16. 选择**确定**。
 
-2. Se abre el cuadro de diálogo Visualización de resultados. En el panel **Datos** de la derecha, seleccione los campos **Supplier_Name y Quantity**. 
+17. 在**结果**窗格中，点击 **Supplier** 列旁边的**双箭头**。
 
-3. Seleccione el **objeto visual de tabla** en el panel Objeto visual para ver los resultados como una tabla. Observe que el resultado es similar al resultado de la consulta SQL anterior. Si lo desea, puede guardar este informe. Como guardamos un informe similar anteriormente, seleccionaremos **Cancelar**.
+18. 对话框随即打开，从对话框中选择 **Supplier_Name**。
 
-    ![](Media/6.13.png)
+19. 选择**确定**。请注意，在 Sales
+    表中，添加了**合并查询**，并**记录了所有步骤**。\
+    \
+    **注意：** 参考任务 4 下的第一个屏幕截图。
 
-## Tarea 5: Crear relaciones 
+### 任务 4：可视化查询结果
 
-Bien, ahora estamos listos para crear el modelo, establecer relaciones entre tablas y crear medidas. 
+1.  现在我们的查询已经就绪，我们来查看结果。从结果窗格中选择**可视化结果**。
 
-1. En la parte **inferior del panel de la izquierda**, seleccione **Modelo**. Verá que el panel central se parece a la vista Modelo que vemos en Power BI Desktop. 
+2.  可视化结果对话框随即打开。从右侧的**数据**窗格中，选择
+    **Supplier_Name** 和 **Quantity** 字段。
 
-2. **Cambie el tamaño y mueva** las tablas según sea necesario. 
+3.  在"视觉对象"窗格中，选择**表视觉对象**，以表的形式查看结果。请注意，结果类似于之前的
+    SQL
+    查询结果。您可以选择保存此报表。由于我们之前保存了类似的报表，因此我们将选择**取消**。
 
-3. Creemos una relación entre las tablas Sales and Reseller. Seleccione **ResellerID** de la tabla **Sales** y arrástrelo a **ResellerID** en la tabla **Reseller**.
+### 任务 5：创建关系
 
-    ![](Media/6.14.png)
+现在我们准备生成模型、生成表之间的关系并创建度量。
 
-4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Sales y que la **Columna** sea **ResellerID**. 
+1.  在**左侧面板底部**选择**模型**。您会注意到，中间窗格类似于我们在
+    Power BI Desktop 中看到的模型视图。
 
-5. Asegúrese de que la **Table 2** sea **Reseller** y que la **Columna** sea **ResellerID**. 
+2.  根据需要对表**调整大小和重新排列**。
 
-6. Asegúrese de que la **Cardinality** sea **Varios a uno** (*:1). 
+3.  我们在 Sales 和 Reseller 表之间创建关系。从 **Sales** 表中选择
+    **ResellerID**，并将其拖至 **Reseller** 表的 **ResellerID** 中。
 
-7. Asegúrese de que la **Dirección de filtro cruzado** sea **Único**. 
+4.  "新关系"对话框随即打开。确保 **Table 1** 是 **Sales**，**列**是
+    **ResellerID。**
 
-8. Seleccione **OK**.
+5.  确保 **Table 2** 是 **Reseller**，**列**是 **ResellerID。**
 
-    ![](Media/6.15.png)
+6.  确保**基数**为**多对一 (\*:1)**。
 
-9. De forma similar, creemos una relación entre las tablas Sales y Date. Seleccione **InvoiceDate** de la tabla **Sales** y arrástrelo a Date en la tabla **Date**. 
+7.  确保**交叉筛选器方向**为 **Single**。
 
-10. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **Sales** y que la **Columna** sea **InvoiceDate**. 
+8.  选择 **Ok**。
 
-11. Asegúrese de que la **Table 2** sea Date y que la **Columna** sea **Date**. 
+9.  同样在 Sales 和 Date 表之间创建关系。从 **Sales** 表中选择
+    **InvoiceDate**，并将其拖至 **Date** 表的 **Date** 中。
 
-12. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+10. "新关系"对话框随即打开。确保 **Table 1** 是 **Sales**，**列**是
+    **InvoiceDate。**
 
-13. Asegúrese de que la **Dirección de filtro cruzado sea Único**. 
+11. 确保 **Table 2** 是 **Date**，**列**是 **Date。**
 
-14. Seleccione **Ok**. 
+12. 确保**基数**为**多对一 (\*:1)**。
 
-    ![](Media/6.16.png)
+13. 确保**交叉筛选器方向**为 **Single**。
 
-    **Punto de control:** su modelo debe tener dos relaciones entre las tablas Sales y Reseller y las tablas Sales y Date como se muestra en la siguiente captura de pantalla: 
+14. 选择 **Ok**。
 
-    ![](Media/6.17.png)
+**检查点：** 您的模型应在 Sales 和 Reseller 表以及 Sales 和 Date
+表之间建立两种关系，如下面的屏幕截图所示：
 
-Por razones de tiempo, no crearemos todas las relaciones. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las relaciones restantes. 
+由于时间原因，我们不会创建所有关系。如果时间允许，实验结束后，您可以完成可选部分。可选部分将逐步介绍创建其余关系的步骤。
 
-### Tarea 6: Crear medidas 
+### 任务 6：创建度量
 
-Agreguemos algunas medidas que necesitamos para crear el panel de Sales. 
+我们添加一些创建销售仪表板时所需的度量。
 
-1. Seleccione la **tabla Sales** desde la vista del modelo. Queremos agregar las medidas a la tabla Sales. 
+1.  从模型视图中选择 **Sales 表**。我们想要将度量添加到 Sales 表中。
 
-2. En el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+2.  从顶部菜单中，选择**主页 -\> 新建度值**。请注意，编辑栏已显示。
 
-3. Introduzca **Sales = SUM(Sales[Sales_Amount])** en la **barra de fórmulas**. 
+3.  在**编辑栏**中输入 **Sales = SUM(Sales\[Sales_Amount\])**。
 
-4. Haga clic en la **marca de verificación** izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+4.  点击编辑栏左侧的**复选标记**，或点击 **Enter** 按钮。
 
-5. En el panel Propiedades de la derecha, expanda la sección **Formato**. 
+5.  在右侧的"属性"面板中，展开**格式化**部分。
 
-6. En el menú desplegable Formato, seleccione **Moneda**. 
+6.  从**格式**下拉菜单中，选择**货币**。
 
-7. Establezca **Posiciones decimales** en **0**.
+7.  将**小数位数**设置为 **0**。
 
-    ![](Media/6.18.png)
+8.  从顶部菜单中选择 **Sales 表**后，选择**主页 -\>
+    新建度量值**。请注意，编辑栏已显示。
 
-8. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+9.  在**编辑栏**中输入 **Units = SUM(Sales\[Quantity\])**。
 
-9. Introduzca **Units = SUM(Sales[Quantity])** en la **barra de fórmulas**. 
+10. 点击编辑栏左侧的**复选标记**，或点击 **Enter** 按钮。
 
-10. Haga clic en la **marca de verificación** izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+11. 在右侧的"属性"面板中，展开**格式化**部分（加载"属性"面板可能需要一些时间）。
 
-11. En el panel Propiedades a la derecha, expanda la sección **Formato** (el panel Propiedades puede tardar unos momentos en cargarse). 
+12. 从**格式**下拉菜单中，选择**整数**。
 
-12. En el menú desplegable **Formato**, seleccione **Número entero**. 
+13. 将**千位分隔符**设置为**是**。
 
-13. Establezca el **Separador de miles** en **Sí**.
+14. 从顶部菜单中选择 **Sales 表**后，选择**主页 -\>
+    新建度量值**。请注意，编辑栏已显示。
 
-    ![](Media/6.19.png)
+15. 在**编辑栏**中输入 **Orders = DISTINCTCOUNT(Sales\[InvoiceID\])**。
 
-14. Con la **tabla Sales** seleccionada en el menú superior, seleccione **Inicio -> Nueva medida**. Observe que se muestra la barra de fórmulas. 
+16. 点击编辑栏左侧的**复选标记**，或点击 **Enter** 按钮。
 
-15. Introduzca **Orders = DISTINCTCOUNT(Sales[InvoiceID])** en la **barra de fórmulas**. 
+17. 在右侧的"属性"面板中，展开**格式化**部分。
 
-16. Haga clic en la marca de verificación izquierda de la barra de fórmulas o haga clic en el botón **Enter**. 
+18. 从**格式**下拉菜单中，选择**整数**。
 
-17. En el panel Propiedades de la derecha, expanda la sección **Formato**. 
+19. 将**千位分隔符**设置为**是**。
 
-18. En el menú desplegable Formato, seleccione **Número entero**. 
+同样由于时间原因，我们不会创建所有度量。如果时间允许，实验结束后，您可以完成可选部分。可选部分将逐步介绍创建其余度量的步骤。
 
-19. Establezca el **Separador de miles** en **Sí**.
+我们已经创建了数据模型，下一步是创建报表。我们将在下一个实验中执行此任务。
 
-    ![](Media/6.20.png)
+### 任务 7：可选部分 - 创建关系
 
-De nuevo, por razones de tiempo, no crearemos todas las medidas. Si el tiempo lo permite, puede completar la sección opcional al final de la práctica de laboratorio. La sección opcional recorre los pasos para crear las medidas restantes. 
-Hemos creado un modelo de datos, el siguiente paso es crear un informe. Lo haremos en el siguiente laboratorio. 
+我们来添加其余的关系。
 
-## Tarea 7: Sección opcional: crear relaciones 
+1.  在 **Sales** 表和 **Product** 表之间创建**多对一**关系。从 **Sales**
+    表中选择 **StockItemID**，从 **Product** 表中选择 **StockItemID**。
 
-Agreguemos las relaciones restantes. 
+2.  同样，在 **Sales** 和 **People** 之间创建**多对一**关系。从
+    **Sales** 中选择 **SalespersonPersonID**，从 **People** 中选择
+    **PersonID**。
 
-1. Cree una relación **varios a uno** entre las tablas **Sales** y **Product**. Seleccione **StockItemID** en la tabla **Sales** y **StockItemID** en la tabla **Product**. 
+**检查点：** 您的模型应类似于下面的屏幕截图所示。
 
-2. Igualmente, cree una relación **varios a uno** entre las tablas **Sales** y **People**. Seleccione **SalespersonPersonID** de **Sales** y **PersonID** de **People**. 
+3.  我们接下来在 Product 和 Supplier 之间创建关系。从 **Product**
+    表中选择 **SupplierID**，并将其拖至 **Supplier** 表的 **SupplierID**
+    中。
 
-     **>Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+4.  "新关系"对话框随即打开。确保 **Table 1** 是 **Product**，**列**是
+    **SupplierID。**
 
-    ![](Media/6.21.png)
+5.  确保 **Table 2** 是 **Supplier**，**列**是 **SupplierID。**
 
-3. Ahora creemos una relación entre las tablas Product y Supplier. Seleccione **SupplierID** de la tabla **Product** y arrástrelo a **SupplierID** en la tabla **Supplier**. 
+6.  确保**基数**为**多对一 (\*:1)**。
 
-4. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Product y que la **Columna** sea **SupplierID**. 
+7.  确保**交叉筛选器方向**为**两者**。
 
-5. Asegúrese de que la **Table 2** sea **Supplier** y que la **Columna** sea **SupplierID**. 
+8.  选择 **Ok**。
 
-6. Asegúrese de que la **Cardinality** sea **Varios a uno** (*:1). 
+9.  同样，在 **Product_Details** 和 **Product**
+    之间创建**多对一**关系，**交叉筛选器方向**为**两者**。从
+    **Product_Details** 中选择 **StockItemID**，从 **Product** 中选择
+    **StockItemID**。
 
-7. Asegúrese de que la **Dirección de filtro cruzado** sea **Ambas**. 
+10. 我们接下来在 Reseller 和 Geo 之间创建关系。从 **Reseller** 表中选择
+    **PostalCityID**，并将其拖至 **Geo** 表中的 **CityID**。
 
-8. Seleccione **OK**.
+11. "新关系"对话框随即打开。确保 **Table 1** 是 **Reseller**，**列**是
+    **PostalCityID。**
 
-    ![](Media/6.22.png)
+12. 确保 **Table 2** 是 **Geo**，**列**是 **CityID。**
 
-9. De manera similar, cree una relación **varios a uno** con **Dirección de filtro cruzado** como **Ambas** entre **Product_Details** y **Product**. Seleccione **StockItemID** de **Product_Details** y **StockItemID** de **Product**. 
+13. 确保**基数**为**多对一 (\*:1)**。
 
-10. Ahora creemos una relación entre las tablas Reseller y Geo. Seleccione **PostalCityID** de la tabla **Reseller** y arrástrela sobre **CityID** en la tabla **Geo**. 
+14. 确保**交叉筛选器方向**为**两者**。
 
-11. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **Reseller** y que la **Columna** sea **PostalCityID**. 
+15. 选择 **Ok**。
 
-12. Asegúrese de que la **Table 2** sea **Geo** y que la **Columna** sea **CityID**. 
+16. 我们接下来在 Customer 和 Reseller 之间创建关系。从 **Customer**
+    表中选择 **ResellerID**，并将其拖至 **Reseller** 表的 **ResellerID**
+    中。
 
-13. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+17. "新关系"对话框随即打开。确保 **Table 1** 是 **Customer**，**列**是
+    **ResellerID。**
 
-14. Asegúrese de que la **Dirección de filtro cruzado** sea **Ambas**. 
+18. 确保 **Table 2** 是 **Reseller**，**列**是 **ResellerID。**
 
-15. Seleccione **OK**.
+19. 确保**基数**为**多对一 (\*:1)**。
 
-    ![](Media/6.23.png)
+20. 确保**交叉筛选器方向**为 **Single**。
 
-16. Ahora creemos una relación entre las tablas Customer y Reseller. Seleccione **ResellerID** de la tabla **Customer** y arrástrelo a **ResellerID** en la tabla **Reseller**. 
+21. 选择 **Ok**。
 
-17. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea Customer y que la **Columna** sea **ResellerID**. 
+**检查点：** 您的模型应类似于下面的屏幕截图所示。
 
-18. Asegúrese de que la **Table 2** sea **Reseller** y que la Columna sea **ResellerID**. 
+22. 我们接下来在 PO 和 Date 之间创建关系。从 **PO** 表中选择
+    **Order_Date**，并将其拖至 **Date** 表中的 **Date**。
 
-19. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+23. "新关系"对话框随即打开。确保 **Table 1** 是 **PO**，**列**是
+    **Order_Date。**
 
-20. Asegúrese de que la **Dirección de filtro cruzado sea Único**. 
+24. 确保 **Table 2** 是 **Date**，**列**是 **Date。**
 
-21. Seleccione **OK**.
+25. 确保**基数**为**多对一 (\*:1)**。
 
-    ![](Media/6.24.png)
+26. 确保**交叉筛选器方向**为 **Single**。
 
-      >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+27. 选择 **Ok**。
 
-    ![](Media/6.25.png)
+28. 同样，在 **PO** 和 **Product** 之间创建**多对一**关系。从 **PO**
+    中选择 **StockItemID**，从 **Product** 中选择 **StockItemID**。
 
-22. Ahora creemos una relación entre las tablas PO y Date. Seleccione **Order_Date** de la tabla PO y arrástrela sobre **Date** en la tabla **Date**. 
+29. 同样，在 **PO** 和 **People** 之间创建**多对一**关系。从 **PO**
+    中选择 **ContactPersonID**，从 **People** 中选择 **PersonID**。
 
-23. Se abre el cuadro de diálogo Nueva relación. Asegúrese de que la **Table 1** sea **PO** y que la **Columna** sea **Order_Date**. 
+我们已经创建了所有关系。
 
-24. Asegúrese de que la **Table 2** sea **Date** y que la **Columna** sea **Date**. 
+**检查点：** 您的模型应类似于下面的屏幕截图所示。
 
-25. Asegúrese de que la **Cardinality** sea **Varios a uno (*:1)**. 
+### 任务 8：可选部分 - 创建度量
 
-26. Asegúrese de que la **Dirección de filtro cruzado** sea **Único**. 
+我们来添加其余的度量。
 
-27. Seleccione **OK**.
+1.  在编辑栏中输入 **Avg Order = DIVIDE(\[Sales\], \[Orders\])**。
 
-    ![](Media/6.26.png)
+2.  点击编辑栏的**复选标记**，或点击 Enter 按钮。
 
-28. Igualmente, cree una relación varios a uno entre las tablas **PO** y **Product**. Seleccione **StockItemID** de **PO** y **StockItemID** de **Product**. 
+3.  保存度量后，请注意顶部菜单上的"度量工具"选项。点击**度量工具**。
 
-29. Igualmente, cree una relación **varios a uno** entre las tablas **PO** y **People**. Seleccione **ContactPersonID** de **PO** y **PersonID** de **People**.  
-Hemos terminado de crear todas las relaciones.  
+4.  在"格式"下拉菜单中，点击**货币**。
 
-    >**Punto de control:** su modelo debe parecerse al de la siguiente captura de pantalla.
+5.  按照相似的步骤添加以下度量：
 
-    ![](Media/6.27.png)
+    a.  **GM = SUM(Sales\[Line_Profit\])**，格式设置为**货币，小数点后 2
+        位**
 
-## Tarea 8: Sección opcional: crear medidas 
+    b.  **GM% = DIVIDE(\[GM\],
+        \[Sales\])**，格式设置为**百分比，小数点后 2 位**
 
-Agreguemos las medidas restantes. 
+    c.  **No of Customers = COUNTROWS(Customer)**，格式设置为**整数**
 
-1. Introduzca **Avg Order = DIVIDE([Sales], [Orders])** en la barra de fórmulas. 
+# 参考
 
-2. Haga clic en la **marca de verificación** en la barra de fórmulas o haga clic en el botón Enter. 
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
 
-3. Una vez guardada la medida, observe la opción Herramientas de medición en el menú superior. Haga clic en **Herramientas de medición**. 
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
 
-4. En el menú desplegable Formato, haga clic en **Moneda**.
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
 
-    ![](Media/6.28.png)
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
 
-5. Siga pasos similares para agregar las siguientes medidas: 
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
 
-      - **GM = SUM(Sales[Line_Profit])** con formato **Moneda, posición decimal 2** 
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
 
-      - **GM% = DIVIDE([GM], [Sales])** con formato **Porcentaje, posición decimal 2** 
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
 
-      - **No of Customers** = **COUNTROWS(Customer)** con formato **Número entero** 
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
 
-# Referencias 
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
 
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes. 
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
 
-  ![](Media/6.29.png)
+阅读更多深度 Fabric 体验公告博客：
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric. 
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric/blog/2023/11/15/prepare-your-data-for-ai-innovation-with-microsoft-fabric-now-generally-available/) completo. 
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
 
-- Explore Fabric a través de la [Visita guiada](https://guidedtour.microsoft.com/en-us/guidedtour/microsoft-fabric/microsoft-fabric/1/1) 
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
 
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://app.powerbi.com/home?experience=power-bi)
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
 
-- Visite el [sitio web de Microsoft Fabric](https://www.microsoft.com/en-in/microsoft-fabric)
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
 
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://learn.microsoft.com/en-us/training/browse/?products=fabric&resource_type=module) 
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
 
-- Explore la [documentación técnica de Fabric](https://learn.microsoft.com/en-us/fabric/) 
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
 
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://info.microsoft.com/ww-landing-unlocking-transformative-data-value-with-microsoft-fabric.html)
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
 
-- Únase a la [comunidad de Fabric](https://community.fabric.microsoft.com/) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric: 
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
 
-- [Experiencia de Data Factory en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-data-factory-in-microsoft-fabric/) 
+© 2023 Microsoft Corporation.保留所有权利。
 
-- [Experiencia de Synapse Data Engineering en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-engineering-in-microsoft-fabric/)  
+使用此演示/实验即表示您已同意以下条款：
 
-- [Experiencia de Synapse Data Science en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-science-in-microsoft-fabric/) 
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft
+提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
 
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/introducing-synapse-data-warehouse-in-microsoft-fabric/)  
+严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
 
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/sense-analyze-and-generate-insights-with-synapse-real-time-analytics-in-microsoft-fabric/)
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
 
-- [Blog de anuncios de Power BI](https://powerbi.microsoft.com/en-us/blog/empower-power-bi-users-with-microsoft-fabric-and-copilot/)
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
 
-- [Experiencia de Data Activator en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/driving-actions-from-your-data-with-data-activator/)  
+对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
 
-- [Administración y gobernanza en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/administration-security-and-governance-in-microsoft-fabric/) 
+**免责声明**
 
-- [OneLake en el blog de Fabric](https://blog.fabric.microsoft.com/en-us/blog/microsoft-onelake-in-fabric-the-onedrive-for-data/) 
-
-- [Blog de integración de Dataverse y Microsoft Fabric](https://cloudblogs.microsoft.com/dynamics365/it/2023/05/24/new-dataverse-enhancements-and-ai-powered-productivity-with-microsoft-365-copilot/) 
-
-© 2023 Microsoft Corporation. Todos los derechos reservados. 
-
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones: 
-
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella. 
-
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA. 
-
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE. 
-
-**COMENTARIOS**. Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo. 
-
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO. 
-
-**DECLINACIÓN DE RESPONSABILIDADES**
-
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas. 
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。

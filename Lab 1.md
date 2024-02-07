@@ -1,218 +1,292 @@
-![](Media/1.1.png)
+# 目录 
 
-# Contenido
-- Estructura del documento
-- Escenario/planteamiento del problema
-- Información general del informe de Power BI Desktop
-    - Tarea 1: Configurar Power BI Desktop en un entorno de laboratorio
-    - Tarea 2: Analizar el informe de Power BI Desktop
-    - Tarea 3: Revisar consultas de Power Query
-- Referencias
+文档结构 
 
+应用场景/问题陈述 
 
-# Estructura del documento
+- Power BI Desktop 报表概览
 
-El laboratorio incluye pasos que el usuario debe seguir junto con capturas de pantalla asociadas que sirven de ayuda visual. En cada captura de pantalla, las secciones se resaltan con cuadros de color naranja para indicar en qué áreas debe centrarse el usuario.
+    - 任务 1：在实验环境中设置 Power BI Desktop
 
-# Escenario/planteamiento del problema
+    -   任务 2：分析 Power BI Desktop 报表
 
-Fabrikam, Inc. es un distribuidor mayorista de artículos novedosos. Como mayorista, los clientes de Fabrikam son en su mayoría empresas que revenden a particulares. Fabrikam vende a clientes minoristas en todo Estados Unidos, incluidas tiendas especializadas, supermercados, tiendas de informática y tiendas de atracciones turísticas. Fabrikam también vende a otros mayoristas a través de una red de agentes que promocionan los productos en nombre de Fabrikam. Si bien todos los clientes de Fabrikam tienen su sede actualmente en los Estados Unidos, la compañía tiene la intención de impulsar la expansión a otros países y regiones.
+    -   任务 3：查看 Power Queries
 
-Es analista de datos en el equipo de ventas. Usted recopila, limpia e interpreta conjuntos de datos para resolver problemas comerciales. También reúne visualizaciones como cuadros y gráficos, escribe informes y los presenta a los encargados de tomar decisiones de la organización.
+参考 
 
-Para extraer información valiosa de los datos, se extraen datos de varios sistemas, se limpian y se combinan. Extrae datos de los siguientes orígenes:
+# 文档结构
 
-- **Datos de ventas:** estos datos provienen del sistema ERP y los datos se almacenan en una base de datos ADLS Gen2 o Databricks. Se actualiza a mediodía/12:00 todos los días.
-- **Datos de proveedores:** estos datos provienen de diferentes proveedores y se almacenan en una base de datos de Snowflake. Se actualiza a medianoche/00:00 todos los días.
-- **Datos del cliente:** estos datos provienen de Customer Insights y se almacenan en Dataverse. Los datos siempre están actualizados.
-- **Datos de los empleados:** estos datos provienen del sistema de recursos humanos; se almacenan como un archivo de exportación en una carpeta de SharePoint. Se actualiza a todas las mañanas a las 9:00. 
+本实验包含用户需要遵循的步骤以及可提供直观协助的关联屏幕截图。在每个屏幕截图中，以橙色框突出显示的部分指出了用户应注意的区域。
 
-    ![](Media/1.2.png)
- 
-Actualmente está creando un conjunto de datos en Power BI Premium que extrae los datos de los sistemas de origen anteriores para satisfacer sus necesidades de informes y ofrecer a los usuarios finales la capacidad de autoservicio. Use Power Query para actualizar su modelo. 
+# 应用场景/问题陈述
 
-**Se enfrenta a lo siguiente:**
+Fabrikam, Inc. 是一家经营创意商品的批发分销商。作为批发商，Fabrikam
+的客户主要是向个人售卖商品的公司。Fabrikam
+向美国各地的零售客户销售产品，这些客户包括专卖店、超市、计算存储和景区商店。Fabrikam
+还通过代表 Fabrikam 推广产品的代理商网络向其他批发商销售产品。虽然
+Fabrikam
+的所有客户目前都位于美国，但该公司正打算将业务拓展到其他国家/地区。
 
-- Debe actualizar su conjunto de datos al menos tres veces al día para adaptarse a los diferentes tiempos de actualización para los diferentes orígenes de datos.
-- Sus actualizaciones tardan mucho tiempo, ya que necesita hacer una actualización completa cada vez para capturar cualquier actualización que haya ocurrido en los sistemas de origen.
-- Cualquier error en cualquiera de los orígenes de datos de los que extrae provocará que se interrumpa la actualización del conjunto de datos. Muchas veces, el archivo del empleado no se carga a tiempo, lo que provoca que se interrumpa la actualización del conjunto de datos. 
-- Se necesita mucho tiempo para hacer cambios en su modelo de datos, ya que Power Query tarda mucho en actualizar sus versiones preliminares, dado el gran tamaño de los datos y las transformaciones complejas. 
-- Necesita que un PC con Windows use Power BI Desktop aunque el estándar corporativo es Mac.
+您是销售团队的数据分析师。您收集、清理和解释数据集以解决业务问题。还整理图表和图形等可视化对象，撰写报表，并呈现给组织中的决策者。
 
-Oyó hablar sobre Microsoft Fabric y decidió probar para ver si abordaba sus desafíos.
+为了从数据中获得有价值的见解，您需要从多个系统中提取数据，对其进行清理并整理在一起。您可以从以下来源提取数据：
 
-# Información general del informe de Power BI Desktop
-Antes de comenzar con Fabric, veamos el informe actual en Power BI Desktop para comprender las transformaciones y el modelo.
+-   **销售数据：** 来自 ERP 系统，数据存储在 ADLS Gen2 数据库或
+    Databricks 中。每天中午 12 点更新。
 
-## Tarea 1: Configurar Power BI Desktop en un entorno de laboratorio
-1. Abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. El archivo se abrirá en Power BI Desktop.
- 
-    ![](Media/1.3.png)
+-   **供应商数据：** 来自不同的供应商，数据存储在 Snowflake
+    数据库中。每天凌晨 12 点更新。
 
-2. Se abre el cuadro de diálogo Escriba su dirección de correo electrónico. Navegue a la pestaña **Detalles del ambiente** en el panel derecho del entorno de laboratorio.
-3. Copie las **credenciales de nombre de usuario** y péguelas en el cuadro de texto Correo electrónico del cuadro de diálogo.
-4. Seleccione **Continuar**.
+-   **客户数据：** 来自 Customer Insights，数据存储在 Dataverse
+    中。此数据随时更新。
 
-    ![](Media/1.4.png)
- 
-5. Se abre el cuadro de diálogo Vamos a iniciar sesión. Seleccione **Cuenta profesional o educativa**.
-6. Seleccione **Continuar**.
+-   **员工数据：** 来自 HR 系统；作为导出文件存储在 SharePoint
+    文件夹中。每天早上 9 点更新。
 
-    ![](Media/1.5.png)
- 
-7. Se abre el cuadro de diálogo Iniciar sesión. Copie las **credenciales de nombre de usuario** de la pestaña **Detalles del ambiente** para volver a introducirlas.
-8. Seleccione **Siguiente**.
 
-    ![](Media/1.6.png)
- 
-9. En el siguiente cuadro de diálogo, vuelva a introducir las **credenciales de contraseña** de la pestaña **Detalles del ambiente**.
-10. Seleccione **Iniciar sesión**.
-11. Se abre el cuadro de diálogo Action Required, que solicita configurar la autenticación multifactor. No necesitamos configurar esto, ya que se trata de un entorno de laboratorio. Seleccione **Ask later**.
+您正在 Power BI Premium
+上构建一个数据集，该数据集从上述源系统中提取数据，以满足您的报告需求并为最终用户提供自助服务功能。您使用
+Power Query 更新模型。
 
-    ![](Media/1.7.png)
- 
-12. Seleccione **No, iniciar sesión solo en la aplicación** en el siguiente cuadro de diálogo. Ahora se abrirá Power BI Desktop.
+**您面临以下几个挑战：**
 
-## Tarea 2: Analizar el informe de Power BI Desktop
-El siguiente informe analiza las ventas de Fabrikam. Los KPI se enumeran en la parte superior izquierda de la página. Los objetos visuales restantes resaltan Sales a lo largo del tiempo, por territorio, grupo de productos y empresa revendedora. 
+-   您每天要刷新数据集至少 3 次，以适应不同数据源的不同更新时间。
 
-![](Media/1.8.png)
- 
-**Nota:** En esta capacitación, nos centraremos en la adquisición, transformación y modelado de datos mediante las herramientas disponibles en Fabric. No nos centraremos en el desarrollo de informes ni en la navegación. Dediquemos un par de minutos a comprender el informe y avancemos a los siguientes pasos.
+-   刷新需要很长时间，因为您每次都需要完全刷新，以捕获源系统中的所有更新。
 
-1. Analicemos los datos por zona de ventas. Seleccione **New England en el objeto visual Sales Territory** (gráfico de dispersión). Vea que en las Ventas a lo largo del tiempo, el revendedor Tailspin Toys tiene más ventas en comparación con Wingtip Toys en New England. Si observa el gráfico de columnas de YoY% de ventas, notará que el crecimiento de las ventas de Wingtip Toys ha sido bajo y ha disminuido trimestre tras trimestre durante el año pasado. Tras un pequeño repunte en el tercer trimestre, volvió a bajar en el cuarto.
+-   用于提取数据的任何数据源中一旦发生任何错误，都将导致数据集刷新中断。很多时候，员工文件没有按时上传，导致数据集刷新中断。
 
-    ![](Media/1.9.png)
- 
-2. Comparemos esto con la zona de las Rocky Mountains. Seleccione **Rocky Mountains en el objeto visual Sales Territory** (gráfico de dispersión). Observe que en el gráfico de columnas YoY% de ventas, las ventas de Wingtip Toys aumentaron drásticamente en el cuarto trimestre de 2022 después de haber sido bajas durante los dos trimestres anteriores.
+-   由于数据量大且转换复杂，对数据模型进行任何更改都需要很长时间，因为
+    Power Query 需要很长时间刷新预览。
 
-    ![](Media/1.10.png)
- 
-3. Seleccione **Rocky Mountains en el objeto visual Sales Territory** para eliminar el filtro.
-4. Desde el objeto visual Gráfico de dispersión en la parte inferior central de la pantalla (Pedidos de venta por Sales), seleccione el valor atípico en la parte superior derecha (4.º cuadrante). Observe que el porcentaje de margen es del 52 %, que está por encima del promedio del 50 %. Además, el YoY% de ventas ha aumentado en los dos últimos trimestres de 2022.
+-   您需要使用 Windows PC 才能使用 Power BI Desktop，但企业标配的是
+    Mac。
 
-    ![](Media/1.11.png)
- 
-5. Seleccione el revendedor atípico en el objeto visual del gráfico de dispersión para **eliminar el filtro**.
+您听说过 Microsoft Fabric，并决定尝试一下，看看它能否解决您的挑战。
 
-6. Obtengamos los detalles del producto por grupo de productos y revendedor. En el objeto visual del gráfico de barras de Sales por Product Group y Reseller Company, **haga clic en la barra de Packaging Materials de Tailspin Toys** y, en el cuadro de diálogo, seleccione **Obtener detalles -> Product Detail**.
+# Power BI Desktop 报表概览
 
-    ![](Media/1.12.png)
- 
-Se le dirigirá a la página que proporciona los detalles del producto. Tenga en cuenta que también hay algunos pedidos futuros.
+在开始使用 Fabric 之前，我们先来看看 Power BI Desktop
+中的当前报表，以了解转换和模型。
 
-7. Una vez que haya terminado de revisar esta página, seleccione **Ctrl+flecha hacia atrás** en la parte superior derecha de la página para volver al informe de ventas.
+### 任务 1：在实验环境中设置 Power BI Desktop
 
-    ![](Media/1.13.png)
- 
-8. Analice el informe a su gusto. Una vez listo, veamos la vista del modelo. En el panel de la izquierda, seleccione el icono **Vista del modelo**. Observe que hay dos tablas de hechos, Sales y PO.
+1.  打开 **FAIAD.pbix**，它位于您的实验环境**桌面**的 **Report**
+    文件夹中。文件将在 Power BI Desktop 中打开。
 
-    a. La granularidad de Sales de ventas se organiza por Date, Reseller, Product y People. Date, Reseller, Product y People se conectan con Sales.
+2.  "输入你的电子邮件地址"对话框随即打开。导航到实验环境右侧面板上的**环境详细信息**选项卡。
 
-    b. La granularidad de los datos de PO se organiza por Date, Product y People. Date, Product y People se conectan con PO.
-    
-    c. Disponemos de datos de Supplier por Product. Supplier se conecta con Product.
-    
-    d. Contamos con datos de ubicación de Reseller por Geo. Geo se conecta con Reseller.
-    
-    e. Disponemos de información de Customer por Reseller. Customer se conecta con Reseller. 
+3.  复制**用户名凭据**，并将其粘贴到对话框的电子邮件地址文本框中。
 
-## Tarea 3: Revisar consultas de Power Query
-1. Echemos un vistazo a Power Query para entender los orígenes de datos. En la cinta de opciones, seleccione **Inicio -> Transformar datos**.
+4.  选择**继续**。
 
-    ![](Media/1.14.png)
- 
-2. Se abre la ventana de Power Query. En la cinta de opciones, seleccione **Inicio -> Configuración de origen de datos**. Se abre el cuadro de diálogo Configuración de origen de datos. A medida que se desplaza por la lista, verá que hay cuatro orígenes principales, como se menciona en el planteamiento del problema:
+5.  "为您登录"对话框随即打开。选择**工作或学校帐户**。
 
-    a.	Snowflake
+6.  选择**继续**。
 
-    b.	SharePoint
+7.  登录对话框随即打开。从**环境详细信息**选项卡复制**用户名凭据**以重新输入。
 
-    c.	ADLS Gen2
+8.  选择**下一步**。
 
-    d.	Dataverse
+9.  在下一个对话框中，从**环境详细信息**选项卡复制**密码凭据**以重新输入。
 
-3. Seleccione **Cerrar** para cerrar el cuadro de diálogo Configuración del origen de datos.
+10. 选择**登录**。
 
-    ![](Media/1.15.png)
- 
-4. En el panel Consultas de la izquierda, observe que las consultas están agrupadas por origen de datos. 
-5. Vea que la carpeta **DataverseData** tiene datos del cliente disponibles en cuatro consultas diferentes: BabyBoomer, GenX, GenY y GenZ. Estas cuatro consultas se adjuntan para crear la consulta Customer.
-6. Puede introducir las credenciales para el origen de datos de Dataverse si escribe el **Nombre de usuario** y **Contraseña** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio). Seleccione la opción de cuenta de Microsoft.
+11. "Action
+    Required"对话框随即打开，请求设置多重身份验证。我们不需要进行此设置，因为这是实验环境。选择
+    **Ask Later。**
 
-    ![](Media/1.16.png)
- 
-7. Para el origen de datos ADLS, utilice la opción **Clave de cuenta** e introduzca la **Clave de acceso de la cuenta de almacenamiento de ADLS** que está disponible en las **Variables de entorno** (al lado de la Guía de laboratorio).
+12. 在下一个对话框中选择**否，仅登录应用**。Power BI Desktop 将打开。
 
-8. Observe que la carpeta **ADLSData** tiene varias dimensiones: Geo, Product, Reseller y Date. También tiene datos de Sales.
+### 任务 2：分析 Power BI Desktop 报表
 
-    a. **Dimensión Geo** se crea mediante la combinación de datos de la consulta de Cities, Countries y States. 
-    
-    b. **Dimensión de Product** se crea mediante la combinación de datos de la consulta Product Groups y Product Item Group.
-    
-    c. **Dimensión de Reseller** se filtra mediante la consulta BuyingGroup.
-    
-    d. **Datos de Sales** se crea mediante la combinación de InvoiceLineItems con la consulta Invoice.
+下面的报表分析了 Fabrikam 的销售情况。页面左上角列出了
+KPI。其余的视觉对象突出显示了按区域、产品组和经销商公司划分的一段时间内的销售情况。
 
-9. Para el origen de datos Snowflake, use el **SnowFlake Username** y la **SnowFlake Password** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio).
+**注意：** 在本次培训中，我们重点关注使用 Fabric
+中提供的工具进行数据采集、转换和建模。我们不会专注于报表开发或导航。让我们花几分钟时间来理解该报表，然后继续执行后续步骤。
 
-10. Observe que la carpeta **SnowflakeData** tiene la dimensión Supplier y los datos de PO (pedido/gasto).
-    
-    a. **Dimensión de Supplier** se crea mediante la combinación de la consulta de proveedores con la consulta SupplierCategories.
+1.  我们按销售区域分析数据。选择**销售区域中的新英格兰**（散点图）视觉对象。从一段时间内的销售情况来看，经销商
+    Tailspin Toys 在新英格兰的销售额高于 Wingtip
+    Toys。如果您查看销售额同比百分比柱形图，就会发现 Wingtip Toys
+    的销售额增长率一直很低，并且在去年逐季下降。在第三季度小幅反弹后，第四季度再次下跌。
 
-    b. **Datos de PO** se crea mediante la combinación de PO con la consulta PO Line Items.
+2.  我们将其与落基山脉地区的情况进行比较。选择**销售区域中的落基山脉**（散点图）视觉对象。请注意，在销售额同比百分比柱形图中，Wingtip
+    Toys 前两个季度的销售额一直很低，但在 2022 年第四季度大幅增长。
 
-11. Para el origen de datos SharePoint, introduzca el **nombre de usuario** y la **contraseña** disponibles en la pestaña **Variables de entorno** (junto a la Guía de laboratorio). Seleccione la opción de cuenta de Microsoft.
-12. Observe que la carpeta **SharepointData** tiene la dimensión People.
- 
-    ![](Media/1.17.png)
+3.  选择**销售区域中的落基山脉**删除筛选器。
 
-Ahora sabemos a qué nos enfrentamos. En los siguientes laboratorios, crearemos una consulta de Power Query similar mediante el flujo de datos de segunda generación y un modelo mediante lakehouse.
+4.  从屏幕底部中间的散点图视觉对象（按销售额划分的销售订单）中，选择右上角的离群值（第四象限）。请注意，利润率为
+    52%，高于 50% 的平均值。此外，2022 年最后两个季度的销售额同比增长。
 
-## Referencias
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+5.  在散点图视觉对象中选择离群值经销商以**删除筛选器**。
 
-![](Media/1.19.png)
+6.  我们按产品组和经销商获取产品详细信息。从按产品组和经销商公司划分的销售条形图视觉对象中，**右键单击
+    Tailspin Toys 的 Packaging Materials 栏**，并从对话框中选择**钻取
+    -\> Product Detail**。
 
+    您将导航到提供产品详细信息的页面。请注意，还有一些未来的订单。
 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
+7.  查看完此页面后，选择页面右上角的 **Ctrl +
+    后退箭头**可导航回到销售报表。
 
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/try-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el [libro electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la [comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+8.  您可以自行进一步分析该报表。准备好后，我们来看看模型视图。在左侧面板中，选择**模型视图图标**。请注意，有两个事实表：Sales
+    和 PO。
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+    a.  销售数据的粒度是按日期、经销商、产品和人员。Date、Reseller、Product
+        和 People 连接到 Sales。
 
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric ](https://aka.ms/Fabric-DS-Blog)
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric ](https://aka.ms/Fabric-DA-Blog)
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+    b.  PO 数据的粒度是按日期、经销商和人员。Date、Product 和 People
+        连接到 PO。
 
+    c.  我们有按产品分类的供应商数据。Supplier 连接到 Product。
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+    d.  我们有经销商的按地理划分的位置数据。Geo 连接到 Reseller。
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+    e.  我们有按经销商划分的客户信息。Customer 连接到 Reseller。
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella.
+### 任务 3：查看 Power Queries
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+1.  下面我们通过 Power Query 来了解数据源。从功能区中选择**主页 -\>
+    转换数据。**
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+2.  Power Query 窗口随即打开。从功能区中选择**主页 -\>
+    数据源设置**。"数据源设置"对话框随即打开。滚动浏览列表时，您会注意到问题陈述中提到了四个主要来源：
 
-**COMENTARIOS.** Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+    a.  Snowflake
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+    b.  SharePoint
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+    c.  ADLS Gen2
+
+    d.  Dataverse
+
+3.  选择**关闭**以关闭数据源设置对话框。
+
+4.  在左侧的"查询"面板中，请注意查询是按数据源分组的。
+
+5.  请注意，**DataverseData**
+    文件夹包含四个不同查询中可用的客户数据：BabyBoomer、GenX、GenY 和
+    GenZ。追加这四个查询以创建 Customer 查询。
+
+6.  您可以通过输入**用户名**和**密码**来输入 Dataverse
+    数据源的凭据，该用户名和密码位于**环境变量**选项卡中（实验指南旁边）。请选择
+    Microsoft 帐户选项。
+
+7.  对于 ADLS 数据源，请使用**帐户密钥**选项并输入 **Adls storage
+    account Access key**，其位于**环境变量**选项卡中（实验指南旁边）。
+
+8.  请注意，**ADLSData** 文件夹具有多个维度：Geo、Product、Reseller 和
+    Date还具有 Sales 事实。
+
+    a.  **Geo 维度**是通过合并 Cities、Countries 和 States
+        查询的数据而创建的。
+
+    b.  **Product 维度**是通过合并 Product Groups 和 Product Item Group
+        查询中的数据而创建的。
+
+    c.  **Reseller 维度**是使用 BuyingGroup 查询筛选而来的。
+
+    d.  **Sales 事实**是通过合并 InvoiceLineItems 与 Invoice
+        查询而创建的。
+
+9.  对于 Snowflake 数据源，使用 **Snowflake Username** 和 **Snowflake
+    Password**，其位于**环境变量**选项卡中（实验指南旁边）。
+
+10. 请注意，**SnowflakeData** 文件夹包含 Supplier 维度和
+    PO（订单/支出）事实。
+
+    a.  **Supplier 维度**是通过合并 Suppliers 查询与 SupplierCategories
+        查询而创建的。
+
+    b.  **PO 事实**是通过合并 PO 与 PO Line Items 查询而创建的。
+
+11. 对于 SharePoint
+    数据源，输入**用户名**和**密码**，其位于**环境变量**选项卡中（实验指南旁边）。请选择
+    Microsoft 帐户选项。
+
+12. 请注意，**SharepointData** 文件夹具有 People 维度。
+
+    现在我们知道我们正在处理的是什么了。在接下来的实验中，我们将使用数据流
+Gen2 创建一个类似的 Power Query 并使用 Lakehouse 建模。
+
+# 参考
+
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
+
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
+
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
+
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
+
+阅读更多深度 Fabric 体验公告博客：
+
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
+
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
+
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
+
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
+
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
+
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
+
+© 2023 Microsoft Corporation.保留所有权利。
+
+使用此演示/实验即表示您已同意以下条款：
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft 提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
+
+ 严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
+
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
+
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
+ 对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
+
+**免责声明**
+
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。

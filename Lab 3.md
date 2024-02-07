@@ -1,485 +1,561 @@
-![](Media/3.1.png)
+# 目录 
 
-## Content 
+简介 
 
-- Presentación
+- 数据流 Gen2 
 
-- Flujo de datos Gen2
+    - 任务 1：创建数据流 Gen2
 
-   - Tarea 1: Crear flujo de datos Gen2
-   - Tarea 2: Crear una conexión a ADLS Gen2
-   - Tarea 3: Crear consulta de carpeta base de ADLS Gen2
-   - Tarea 4: Crear consulta Cities
-   - Tarea 5: Crear consulta Countries
-   - Tarea 6: Crear States mediante Copiar: opción 1
-   - Tarea 7: Crear una consulta Geo mediante Copiar: opción 2
-   - Tarea 8: Configurar el destino de datos para la consulta Geo
-   - Tarea 9: Publicar el flujo de datos
-   - Tarea 10: Cambio del nombre del flujo de datos
-   - Tarea 11: Crear consultas restantes en el flujo de datos
-   - Tarea 12: Configurar el destino de datos para las consultas restantes
+    - 任务 2：创建与 ADLS Gen2 的连接
 
-- Referencias
+    - 任务 3：创建基 ADLS Gen2 文件夹查询
 
-## Presentación 
+    - 任务 4：创建 Cities 查询
 
-En nuestro escenario, Datos de ventas provienen del sistema ERP y se almacenan en una base de datos ADLS Gen2. Se actualiza a mediodía/12:00 todos los días. Necesitamos transformar e ingerir estos datos en un lakehouse y usarlos en nuestro modelo. 
+    - 任务 5：创建 Countries 查询
 
-Hay varias formas de ingerir estos datos. 
+    - 任务 6：使用复制创建 States - 选项 1
 
-- **Accesos directos:** esto no proporciona una forma de transformar datos. 
-- **Notebooks:** esto requiere que escribamos código. Es un enfoque amigable para los desarrolladores.
-- **Flujo de datos Gen2:** probablemente esté familiarizado con Power Query o el flujo de datos de primera generación. El flujo de datos Gen2, como su nombre indica, es la versión más nueva del flujo de datos. Proporciona todas las capacidades de Power Query y el flujo de datos de primera generación con la capacidad adicional de transformar e ingerir datos en múltiples orígenes de datos. Presentaremos esto en los próximos laboratorios.
-- **Canalización de datos:** esta es una herramienta de orquestación. Se pueden orquestar actividades para extraer, transformar e ingerir datos. Usaremos la canalización de datos para ejecutar la actividad del flujo de datos Gen2, que, a su vez, hará la extracción, transformación e ingestión.
+    - 任务 7：通过复制创建 Geo 查询 - 选项 2
 
-Comenzaremos con el flujo de datos Gen2 para crear una conexión con el origen de datos y las transformaciones necesarias. Luego usaremos la canalización de datos para orquestar o ejecutar el flujo de datos Gen2.
+    - 任务 8：为 Geo 查询配置数据目标
 
-Al final de este laboratorio, habrá aprendido: 
+    - 任务 9：发布数据流 
 
-- Cómo crear flujo de datos Gen2
-- Cómo conectarse a ADLS Gen2 mediante flujo de datos Gen2 y transformar datos
-- Cómo ingerir datos en un lakehouse
+    - 任务 10：重命名数据流 
 
-## Flujo de datos Gen2
+    - 任务 11：在数据流中生成剩余查询
 
-## Tarea 1: Crear flujo de datos Gen2
+    - 任务 12：为剩余查询配置数据目标
 
-1. Volvamos **al área de trabajo de Fabric** que creó en el Laboratorio 2, Tarea 8.
+参考 
 
-2. Si no ha salido de la práctica de laboratorio anterior, estará en la pantalla del lakehouse. Si ha salido, no pasa nada. Seleccione **Data Engineering** en la parte inferior izquierda de su pantalla.
+# 简介
 
-3. Seleccione **Data Factory** en el cuadro de diálogo abierto de la experiencia Fabric. Data Factory tiene cargas de trabajo necesarias para extraer, transformar e ingerir datos.
+在我们的应用场景中，销售数据来自 ERP 系统，存储在 ADLS Gen2
+数据库中。每天中午 12 点更新。我们需要将这些数据转换并引入到 Lakehouse
+中，并在我们的模型中使用这些数据。
 
-   ![](Media/3.2.png)
- 
-4. Se le dirigirá a la página principal de Data Factory. En Nuevo, seleccione **Flujo de datos Gen2**.
+引入此数据的方法有多种。
 
-   ![](Media/3.3.png)
- 
-Se le dirigirá de vuelta a la **página de del flujo de datos**. Esta pantalla le resultará familiar, ya que es como la del flujo de datos de primera generación o Power Query. Notará que están disponibles las opciones para conectarse a varios orígenes de datos, junto con la capacidad de transformar datos. Conectémonos al origen de datos ADLS Gen2 y hagamos algunas transformaciones.
+-   **快捷方式：** 这不是转换数据的方法。
 
-## Tarea 2: Crear una conexión a ADLS Gen2
+-   **笔记本：** 这需要我们编写代码。这种方法适合开发人员。
 
-1. En la cinta de opciones, seleccione **Inicio -> Obtener datos -> Más…**
-   
-   ![](Media/3.4.png)
- 
-2. Se le dirigirá al cuadro de diálogo **Obtener datos Elegir origen de datos**. Puede buscar el origen de datos si escribe en el cuadro de búsqueda. Observe que en el panel izquierdo hay opciones para usar una tabla en blanco o una consulta en blanco. También encontrará una nueva opción para Cargar archivo. Exploraremos esta opción en una práctica de laboratorio posterior. Por ahora, hagamos clic en **Ver más ->** en la esquina derecha de la pantalla. 
+-   **数据流 Gen2：** 您可能熟悉 Power Query 或数据流 Gen1。数据流 Gen2
+    顾名思义是数据流的新版本。它提供 Power Query/数据流 Gen1
+    的所有功能，并添加了将数据转换和引入到多个数据源的功能。我们将在下面几个实验中进行介绍。
 
-   ![](Media/3.5.png)
- 
-Ahora puede ver todos los orígenes de datos disponibles. Tiene la opción de filtrar los orígenes de datos por Archivo, Base de datos, Microsoft Fabric, Power Platform, Azure, etc.
+-   **数据管道：** 这是一个编排工具。可以编排活动来提取、转换和引入数据。我们将使用数据管道执行数据流
+    Gen2 活动，该活动又将执行提取、转换和引入。
 
- ![](Media/3.6.png)
- 
-3. Seleccione **Azure** entre las opciones de filtro superiores para filtrar por orígenes de datos de Azure. 
-4. Seleccione **Azure Data Lake Storage Gen2**.
+我们将从数据流 Gen2
+开始，创建与数据源的连接和必要的转换。然后我们将使用数据管道来编排/执行数据流
+Gen2。
 
-   ![](Media/3.7.png)
- 
-5. Se le dirigirá al cuadro de diálogo Conectarse a un origen de datos. Debe crear una conexión al origen de datos ADLS Gen2. En **Configuración de conexión -> Dirección URL**, introduzca este vínculo [https://stvnextblobstorage.dfs.core.windows.net/fabrikam-sales/Delta-Parquet-Format](https://stvnextblobstorage.dfs.core.windows.net/)
+本实验结束后，您将学会：
 
-   ![](Media/3.8.png)
- 
-6. Seleccione **Clave de cuenta** en el menú desplegable Tipo de autenticación.
-7. Copie la clave de cuenta de la pestaña Variables de entorno (al lado de la pestaña Guía de laboratorio) y péguela en el **cuadro de texto Clave de cuenta**.
+-   如何创建数据流 Gen2
 
-   ![](Media/3.9.png)
+-   如何使用数据流 Gen2 连接到 ADLS Gen2 并转换数据
 
-8. Seleccione **Siguiente** en la esquina inferior derecha de la pantalla.
+-   如何将数据引入 Lakehouse
 
-## Tarea 3: Crear consulta de carpeta base de ADLS Gen2
+# 数据流 Gen2
 
-1. Una vez establecida la conexión, se le dirigirá a la pantalla de la **Vista previa de los datos de la carpeta**. Hay muchos archivos en la carpeta ADLS Gen2. Necesitamos datos de algunos de ellos. Seleccione **Crear** para crear una conexión a la carpeta.
+### 任务 1：创建数据流 Gen2
 
-   ![](Media/3.10.png)
- 
-2. Ha vuelto al cuadro de diálogo de **Power Query**. Esta será la conexión a la carpeta raíz de ADLS Gen2. Haremos referencia a esta consulta en consultas posteriores. Vamos a cambiar el nombre de la consulta. En el **panel derecho**, bajo **Configuración de consulta -> Propiedades -> Nombre**, cambie el nombre a **ADLS Base Folder**
+1. 让我们导航回到您在实验 2 任务 8 中创建的 **Fabric 工作区**。
 
-3. Todas las consultas del flujo de datos Gen2 se cargan en un lakehouse de almacenamiento provisional de forma predeterminada. Como parte de este laboratorio, no almacenaremos provisionalmente datos. Para deshabilitar esta carga, en el **panel izquierdo, haga clic derecho en la consulta ADLS Base Folder**. 
+2. 如果您在上一个实验之后尚未离开，您将位于 Lakehouse
+    屏幕中。如果您已离开，没有关系。选择屏幕左下角的 **Data
+    Engineering**。
 
-**Nota:** El almacenamiento provisional se utiliza cuando necesitamos preparar datos para usarlos en una mayor transformación antes de que estén listos para el consumo. 
+3. 从打开的 Fabric 体验对话框中选择 **Data Factory**。Data Factory
+    具有提取、转换和引入数据所需的工作负载。
 
-4. **Desmarque la opción Habilitar el almacenamiento provisional**.
+4. 您将导航到 Data Factory 主页。在"新建"下，选择**数据流 Gen2。**
 
-   ![](Media/3.11.png)
-  
-Observe que hay dos formatos de archivo en la carpeta, **json** y **Parquet**.
+您将导航到**数据流页面**。此屏幕看起来很熟悉，因为它与数据流 Gen1 或
+Power Query
+相似。您会注意到这里提供了连接到各种数据源的选项以及转换数据的功能。我们连接到
+ADLS Gen2 数据源并执行一些转换。
 
-- **Parquet:** es un formato de archivo de código abierto creado para gestionar formatos de datos de almacenamiento de columnas planas. Parquet funciona bien con datos complejos en grandes volúmenes y es conocido por su excelente compresión de datos y su capacidad para gestionar una amplia variedad de tipos de codificación.
+### 任务 2：创建与 ADLS Gen2 的连接
 
-- **Json:** el archivo contiene metadatos como esquema, tipo de datos del archivo Parquet.
+1.  从功能区中选择**主页 -\> 获取数据 -\> 更多...**
 
-5. Solo necesitamos el archivo Parquet, ya que este tiene los datos que necesitamos. Seleccione la **flecha desplegable de la columna Extensión**.
-6. **Desmarque .json** para que se filtre por archivos .parquet.
-7. Seleccione **Aceptar**.
+2.  您将导航到**获取数据选择数据源**对话框。您可以通过在搜索框中键入内容来搜索数据源。请注意，左侧面板上有使用空白表或空白查询的选项。您还会看到一个新的"上传文件"选项。我们将在稍后的实验中探索该选项。现在，我们点击屏幕右上角的**查看更多
+    -\>**。
 
-   ![](Media/3.12.png)
-   
-Ahora tenemos la consulta base configurada. Podemos hacer referencia a esto para todas las consultas del origen ADLS Gen2.
+    现在您可以查看所有可用的数据源。您可以选择按文件、数据库、Microsoft
+Fabric、Power Platform、Azure
+等筛选数据源。
 
-## Tarea 4: Crear consulta Cities
+3. 从顶部筛选选项中选择 **Azure** 以筛选到 Azure 数据源。
 
-Los datos de Sales están disponibles por granularidad Geography, Product, SalesPerson y Date. Primero creemos una consulta para obtener la dimensión Geo. Los datos de Geo están disponibles en tres archivos diferentes ubicados en las siguientes subcarpetas:
+4. 选择 **Azure Data Lake Storage Gen2**。
 
-- Cities: Application.Cities
-- Countries: Application.Countries
-- State: Application.StateProvinces
+5. 您将导航到"连接到数据源"对话框。您需要创建与 ADLS Gen2
+    数据源的连接。在**连接设置 -\> URL** 下，输入链接
+    <https://stvnextblobstorage.dfs.core.windows.net/>fabrikam-sales/Delta-Parquet-Format
 
-Necesitamos combinar datos de City, State y Country de estos tres archivos para crear la dimensión Geo.
+6. 从"身份验证种类"下拉列表中选择**帐户密钥**。
 
-1. Comencemos por City. En el panel izquierdo, **haga clic derecho en ADLS Base Folder**. Seleccione **Referencia** para crear una nueva consulta que haga referencia a la consulta ADLS Base Folder.
+7. 从"环境变量"选项卡（位于"实验指南"选项卡旁边）复制帐户密钥并将其粘贴到**帐户密钥文本框**中。
 
-      ![](Media/3.13.png)
-   
-2. Seleccione la **flecha desplegable de la columna Folder Path**. 
-3. Seleccione **Filtros de texto -> Contiene…**
+8. 选择屏幕右下角的**下一步**。
 
-   ![](Media/3.14.png) 
- 
-4. En el cuadro de diálogo **Filtrar filas**, introduzca **Application.Cities** 
+### 任务 3：创建基 ADLS Gen2 文件夹查询
 
-**Nota**: Distingue mayúsculas de minúsculas.
+1. 建立连接后，您将导航到**预览文件夹数据**屏幕。ADLS Gen2
+    文件夹中有很多文件。我们需要其中一些文件的数据。选择**创建**以创建与文件夹的连接。
 
-5. Seleccione **Aceptar**.
+2. 您已返回到 **Power Query** 对话框。这将连接到 ADLS Gen2
+    根文件夹。我们将在后续查询中引用该查询。我们为该查询重命名。在**右侧面板**中的**查询设置
+    -\> 属性 -\> 名称**下，将名称更改为 **ADLS Base Folder**
 
-   ![](Media/3.15.png)
+3. 默认情况下，来自数据流 Gen2 的所有查询都会加载到暂存
+    Lakehouse。在本实验中，我们不会暂存数据。要禁用此加载，请在**左侧面板**中**右键单击
+    ADLS Base Folder** 查询。\
+    \
+    **注意：** 当我们需要在准备使用数据之前暂存数据以供进一步转换时，请使用暂存。
 
-6. Los datos se filtrarán en una fila única. Seleccione **Binary** en la **columna Content**.
+4. **取消选中启用暂存**选项。
 
-   ![](Media/3.16.png)
- 
-7. Observe que verá todos los detalles de la ciudad. En el **panel derecho**, en **Configuración de consulta -> Propiedades -> Nombre**, cambie el nombre a **Cities**
 
-**Nota:** en la esquina inferior derecha de la captura de pantalla, asegúrese de que la consulta tiene cuatro pasos aplicados y espere a que termine de cargarse. Puede tardar varios minutos.
+请注意，该文件夹中有两种文件格式：**json** 和 **parquet**。
 
-   ![](Media/3.17.png)
- 
-En el panel derecho, en **Pasos aplicados**, observe que todos los pasos están registrados. Este comportamiento es similar al de Power Query. Ahora sigamos un proceso similar para crear la consulta **Country**.
+-   **Parquet：** 是一种开放源代码文件格式，旨在处理平面列式存储数据格式。Parquet
+    能够很好地处理大量复杂数据，并以其高性能数据压缩和处理各种编码类型的能力而闻名。
 
-## Tarea 5: Crear consulta Countries
+-   **Json：** 文件包含 parquet 文件的架构、数据类型等元数据。
 
-1. En el panel izquierdo, **haga clic derecho en ADLS Base Folder**. Seleccione **Referencia** para crear una nueva consulta que haga referencia a la consulta ADLS Base Folder.
+5. 我们只需要 parquet 文件，因为它包含我们需要的数据。选择 **Extension
+    列下拉箭头**。
 
-      ![](Media/3.18.png)
+6. **取消选中** **.json**，以便将其进一步筛选到 .parquet 文件。
 
-2. Seleccione la **flecha desplegable** de la **columna Folder Path**. 
-3. Seleccione **Filtros de texto -> Contiene…**
+7.  选择**确定**。
 
-    ![](Media/3.19.png)
- 
-4. En el cuadro de diálogo **Filtrar filas**, introduzca **Application.Countries** 
+    现在我们已经设置了基本查询。我们可以针对来自 ADLS Gen2
+    源的所有查询引用此内容。
 
-**Nota:** Distingue mayúsculas de minúsculas.
+### 任务 4：创建 Cities 查询
 
-5. Seleccione **Aceptar**.
+Sales 数据按 Geography、Product、SalesPerson 和 Date
+粒度提供。我们首先创建一个查询来获取 Geo 维度。Geo
+数据位于以下子文件夹中的三个不同文件中：
 
-   ![](Media/3.20.png)
- 
-6. Los datos se filtrarán en una fila única. Seleccione **Binary** en la **columna Content**.
- 
-   ![](Media/3.21.png)
+-   **Cities:** Application.Cities
 
-7. Observe que verá todos los detalles del país. En el **panel derecho**, en **Configuración de consulta -> Propiedades -> Nombre**, cambie el nombre a **Countries**
+-   **Countries:** Application.Countries
 
-**Nota:** en la esquina inferior derecha de la captura de pantalla, asegúrese de que la consulta tiene cuatro pasos aplicados y espere a que termine de cargarse. Puede tardar varios minutos.
+-   **State:** Application.StateProvinces
 
-   ![](Media/3.22.png)
+我们需要组合这三个文件中的 City、State 和 Country 数据来创建 Geo 维度。
+
+1.  我们从 City 开始。在左侧面板上，**右键单击 ADLS Base
+    Folder**。选择**引用**创建引用 ADLS Base Folder 查询的新查询。
+
+2.  选择 **Folder Path 列下拉箭头**。
+
+3.  选择**文本筛选器 -\> 包含...**
+
+4.  在**筛选行**对话框中，输入 **Application.Cities**
     
-Lo siguiente que debemos hacer es incorporar State, pero los pasos se están volviendo repetitivos. Ya tenemos las consultas en el archivo de Power BI Desktop. Veamos si podemos copiar las consultas desde allí.
+    **注意：**区分大小写**。**
 
-## Tarea 6: Crear States mediante Copiar: opción 1
+5.  选择**确定**。
 
-1. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio. 
-2. En la cinta de opciones, seleccione **Inicio -> Transformar datos**. Se abre la ventana de Power Query. Como habrá notado en la práctica de laboratorio anterior, las consultas en el panel izquierdo están organizadas por orígenes de datos.
+6.  数据将筛选到单行。在 **Content 列**下选择 **Binary**。
 
-    ![](Media/3.23.png)
+7.  请注意，您将看到所有城市详细信息。在**右侧面板**中的**查询设置 -\>
+    属性 -\> 名称**中，将名称更改为 **Cities**\
+    \
+    **注意**：在屏幕截图的右下角，请确保查询有四个应用的步骤并等待查询加载完成。这可能需要几分钟时间。
 
-3. En el panel izquierdo, en la carpeta ADLSData, **haga clic derecho en la consulta States** y seleccione **Copiar**.
- 
-    ![](Media/3.24.png)
+在右侧面板中的**已应用步骤**下，请注意所有步骤均已登记。此行为与 Power
+Query 中的行为类似。现在，我们按照相似的流程来创建 **Country** 查询。
 
-4. Vuelva al **explorador**. Debería estar en el flujo de datos en el que estábamos trabajando.
-5. En el panel izquierdo, seleccione el panel **Consultas** e introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+### 任务 5：创建 Countries 查询
 
-     ![](Media/3.25.png)
-   	
-Observe que ADLS Base Folder (2) también se copia. Esto se debe a que States hace referencia a ADLS Base Folder en Power BI Desktop, pero ya tenemos ADLS Base Folder. Vamos a resolver esto.
+1.  在左侧面板上，**右键单击 ADLS Base Folder**。选择**引用**创建引用
+    ADLS Base Folder 查询的新查询。
 
-6. Seleccione la consulta **States**.
-7. Desde el **panel derecho**, en **Pasos aplicados**, seleccione **Source**.
-8. En la barra de fórmulas, cambie de #"ADLS Base Folder (2)" a **#"ADLS Base Folder"**
+2.  选择 **Folder Path 列下拉箭头**。
 
-     ![](Media/3.26.png)  
+3.  选择**文本筛选器 -\> 包含...**
 
-9. Haga clic en la **marca de verificación** al lado de la barra de fórmulas o pulse **Enter**.
-    
-   ![](Media/3.27.png)
+4.  在**筛选行对话框**中输入 **Application.Countries**
 
-10. Ahora podemos eliminar ADLS Base Folder(2). En el panel izquierdo, en la sección **Consultas, haga clic con el botón derecho en la consulta ADLS Base Folder(2)** y seleccione **Eliminar**.
- 
-      ![](Media/3.28.png)
+    **注意：** 区分大小写。
 
-11. Aparece el cuadro de diálogo Eliminar consulta. Seleccione **Eliminar** para confirmar.
+5.  选择**确定**。
 
-**Nota:** asegúrese de que la consulta tenga cuatro pasos aplicados y espere a que termine de cargarse. Puede tardar varios minutos.
+6.  数据将筛选到单行。在 **Content 列**下选择 **Binary**。
 
-## Tarea 7: Crear una consulta Geo mediante Copiar: opción 2
+7.  请注意，您将看到所有国家/地区详细信息。在**右侧面板**中的**查询设置
+    -\> 属性 -\> 名称**中，将名称更改为 **Countries**\
+    \
+    **注意**：在屏幕截图的右下角，请确保查询有四个应用的步骤并等待查询加载完成。这可能需要几分钟时间。
 
-Ahora necesitamos fusionar estas consultas para crear la dimensión Geo. Copiemos la consulta nuevamente desde el archivo de Power BI Desktop. Esta vez copiemos el código del Editor avanzado.
+接下来我们需要引入州/省，但这些步骤都是一样的。Power BI Desktop
+文件中已经有查询。我们来看看能否从那里复制查询。
 
-1. Vuelva a la **ventana de Power Query** del archivo de Power BI Desktop.
-2. En el panel izquierdo, en **Consultas**, seleccione la consulta **Geo** en la carpeta de ADLSData.
-3. En la cinta de opciones, seleccione **Inicio -> Editor avanzado**.
- 
-   ![](Media/3.29.png)
+### 任务 6：使用复制创建 States - 选项 1
 
-4. Se abre la ventana del Editor avanzado. **Resalte todo el texto** en el Editor avanzado.
-5. **Haga clic derecho** y seleccione **Copy**.
+1.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
 
-   ![](Media/3.30.png)
+2.  从功能区中选择**主页 -\> 转换数据**。Power Query
+    窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-6. Seleccione **X** en la esquina superior derecha de la ventana o seleccione Listo para cerrar la ventana del Editor avanzado.
-7. Vuelva a la ventana **Flujo de datos** en el explorador. 
-8. En la cinta de opciones, seleccione **Obtener datos -> Consulta en blanco**.
+3.  在左侧面板的 ADLSData 文件夹下，**右键单击 States**
+    查询，并选择**复制。**
 
-   ![](Media/3.31.png) 
+4.  导航回到**浏览器**。您应该位于我们正在处理的数据流中。
 
-9. Obtener datos, se abre el cuadro de diálogo del Editor avanzado Conectarse a origen de datos. **Resalte todo el texto** en el editor.
-10. Seleccione **Eliminar** en su teclado para borrar todo el texto.
-11. El Editor avanzado debe estar en blanco. Ahora introduzca **Ctrl+V** para pegar el contenido que había copiado del Editor avanzado de Power BI Desktop.
-12. Seleccione **Siguiente**.
+5.  在左侧面板中选择**查询**面板，然后输入
+    **Ctrl+V**（目前不支持右键单击粘贴）。
 
-      ![](Media/3.32.png) 
+    请注意，ADLS Base Folder (2) 也被复制。这是因为 States 引用了 Power BI
+Desktop 中的 ADLS Base Folder，但我们已经有了 ADLS Base
+Folder。我们来解决一下吧。
 
-13. Ahora tenemos la dimensión Geo. Vamos a cambiar el nombre de la consulta. En el **panel derecho**, en **Configuración de consulta -> Propiedades -> Nombre**, cambie el nombre a **Geo**
+6.  选择 **States** 查询。
 
-**Nota:** Espere a que la consulta termine de cargarse. Puede tardar varios minutos.
-Repasemos los pasos para comprender cómo se creó Geo. Desde el panel derecho, en Pasos aplicados, seleccione **Source**. Si observa la barra de fórmulas o hace clic en Configuración, notará que el origen de esta consulta es una unión entre Cities y States. A medida que siga los pasos, notará que el resultado de la primera unión a su vez se une a Countries. Entonces, las tres consultas se utilizan para crear la dimensión Geo.
- 
-![](Media/3.33.png)
+7.  在**右侧面板**的**已应用步骤**下，选择 **Source**。
 
-## Tarea 8: Configurar el destino de datos para la consulta Geo
+8.  在编辑栏中，将 #"ADLS Base Folder (2)"更改为 **#"ADLS Base Folder"**
 
-Ahora que tenemos una dimensión, incorporemos estos datos a un lakehouse. Esta nueva característica está disponible en el flujo de datos Gen2.
+9.  点击编辑栏旁边的**复选标记**或按下 **Enter 键**。
 
-1. Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que **haga clic derecho** en la consulta **Cities** y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+10. 现在我们可以删除 ADLS Base Folder
+    (2)。在左侧面板的**查询**部分下，**右键单击** **ADLS Base Folder
+    (2)** 查询，并选择**删除**。
 
-   ![](Media/3.34.png)
- 
-2. Siga los mismos pasos para las consultas **Countries y Geo** para **eliminar la marca de verificación junto a Habilitar el almacenamiento provisional**.
-3. Seleccione la consulta **Geo**.
-4. En la esquina inferior derecha, seleccione "+" junto a **Destino de datos**.
-5. Seleccione **lakehouse** en el cuadro de diálogo.
+11. "删除查询"对话框随即打开。选择**删除**进行确认。
 
-   ![](Media/3.35.png)
- 
-6. Se abre el cuadro de diálogo Conectarse a un destino de datos. Necesitamos crear una nueva conexión con el lakehouse. Con **Crear nueva conexión** seleccionado en el **menú desplegable Conexión y Tipo de autenticación** configurado en **Cuenta de organización**, seleccione **Siguiente**.
- 
-   ![](Media/3.36.png)
+    **注意**：请确保查询有四个应用的步骤，并等待查询加载完成。这可能需要几分钟时间。
 
-7. Una vez creada la conexión, se abre el cuadro de diálogo Elegir el objetivo de destino. Asegúrese de que el **botón de opción Nueva tabla** esté seleccionado, ya que estamos creando una nueva tabla.
-8. Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**.
-9. Seleccione **lh_FAIAD**.
-10. Deje el nombre de la tabla como **Geo**.
-11. Seleccione **Siguiente**.
- 
-      ![](Media/3.37.png)
+### 任务 7：通过复制创建 Geo 查询 - 选项 2
 
-12. Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-13. Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
+现在我们需要合并这些查询以创建 Geo 维度。让我们再次从 Power BI Desktop
+文件复制查询。这次我们从高级编辑器复制代码。
 
-**Nota:** También tiene la opción de Anexar datos. Si selecciona esta opción, cada vez que se actualiza el flujo de datos, se agregan datos nuevos a los existentes.
+1.  导航回到 Power BI Desktop 文件的 **Power Query 窗口**。
 
-14. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
- 
-      ![](Media/3.38.png)
+2.  在左侧面板的**查询**下，选择 ADLSData 文件夹中的 **Geo** 查询。
 
-**Nota:** Si no desea algunas de las columnas en el lakehouse, use la casilla a la derecha de la columna Origen para desmarcar las columnas que no necesita.
+3.  从功能区中选择**主页 -\> 高级编辑器**。
 
-## Tarea 9: Publicar el flujo de datos
+4.  高级编辑器窗口随即打开。在高级编辑器中**突出显示所有文本**。
 
-1. Volverá a la **ventana de Power Query**. Observe que en la esquina inferior derecha, **el destino de los datos está configurado en el lakehouse**.
-2. Publiquemos estas consultas para que podamos revisar el lakehouse. Volveremos para agregar más consultas. En la esquina inferior derecha, seleccione **Publicar**.
- 
-   ![](Media/3.39.png)
+5.  **右键单击**并选择 **Copy**。
 
-3. Se le dirigirá de nuevo a la **pantalla de Data Factory**. Es posible que el flujo de datos tarde unos minutos en publicarse. Una vez hecho esto, seleccione **el lakehouse lh_FAIAD**.
- 
-   ![](Media/3.40.png)
+6.  选择窗口右上角的 **X**，或选择**完成**以关闭高级编辑器窗口。
 
-4. Esto le llevará a la **pantalla del explorador del lakehouse**. En el panel izquierdo, expanda **lh_FAIAD -> Tables**.
-5. Observe que ahora tenemos la tabla **Geo** en el lakehouse. Expanda Geo y observe todas las columnas. 
-6. **Seleccione la tabla Geo** y se abrirá la versión preliminar de los datos en el panel derecho.
+7.  导航回到浏览器中的**数据流**窗口。
 
-   ![](Media/3.41.png) 
+8.  从功能区中选择**获取数据 -\> 空白查询。**
 
-También hay un punto de conexión de SQL que se puede utilizar para consultar esta tabla. Veremos esta opción en una práctica de laboratorio posterior. Ahora que sabemos que los datos de Geo llegaron al lakehouse, incorporemos el resto de los datos de ADLS Gen2.
+9.  "获取数据，连接到数据源"高级编辑器对话框随即打开。在编辑器中**突出显示所有文本**。
 
-## Tarea 10: Cambio del nombre del flujo de datos
+10. 选择键盘上的 **Delete** 以删除所有文本。
 
-1. En la barra de menú de la izquierda, seleccione **FAIAD_<username>** para volver al **área de trabajo**.
-2. Estamos trabajando con el Dataflow 1. Cambiémosle el nombre antes de continuar. Haga clic en los **puntos suspensivos (…)** junto a Dataflow 1. Seleccione **Propiedades**.
- 
-   ![](Media/3.42.png)
+11. 高级编辑器应该为空。现在输入 **Ctrl+V**，以粘贴您从 Power BI Desktop
+    高级编辑器复制的内容。
 
-3. Se abre el cuadro de diálogo de propiedades del flujo de datos. Cambie el nombre a **df_Sales_ADLS**
+12. 选择**下一步**。
 
-**Nota:** anteponemos el nombre del flujo de datos con "**df**". Esto hará que sea más fácil buscar y ordenar.
+13. 现在我们有了 Geo
+    维度。我们为该查询重命名。在**右侧面板**中的**查询设置 -\> 属性 -\>
+    名称**下，将名称更改为 **Geo**\
+    \
+    **注意**：请等待查询加载完成。这可能需要几分钟时间。
 
-4. En el cuadro de texto **Descripción**, agregue **Dataflow to ingest Sales Data from ADLS to Lakehouse**.
-5. Seleccione **Guardar**.
- 
-   ![](Media/3.43.png)
+让我们逐步完成这些步骤，了解 Geo
+是如何创建的。在右侧面板的"已应用步骤"下，选择
+**Source**。如果您查看编辑栏或点击"设置"，您会注意到此查询的源是 Cities
+和 States 之间的联接。当您完成这些步骤后，您会注意到第一次联接的结果又与
+Countries 联接。因此，所有三个查询都用于创建 Geo 维度。
 
-## Tarea 11: Crear consultas restantes en el flujo de datos
+### 任务 8：为 Geo 查询配置数据目标
 
-1. Se le dirigirá de nuevo a la pantalla de Data Factory. Seleccione el flujo de datos **df_Sales_ADLS** para volver al flujo de datos.
+现在我们有了一个维度，我们将这些数据引入到 Lakehouse 中。这是数据流 Gen2
+中提供的新功能。
 
-   ![](Media/3.44.png)
+1.  如前所述，我们不会暂存任何此类数据。因此**右键单击 Cities**
+    查询并选择**启用暂存**以删除复选标记。
 
-Para hacer el proceso más fácil, veamos si podemos copiar las consultas desde Power BI Desktop.
+2.  按照相同的步骤操作 **Countries 和 Geo**
+    查询，以**删除启用暂存旁边的复选标记**。
 
-2. Si aún no lo ha abierto, abra **FAIAD.pbix**, que se encuentra en la carpeta **Report** en el **Escritorio** de su entorno de laboratorio.
+3.  选择 **Geo** 查询。
 
-3. En la cinta de opciones, seleccione **Inicio -> Transformar**. Se abre la ventana de Power Query.
-4. Desde el panel **Consultas** de la izquierda, pulse **Ctrl+Seleccionar** mientras sigue las consultas de **ADLSData**.
+4.  在右下角选择**数据目标**旁边的**"+"**。
 
-    a. Product
+5.  在对话框中选择**湖屋**。
 
-    b. Product Groups 
-    
-    c. Product Item Group 
-    
-    d. Product Details 
-    
-    e. Invoice 
-    
-    f. InvoiceLineItems 
-    
-    g. Sales 
-    
-    h. BuyingGroup 
-    
-    i. Reseller
-   	 
-    j. Date 
-
-5. **Haga clic derecho** y seleccione **Copiar**.
+6.  "连接到数据目标"对话框随即打开。我们需要创建一个到湖屋的新连接。在**连接下拉列表**中选择**创建新连接**并将**身份验证种类**设置为**组织帐户**后，选择**下一步**。
 
-   ![](Media/3.45.png)
- 
-6. Vuelva a la ventana del explorador del flujo de datos **df_Sales_ADLS**.
-7. En el panel izquierdo, seleccione el panel **Consultas** e introduzca **Ctrl+V** (actualmente, hacer clic con el botón derecho en Pegar no es compatible).
+7.  创建连接后，"选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
 
-   ![](Media/3.46.png)
- 
-8. Como se mencionó anteriormente, no vamos a almacenar provisionalmente ninguno de estos datos. Así que haga **clic derecho** en las siguientes consultas y seleccione **Habilitar el almacenamiento provisional** para eliminar la marca de verificación.
+8.  我们想要在之前创建的湖屋中创建表。在左侧面板中，导航到**湖屋 -\>
+    FAIAD\_\<username\>。**
 
-    a. Product 
-    
-    b. Product Details 
-    
-    c. Reseller 
-    
-    d. Date 
-    
-    e. Sales 
+9.  选择 **lh_FAIAD**
 
+10. 将表名称保留为 **Geo**
 
-**Nota:** Si la carga está deshabilitada en Power BI Desktop, no tenemos que deshabilitar el almacenamiento provisional en el flujo de datos. Por lo tanto, no tenemos que deshabilitar el almacenamiento provisional para Product Item Group, Product Groups, etc.
+11. 选择**下一步**。
 
-![](Media/3.47.png)
- 
-Asegúrese de que **todas las consultas se procesen**. Una vez hecho esto, incorporemos estos datos al lakehouse. 
+12. "选择目标设置"对话框随即打开。每次刷新数据流 Gen2
+    时，我们都希望执行完整加载。确保将**更新方法**设置为**替换**。
 
-## Tarea 12: Configurar el destino de datos para las consultas restantes
+13. 请注意，有一条警告"某些列名包含不受支持的字符。我们是否应该修复它们？"湖屋不支持包含空格的列名称。选择**修复**以清除警告。
 
-1. Seleccione la consulta de **Product**.
-2. En la esquina inferior derecha, seleccione "**+**" junto a **Destino de datos**.
-3. Seleccione **lakehouse** en el cuadro de diálogo.
+    **注意：** 您还可以选择追加数据。如果选择此选项，则每次刷新数据流时，新数据都会追加到现有数据中。
 
-   ![](Media/3.48.png) 
+14. 可使用列映射将数据流列映射到现有列。在我们的案例中，它是一个新表。因此，我们可以使用默认值。选择**保存设置**。
 
-4. Se abre el cuadro de diálogo Conectarse a un destino de datos. Desde el **menú desplegable de Conexión**, seleccione **Lakehouse (ninguno)**.
-5. Seleccione **Siguiente**.
+    **注意：** 如果您不需要
+湖屋中的某些列，请使用"源"列右侧的复选框取消选中不需要的列。
 
-   ![](Media/3.49.png)
+### 任务 9：发布数据流
 
-6. Se abre el cuadro de diálogo de Elegir el objetivo de destino. Asegúrese de que el **botón de opción Nueva tabla** esté seleccionado, ya que estamos creando una nueva tabla.
-7. Queremos crear la tabla en el lakehouse que creamos anteriormente. En el panel izquierdo, navegue hasta **Lakehouse -> FAIAD_<username>**.
-8. Seleccione **lh_FAIAD**.
-9. Deje el nombre de la tabla como Product.
-10. Seleccione **Siguiente**.
- 
-    ![](Media/3.50.png)
+1.  您将会导航回到 **Power Query
+    窗口**。请注意，右下角的**数据目标设置为湖屋**。
 
-11. Se abre el cuadro de diálogo de configuración de Elegir la configuración de destino. Cada vez que se actualiza el flujo de datos Gen2, nos gustaría hacer una carga completa. Asegúrese de que el **Método de actualización** esté configurado en **Reemplazar**.
-12. Observe que hay una advertencia que dice "Algunos nombres de columna contienen caracteres no admitidos. ¿Quiere que los corrijamos por usted?". Lakehouse no admite nombres de columnas con espacios. Seleccione **Reparar** para eliminar la advertencia.
-13. La asignación de columnas se puede utilizar para asignar columnas de flujo de datos a columnas existentes. En nuestro caso, es una tabla nueva. Por lo tanto, podemos usar la opción predeterminada. Seleccione **Guardar configuración**.
+2.  让我们发布这些查询，以便我们可以检查湖屋。我们将稍后回来添加更多查询。\
+    在右下角，选择**发布**。
 
-      ![](Media/3.51.png)
- 
-14. Volverá a la **ventana de Power Query**. Observe que en la **esquina inferior derecha**, el destino de los datos está configurado en el **lakehouse**.
-15. De manera similar, configure el **Destino de datos** para las siguientes consultas:
+3.  您将导航回到 **Data Factory
+    屏幕**。发布数据流可能需要一些时间。完成后，选择 **lh_FAIAD
+    Lakehouse。**
 
-    a. Product Details 
-    
-    b. Reseller 
-    
-    c. Date 
-    
-    d. Sales 
+4.  您将导航到 **Lakehouse Explorer 屏幕**。在左侧窗格中，展开
+    **lh_FAIAD -\> 表**。
 
-16. Tenemos un flujo de datos que ingiere datos de ADLS en el lakehouse. Sigamos adelante y publiquemos este flujo de datos. Seleccione **Publicar** en la esquina inferior derecha.
+5.  请注意，现在 Lakehouse 中有 Geo 表。展开 **Geo** 并注意所有列。
 
-    ![](Media/3.52.png)
- 
-Se le dirigirá de nuevo a la página principal de Data Factory. El flujo de datos puede tardar unos minutos en actualizarse.
-En la próxima práctica de laboratorio, ingeriremos datos de otros orígenes de datos.
+6.  **选择 Geo** 表，右侧面板中将打开数据预览。
 
-## Referencias
-Fabric Analyst in a Day (FAIAD) le presenta algunas funciones clave disponibles en Microsoft Fabric. En el menú del servicio, la sección Ayuda (?) tiene vínculos a algunos recursos excelentes.
+    还有一个 SQL
+终结点可用于查询该表。我们将在稍后的实验中探索该选项。现在我们知道了
+Lakehouse 中的地理数据，让我们引入 ADLS Gen2 中的其余数据。
 
-   ![](Media/3.53.png)
- 
-Estos son algunos recursos más que podrán ayudarle a seguir avanzando con Microsoft Fabric.
-- Vea la publicación del blog para leer el [anuncio de disponibilidad general de Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23) completo.
-- Explore Fabric a través de la [Visita guiada](https://aka.ms/Fabric-GuidedTour)
-- Regístrese en la [prueba gratuita de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Visite el [sitio web de Microsoft Fabric](https://aka.ms/microsoft-fabric)
-- Adquiera nuevas capacidades mediante la exploración de los [módulos de aprendizaje de Fabric](https://aka.ms/learn-fabric)
-- Explore la [documentación técnica de Fabric](https://aka.ms/fabric-docs)
-- Lea el libro [electrónico gratuito sobre cómo empezar a usar Fabric](https://aka.ms/fabric-get-started-ebook)
-- Únase a la [comunidad de Fabric](https://aka.ms/fabric-community) para publicar sus preguntas, compartir sus comentarios y aprender de otros.
+### 任务 10：重命名数据流
 
-Obtenga más información en los blogs de anuncios de la experiencia Fabric:
+1.  在左侧菜单栏中，选择 **FAIAD\_\<username\>** 以导航回到**工作区**。
 
-- [Experiencia de Data Factory en el blog de Fabric ](https://aka.ms/Fabric-Data-Factory-Blog)
-- [Experiencia de Synapse Data Engineering en el blog de Fabric ](https://aka.ms/Fabric-DE-Blog)
-- [Experiencia de Synapse Data Science en el blog de Fabric ](https://aka.ms/Fabric-DS-Blog)
-- [Experiencia de Synapse Data Warehousing en el blog de Fabric ](https://aka.ms/Fabric-DW-Blog)
-- [Experiencia de Synapse Real-Time Analytics en el blog de Fabric](https://aka.ms/Fabric-RTA-Blog)
-- [Blog de anuncios de Power BI](https://aka.ms/Fabric-PBI-Blog)
-- [Experiencia de Data Activator en el blog de Fabric](https://aka.ms/Fabric-DA-Blog) 
-- [Administración y gobernanza en el blog de Fabric](https://aka.ms/Fabric-Admin-Gov-Blog)
-- [OneLake en el blog de Fabric](https://aka.ms/Fabric-OneLake-Blog)
-- [Blog de integración de Dataverse y Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
+2.  我们正在使用 Dataflow
+    1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
+    旁边的**省略号 (...)**。选择**属性**。
 
-© 2023 Microsoft Corporation. Todos los derechos reservados.
+3.  "数据流属性"对话框随即打开。将名称更改为 **df_Sales_ADLS**\
+    \
+    **注意**：我们在数据流名称前面添加"**df**"。这是为了方便搜索和排序。
 
-Al participar en esta demostración o laboratorio práctico, acepta las siguientes condiciones:
+4.  在**说明**文本框中，添加 **Dataflow to ingest Sales Data from ADLS
+    to Lakehouse**
 
-Microsoft Corporation pone a su disposición la tecnología o funcionalidad descrita en esta demostración/laboratorio práctico con el fin de obtener comentarios por su parte y de facilitarle una experiencia de aprendizaje. Esta demostración/laboratorio práctico solo se puede usar para evaluar las características de tal tecnología o funcionalidad y para proporcionar comentarios a Microsoft. No se puede usar para ningún otro propósito. Ninguna parte de esta demostración/laboratorio práctico se puede modificar, copiar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, transferir ni vender, ni tampoco crear trabajos derivados de ella.
+5.  选择**保存**。
 
-LA COPIA O REPRODUCCIÓN DE ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO (O PARTE DE ELLA) EN CUALQUIER OTRO SERVIDOR O UBICACIÓN PARA SU REPRODUCCIÓN O DISTRIBUCIÓN POSTERIOR QUEDA EXPRESAMENTE PROHIBIDA.
+### 任务 11：在数据流中生成剩余查询
 
-ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO PROPORCIONA CIERTAS FUNCIONES Y CARACTERÍSTICAS DE PRODUCTOS O TECNOLOGÍAS DE SOFTWARE (INCLUIDOS POSIBLES NUEVOS CONCEPTOS Y CARACTERÍSTICAS) EN UN ENTORNO SIMULADO SIN INSTALACIÓN O CONFIGURACIÓN COMPLEJA PARA EL PROPÓSITO ARRIBA DESCRITO. LA TECNOLOGÍA/CONCEPTOS DESCRITOS EN ESTA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NO REPRESENTAN LA FUNCIONALIDAD COMPLETA DE LAS CARACTERÍSTICAS Y, EN ESTE SENTIDO, ES POSIBLE QUE NO FUNCIONEN DEL MODO EN QUE LO HARÁN EN UNA VERSIÓN FINAL. ASIMISMO, PUEDE QUE NO SE PUBLIQUE UNA VERSIÓN FINAL DE TALES CARACTERÍSTICAS O CONCEPTOS. DE IGUAL MODO, SU EXPERIENCIA CON EL USO DE ESTAS CARACTERÍSTICAS Y FUNCIONALIDADES EN UN ENTORNO FÍSICO PUEDE SER DIFERENTE.
+1.  您将导航回到 Data Factory 屏幕。选择数据流 **df_Sales_ADLS**
+    以导航回到数据流。
 
-**COMENTARIOS**. Si envía comentarios a Microsoft sobre las características, funcionalidades o conceptos de tecnología descritos en esta demostración/laboratorio práctico, acepta otorgar a Microsoft, sin cargo alguno, el derecho a usar, compartir y comercializar sus comentarios de cualquier modo y para cualquier fin. También concederá a terceros, sin cargo alguno, los derechos de patente necesarios para que sus productos, tecnologías y servicios usen o interactúen con cualquier parte específica de un software o servicio de Microsoft que incluya los comentarios. No enviará comentarios que estén sujetos a una licencia que obligue a Microsoft a conceder su software o documentación bajo licencia a terceras partes porque incluyamos sus comentarios en ellos. Estos derechos seguirán vigentes después del vencimiento de este acuerdo.
-MICROSOFT CORPORATION RENUNCIA POR LA PRESENTE A TODAS LAS GARANTÍAS Y CONDICIONES RELATIVAS A LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO, INCLUIDA CUALQUIER GARANTÍA Y CONDICIÓN DE COMERCIABILIDAD (YA SEA EXPRESA, IMPLÍCITA O ESTATUTARIA), DE IDONEIDAD PARA UN FIN DETERMINADO, DE TITULARIDAD Y DE AUSENCIA DE INFRACCIÓN. MICROSOFT NO DECLARA NI GARANTIZA LA EXACTITUD DE LOS RESULTADOS, EL RESULTADO DERIVADO DE LA REALIZACIÓN DE LA DEMOSTRACIÓN/LABORATORIO PRÁCTICO NI LA IDONEIDAD DE LA INFORMACIÓN CONTENIDA EN ELLA CON NINGÚN PROPÓSITO.
+    为了方便，我们来看看能否从 Power BI Desktop 复制查询。
 
-**DECLINACIÓN DE RESPONSABILIDADES**
+2.  如果您还未打开
+    **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
+    文件夹中。
 
-Esta demostración/laboratorio práctico contiene solo una parte de las nuevas características y mejoras realizadas en Microsoft Power BI. Puede que algunas de las características cambien en versiones futuras del producto. En esta demostración/laboratorio práctico, conocerá algunas de estas nuevas características, pero no todas.
+3.  从功能区中选择**主页 -\> 转换**。Power Query 窗口随即打开。
 
+4.  在左侧的**查询**面板中，按 **Ctrl+ 选择**来自 **ADLSData**
+    的以下查询。
+
+    a.  Product
+
+    b.  Product Groups
+
+    c.  Product Item Group
+
+    d.  Product Details
+
+    e.  Invoice
+
+    f.  InvoiceLineItems
+
+    g.  Sales
+
+    h.  BuyingGroup
+
+    i.  Reseller
+
+    j.  Date
+
+5.  **右键单击**并选择**复制**。
+
+6.  导航回到浏览器中的 **df_Sales_ADLS** 数据流窗口。
+
+7.  在左侧面板下，选择**查询**面板，然后输入
+    **Ctrl+V**（目前不支持右键单击粘贴）。
+
+8.  如前所述，我们不会暂存任何此类数据。因此**右键单击**以下查询并选择**启用暂存**以删除复选标记。
+
+    a.  Product
+
+    b.  Product Details
+
+    c.  Reseller
+
+    d.  Date
+
+    e.  Sales
+
+    **注意**：如果在 Power BI Desktop
+中禁用加载，我们不必在数据流中禁用暂存。因此，我们不必为 Product Item
+Group、Product Groups 等禁用暂存。
+
+确保**所有查询均已处理**。完成后，我们将这些数据引入到 Lakehouse 中。
+
+### 任务 12：为剩余查询配置数据目标
+
+1.  选择 **Product** 查询。
+
+2.  在右下角选择**数据目标**旁边的**"+"**。
+
+3.  在对话框中选择**湖屋**。
+
+4.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+    **Lakehouse（无）**。
+
+5.  选择**下一步**。
+
+6.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+
+7.  我们想要在之前创建的 Lakehouse
+    中创建表。在左侧面板中，导航到**湖屋** **-\> FAIAD\_\<username\>。**
+
+8.  选择 **lh_FAIAD**
+
+9.  将表名称保留为 **Product**
+
+10. 选择**下一步**。
+
+11. "选择目标设置"对话框随即打开。每次刷新数据流 Gen2
+    时，我们都希望执行完整加载。确保将**更新方法**设置为**替换**。
+
+12. 请注意，有一条警告"某些列名包含不受支持的字符。我们是否应该修复它们？"湖屋不支持包含空格的列名称。选择**修复**以清除警告。
+
+13. 可使用列映射将数据流列映射到现有列。在我们的案例中，它是一个新表。因此，我们可以使用默认值。选择**保存设置**。
+
+14. 您将会导航回到 **Power Query
+    窗口**。请注意，**右下角**的数据目标设置为**湖屋**。
+
+15. 同样，为以下查询设置**数据目标**：
+
+    a.  Product Details
+
+    b.  Reseller
+
+    c.  Date
+
+    d.  Sales
+
+16. 我们有一个数据流将数据从 ADLS
+    引入到湖屋。我们接下来发布此数据流。在右下角选择**发布**。
+
+您将导航回到 Data Factory 主页。刷新数据流可能需要几分钟时间。
+
+在下一个实验中，我们将从其他数据源引入数据。
+
+# 参考
+
+Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
+中提供的一些主要功能。在服务菜单中，"帮助
+(?)"部分包含指向一些优质资源的链接。
+
+以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
+
+-   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+    公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
+
+-   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+
+-   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+
+-   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+
+-   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+
+-   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+
+-   阅读[有关 Fabric
+    入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
+
+-   加入 [Fabric
+    社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
+
+阅读更多深度 Fabric 体验公告博客：
+
+-   [Fabric 中的 Data Factory
+    体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
+
+-   [Fabric 中的 Synapse Data Engineering
+    体验博客](https://aka.ms/Fabric-DE-Blog) 
+
+-   [Fabric 中的 Synapse Data Science
+    体验博客](https://aka.ms/Fabric-DS-Blog) 
+
+-   [Fabric 中的 Synapse Data Warehousing
+    体验博客](https://aka.ms/Fabric-DW-Blog) 
+
+-   [Fabric 中的 Synapse Real-Time Analytics
+    体验博客](https://aka.ms/Fabric-RTA-Blog)
+
+-   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+
+-   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+
+-   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+
+-   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+
+-   [Dataverse 和 Microsoft Fabric
+    集成博客](https://aka.ms/Dataverse-Fabric-Blog)
+
+© 2023 Microsoft Corporation.保留所有权利。
+
+使用此演示/实验即表示您已同意以下条款：
+
+本演示/实验中的技术/功能由 Microsoft Corporation
+出于获取反馈和提供学习体验的目的提供。只能将本演示/实验用于评估这些技术特性和功能以及向
+Microsoft
+提供反馈。不得用于任何其他用途。不得对此演示/实验或其任何部分进行修改、复制、分发、传送、显示、执行、复制、公布、许可、转让、销售或基于以上内容创建衍生作品。
+
+严禁将本演示/实验（或其任何部分）复制到任何其他服务器或位置以便进一步复制或再分发。
+
+本演示/实验出于上述目的，在不涉及复杂设置或安装操作的模拟环境中提供特定软件技术/产品特性和功能，包括潜在的新功能和概念。本演示/实验中展示的技术/概念可能不是完整的功能，可能会以不同于最终版本的工作方式工作。我们也可能不会发布此类功能或概念的最终版本。在物理环境中使用此类特性和功能的体验可能也有所不同。
+
+**反馈**。如您针对本演示/实验中所述的技术特性、功能和/或概念向
+Microsoft 提供反馈，则意味着您向 Microsoft
+无偿提供以任何方式、出于任何目的使用和分享您的反馈并将其商业化的权利。您同样无偿为第三方提供其产品、技术和服务使用或配合使用包含此反馈的
+Microsoft
+软件或服务的任何特定部分所需的任何专利权。如果根据某项许可的规定，Microsoft
+由于在其软件或文档中包含了您的反馈需要向第三方授予该软件或文档的许可，请不要提供这样的反馈。这些权利在本协议终止后继续有效。
+
+对于本演示/实验，Microsoft Corporation
+不提供任何明示、暗示或法定的保证和条件，包括有关适销性、针对特定目的的适用性、所有权和不侵权的所有保证和条件。对于使用本演示/实验产生的结果或输出内容的准确性，或者出于任何目的包含本演示/实验中的信息的适用性，Microsoft
+不做任何保证或陈述。
+
+**免责声明**
+
+本演示/实验仅包含 Microsoft Power BI
+的部分新功能和增强功能。在产品的后续版本中，部分功能可能有所更改。在本演示/实验中，可了解部分新功能，但并非全部新功能。
