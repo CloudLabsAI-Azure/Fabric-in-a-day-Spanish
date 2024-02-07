@@ -53,7 +53,7 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
 
     ![](Media/2.5.png)
  
-10.	A caixa de diálogo de avaliação gratuita Atualizado com êxito para Microsoft Fabric é aberta. Selecione **Fabric Home Page**.
+10. A caixa de diálogo de avaliação gratuita Atualizado com êxito para Microsoft Fabric é aberta. Selecione **Fabric Home Page**.
 
     ![](Media/2.6.png)
  
