@@ -23,12 +23,12 @@
 
 本文档提供了以下功能的指南：
 
--	实验凭据
--	如何导入数据流模板
--	如何加载 Spark 库并配置环境
--	如何创建笔记本
--	如何使用数据科学模型创建预测
--	如何将输出保存到语义模型
+- 实验凭据
+- 如何导入数据流模板
+- 如何加载 Spark 库并配置环境
+- 如何创建笔记本
+- 如何使用数据科学模型创建预测
+- 如何将输出保存到语义模型
 
 **免责声明:** 请注意，由于产品每天都在变化，某些屏幕截图可能已过时。我们将努力在下次更新中进行修复。
 
@@ -48,14 +48,14 @@ ADLS Gen2 帐户密钥：**Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVw
 作为讲师，您可以选择让参与者可以选择导入数据流模板。以下是导入模板的步骤。
 
 ## 如何导入数据流模板
-1. 	导航到**您在实验 2 任务 8 中创建并命名为 FAIAD_ <username> 的 Fabric** **工作区。** 我们自己的命名为 FAIAD_demouser
-2. 	导航到 **Data Factory 主页**页面。
-3. 	在菜单中，选择**新建 -> 数据流 Gen2**
+1. 导航到**您在实验 2 任务 8 中创建并命名为 FAIAD_ <username> 的 Fabric** **工作区。** 我们自己的命名为 FAIAD_demouser
+2. 导航到 **Data Factory 主页**页面。
+3. 在菜单中，选择**新建 -> 数据流 Gen2**
  
-4. 	Power Query 窗口随即打开。在中间窗格中，选择**从 Power Query** **模板导入。**
+4. Power Query 窗口随即打开。在中间窗格中，选择**从 Power Query** **模板导入。**
  
-5. 	浏览到**桌面 -> 解决方案**文件夹，并选择您要导入的数据流。这里我们导入 **df_People_SharePoint.pqt**
-6. 	选择**打开。**
+5. 浏览到**桌面 -> 解决方案**文件夹，并选择您要导入的数据流。这里我们导入 **df_People_SharePoint.pqt**
+6. 选择**打开。**
 
 导入后，请注意查询以及查询的所有步骤均已导入。但是，您需要配置连接。此外还需要设置数据目标。请按照实验说明完成这些步骤。
  
@@ -70,9 +70,9 @@ ADLS Gen2 帐户密钥：**Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVw
 
 **注意：** 建议在演示之前配置实验环境，因为安装库需要时间。您可以引导参与者完成这些步骤。
 
-7. 	导航到**您在实验 2 任务 8 中创建并命名为 FAIAD_\<username> 的 Fabric 工作区**
-8. 	从菜单中选择**省略号 (…)。**
-9. 	选择**工作区设置。**
+7. 导航到**您在实验 2 任务 8 中创建并命名为 FAIAD_\<username> 的 Fabric 工作区**
+8. 从菜单中选择**省略号 (…)。**
+9. 选择**工作区设置。**
  
 10. “工作区设置”对话框随即打开。从左侧菜单中展开**数据科学/工程。**
 
@@ -102,7 +102,7 @@ ADLS Gen2 帐户密钥：**Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVw
  
 23. 选择**查看进度**以检查进度。发布更新需要几分钟。
  
-24.  安装后，注意**状态**会更改为**成功。**
+24. 安装后，注意**状态**会更改为**成功。**
  
 25. 现在我们已经配置了环境，我们必须将其保存为工作区的默认环境。从左侧面板中，选择 **FAIAD_\<username>**
 
@@ -126,44 +126,44 @@ ADLS Gen2 帐户密钥：**Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVw
 37. 创建**新单元格**。
 38. 输入以下**代码**：
 
-```
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import month, year, col
-from prophet import Prophet
-import pandas as pd
+        ```
+        from pyspark.sql import SparkSession
+        from pyspark.sql.functions import month, year, col
+        from prophet import Prophet
+        import pandas as pd
 
-# Initialize Spark session
-spark = SparkSession.builder.appName("Prophet Forecasting").getOrCreate()
+        # Initialize Spark session
+        spark = SparkSession.builder.appName("Prophet Forecasting").getOrCreate()
 
-# Load data from your specific Spark table
-df = spark.sql("SELECT * FROM lh_FAIAD.Sales")
+        # Load data from your specific Spark table
+        df = spark.sql("SELECT * FROM lh_FAIAD.Sales")
 
-# Aggregate data to monthly level
-monthly_df = df.withColumn("Month", month("InvoiceDate"))\
-               .withColumn("Year", year("InvoiceDate"))\
-               .groupBy("Year", "Month")\
-               .sum("Quantity")\
-               .orderBy("Year", "Month")
+        # Aggregate data to monthly level
+        monthly_df = df.withColumn("Month", month("InvoiceDate"))\
+                    .withColumn("Year", year("InvoiceDate"))\
+                    .groupBy("Year", "Month")\
+                    .sum("Quantity")\
+                    .orderBy("Year", "Month")
 
-# Convert to Pandas DataFrame and prepare for Prophet
-pandas_df = monthly_df.toPandas()
-pandas_df['ds'] = pd.to_datetime(pandas_df[['Year', 'Month']].assign(DAY=1))
-pandas_df['y'] = pandas_df['sum(Quantity)']
+        # Convert to Pandas DataFrame and prepare for Prophet
+        pandas_df = monthly_df.toPandas()
+        pandas_df['ds'] = pd.to_datetime(pandas_df[['Year', 'Month']].assign(DAY=1))
+        pandas_df['y'] = pandas_df['sum(Quantity)']
 
-# Fit the Prophet model
-model = Prophet(yearly_seasonality=True, weekly_seasonality=False,daily_seasonality=False)
-model.fit(pandas_df[['ds, 'y']])
+        # Fit the Prophet model
+        model = Prophet(yearly_seasonality=True, weekly_seasonality=False,daily_seasonality=False)
+        model.fit(pandas_df[['ds, 'y']])
 
-# Create a DataFrame for future predictions (e.g., next 12 months)
-future = model.make_future_dataframe(periods=12, freq='M')
+        # Create a DataFrame for future predictions (e.g., next 12 months)
+        future = model.make_future_dataframe(periods=12, freq='M')
 
-# Forecast
-forecast = model.predict(future)
+        # Forecast
+        forecast = model.predict(future)
 
-# Plotting the forecast
-model.plot(forecast)
-model.plot_components(forecast)
-``````
+        # Plotting the forecast
+        model.plot(forecast)
+        model.plot_components(forecast)
+        ``````
 
 39. 解释**代码**的每个步骤（匹配记录作为注释提供）。
 40. 通过选择单元格旁边的**播放**按钮执行代码。
@@ -178,11 +178,11 @@ model.plot_components(forecast)
 41. 创建**新单元格。**
 42. 将以下**代码**添加到单元格中：
 
-```
-display(forecast)
-#将预测数据写入表中
-spark.createDataFrame(forecast).write.saveAsTable("Sales_Forecast", mode="overwrite")
-```
+    ```
+    display(forecast)
+    #将预测数据写入表中
+    spark.createDataFrame(forecast).write.saveAsTable("Sales_Forecast", mode="overwrite")
+    ```
 
 43. 通过选择**播放**按钮执行单元格。
  
