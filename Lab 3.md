@@ -38,15 +38,15 @@
 
 引入此数据的方法有多种。
 
--   **快捷方式：** 这不是转换数据的方法。
+- **快捷方式：** 这不是转换数据的方法。
 
--   **笔记本：** 这需要我们编写代码。这种方法适合开发人员。
+- **笔记本：** 这需要我们编写代码。这种方法适合开发人员。
 
--   **数据流 Gen2：** 您可能熟悉 Power Query 或数据流 Gen1。数据流 Gen2
+- **数据流 Gen2：** 您可能熟悉 Power Query 或数据流 Gen1。数据流 Gen2
     顾名思义是数据流的新版本。它提供 Power Query/数据流 Gen1
     的所有功能，并添加了将数据转换和引入到多个数据源的功能。我们将在下面几个实验中进行介绍。
 
--   **数据管道：** 这是一个编排工具。可以编排活动来提取、转换和引入数据。我们将使用数据管道执行数据流
+- **数据管道：** 这是一个编排工具。可以编排活动来提取、转换和引入数据。我们将使用数据管道执行数据流
     Gen2 活动，该活动又将执行提取、转换和引入。
 
 我们将从数据流 Gen2
@@ -55,11 +55,11 @@ Gen2。
 
 本实验结束后，您将学会：
 
--   如何创建数据流 Gen2
+- 如何创建数据流 Gen2
 
--   如何使用数据流 Gen2 连接到 ADLS Gen2 并转换数据
+- 如何使用数据流 Gen2 连接到 ADLS Gen2 并转换数据
 
--   如何将数据引入 Lakehouse
+- 如何将数据引入 Lakehouse
 
 # 数据流 Gen2
 
@@ -83,9 +83,9 @@ ADLS Gen2 数据源并执行一些转换。
 
 ### 任务 2：创建与 ADLS Gen2 的连接
 
-1.  从功能区中选择**主页 -\> 获取数据 -\> 更多...**
+1. 从功能区中选择**主页 -\> 获取数据 -\> 更多...**
 
-2.  您将导航到**获取数据选择数据源**对话框。您可以通过在搜索框中键入内容来搜索数据源。请注意，左侧面板上有使用空白表或空白查询的选项。您还会看到一个新的"上传文件"选项。我们将在稍后的实验中探索该选项。现在，我们点击屏幕右上角的**查看更多
+2. 您将导航到**获取数据选择数据源**对话框。您可以通过在搜索框中键入内容来搜索数据源。请注意，左侧面板上有使用空白表或空白查询的选项。您还会看到一个新的"上传文件"选项。我们将在稍后的实验中探索该选项。现在，我们点击屏幕右上角的**查看更多
     -\>**。
 
     现在您可以查看所有可用的数据源。您可以选择按文件、数据库、Microsoft
@@ -126,17 +126,17 @@ Fabric、Power Platform、Azure
 
 请注意，该文件夹中有两种文件格式：**json** 和 **parquet**。
 
--   **Parquet：** 是一种开放源代码文件格式，旨在处理平面列式存储数据格式。Parquet
+- **Parquet：** 是一种开放源代码文件格式，旨在处理平面列式存储数据格式。Parquet
     能够很好地处理大量复杂数据，并以其高性能数据压缩和处理各种编码类型的能力而闻名。
 
--   **Json：** 文件包含 parquet 文件的架构、数据类型等元数据。
+- **Json：** 文件包含 parquet 文件的架构、数据类型等元数据。
 
 5. 我们只需要 parquet 文件，因为它包含我们需要的数据。选择 **Extension
     列下拉箭头**。
 
 6. **取消选中** **.json**，以便将其进一步筛选到 .parquet 文件。
 
-7.  选择**确定**。
+7. 选择**确定**。
 
     现在我们已经设置了基本查询。我们可以针对来自 ADLS Gen2
     源的所有查询引用此内容。
@@ -147,30 +147,30 @@ Sales 数据按 Geography、Product、SalesPerson 和 Date
 粒度提供。我们首先创建一个查询来获取 Geo 维度。Geo
 数据位于以下子文件夹中的三个不同文件中：
 
--   **Cities:** Application.Cities
+- **Cities:** Application.Cities
 
--   **Countries:** Application.Countries
+- **Countries:** Application.Countries
 
--   **State:** Application.StateProvinces
+- **State:** Application.StateProvinces
 
 我们需要组合这三个文件中的 City、State 和 Country 数据来创建 Geo 维度。
 
-1.  我们从 City 开始。在左侧面板上，**右键单击 ADLS Base
+1. 我们从 City 开始。在左侧面板上，**右键单击 ADLS Base
     Folder**。选择**引用**创建引用 ADLS Base Folder 查询的新查询。
 
-2.  选择 **Folder Path 列下拉箭头**。
+2. 选择 **Folder Path 列下拉箭头**。
 
-3.  选择**文本筛选器 -\> 包含...**
+3. 选择**文本筛选器 -\> 包含...**
 
-4.  在**筛选行**对话框中，输入 **Application.Cities**
+4. 在**筛选行**对话框中，输入 **Application.Cities**
     
     **注意：**区分大小写**。**
 
-5.  选择**确定**。
+5. 选择**确定**。
 
-6.  数据将筛选到单行。在 **Content 列**下选择 **Binary**。
+6. 数据将筛选到单行。在 **Content 列**下选择 **Binary**。
 
-7.  请注意，您将看到所有城市详细信息。在**右侧面板**中的**查询设置 -\>
+7. 请注意，您将看到所有城市详细信息。在**右侧面板**中的**查询设置 -\>
     属性 -\> 名称**中，将名称更改为 **Cities**\
     \
     **注意**：在屏幕截图的右下角，请确保查询有四个应用的步骤并等待查询加载完成。这可能需要几分钟时间。
@@ -180,22 +180,22 @@ Query 中的行为类似。现在，我们按照相似的流程来创建 **Count
 
 ### 任务 5：创建 Countries 查询
 
-1.  在左侧面板上，**右键单击 ADLS Base Folder**。选择**引用**创建引用
+1. 在左侧面板上，**右键单击 ADLS Base Folder**。选择**引用**创建引用
     ADLS Base Folder 查询的新查询。
 
-2.  选择 **Folder Path 列下拉箭头**。
+2. 选择 **Folder Path 列下拉箭头**。
 
-3.  选择**文本筛选器 -\> 包含...**
+3. 选择**文本筛选器 -\> 包含...**
 
-4.  在**筛选行对话框**中输入 **Application.Countries**
+4. 在**筛选行对话框**中输入 **Application.Countries**
 
     **注意：** 区分大小写。
 
-5.  选择**确定**。
+5. 选择**确定**。
 
-6.  数据将筛选到单行。在 **Content 列**下选择 **Binary**。
+6. 数据将筛选到单行。在 **Content 列**下选择 **Binary**。
 
-7.  请注意，您将看到所有国家/地区详细信息。在**右侧面板**中的**查询设置
+7. 请注意，您将看到所有国家/地区详细信息。在**右侧面板**中的**查询设置
     -\> 属性 -\> 名称**中，将名称更改为 **Countries**\
     \
     **注意**：在屏幕截图的右下角，请确保查询有四个应用的步骤并等待查询加载完成。这可能需要几分钟时间。
@@ -205,32 +205,32 @@ Query 中的行为类似。现在，我们按照相似的流程来创建 **Count
 
 ### 任务 6：使用复制创建 States - 选项 1
 
-1.  如果您还未打开
+1. 如果您还未打开
     **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
     文件夹中。
 
-2.  从功能区中选择**主页 -\> 转换数据**。Power Query
+2. 从功能区中选择**主页 -\> 转换数据**。Power Query
     窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-3.  在左侧面板的 ADLSData 文件夹下，**右键单击 States**
+3. 在左侧面板的 ADLSData 文件夹下，**右键单击 States**
     查询，并选择**复制。**
 
-4.  导航回到**浏览器**。您应该位于我们正在处理的数据流中。
+4. 导航回到**浏览器**。您应该位于我们正在处理的数据流中。
 
-5.  在左侧面板中选择**查询**面板，然后输入
+5. 在左侧面板中选择**查询**面板，然后输入
     **Ctrl+V**（目前不支持右键单击粘贴）。
 
     请注意，ADLS Base Folder (2) 也被复制。这是因为 States 引用了 Power BI
 Desktop 中的 ADLS Base Folder，但我们已经有了 ADLS Base
 Folder。我们来解决一下吧。
 
-6.  选择 **States** 查询。
+6. 选择 **States** 查询。
 
-7.  在**右侧面板**的**已应用步骤**下，选择 **Source**。
+7. 在**右侧面板**的**已应用步骤**下，选择 **Source**。
 
-8.  在编辑栏中，将 #"ADLS Base Folder (2)"更改为 **#"ADLS Base Folder"**
+8. 在编辑栏中，将 #"ADLS Base Folder (2)"更改为 **#"ADLS Base Folder"**
 
-9.  点击编辑栏旁边的**复选标记**或按下 **Enter 键**。
+9. 点击编辑栏旁边的**复选标记**或按下 **Enter 键**。
 
 10. 现在我们可以删除 ADLS Base Folder
     (2)。在左侧面板的**查询**部分下，**右键单击** **ADLS Base Folder
@@ -245,23 +245,23 @@ Folder。我们来解决一下吧。
 现在我们需要合并这些查询以创建 Geo 维度。让我们再次从 Power BI Desktop
 文件复制查询。这次我们从高级编辑器复制代码。
 
-1.  导航回到 Power BI Desktop 文件的 **Power Query 窗口**。
+1. 导航回到 Power BI Desktop 文件的 **Power Query 窗口**。
 
-2.  在左侧面板的**查询**下，选择 ADLSData 文件夹中的 **Geo** 查询。
+2. 在左侧面板的**查询**下，选择 ADLSData 文件夹中的 **Geo** 查询。
 
-3.  从功能区中选择**主页 -\> 高级编辑器**。
+3. 从功能区中选择**主页 -\> 高级编辑器**。
 
-4.  高级编辑器窗口随即打开。在高级编辑器中**突出显示所有文本**。
+4. 高级编辑器窗口随即打开。在高级编辑器中**突出显示所有文本**。
 
-5.  **右键单击**并选择 **Copy**。
+5. **右键单击**并选择 **Copy**。
 
-6.  选择窗口右上角的 **X**，或选择**完成**以关闭高级编辑器窗口。
+6. 选择窗口右上角的 **X**，或选择**完成**以关闭高级编辑器窗口。
 
-7.  导航回到浏览器中的**数据流**窗口。
+7. 导航回到浏览器中的**数据流**窗口。
 
-8.  从功能区中选择**获取数据 -\> 空白查询。**
+8. 从功能区中选择**获取数据 -\> 空白查询。**
 
-9.  "获取数据，连接到数据源"高级编辑器对话框随即打开。在编辑器中**突出显示所有文本**。
+9. "获取数据，连接到数据源"高级编辑器对话框随即打开。在编辑器中**突出显示所有文本**。
 
 10. 选择键盘上的 **Delete** 以删除所有文本。
 
@@ -287,26 +287,26 @@ Countries 联接。因此，所有三个查询都用于创建 Geo 维度。
 现在我们有了一个维度，我们将这些数据引入到 Lakehouse 中。这是数据流 Gen2
 中提供的新功能。
 
-1.  如前所述，我们不会暂存任何此类数据。因此**右键单击 Cities**
+1. 如前所述，我们不会暂存任何此类数据。因此**右键单击 Cities**
     查询并选择**启用暂存**以删除复选标记。
 
-2.  按照相同的步骤操作 **Countries 和 Geo**
+2. 按照相同的步骤操作 **Countries 和 Geo**
     查询，以**删除启用暂存旁边的复选标记**。
 
-3.  选择 **Geo** 查询。
+3. 选择 **Geo** 查询。
 
-4.  在右下角选择**数据目标**旁边的**"+"**。
+4. 在右下角选择**数据目标**旁边的**"+"**。
 
-5.  在对话框中选择**湖屋**。
+5. 在对话框中选择**湖屋**。
 
-6.  "连接到数据目标"对话框随即打开。我们需要创建一个到湖屋的新连接。在**连接下拉列表**中选择**创建新连接**并将**身份验证种类**设置为**组织帐户**后，选择**下一步**。
+6. "连接到数据目标"对话框随即打开。我们需要创建一个到湖屋的新连接。在**连接下拉列表**中选择**创建新连接**并将**身份验证种类**设置为**组织帐户**后，选择**下一步**。
 
-7.  创建连接后，"选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+7. 创建连接后，"选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
 
-8.  我们想要在之前创建的湖屋中创建表。在左侧面板中，导航到**湖屋 -\>
+8. 我们想要在之前创建的湖屋中创建表。在左侧面板中，导航到**湖屋 -\>
     FAIAD\_\<username\>。**
 
-9.  选择 **lh_FAIAD**
+9. 选择 **lh_FAIAD**
 
 10. 将表名称保留为 **Geo**
 
@@ -326,22 +326,22 @@ Countries 联接。因此，所有三个查询都用于创建 Geo 维度。
 
 ### 任务 9：发布数据流
 
-1.  您将会导航回到 **Power Query
+1. 您将会导航回到 **Power Query
     窗口**。请注意，右下角的**数据目标设置为湖屋**。
 
-2.  让我们发布这些查询，以便我们可以检查湖屋。我们将稍后回来添加更多查询。\
+2. 让我们发布这些查询，以便我们可以检查湖屋。我们将稍后回来添加更多查询。\
     在右下角，选择**发布**。
 
-3.  您将导航回到 **Data Factory
+3. 您将导航回到 **Data Factory
     屏幕**。发布数据流可能需要一些时间。完成后，选择 **lh_FAIAD
     Lakehouse。**
 
-4.  您将导航到 **Lakehouse Explorer 屏幕**。在左侧窗格中，展开
+4. 您将导航到 **Lakehouse Explorer 屏幕**。在左侧窗格中，展开
     **lh_FAIAD -\> 表**。
 
-5.  请注意，现在 Lakehouse 中有 Geo 表。展开 **Geo** 并注意所有列。
+5. 请注意，现在 Lakehouse 中有 Geo 表。展开 **Geo** 并注意所有列。
 
-6.  **选择 Geo** 表，右侧面板中将打开数据预览。
+6. **选择 Geo** 表，右侧面板中将打开数据预览。
 
     还有一个 SQL
 终结点可用于查询该表。我们将在稍后的实验中探索该选项。现在我们知道了
@@ -349,75 +349,75 @@ Lakehouse 中的地理数据，让我们引入 ADLS Gen2 中的其余数据。
 
 ### 任务 10：重命名数据流
 
-1.  在左侧菜单栏中，选择 **FAIAD\_\<username\>** 以导航回到**工作区**。
+1. 在左侧菜单栏中，选择 **FAIAD\_\<username\>** 以导航回到**工作区**。
 
-2.  我们正在使用 Dataflow
+2. 我们正在使用 Dataflow
     1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
     旁边的**省略号 (...)**。选择**属性**。
 
-3.  "数据流属性"对话框随即打开。将名称更改为 **df_Sales_ADLS**\
+3. "数据流属性"对话框随即打开。将名称更改为 **df_Sales_ADLS**\
     \
     **注意**：我们在数据流名称前面添加"**df**"。这是为了方便搜索和排序。
 
-4.  在**说明**文本框中，添加 **Dataflow to ingest Sales Data from ADLS
+4. 在**说明**文本框中，添加 **Dataflow to ingest Sales Data from ADLS
     to Lakehouse**
 
-5.  选择**保存**。
+5. 选择**保存**。
 
 ### 任务 11：在数据流中生成剩余查询
 
-1.  您将导航回到 Data Factory 屏幕。选择数据流 **df_Sales_ADLS**
+1. 您将导航回到 Data Factory 屏幕。选择数据流 **df_Sales_ADLS**
     以导航回到数据流。
 
     为了方便，我们来看看能否从 Power BI Desktop 复制查询。
 
-2.  如果您还未打开
+2. 如果您还未打开
     **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
     文件夹中。
 
-3.  从功能区中选择**主页 -\> 转换**。Power Query 窗口随即打开。
+3. 从功能区中选择**主页 -\> 转换**。Power Query 窗口随即打开。
 
-4.  在左侧的**查询**面板中，按 **Ctrl+ 选择**来自 **ADLSData**
+4. 在左侧的**查询**面板中，按 **Ctrl+ 选择**来自 **ADLSData**
     的以下查询。
 
-    a.  Product
+    a. Product
 
-    b.  Product Groups
+    b. Product Groups
 
-    c.  Product Item Group
+    c. Product Item Group
 
-    d.  Product Details
+    d. Product Details
 
-    e.  Invoice
+    e. Invoice
 
-    f.  InvoiceLineItems
+    f. InvoiceLineItems
 
-    g.  Sales
+    g. Sales
 
-    h.  BuyingGroup
+    h. BuyingGroup
 
-    i.  Reseller
+    i. Reseller
 
-    j.  Date
+    j. Date
 
-5.  **右键单击**并选择**复制**。
+5. **右键单击**并选择**复制**。
 
-6.  导航回到浏览器中的 **df_Sales_ADLS** 数据流窗口。
+6. 导航回到浏览器中的 **df_Sales_ADLS** 数据流窗口。
 
-7.  在左侧面板下，选择**查询**面板，然后输入
+7. 在左侧面板下，选择**查询**面板，然后输入
     **Ctrl+V**（目前不支持右键单击粘贴）。
 
-8.  如前所述，我们不会暂存任何此类数据。因此**右键单击**以下查询并选择**启用暂存**以删除复选标记。
+8. 如前所述，我们不会暂存任何此类数据。因此**右键单击**以下查询并选择**启用暂存**以删除复选标记。
 
-    a.  Product
+    a. Product
 
-    b.  Product Details
+    b. Product Details
 
-    c.  Reseller
+    c. Reseller
 
-    d.  Date
+    d. Date
 
-    e.  Sales
+    e. Sales
 
     **注意**：如果在 Power BI Desktop
 中禁用加载，我们不必在数据流中禁用暂存。因此，我们不必为 Product Item
@@ -427,25 +427,25 @@ Group、Product Groups 等禁用暂存。
 
 ### 任务 12：为剩余查询配置数据目标
 
-1.  选择 **Product** 查询。
+1. 选择 **Product** 查询。
 
-2.  在右下角选择**数据目标**旁边的**"+"**。
+2. 在右下角选择**数据目标**旁边的**"+"**。
 
-3.  在对话框中选择**湖屋**。
+3. 在对话框中选择**湖屋**。
 
-4.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+4. "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
     **Lakehouse（无）**。
 
-5.  选择**下一步**。
+5. 选择**下一步**。
 
-6.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+6. "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
 
-7.  我们想要在之前创建的 Lakehouse
+7. 我们想要在之前创建的 Lakehouse
     中创建表。在左侧面板中，导航到**湖屋** **-\> FAIAD\_\<username\>。**
 
-8.  选择 **lh_FAIAD**
+8. 选择 **lh_FAIAD**
 
-9.  将表名称保留为 **Product**
+9. 将表名称保留为 **Product**
 
 10. 选择**下一步**。
 
@@ -461,13 +461,13 @@ Group、Product Groups 等禁用暂存。
 
 15. 同样，为以下查询设置**数据目标**：
 
-    a.  Product Details
+    a. Product Details
 
-    b.  Reseller
+    b. Reseller
 
-    c.  Date
+    c. Date
 
-    d.  Sales
+    d. Sales
 
 16. 我们有一个数据流将数据从 ADLS
     引入到湖屋。我们接下来发布此数据流。在右下角选择**发布**。
@@ -484,51 +484,51 @@ Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
 
 以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
 
--   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+- 请参阅博客文章以阅读完整的 [Microsoft Fabric GA
     公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
 
--   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+- 通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
 
--   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+- 注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
 
--   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+- 访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
 
--   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+- 通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
 
--   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+- 探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
 
--   阅读[有关 Fabric
+- 阅读[有关 Fabric
     入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
 
--   加入 [Fabric
+- 加入 [Fabric
     社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
 
 阅读更多深度 Fabric 体验公告博客：
 
--   [Fabric 中的 Data Factory
+- [Fabric 中的 Data Factory
     体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
 
--   [Fabric 中的 Synapse Data Engineering
+- [Fabric 中的 Synapse Data Engineering
     体验博客](https://aka.ms/Fabric-DE-Blog) 
 
--   [Fabric 中的 Synapse Data Science
+- [Fabric 中的 Synapse Data Science
     体验博客](https://aka.ms/Fabric-DS-Blog) 
 
--   [Fabric 中的 Synapse Data Warehousing
+- [Fabric 中的 Synapse Data Warehousing
     体验博客](https://aka.ms/Fabric-DW-Blog) 
 
--   [Fabric 中的 Synapse Real-Time Analytics
+- [Fabric 中的 Synapse Real-Time Analytics
     体验博客](https://aka.ms/Fabric-RTA-Blog)
 
--   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+- [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
 
--   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+- [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
 
--   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
 
--   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+- [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
 
--   [Dataverse 和 Microsoft Fabric
+- [Dataverse 和 Microsoft Fabric
     集成博客](https://aka.ms/Dataverse-Fabric-Blog)
 
 © 2023 Microsoft Corporation.保留所有权利。

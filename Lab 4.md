@@ -40,49 +40,49 @@
 
 本实验结束后，您将学会：
 
--   如何使用数据流 Gen2 连接到 Snowflake 并将数据引入 Lakehouse
+- 如何使用数据流 Gen2 连接到 Snowflake 并将数据引入 Lakehouse
 
--   如何使用数据流 Gen2 连接到 SharePoint 并将数据引入 Lakehouse
+- 如何使用数据流 Gen2 连接到 SharePoint 并将数据引入 Lakehouse
 
--   如何使用数据流 Gen2 连接到 Dataverse 并将数据引入 Lakehouse
+- 如何使用数据流 Gen2 连接到 Dataverse 并将数据引入 Lakehouse
 
 # 数据流 Gen2
 
 ### 任务 1：将 Snowflake 查询复制到数据流
 
-1.  让我们导航回到您在实验 2 任务 8 中创建的 Fabric 工作区
+1. 让我们导航回到您在实验 2 任务 8 中创建的 Fabric 工作区
     **FAIAD\_\<username\>**。
 
-2.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
+2. 在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
 
 您将导航到**数据流页面**。现在我们已经熟悉了数据流，我们接下来从 Power
 BI Desktop 复制查询到数据流。
 
-3.  如果您还未打开
+3. 如果您还未打开
     **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
     文件夹中。
 
-4.  从功能区中选择**主页 -\> 转换数据**。Power Query
+4. 从功能区中选择**主页 -\> 转换数据**。Power Query
     窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-5.  Power Query 窗口随即打开。从左侧面板中的 SnowflakeData 文件夹下，按
+5. Power Query 窗口随即打开。从左侧面板中的 SnowflakeData 文件夹下，按
     **Ctrl+ 选择**或 Shift+ 选择以下查询：
 
-    a.  SupplierCategories
+    a. SupplierCategories
 
-    b.  Suppliers
+    b. Suppliers
 
-    c.  Supplier
+    c. Supplier
 
-    d.  PO
+    d. PO
 
-    e.  PO Line Items
+    e. PO Line Items
 
-6.  **右键单击**并选择**复制**。
+6. **右键单击**并选择**复制**。
 
-7.  导航回到**浏览器**。
+7. 导航回到**浏览器**。
 
-8.  在**数据流窗格**中，选择**中间窗格**，然后输入
+8. 在**数据流窗格**中，选择**中间窗格**，然后输入
     **Ctrl+V**（目前不支持右键单击粘贴）。
 
 ### 任务 2：创建与 Snowflake 的连接
@@ -90,16 +90,16 @@ BI Desktop 复制查询到数据流。
 请注意，五个查询已粘贴，现在左侧显示"查询"面板。由于我们没有为 Snowflake
 创建连接，因此您将看到一条警告消息，要求您配置连接。
 
-1.  选择**配置连接**。
+1. 选择**配置连接**。
 
-2.  "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
+2. "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
 
-3.  **身份验证种类**应为 **Snowflake**。
+3. **身份验证种类**应为 **Snowflake**。
 
-4.  输入 **Snowflake
+4. 输入 **Snowflake
     用户名和密码**，其位于"环境变量"选项卡中（"实验指南"选项卡旁边）。
 
-5.  选择**连接**。
+5. 选择**连接**。
 
 连接已建立，您可以在预览面板中查看数据。请自行浏览查询的应用步骤。Suppliers
 查询基本上包含供应商的详细信息，SupplierCategories
@@ -107,35 +107,35 @@ BI Desktop 复制查询到数据流。
 维度。同样，我们将 PO Line Items 与 PO 合并，以创建 PO
 事实。现在我们需要将 Supplier 和 PO 数据引入到 Lakehouse。
 
-6.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+6. 如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
     **Supplier** 查询，并选择**启用暂存**以删除复选标记。
 
-7.  同样，右键单击 **PO** 查询。选择**启用暂存**以删除复选标记。
+7. 同样，右键单击 **PO** 查询。选择**启用暂存**以删除复选标记。
 
 **注意：** 我们不必为其他三个查询禁用暂存，因为在 Power BI
 Desktop（这些查询是从这里复制而来）中已经禁用了"启用加载"。
 
 ### 任务 3：为 Supplier 和 PO 查询配置数据目标
 
-1.  选择 **Supplier** 查询。
+1. 选择 **Supplier** 查询。
 
-2.  在右下角选择**数据目标**旁边的**"+"**。
+2. 在右下角选择**数据目标**旁边的**"+"**。
 
-3.  在对话框中选择**湖屋**。
+3. 在对话框中选择**湖屋**。
 
-4.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+4. "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
     **Lakehouse（无）**。
 
-5.  选择**下一步**。
+5. 选择**下一步**。
 
-6.  "选择目标"对话框随即打开。务必**选中新建表单选按钮**，因为我们要创建一个新表。
+6. "选择目标"对话框随即打开。务必**选中新建表单选按钮**，因为我们要创建一个新表。
 
-7.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
+7. 我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
     -\> FAIAD\_\<username\>。**
 
-8.  选择 **lh_FAIAD**
+8. 选择 **lh_FAIAD**
 
-9.  将表名称保留为 **Supplier**
+9. 将表名称保留为 **Supplier**
 
 10. 选择**下一步**。
 
@@ -153,76 +153,76 @@ Desktop（这些查询是从这里复制而来）中已经禁用了"启用加载
 
 ### 任务 4：重命名并发布 Snowflake 数据流
 
-1.  从屏幕顶部，选择 **Dataflow 1 旁边的箭头**重命名。
+1. 从屏幕顶部，选择 **Dataflow 1 旁边的箭头**重命名。
 
-2.  在对话框中，将名称更改为 **df_Supplier_Snowflake**
+2. 在对话框中，将名称更改为 **df_Supplier_Snowflake**
 
-3.  点击 **Enter** 键以保存名称更改。
+3. 点击 **Enter** 键以保存名称更改。
 
-4.  在右下角，选择**发布**。
+4. 在右下角，选择**发布**。
 
 您将导航回到 **Data Factory 屏幕**。发布数据流可能需要一些时间。
 
 **注意：** 数据流名称有时不会更新。在这种情况下，请按照以下步骤操作。如果数据流已重命名，您可以移至下一个任务。
 
-5.  Dataflow 1 发布完成后，我们将其重命名。点击 Dataflow 1
+5. Dataflow 1 发布完成后，我们将其重命名。点击 Dataflow 1
     旁边的**省略号 (...)**。选择**属性**。
 
-6.  "数据流属性"对话框随即打开。将名称更改为 **df_Supplier_Snowflake**
+6. "数据流属性"对话框随即打开。将名称更改为 **df_Supplier_Snowflake**
 
-7.  在**说明**文本框中，添加 **Dataflow to ingest Supplier data from
+7. 在**说明**文本框中，添加 **Dataflow to ingest Supplier data from
     Snowflake to Lakehouse**
 
-8.  选择**保存**。
+8. 选择**保存**。
 
 您将导航回到 **Data Factory 屏幕**。现在我们创建一个从 Dataverse
 引入数据的数据流。
 
 ### 任务 5：将 Dataverse 查询复制到数据流
 
-1.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
+1. 在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
 
 您将导航到**数据流页面。**现在我们已经熟悉了数据流，我们接下来从 Power
 BI Desktop 复制查询到数据流。
 
-2.  如果您还未打开
+2. 如果您还未打开
     **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
     文件夹中。
 
-3.  从功能区中选择**主页 -\> 转换数据**。Power Query
+3. 从功能区中选择**主页 -\> 转换数据**。Power Query
     窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-4.  Power Query 窗口随即打开。在左侧面板中的 DataverseData 文件夹下，按
+4. Power Query 窗口随即打开。在左侧面板中的 DataverseData 文件夹下，按
     **Ctrl+ 选择**以下查询：
 
-    a.  BabyBoomer
+    a. BabyBoomer
 
-    b.  GenX
+    b. GenX
 
-    c.  GenY
+    c. GenY
 
-    d.  GenZ
+    d. GenZ
 
-    e.  Customer
+    e. Customer
 
-5.  **右键单击**并选择**复制**。
+5. **右键单击**并选择**复制**。
 
-6.  导航回到浏览器中的**数据流页面**。
+6. 导航回到浏览器中的**数据流页面**。
 
-7.  在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
+7. 在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
 
 ### 任务 6：创建与 Dataverse 的连接
 
 请注意，五个查询已粘贴，现在左侧显示"查询"面板。由于我们没有为 Dataverse
 创建连接，因此您将看到一条警告消息，要求您配置连接。
 
-1.  选择**配置连接**。
+1. 选择**配置连接**。
 
-2.  "连接到数据源"对话框随即打开。在**连接下拉列表**中，确保**选择创建新连接**。
+2. "连接到数据源"对话框随即打开。在**连接下拉列表**中，确保**选择创建新连接**。
 
-3.  **身份验证种类**中应为**组织帐户**。
+3. **身份验证种类**中应为**组织帐户**。
 
-4.  选择**连接**。
+4. 选择**连接**。
 
 ### 任务 7：为 Customer 查询创建数据目标
 
@@ -230,26 +230,26 @@ BI Desktop 复制查询到数据流。
 和 GenZ。追加这四个查询以创建 Customer
 查询。现在我们需要将客户数据引入到 Lakehouse。
 
-1.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+1. 如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
     **Customer** 查询，并选择**启用暂存**以删除复选标记。
 
-2.  选择 **Customer** 查询。
+2. 选择 **Customer** 查询。
 
-3.  在右下角选择**数据目标**旁边的 **"+"**。
+3. 在右下角选择**数据目标**旁边的 **"+"**。
 
-4.  在对话框中选择**湖屋**。
+4. 在对话框中选择**湖屋**。
 
-5.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+5. "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
     **Lakehouse（无）**。
 
-6.  选择**下一步**。
+6. 选择**下一步**。
 
-7.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+7. "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
 
-8.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
+8. 我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
     -\> FAIAD\_\<username\>**
 
-9.  选择 **lh_FAIAD**
+9. 选择 **lh_FAIAD**
 
 10. 将表名称保留为 **Customer**
 
@@ -264,90 +264,88 @@ BI Desktop 复制查询到数据流。
 
 ### 任务 8：发布并重命名 Dataverse 数据流
 
-1.  您将会导航回到 **Power Query
+1. 您将会导航回到 **Power Query
     窗口**。请注意，**右下角**的**数据目标**设置为**湖屋**。
 
-2.  在右下角，选择**发布**。
+2. 在右下角，选择**发布**。
 
-**注意：** 您将导航回到 **Data Factory
-屏幕**。发布数据流可能需要一些时间。
+**注意：** 您将导航回到 **Data Factory屏幕**。发布数据流可能需要一些时间。
 
-3.  我们正在使用的数据流是 Dataflow
+3. 我们正在使用的数据流是 Dataflow
     1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
     旁边的**省略号 (...)**。选择**属性**。
 
-4.  "数据流属性"对话框随即打开。将**名称**更改为
+4. "数据流属性"对话框随即打开。将**名称**更改为
     **df_Customer_Dataverse**
 
-5.  在**说明**文本框中，添加 **Dataflow to ingest Customer data from
+5. 在**说明**文本框中，添加 **Dataflow to ingest Customer data from
     Dataverse to Lakehouse**。
 
-6.  选择**保存**。
+6. 选择**保存**。
 
 您将导航回到 **Data Factory 屏幕**。现在我们创建一个从 SharePoint
 引入数据的数据流。
 
 ### 任务 9：将 SharePoint 查询复制到数据流
 
-1.  在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
+1. 在顶部菜单中，选择**新建 -\> 数据流 Gen2**。
 
 您将导航到**数据流页面**。现在我们已经熟悉了数据流，我们接下来从 Power
 BI Desktop 复制查询到数据流。
 
-2.  如果您还未打开
+2. 如果您还未打开
     **FAIAD.pbix**，请打开它。它位于您的实验环境**桌面**的 **Report**
     文件夹中。
 
-3.  从功能区中选择**主页 -\> 转换数据**。Power Query
+3. 从功能区中选择**主页 -\> 转换数据**。Power Query
     窗口随即打开。您在之前的实验中注意到，左侧面板中的查询是按数据源整理的。
 
-4.  Power Query 窗口随即打开。在左侧面板的 SharepointData
+4. Power Query 窗口随即打开。在左侧面板的 SharepointData
     文件夹下，**选择 People** 查询。
 
-5.  **右键单击**并选择**复制**。
+5. **右键单击**并选择**复制**。
 
-6.  导航回到浏览器中的**数据流屏幕**。
+6. 导航回到浏览器中的**数据流屏幕**。
 
-7.  在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
+7. 在**数据流窗格**中，输入 **Ctrl+V**（目前不支持右键单击粘贴）。
 
 请注意，查询已粘贴并在左侧面板中可用。由于我们没有为 SharePoint
 创建连接，因此您将看到一条警告消息，要求您配置连接。
 
 ### 任务 10：创建 SharePoint 连接
 
-1.  选择**配置连接**。
+1. 选择**配置连接**。
 
-2.  "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
+2. "连接到数据源"对话框随即打开。在**连接**下拉列表中，确保选择**创建新连接**。
 
-3.  **身份验证种类**中应为**组织帐户**。
+3. **身份验证种类**中应为**组织帐户**。
 
-4.  选择**连接**。
+4. 选择**连接**。
 
 ### 任务 11：为 People 查询配置数据目标
 
 连接已建立，您可以在预览面板中查看数据。请自行浏览查询的应用步骤。现在我们需要将人员数据引入到
 Lakehouse。
 
-1.  如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
+1. 如前所述，我们不会暂存任何此类数据。因此**右键单击**查询窗格中的
     **People** 查询，并选择**启用暂存**以删除复选标记。
 
-2.  选择 **People** 查询。
+2. 选择 **People** 查询。
 
-3.  在右下角选择**数据目标**旁边的 **"+"**。
+3. 在右下角选择**数据目标**旁边的 **"+"**。
 
-4.  在对话框中选择**湖屋**。
+4. 在对话框中选择**湖屋**。
 
-5.  "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
+5. "连接到数据目标"对话框随即打开。从**连接下拉菜单**中选择
     **Lakehouse（无）**。
 
-6.  选择**下一步**。
+6. 选择**下一步**。
 
-7.  "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
+7. "选择目标"对话框随即打开。务必选中**新建表单选按钮**，因为我们要创建一个新表。
 
-8.  我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋
-    -\> FAIAD\_\<username\>。**
+8. 我们想要在之前创建的 Lakehouse 中创建表。在左侧面板中，导航到**湖屋-\> FAIAD\_\<username\>。**
 
-9.  选择 **lh_FAIAD**
+9. 选择 **lh_FAIAD**
 
 10. 将表名称保留为 **People**
 
@@ -362,25 +360,23 @@ Lakehouse。
 
 ### 任务 12：发布并重命名 SharePoint 数据流
 
-1.  您将会导航回到 **Power Query
-    窗口**。请注意，**右下角**的数据目标设置为**湖屋**。
+1. 您将会导航回到 **Power Query窗口**。请注意，**右下角**的数据目标设置为**湖屋**。
 
-2.  在右下角，选择**发布**。
+2. 在右下角，选择**发布**。
 
-    **注意：** 您将导航回到 **Data Factory
-屏幕**。发布数据流可能需要一些时间。
+    **注意：** 您将导航回到 **Data Factory屏幕**。发布数据流可能需要一些时间。
 
-3.  我们正在使用的数据流是 Dataflow
+3. 我们正在使用的数据流是 Dataflow
     1。在继续下面的步骤之前，我们先将其重命名。点击 Dataflow 1
     旁边的**省略号 (...)**。选择**属性**。
 
-4.  "数据流属性"对话框随即打开。将**名称**更改为
+4. "数据流属性"对话框随即打开。将**名称**更改为
     **df_People_SharePoint**
 
-5.  在**说明**文本框中，添加 **Dataflow to ingest People data from
+5. 在**说明**文本框中，添加 **Dataflow to ingest People data from
     SharePoint to Lakehouse**。
 
-6.  选择**保存**。
+6. 选择**保存**。
 
 您将导航回到 **Data Factory 屏幕**。我们现在已将所有数据引入到
 Lakehouse。在下一个实验中，我们将安排数据流刷新。
@@ -393,51 +389,51 @@ Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
 
 以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
 
--   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+- 请参阅博客文章以阅读完整的 [Microsoft Fabric GA
     公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
 
--   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+- 通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
 
--   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+- 注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
 
--   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+- 访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
 
--   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+- 通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
 
--   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+- 探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
 
--   阅读[有关 Fabric
+- 阅读[有关 Fabric
     入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
 
--   加入 [Fabric
+- 加入 [Fabric
     社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
 
 阅读更多深度 Fabric 体验公告博客：
 
--   [Fabric 中的 Data Factory
+- [Fabric 中的 Data Factory
     体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
 
--   [Fabric 中的 Synapse Data Engineering
+- [Fabric 中的 Synapse Data Engineering
     体验博客](https://aka.ms/Fabric-DE-Blog) 
 
--   [Fabric 中的 Synapse Data Science
+- [Fabric 中的 Synapse Data Science
     体验博客](https://aka.ms/Fabric-DS-Blog) 
 
--   [Fabric 中的 Synapse Data Warehousing
+- [Fabric 中的 Synapse Data Warehousing
     体验博客](https://aka.ms/Fabric-DW-Blog) 
 
--   [Fabric 中的 Synapse Real-Time Analytics
+- [Fabric 中的 Synapse Real-Time Analytics
     体验博客](https://aka.ms/Fabric-RTA-Blog)
 
--   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+- [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
 
--   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+- [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
 
--   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
 
--   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+- [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
 
--   [Dataverse 和 Microsoft Fabric
+- [Dataverse 和 Microsoft Fabric
     集成博客](https://aka.ms/Dataverse-Fabric-Blog)
 
 © 2023 Microsoft Corporation.保留所有权利。

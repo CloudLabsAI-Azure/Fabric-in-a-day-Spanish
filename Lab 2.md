@@ -11,8 +11,7 @@
     - 任务 2：Data Factory 体验
 
     - 任务 3：Data Activator 体验
-
-
+    
     - 任务 4：Synapse Data Engineering 体验
 
     - 任务 5：Synapse Data Science 体验
@@ -137,9 +136,9 @@ Fabric 许可证的工作区。我们就这么办吧。
 
 ### 任务 5：Synapse Data Science 体验
 
-1.  选择屏幕左下角的 **Data Engineering**。Fabric 体验对话框随即打开。
+1. 选择屏幕左下角的 **Data Engineering**。Fabric 体验对话框随即打开。
 
-2.  选择 **Data Science**。您将导航到 **Data Science
+2. 选择 **Data Science**。您将导航到 **Data Science
     主页**。这里也有三个部分。在"新增"部分中，请注意以下项目：
 
     a.  **ML 模型：** 用于创建机器学习模型。
@@ -154,56 +153,56 @@ Fabric 许可证的工作区。我们就这么办吧。
 
 ### 任务 6：Synapse Data Warehouse 体验
 
-1.  选择屏幕左下角的 **Data Science**。Fabric 体验对话框随即打开。
+1. 选择屏幕左下角的 **Data Science**。Fabric 体验对话框随即打开。
 
-2.  选择 **Data Warehouse**。您将导航到 **Data Warehouse
+2. 选择 **Data Warehouse**。您将导航到 **Data Warehouse
     主页**。这里也有三个部分。在"新增"部分中，请注意以下项目。请注意，这里也提供了数据管道和数据流
     Gen2。
 
-    a.  **Warehouse：** 用于提供来自多个来源的战略见解。
+    a. **Warehouse：** 用于提供来自多个来源的战略见解。
 
-    b.  **示例仓库：** 示例仓库解决方案。
+    b. **示例仓库：** 示例仓库解决方案。
 
-    c.  **数据管道：** 用于编排数据解决方案。
+    c. **数据管道：** 用于编排数据解决方案。
 
 ### 任务 7：Real-Time Analytics 体验
 
-1.  选择屏幕左下角的 **Data Warehouse**。Fabric 体验对话框随即打开。
+1. 选择屏幕左下角的 **Data Warehouse**。Fabric 体验对话框随即打开。
 
-2.  选择 **Real-Time Analytics**。您将导航到 **Real-Time Analytics
+2. 选择 **Real-Time Analytics**。您将导航到 **Real-Time Analytics
     主页**。这里也有三个部分。在"新增"部分中，请注意以下项目：
 
-    a.  **KQL 数据库：** 用于快速加载结构化、非结构化和流式数据进行查询。
+    a. **KQL 数据库：** 用于快速加载结构化、非结构化和流式数据进行查询。
 
-    b.  **KQL 查询集：** 用于对数据运行查询以生成可共享的表和视觉对象。
+    b. **KQL 查询集：** 用于对数据运行查询以生成可共享的表和视觉对象。
 
-    c.  **Eventstream：** 用于捕获、转换和路由实时事件流。
+    c. **Eventstream：** 用于捕获、转换和路由实时事件流。
 
-    d.  **使用示例：** 用于创建示例。
+    d. **使用示例：** 用于创建示例。
 
 # Fabric 工作区
 
 ### 任务 8：创建 Fabric 工作区
 
-1.  现在我们创建一个具有 Fabric
+1. 现在我们创建一个具有 Fabric
     许可证的工作区。从左侧导航栏中选择**工作区**。对话框随即打开。
 
-2.  选择**新建工作区**。
+2. 选择**新建工作区**。
 
-3.  浏览器右侧将打开**创建工作区**对话框。
+3. 浏览器右侧将打开**创建工作区**对话框。
 
-4.  在 **Name** 字段中输入 **FAIAD\_\<username\>**
+4. 在 **Name** 字段中输入 **FAIAD\_\<username\>**
 
     **注意：** 工作区名称必须唯一。我们使用 FAIAD
 作为本文档的工作区名称。但是，您必须使用不同的工作区名称。确保"名称"字段下方显示带有"**此名称可用**"的绿色复选标记。
 
-5.  您可以选择输入工作区的**描述**。这是选填字段。
+5. 您可以选择输入工作区的**描述**。这是选填字段。
 
-6.  点击**高级**以展开此部分。
+6. 点击**高级**以展开此部分。
 
-7.  在**许可证模式**下，确保选择**试用版**。（这应该已默认选中。）
+7. 在**许可证模式**下，确保选择**试用版**。（这应该已默认选中。）
 
-8.  选择**应用**以创建新工作区。
+8. 选择**应用**以创建新工作区。
 
 这样就创建了新的工作区，且您将会导航到该工作区。我们将来自不同数据源的数据引入
 Lakehouse，并使用 Lakehouse 中的数据来构建模型并生成报表。第一步是创建
@@ -211,19 +210,19 @@ Lakehouse。
 
 ### 任务 9：创建 Lakehouse
 
-1.  选择屏幕左下角的 **Real-Time Analytics**。Fabric
+1. 选择屏幕左下角的 **Real-Time Analytics**。Fabric
     体验对话框随即打开。
 
-2.  选择 **Data Engineering** 以导航到 Data Engineering 主页。
+2. 选择 **Data Engineering** 以导航到 Data Engineering 主页。
 
-3.  选择 **Lakehouse**。
+3. 选择 **Lakehouse**。
 
-4.  "新建 Lakehouse"对话框随即打开。在"名称"文本框中输入 **lh_FAIAD**。
+4. "新建 Lakehouse"对话框随即打开。在"名称"文本框中输入 **lh_FAIAD**。
 
     **注意：** 这里的 lh 指的是 Lakehouse。我们添加 lh
 前缀是为了便于识别和搜索。
 
-5.  选择**创建**。
+5. 选择**创建**。
 
     Lakehouse 很快就会创建完毕，您将导航到 Lakehouse 界面。
 
@@ -247,51 +246,51 @@ Fabric Analyst in a Day (FAIAD) 介绍了 Microsoft Fabric
 
 以下更多参考资源可帮助您进行与 Microsoft Fabric 相关的后续步骤。
 
--   请参阅博客文章以阅读完整的 [Microsoft Fabric GA
+- 请参阅博客文章以阅读完整的 [Microsoft Fabric GA
     公告](https://aka.ms/Fabric-Hero-Blog-Ignite23)
 
--   通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
+- 通过[引导式教程](https://aka.ms/Fabric-GuidedTour)探索 Fabric
 
--   注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
+- 注册 [Microsoft Fabric 免费试用版](https://aka.ms/try-fabric)
 
--   访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
+- 访问 [Microsoft Fabric 网站](https://aka.ms/microsoft-fabric)
 
--   通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
+- 通过探索 [Fabric 学习模块](https://aka.ms/learn-fabric)学习新技能
 
--   探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
+- 探索 [Fabric 技术文档](https://aka.ms/fabric-docs)
 
--   阅读[有关 Fabric
+- 阅读[有关 Fabric
     入门指南的免费电子书](https://aka.ms/fabric-get-started-ebook)
 
--   加入 [Fabric
+- 加入 [Fabric
     社区](https://aka.ms/fabric-community)发布问题、分享反馈并向他人学习
 
 阅读更多深度 Fabric 体验公告博客：
 
--   [Fabric 中的 Data Factory
+- [Fabric 中的 Data Factory
     体验博客](https://aka.ms/Fabric-Data-Factory-Blog) 
 
--   [Fabric 中的 Synapse Data Engineering
+- [Fabric 中的 Synapse Data Engineering
     体验博客](https://aka.ms/Fabric-DE-Blog) 
 
--   [Fabric 中的 Synapse Data Science
+- [Fabric 中的 Synapse Data Science
     体验博客](https://aka.ms/Fabric-DS-Blog) 
 
--   [Fabric 中的 Synapse Data Warehousing
+- [Fabric 中的 Synapse Data Warehousing
     体验博客](https://aka.ms/Fabric-DW-Blog) 
 
--   [Fabric 中的 Synapse Real-Time Analytics
+- [Fabric 中的 Synapse Real-Time Analytics
     体验博客](https://aka.ms/Fabric-RTA-Blog)
 
--   [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
+- [Power BI 公告博客](https://aka.ms/Fabric-PBI-Blog)
 
--   [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
+- [Fabric 中的 Data Activator 博客](https://aka.ms/Fabric-DA-Blog) 
 
--   [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
+- [Fabric 中的管理和治理博客](https://aka.ms/Fabric-Admin-Gov-Blog)
 
--   [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
+- [Fabric 中的 OneLake 博客](https://aka.ms/Fabric-OneLake-Blog)
 
--   [Dataverse 和 Microsoft Fabric
+- [Dataverse 和 Microsoft Fabric
     集成博客](https://aka.ms/Dataverse-Fabric-Blog)
 
 © 2023 Microsoft Corporation.保留所有权利。
