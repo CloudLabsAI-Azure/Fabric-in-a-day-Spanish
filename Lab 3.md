@@ -1,4 +1,6 @@
 
+![](Media/3.1.png)
+
 # Sumário 
 - Introdução
 - Fluxo de Dados Gen2
@@ -39,39 +41,58 @@ Ao final deste laboratório, você terá aprendido:
 1. Vamos voltar ao **workspace do Fabric** que você criou no Laboratório 2, Tarefa 8.
 2. Se você não saiu do laboratório anterior, estará na tela Lakehouse. Caso contrário, não tem problema. Selecione **Data Engineering** na parte inferior esquerda da tela.
 3. Selecione **Data Factory** na caixa de diálogo de experiência do Fabric aberta. O Data Factory tem as cargas de trabalho necessárias para extrair, transformar e ingerir dados.
+
+    ![](Media/3.2.png)
  
 4. Você será direcionado para a Página Inicial do Data Factory. Em Novo, selecione **Fluxo de dados Gen2**.
+
+    ![](Media/3.3.png)
  
 Você será direcionado para a **página do Fluxo de Dados**. Esta tela parecerá familiar, pois é semelhante ao Fluxo de Dados Gen1 ou Power Query. Você notará que as opções para se conectar a várias fontes de dados estão disponíveis, junto com o recurso para transformar dados. Vamos conectar à fonte de dados ADLS Gen2 e realizar algumas transformações.
 
 ## Tarefa 2: Criar conexão com o ADLS Gen2
 1. Na faixa de opções, selecione **Página Inicial -> Obter Dados -> Mais...**
+
+    ![](Media/3.4.png)
  
-2. Você será direcionado para a caixa de diálogo **Obter dados Escolher fonte de dados**. Você pode procurar a fonte de dados digitando na caixa de pesquisa. No painel esquerdo, há opções para usar uma Tabela em branco ou uma Consulta em branco. Você também encontrará uma nova opção para carregar arquivo. Exploraremos essa opção em um laboratório posterior. Por enquanto, vamos clicar em **Exibir mais ->** no canto direito da tela. 
+2. Você será direcionado para a caixa de diálogo **Obter dados Escolher fonte de dados**. Você pode procurar a fonte de dados digitando na caixa de pesquisa. No painel esquerdo, há opções para usar uma Tabela em branco ou uma Consulta em branco. Você também encontrará uma nova opção para carregar arquivo. Exploraremos essa opção em um laboratório posterior. Por enquanto, vamos clicar em **Exibir mais ->** no canto direito da tela.
+
+    ![](Media/3.5.png)
  
 Agora você pode exibir todas as fontes de dados disponíveis. Você tem a opção de filtrar as fontes de dados por Arquivo, Banco de Dados, Microsoft Fabric, Power Platform, Azure, etc.
+
+![](Media/3.6.png)
  
 3. Selecione **Azure** nas principais opções de filtro para filtrar as fontes de dados do Azure. 
 4. Selecione **Azure Data Lake Storage Gen2**.
+
+    ![](Media/3.7.png)
  
 5. Você será direcionado para a caixa de diálogo Conectar-se à fonte de dados. Você precisa criar uma conexão com a fonte de dados ADLS Gen2. **Em Configurações de conexão -> URL**, insira este link https://stvnextblobstorage.dfs.core.windows.net/fabrikam-sales/Delta-Parquet-Format
+
+    ![](Media/3.8.png)
  
 6. Selecione ***Chave de conta** no menu suspenso Tipo de autenticação.
 7. Copie a chave de conta da guia Variáveis de Ambiente (ao lado da Guia de Laboratório) e cole-a na **caixa de texto Chave de conta**.
+
+    ![](Media/3.9.png)
  
 8. Selecione **Próximo** na parte inferior direita da tela.
 
 ## Tarefa 3: Criar consulta de pasta Base do ADLS Gen2
 1. Assim que a conexão for estabelecida, você será direcionado para a tela **Visualizar os dados da pasta**. Existem muitos arquivos na pasta ADLS Gen2. Precisamos de dados de alguns deles. Selecione **Criar** para criar uma conexão com a pasta.
+
+    ![](Media/3.10.png)
  
 2. Você está de volta à caixa de diálogo **Power Query**. Esta será a conexão com a pasta raiz do ADLS Gen2. Faremos referência a essa consulta em consultas subsequentes. Vamos renomear a consulta. No **painel direito**, em **Configurações de consulta -> Propriedades -> Nome**, altere o nome para **ADLS Base Folder**.
 3. Todas as consultas do Fluxo de Dados Gen2 são carregadas em um Staging Lakehouse por padrão. Como parte deste laboratório, não prepararemos os dados. Para desabilitar esse carregamento, no **painel esquerdo, clique com o botão direito na consulta ADLS Base Folder**. 
 
-
 **Observação:** O preparo é usado quando precisamos preparar dados para serem usados em transformações adicionais antes que estejam prontos para consumo. 
 
 4. Desmarque a opção **Habilitar o preparo**.
- 
+
+    ![](Media/3.11.png)
+
 Observe que há dois formatos de arquivo na pasta, **json** e **parquet**.
 - **Parquet:** é um formato de arquivo de código aberto criado para lidar com formatos de dados de armazenamento colunares simples. O Parquet funciona bem com dados complexos em grandes volumes e é conhecido por sua compactação de dados de alto desempenho e sua capacidade de lidar com uma ampla variedade de tipos de codificação.
 - **Json:** o arquivo contém metadados, como esquema, tipo de dados do arquivo parquet.
@@ -79,6 +100,8 @@ Observe que há dois formatos de arquivo na pasta, **json** e **parquet**.
 5. Precisamos apenas do arquivo parquet, pois ele contém os dados necessários. Selecione a **seta suspensa da coluna Extension**.
 6. **Desmarque .json** para que ele seja filtrado em arquivos .parquet.
 7. Selecione **OK**.
+
+    ![](Media/3.12.png)
  
 Agora temos a consulta Base configurada. Podemos fazer referência a isso para todas as consultas da fonte ADLS Gen2.
 
@@ -91,62 +114,94 @@ Dados de Sales estão disponíveis pela granularidade Geography, Product, SalesP
 
 Precisamos combinar os dados de City, State e Country desses três arquivos para criar a dimensão Geo.
 1. Vamos começar com City. No painel esquerdo, **clique com o botão direito em ADLS Base Folder**. Selecione **Referência** para criar uma nova consulta que faça referência à consulta ADLS Base Folder.
+
+    ![](Media/3.13.png)
  
 2. Selecione a **seta suspensa da coluna Folder Path**. 
 3. Selecione **Filtros de texto -> Contém…**
+
+    ![](Media/3.14.png)
  
 4. Na caixa de diálogo **Filtrar linhas**, insira **Application.Cities** 
 
 **Observação:**  Diferencia maiúsculas e minúsculas.
 
 5. Selecione **OK**.
+
+    ![](Media/3.15.png)
  
 6. Os dados serão filtrados em uma única linha. Selecione **Binary** na **coluna Content**.
+
+    ![](Media/3.16.png)
  
 7. Observe que você verá todos os detalhes de City. No **painel direito**, em **Configurações de consulta -> Propriedades -> Nome**, altere o nome para **Cities**.
 
 **Observação:** No canto inferior direito da captura de tela, verifique se a consulta tem quatro etapas aplicadas e aguarde o término do carregamento da consulta. Isso pode levar alguns minutos.
+
+![](Media/3.17.png)
  
 No painel direito, em **Etapas aplicadas**, observe que todas as etapas estão registradas. Esse comportamento é semelhante ao do Power Query. Agora vamos seguir um processo semelhante para criar a consulta **Country**.
 
 ## Tarefa 5: Criar consulta Countries
 1. No painel esquerdo, **clique com o botão direito em ADLS Base Folder**. Selecione **Referência** para criar uma nova consulta que faça referência à consulta ADLS Base Folder.
+
+    ![](Media/3.18.png)
  
 2. Selecione a **seta suspensa da coluna Folder Path**. 
 3. Selecione **Filtros de texto -> Contém…**
+
+    ![](Media/3.19.png)
  
 4. Na caixa de diálogo **Filtrar linhas**, insira **Application.Countries.**
 
 **Observação:** Diferencia maiúsculas de minúsculas.
 
 5. Selecione **OK**.
+
+    ![](Media/3.20.png)
  
 6. Os dados serão filtrados em uma única linha. Selecione **Binary** na **coluna Content**.
+
+    ![](Media/3.21.png)
  
 7. Observe que você verá todos os detalhes de Country. No **painel direito**, em **Configurações de consulta -> Propriedades -> Nome**, altere o nome para **Countries**.
 
 **Observação:** No canto inferior direito da captura de tela, verifique se a consulta tem quatro etapas aplicadas e aguarde o término do carregamento da consulta. Isso pode levar alguns minutos.
+
+![](Media/3.22.png)
  
 Precisamos mostrar State em seguida, mas as etapas estão ficando repetitivas. Já temos as consultas no arquivo Power BI Desktop. Vamos ver se podemos copiar as consultas de lá.
 
 ## Tarefa 6: Criar States usando Copiar – Opção 1
 1. Se você ainda não tiver aberto, abra o arquivo **FAIAD.pbix** que está na pasta **Report** no **Desktop** do seu ambiente de laboratório. 
 2. Na faixa de opções, selecione **Página Inicial -> Transformar dados**. A janela do Power Query é aberta. Como você observou no laboratório anterior, as consultas no painel esquerdo são organizadas por fonte de dados.
+
+    ![](Media/3.23.png)
  
 3. No painel esquerdo, na pasta ADLSData, **clique com o botão direito na consulta States** e selecione **Copiar**.
  
+    ![](Media/3.24.png)
+
 4. Volte para para o **navegador**. Você deve estar no Fluxo de Dados em que estávamos trabalhando.
 5. No painel esquerdo, selecione o painel **Consultas** e pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
+
+    ![](Media/3.25.png)
  
 Observe que a ADLS Base Folder (2) também é copiada. Isso ocorre porque States se refere à ADLS Base Folder no Power BI Desktop, mas já temos a ADLS Base Folder. Vamos resolver isso.
 
 6. Selecione a consulta **States**.
 7. No **painel direito**, em **Etapas aplicadas**, selecione **Source**.
 8. Na barra de fórmulas, altere de #"ADLS Base Folder (2)" para **#"ADLS Base Folder"**.
+
+    ![](Media/3.26.png)
   
 9. Clique na **marca de verificação** ao lado da barra de fórmulas ou pressione Enter.
+
+    ![](Media/3.27.png)
  
 10. Agora podemos remover a ADLS Base Folder (2). No painel esquerdo, na seção **Consultas, clique com o botão direito do mouse na** consulta **ADLS Base Folder (2)** e selecione **Excluir**.
+
+    ![](Media/3.28.png)
  
 11. A caixa de diálogo Excluir consulta é exibida. Selecione **Excluir** para confirmar.
 
@@ -158,42 +213,59 @@ Agora precisamos mesclar essas consultas para criar a dimensão Geo. Vamos copia
 1. Volte para a **janela Power Query** do arquivo Power BI Desktop.
 2. No painel esquerdo, em **Consultas**, selecione a consulta **Geo** na pasta ADLSData.
 3. Na faixa de opções, selecione **Página Inicial -> Editor Avançado**.
+
+    ![](Media/3.29.png)
  
 4. A janela Editor Avançado é aberta. **Realce todo o texto** no Editor Avançado.
 5. **Clique com o botão direito do mouse** e selecione **Copiar**.
+
+    ![](Media/3.30.png)
  
 6. Selecione **X** no canto superior direito da janela ou selecione **Concluído** para fechar a janela Editor Avançado.
 7. Volte para a janela **Dataflow** no navegador. 
 8. Na faixa de opções, selecione **Obter dados -> Consulta em branco**.
+
+    ![](Media/3.31.png)
  
 9. A caixa de diálogo Obter dados, Conectar-se à fonte de dados, Editor Avançado é aberta. **Realce todo o texto** no editor.
 10. Selecione **Delete** no teclado para excluir todo o texto.
 11. O Editor Avançado deve estar em branco. Agora, pressione **Ctrl+V** para colar o conteúdo que você copiou do Editor Avançado do Power BI Desktop.
 12. Selecione **Próximo**.
+
+    ![](Media/3.32.png)
  
 13. Agora temos a dimensão Geo. Vamos renomear a consulta. No **painel direito, em Configurações de consulta -> Propriedades -> Nome**, altere o nome para **Geo**.
 
 **Observação:** Aguarde até que a consulta termine de carregar. Isso pode levar alguns minutos.
 
 Vamos seguir as etapas para entender como a dimensão Geo foi criada. No painel direito, em Etapas aplicadas, selecione Source. Se você olhar na barra de fórmulas ou clicar em Configurações, notará que a Source desta consulta é uma junção entre Cities e States. Ao percorrer as etapas, você observará que o resultado da primeira junção é, por sua vez, unido a Countries. Portanto, todas as três consultas são usadas para criar a dimensão Geo.
- 
+
+![](Media/3.33.png) 
 
 ## Tarefa 8: Configurar destino de dados para a consulta Geo
 Agora que temos uma dimensão, vamos ingerir esses dados no Lakehouse. Este é o novo recurso disponível no Fluxo de Dados Gen2.
 1. Conforme mencionado anteriormente, não estamos preparando nenhum desses dados. Portanto, **clique com o botão direito do mouse** na consulta **Cities** e selecione **Habilitar o preparo** para remover a marca de seleção.
+
+    ![](Media/3.34.png)
  
 2. Siga as mesmas etapas para as consultas **Countries e Geo** para **remover a marca de seleção ao lado de Habilitar o preparo**.
 3. Selecione a consulta **Geo**.
 4. No canto inferior direito, selecione "**+**" ao lado de **Destino de dados**.
 5. Selecione **Lakehouse** na caixa de diálogo.
+
+    ![](Media/3.35.png)
  
 6. A caixa de diálogo Conectar ao destino de dados é aberta. Precisamos criar uma nova Conexão com o Lakehouse. Com a opção **Criar nova conexão** selecionada na **lista suspensa Conexão** e **Tipo de autenticação** definido como **Conta organizacional**, selecione **Próximo**.
+
+    ![](Media/3.36.png)
  
 7. Depois que a conexão é criada, a caixa de diálogo Escolher alvo de destino é aberta. Verifique se o botão de opção **Nova tabela** está selecionado, pois estamos criando uma nova tabela.
 8. Queremos criar a tabela no Lakehouse que criamos anteriormente. No painel esquerdo, navegue para **Lakehouse -> FAIAD_<nome de usuário>**.
 9. Selecione **lh_FAIAD**.
 10. Deixe o nome da tabela como **Geo**.
 11. Selecione **Próximo**.
+
+    ![](Media/3.37.png)
  
 12. A caixa de diálogo Escolher configurações de destino é aberta. Sempre que o Fluxo de Dados Gen2 for atualizado, gostaríamos de realizar um carregamento completo. Verifique se **Método de atualização** está definido como **Substituir**.
 13. Observe que há um aviso "Alguns nomes de colunas contêm caracteres sem suporte. Devemos corrigi-los para você?". O Lakehouse não aceita nomes de coluna com espaço. Selecione **Corrigir** para remover o aviso.
@@ -201,24 +273,34 @@ Agora que temos uma dimensão, vamos ingerir esses dados no Lakehouse. Este é o
 **Observação:** você também tem a opção de Acrescentar dados. Se você selecionar essa opção, sempre que o fluxo de dados for atualizado, novos dados serão acrescentados aos dados existentes.
 
 14. O mapeamento de colunas pode ser usado para mapear colunas de fluxo de dados para colunas existentes. No nosso caso, é uma Nova Tabela. Portanto, podemos usar os valores padrão. Selecione **Salvar configurações**.
+
+    ![](Media/3.38.png)
  
 **Observação:** Se você não quiser algumas colunas no Lakehouse, use a caixa de seleção à direita da coluna Origem para desmarcar as colunas desnecessárias.
 
 ## Tarefa 9: Publicar fluxo de dados
 1. Você será direcionado de volta à **janela Power Query**. No canto inferior direito, **Destino de dados está definido como Lakehouse**.
 2. Vamos publicar essas consultas para que possamos revisar o Lakehouse. Voltaremos para adicionar mais consultas. No canto inferior direito, selecione **Publicar**.
+
+    ![](Media/3.39.png)
  
 3. Você será direcionado de volta à **tela Data Factory**. Pode levar alguns instantes para que Fluxo de Dados ser publicado. Quando terminar, selecione **lh_FAIAD Lakehouse**.
+
+    ![](Media/3.40.png)
  
 4. Você será direcionado à **tela Explorador do Lakehouse**. No painel esquerdo, expanda **lh_FAIAD -> Tables**.
 5. Agora temos a tabela **Geo** no Lakehouse. Expanda Geo e observe todas as colunas. 
 6. **Selecione a tabela Geo** e a pré-visualização dos dados será aberta no painel direito.
+
+    ![](Media/3.41.png)
  
 Também existe um Ponto de Extremidade SQL, que pode ser usado para consultar esta tabela. Veremos essa opção em um laboratório posterior. Agora que sabemos que os dados de Geo estão no Lakehouse, vamos trazer o restante dos dados do ADLS Gen2.
 
 ## Tarefa 10: Renomear fluxo de dados
 1. Na barra de menus à esquerda, selecione **FAIAD_<nome de usuário>** para ser direcionado de volta ao **workspace**.
 2. Estamos trabalhando com o Dataflow 1. Vamos renomeá-lo antes de continuar. Clique nas **reticências (…)** ao lado de Dataflow 1. Selecione **Propriedades**.
+
+    ![](Media/3.42.png)
  
 3. A caixa de diálogo Propriedades do fluxo de dados é aberta. Altere o nome para **df_Sales_ADLS**
 
@@ -226,10 +308,14 @@ Também existe um Ponto de Extremidade SQL, que pode ser usado para consultar es
 
 4. Na caixa de texto **Descrição**, adicione **Dataflow to ingest Sales Data from ADLS to Lakehouse**
 5. Selecione **Salvar**.
+
+    ![](Media/3.43.png)
  
 
 ## Tarefa 11: Criar consultas restantes no Dataflow
 1. Você será direcionado de volta à tela Data Factory. Selecione o Dataflow **df_Sales_ADLS** para voltar ao fluxo de dados.
+
+    ![](Media/3.44.png)
  
 Para facilitar, vamos ver se podemos copiar as consultas do Power BI Desktop.
 
@@ -258,9 +344,13 @@ Para facilitar, vamos ver se podemos copiar as consultas do Power BI Desktop.
     j.	Date
 
 5. **Clique com o botão direito do mouse** e selecione **Copiar**.
+
+    ![](Media/3.45.png)
  
 6. Volte para a janela de Dataflow **df_Sales_ADLS** do navegador.
 7. No painel esquerdo, selecione o painel **Consultas** e pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
+
+    ![](Media/3.46.png)
  
 8. Conforme mencionado anteriormente, não estamos preparando nenhum desses dados. Portanto, **clique com o botão direito do mouse** nas consultas a seguir e selecione **Habilitar o preparo** para remover a marca de seleção.
 
@@ -275,6 +365,8 @@ Para facilitar, vamos ver se podemos copiar as consultas do Power BI Desktop.
     e.	Sales
 
 **Observação:** Se o carregamento estiver desabilitado no Power BI Desktop, não será necessário desabilitar o preparo no Repetition. Portanto, não precisamos desabilitar o preparo para Product Item Group, Product Groups, etc.
+
+![](Media/3.47.png)
  
 Verifique se **todas as consultas são processadas**. Quando terminar, vamos ingerir esses dados no Lakehouse. 
 
@@ -282,19 +374,27 @@ Verifique se **todas as consultas são processadas**. Quando terminar, vamos ing
 1. Selecione a consulta **Product**.
 2. No canto inferior direito, selecione "**+**" ao lado de **Destino de dados**.
 3. Selecione **Lakehouse** na caixa de diálogo.
+
+    ![](Media/3.48.png)
  
 4. A caixa de diálogo Conectar ao destino de dados é aberta. Na lista suspensa **Conexão**, selecione **Lakehouse (nenhum)**.
 5. Selecione **Próximo**.
+
+    ![](Media/3.49.png)
  
 6. A caixa de diálogo Escolher alvo de destino é aberta. Verifique se o botão de opção **Nova tabela** está selecionado, pois estamos criando uma nova tabela.
 7. Queremos criar a tabela no Lakehouse que criamos anteriormente. No painel esquerdo, navegue para **Lakehouse -> FAIAD_<nome de usuário>**.
 8. Selecione **lh_FAIAD**.
 9. Deixe o nome da tabela como **Product**.
 10. Selecione **Próximo**.
+
+    ![](Media/3.50.png)
  
 11. A caixa de diálogo Escolher configurações de destino é aberta. Sempre que o Fluxo de Dados Gen2 for atualizado, gostaríamos de realizar um carregamento completo. Verifique se **Método de atualização** está definido como **Substituir**.
 12. Observe que há um aviso "Alguns nomes de colunas contêm caracteres sem suporte. Devemos corrigi-los para você?". O Lakehouse não aceita nomes de coluna com espaço. Selecione **Corrigir** para remover o aviso.
 13. O mapeamento de colunas pode ser usado para mapear colunas de fluxo de dados para colunas existentes. No nosso caso, é uma Nova Tabela. Portanto, podemos usar os valores padrão. Selecione **Salvar configurações**.
+
+    ![](Media/3.51.png)
  
 14. Você será direcionado de volta à **janela Power Query**. No **canto inferior direito**, Destino de dados está definido como **Lakehouse**.
 15. Da mesma forma, defina o **Destino de dados** para as seguintes consultas:
@@ -308,6 +408,8 @@ Verifique se **todas as consultas são processadas**. Quando terminar, vamos ing
     d.	Sales
 
 16. Temos um fluxo de dados que ingere dados do ADLS no Lakehouse. Vamos continuar e publicar este fluxo de dados. Selecione **Publicar** no canto inferior direito.
+
+    ![](Media/3.52.png)
  
 Você será direcionado de volta para a Página Inicial do Data Factory. Levará alguns minutos para o fluxo de dados atualizar.
 
@@ -315,6 +417,8 @@ No próximo laboratório, ingeriremos dados de outras fontes de dados.
 
 # Referências
 O Fabric Analyst in a Day (FAIAD) apresenta algumas das principais funções disponíveis no Microsoft Fabric. No menu do serviço, a seção Ajuda (?) tem links para ótimos recursos.
+
+![](Media/3.53.png)
  
 Veja aqui mais alguns recursos que ajudarão você com as próximas etapas do Microsoft Fabric.
 - Veja a postagem do blog para ler o [anúncio completo de GA do Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23)
