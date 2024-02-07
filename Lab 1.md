@@ -1,4 +1,6 @@
 
+![](Media/1.1.png)
+
 # Sumário 
 - Estrutura do documento
 - Cenário/Declaração do problema
@@ -22,7 +24,7 @@ Para obter insights valiosos dos dados, você extrai dados de vários sistemas, 
 - **Dados do Cliente:** são obtidos do Customer Insights e armazenados no Dataverse. Os dados estão sempre atualizados.
 - **Dados do Funcionário:** são obtidos do sistema de RH e armazenados como um arquivo de exportação em uma pasta do SharePoint. São atualizados todas as manhãs, às 9h. 
 
- 
+    ![](Media/1.2.png)
 
 No momento, você está criando um conjunto de dados no Power BI Premium que extrai os dados dos sistemas de origem acima para que você possa gerar relatórios e fornecer aos usuários finais o recurso de autoatendimento. Você usa o Power Query para atualizar seu modelo. 
 
@@ -41,40 +43,62 @@ Antes de começarmos com o Fabric, vamos dar uma olhada no Relatório atual no P
 
 ## Tarefa 1: Configurar o Power BI Desktop no ambiente de laboratório
 1. Abra o arquivo **FAIAD.pbix** que está na pasta **Report** no **Desktop** do seu ambiente de laboratório. O arquivo será aberto no Power BI Desktop.
+
+    ![](Media/1.3.png)
  
 2. Insira seu endereço de email na caixa de diálogo aberta. Navegue até a guia **Environment Details** no painel direito do ambiente de laboratório.
 3. Copie os dados de **Credentials > Username** e cole na caixa de texto Email da caixa de diálogo.
 4. Selecione **Continue**.
+
+    ![](Media/1.4.png)
  
 5. A caixa de diálogo Vamos entrar é aberta. Selecione **Conta corporativa ou de estudante**.
 6. Selecione **Continuar**.
+
+    ![](Media/1.5.png)
  
 7. A caixa de diálogo Sign in é aberta. Insira novamente os dados de **Credentials > Username** copiando-os da guia **Environment Details**.
 8. Selecione **Next**.
+
+    ![](Media/1.6.png)
  
 9. Na próxima caixa de diálogo, insira novamente os dados de **Credentials > Password** copiando-os da guia **Environment Details**.
 10. Selecione **Sign in**.
 11. A caixa de diálogo Action Required é aberta solicitando a configuração da autenticação multifator. Não precisamos configurar isso, pois estamos em um ambiente de laboratório. Selecione **Ask later**.
+
+    ![](Media/1.7.png)
  
 12. Selecione **No, sign in the app only** na próxima caixa de diálogo. O Power BI Desktop será aberto.
 
 ## Tarefa 2: Analisar relatório do Power BI Desktop
-O relatório abaixo analisa as Sales da Fabrikam. Os KPIs estão listados no canto superior esquerdo da página. Os visuais restantes destacam as Sales over time, por Territory, Product Group e Reseller Company. 
+O relatório abaixo analisa as Sales da Fabrikam. Os KPIs estão listados no canto superior esquerdo da página. Os visuais restantes destacam as Sales over time, por Territory, Product Group e Reseller Company.
+
+![](Media/1.8.png)
  
 **Observação:** Neste treinamento, estamos nos concentrando na aquisição, transformação e modelagem de dados usando as ferramentas disponíveis no Fabric. Não nos concentraremos no desenvolvimento ou na navegação de relatórios. Vamos reservar alguns minutos para entender o relatório e passar para as próximas etapas.
 1. Vamos analisar os dados por Sales Territory. Selecione o visual **New England from the Sales Territory** (gráfico de dispersão). Observe que em Sales over time, Reseller Tailspin Toys tem mais vendas em comparação com Wingtip Toys em New England. Se você olhar o gráfico de colunas Sales YoY%, notará que o crescimento das vendas da Wingtip Toys foi baixo e diminuiu trimestre após trimestre durante o ano passado. Depois de uma pequena recuperação no terceiro trimestre, caiu novamente no quarto. 
+
+    ![](Media/1.9.png)
  
 2. Vamos comparar isso com a região Rocky Mountain. Selecione o visual **Rocky Mountain from Sales Territory** (gráfico de dispersão). Observe no gráfico de colunas Sales YoY% que as vendas da Wingtip Toys aumentaram drasticamente no quarto trimestre de 2022, depois de terem sido baixas nos dois trimestres anteriores.
+
+    ![](Media/1.10.png)
  
 3. Selecione o visual **Rocky Mountain from Sales Territory** para remover o filtro.
 4. No visual Gráfico de dispersão, na parte inferior central da tela (Sales Orders por Sales), selecione a exceção no canto superior direito (4º quadrante). Observe que a margem percentual é de 52%, estando acima da média de 50%. Além disso, o Sales YoY% aumentou últimos dois trimestres de 2022.
+
+    ![](Media/1.11.png)
  
 5. Selecione a exceção Reseller no visual Gráfico de dispersão para **remover o filtro**.
 6. Vamos obter os detalhes de Product por Product Group e Reseller. No visual do gráfico de barras Sales por Product Group e Reseller Company, **clique com o botão direito na barra Packaging Materials para Tailspin Toys** e, na caixa de diálogo, selecione **Drill through -> Product Detail**.
+
+    ![](Media/1.12.png)
  
 Você será direcionado para a página que fornece os Product Details. Observe que também existem algumas ordens futuras em andamento.
 
 7. Quando terminar de revisar esta página, selecione **Ctrl+seta para voltar** na parte superior direita da página para "voltar ao Sales Report.
+
+    ![](Media/1.13.png)
  
 8. Fique à vontade para analisar o relatório posteriormente. Quando estiver pronto, vamos dar uma olhada na exibição do modelo. No painel esquerdo, selecione o **Ícone de exibição do modelo**. Observe que existem duas tabelas de fatos, Sales e PO. 
 
@@ -90,6 +114,8 @@ Você será direcionado para a página que fornece os Product Details. Observe q
 
 ## Tarefa 3: Revisar Power Queries
 1. Vamos analisar o Power Query para entender as fontes de dados. Na faixa de opções, selecione **Página Inicial -> Transformar dados**.
+
+    ![](Media/1.14.png)
  
 2. A janela do Power Query é aberta. Na faixa de opções, selecione **Página Inicial -> Configuração da fonte de dados**. A caixa de diálogo Configuração da fonte de dados é aberta. Ao percorrer a lista, você notará que existem quatro fontes principais, conforme mencionado na declaração do problema:
 
@@ -102,10 +128,14 @@ Você será direcionado para a página que fornece os Product Details. Observe q
     d. Dataverse
 
 3. Selecione **Fechar** para fechar a caixa de diálogo Configuração da fonte de dados.
+
+    ![](Media/1.15.png)
  
 4. No painel esquerdo Consultas, observe que as consultas estão agrupadas por fonte de dados. 
 5. Observe que a pasta **DataverseData** tem os dados de Customer disponíveis em quatro consultas diferentes: BabyBoomer, GenX, GenY e GenZ. Essas quatro consultas são acrescentadas para criar a consulta Customer.
 6. Você pode inserir as credenciais para a fonte de dados Dataverse inserindo o **Username** e a **Password** disponíveis na guia **Environment Variables** (ao lado do Guia de Laboratório). Selecione a opção Conta Microsoft.
+
+    ![](Media/1.16.png)
  
 7. Para a fonte de dados ADLS, use a opção **Account Key** e insira os valores de **Adls storage account e Access key** que estão disponíveis na guia Environment Variables (ao lado do Guia de Laboratório).
 8. Observe que a pasta **ADLSData** tem múltiplas dimensões: Geo, Product, Reseller e Date. Também tem o fato Sales. 
@@ -127,11 +157,15 @@ Você será direcionado para a página que fornece os Product Details. Observe q
 
 11. Para a fonte de dados SharePoint, insira o **Username** e a **Password** disponíveis na guia **Environment Variables** (ao lado do Guia de Laboratório). Selecione a opção Conta Microsoft.
 12. Observe que a pasta **SharepointData** tem a dimensão People.
+
+    ![](Media/1.17.png)
  
 Agora sabemos com o que estamos lidando. Nos laboratórios a seguir, criaremos um Power Query semelhante usando o Fluxo de Dados Gen2 e um modelo usando Lakehouse.
 
 # Referências
 O Fabric Analyst in a Day (FAIAD) apresenta algumas das principais funções disponíveis no Microsoft Fabric. No menu do serviço, a seção Ajuda (?) tem links para ótimos recursos.
+
+![](Media/1.18.png)
  
 Veja aqui mais alguns recursos que ajudarão você com as próximas etapas do Microsoft Fabric.
 

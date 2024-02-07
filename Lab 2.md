@@ -1,4 +1,4 @@
-
+![](Media/2.1.png)
  
 # Sumário	
 - Introdução
@@ -31,9 +31,13 @@ Ao final deste laboratório, você terá aprendido:
 **Observação:** Se você já tiver uma conta do Power BI, talvez queira usar o navegador no modo privado/anônimo.
 
 2. Insira o **Email** fornecido pelo instrutor e clique em **Enviar**.
+
+    ![](Media/2.2.png)
  
 3. Você será direcionado à tela **Senha**. Insira a senha compartilhada com você pelo instrutor. 
 4. Clique em **Entrar** e siga as instruções para entrar no Fabric.
+
+    ![](Media/2.3.png)
  
 5. Você será direcionado à conhecida **Página Inicial de Serviço do Power BI**.
 6. Presumimos que você esteja familiarizado com o layout do Serviço do Power BI. Se você tiver alguma dúvida, não hesite em perguntar ao instrutor.
@@ -42,18 +46,27 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
 
 7. No canto superior direito da tela, selecione o **ícone de usuário**.
 8. Selecione **Iniciar avaliação**.
+
+    ![](Media/2.4.png)
  
 9. A caixa de diálogo Atualizar para uma avaliação gratuita do Microsoft Fabric é aberta. Selecione **Iniciar avaliação**.
+
+    ![](Media/2.5.png)
  
-10.	A caixa de diálogo de avaliação gratuita Atualizado com êxito para Microsoft Fabric é aberta. Selecione **Fabric Home Page**. 
+10.	A caixa de diálogo de avaliação gratuita Atualizado com êxito para Microsoft Fabric é aberta. Selecione **Fabric Home Page**.
+
+    ![](Media/2.6.png)
  
 11. Você será direcionado à **Página Inicial do Microsoft Fabric**.
- 
+
+    ![](Media/2.7.png)
 
 # Visão geral das experiências do Fabric
 ## Tarefa 2: Experiência do Data Factory
 1. Selecione o ícone **Microsoft Fabric** na parte inferior esquerda da tela. Uma caixa de diálogo com a lista de experiências do Fabric será aberta. Observe que o Power BI, o Data Factory e o Data Activator são experiências independentes. Data Engineering, Data Science, Data Warehouse e Real-Time Analytics são experiências do Synapse e essas quatro experiências são da plataforma Synapse. Vamos explorar.
 2. Selecione **Data Factory**.
+
+    ![](Media/2.8.png)
  
 3. Você é direcionado para a **Página Inicial do Data Factory**. A página contém três seções principais. 
 
@@ -66,14 +79,20 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
     b. **Recomendado:** esta seção fornece acesso à documentação de aprendizagem de início rápido.
     
     c. **Acesso rápido:** esta seção lista os itens favoritos ou usados recentemente.
+
+    ![](Media/2.9.png)
  
 ## Tarefa 3: Experiência do Data Activator
 1. Selecione **Data Factory** na parte inferior esquerda da tela. A caixa de diálogo de experiência do Fabric é aberta.
+
+    ![](Media/2.10.png)
  
 2. Selecione **Data Activator** na caixa de diálogo. Você será direcionado para a **Página Inicial do Data Activator**. O Data Activator é uma experiência no-code no Microsoft Fabric para executar ações automaticamente quando padrões ou condições são detectados em dados alterados. Observe que as três seções são como a experiência do Data Factory. Na seção Novo, observe os itens:
 
     a. **Reflex:** usado para monitorar conjuntos de dados, consultas e fluxos de eventos para padrões.
     b. **Exemplo do Reflex:** solução de exemplo.
+
+    ![](Media/2.11.png)
  
 
 ## Tarefa 4: Experiência do Synapse Data Engineering
@@ -91,6 +110,8 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
     e. **Importar bloco de anotações:** usado para importar blocos de anotações da máquina local.
     
     f. **Usar uma amostra:** usado para criar uma amostra.
+
+    ![](Media/2.12.png)
  
 
 ## Tarefa 5: Experiência do Synapse Data Science
@@ -106,6 +127,8 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
     d. **Importar bloco de anotações:** usado para importar blocos de anotações da máquina local.
     
     e. **Usar uma amostra:** solução de amostra.
+
+    ![](Media/2.13.png)
  
 
 ## Tarefa 6: Experiência do Synapse Data Warehouse
@@ -117,6 +140,8 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
     b. **Exemplo de depósito:** solução de exemplo de depósito.
     
     c. **Pipeline de dados:** usado para orquestrar a solução de dados.
+
+    ![](Media/2.14.png)
  
 
 ## Tarefa 7: Experiência do Real-Time Analytics
@@ -130,12 +155,16 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
     c. **Eventstream:** usado para capturar, transformar e rotear fluxo de eventos em tempo real.
     
     d. **Usar uma amostra:** usado para criar uma amostra.
+
+    ![](Media/2.15.png)
  
 
 # Workspace do Fabric
 ## Tarefa 8: Criar um workspace do Fabric
 1. Agora vamos criar um workspace com a licença do Fabric. Selecione **Workspaces** na barra de navegação esquerda. Uma caixa de diálogo é aberta.
 2. Selecione **Novo workspace**.
+
+    ![](Media/2.16.png)
  
 3. A caixa de diálogo **Criar um workspace** é aberta no lado direito do navegador.
 4. No campo **Nome**, insira **FAIAD_<nome de usuário>**.
@@ -144,34 +173,48 @@ Atualmente, você está em **Meu workspace**. Para trabalhar com itens do Fabric
 
 5. Se preferir, você pode inserir uma **Descrição** para o workspace. Esse campo é opcional.
 6. Clique em **Avançado** para expandir a seção.
+
+    ![](Media/2.17.png)
  
 7. Em **Modo de licença**, verifique se **Avaliação** está selecionada. (Essa opção deve estar selecionada por padrão.)
 8. Selecione **Aplicar** para criar um novo workspace.
+
+    ![](Media/2.18.png)
  
 Um novo workspace é criado e você será direcionado para ele. Traremos dados de diferentes fontes de dados para o Lakehouse e usaremos os dados do Lakehouse para criar nosso modelo e relatá-lo. A primeira etapa é criar um Lakehouse.
 
 ## Tarefa 9: Criar um Lakehouse
 1. Selecione **Real-Time Analytics** na parte inferior esquerda da tela. A caixa de diálogo de experiência do Fabric é aberta.
 2. Selecione **Data Engineering** para ser direcionado para a Página Inicial do Data Engineering.
+
+    ![](Media/2.19.png)
  
 3. Selecione **Lakehouse**.
+
+    ![](Media/2.20.png)
  
 4. A caixa de diálogo Novo lakehouse é aberta. Digite **lh_FAIAD** na caixa de texto Nome. 
 
 **Observação:** "lh" aqui se refere a Lakehouse. Estamos usando o prefixo "lh" para facilitar a identificação e a pesquisa.
 
 5. Selecione **Criar**.
+
+    ![](Media/2.21.png)
  
 Em alguns instantes, um Lakehouse será criado e você será direcionado para a interface do Lakehouse.
+
 No **painel esquerdo**, observe que abaixo do seu workspace você terá o ícone Lakehouse. Você pode navegar facilmente até o Lakehouse clicando neste ícone a qualquer momento.
 
 No explorador do Lakehouse, você observará **Tabelas** e **Arquivos**. O Lakehouse poderá expor arquivos do Azure Data Lake Storage Gen2 na seção de arquivos, ou um fluxo de dados poderá carregar dados para as tabelas do Lakehouse. Existem várias opções disponíveis. Mostraremos algumas das opções nos laboratórios a seguir.
- 
+
+![](Media/2.22.png)
+
 Neste laboratório, exploramos a interface do Fabric, criamos um workspace do Fabric e um Lakehouse. No próximo laboratório, aprenderemos como usar o Fluxo de Dados Gen2 para se conectar ao ADLS Gen2 para extrair, transformar e ingerir dados no Lakehouse.
 
 # Referências
 O Fabric Analyst in a Day (FAIAD) apresenta algumas das principais funções disponíveis no Microsoft Fabric. No menu do serviço, a seção Ajuda (?) tem links para ótimos recursos.
  
+![](Media/2.23.png) 
 
 Veja aqui mais alguns recursos que [ajudarão você com as próximas etapas do Microsoft Fabric](https://aka.ms/Fabric-Hero-Blog-Ignite23).
 - Veja a postagem do blog para ler o anúncio completo de GA do Microsoft Fabric
