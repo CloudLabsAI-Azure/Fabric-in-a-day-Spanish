@@ -83,6 +83,7 @@ SQL 视图、函数和存储过程的选项。如果您具备 SQL
     JOIN dbo.Product p on p.StockItemID = s.StockItemID
 
     JOIN dbo.Supplier su on su.SupplierID = p.SupplierID
+    
     按 su.Supplier_Name 分组
     ```
 
