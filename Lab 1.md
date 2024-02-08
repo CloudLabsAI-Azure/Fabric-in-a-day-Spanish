@@ -128,14 +128,11 @@ KPI。其余的视觉对象突出显示了按区域、产品组和经销商公�
 
 7. 查看完此页面后，选择页面右上角的 **Ctrl + 后退箭头**可导航回到销售报表。
 
-8. 您可以自行进一步分析该报表。准备好后，我们来看看模型视图。在左侧面板中，选择**模型视图图标**。请注意，有两个事实表：Sales
-    和 PO。
+8. 您可以自行进一步分析该报表。准备好后，我们来看看模型视图。在左侧面板中，选择**模型视图图标**。请注意，有两个事实表：Sales和 PO。
 
-    a. 销售数据的粒度是按日期、经销商、产品和人员。Date、Reseller、Product
-        和 People 连接到 Sales。
+    a. 销售数据的粒度是按日期、经销商、产品和人员。Date、Reseller、Product和People 连接到 Sales。
 
-    b. PO 数据的粒度是按日期、经销商和人员。Date、Product 和 People
-        连接到 PO。
+    b. PO 数据的粒度是按日期、经销商和人员。Date、Product 和 People连接到 PO。
 
     c. 我们有按产品分类的供应商数据。Supplier 连接到 Product。
 
@@ -175,16 +172,13 @@ KPI。其余的视觉对象突出显示了按区域、产品组和经销商公�
 8. 请注意，**ADLSData** 文件夹具有多个维度：Geo、Product、Reseller 和
     Date还具有 Sales 事实。
 
-    a. **Geo 维度**是通过合并 Cities、Countries 和 States
-        查询的数据而创建的。
+    a. **Geo 维度**是通过合并 Cities、Countries 和 States查询的数据而创建的。
 
-    b. **Product 维度**是通过合并 Product Groups 和 Product Item Group
-        查询中的数据而创建的。
+    b. **Product 维度**是通过合并 Product Groups 和 Product Item Group查询中的数据而创建的。
 
     c. **Reseller 维度**是使用 BuyingGroup 查询筛选而来的。
 
-    d. **Sales 事实**是通过合并 InvoiceLineItems 与 Invoice
-        查询而创建的。
+    d. **Sales 事实**是通过合并 InvoiceLineItems 与 Invoice查询而创建的。
 
 9. 对于 Snowflake 数据源，使用 **Snowflake Username** 和 **Snowflake
     Password**，其位于**环境变量**选项卡中（实验指南旁边）。
@@ -192,8 +186,7 @@ KPI。其余的视觉对象突出显示了按区域、产品组和经销商公�
 10. 请注意，**SnowflakeData** 文件夹包含 Supplier 维度和
     PO（订单/支出）事实。
 
-    a. **Supplier 维度**是通过合并 Suppliers 查询与 SupplierCategories
-        查询而创建的。
+    a. **Supplier 维度**是通过合并 Suppliers 查询与 SupplierCategories查询而创建的。
 
     b. **PO 事实**是通过合并 PO 与 PO Line Items 查询而创建的。
 

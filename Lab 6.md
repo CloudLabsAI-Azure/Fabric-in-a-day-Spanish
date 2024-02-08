@@ -373,11 +373,9 @@ SQL，可以使用视觉对象查询执行类似的查询。
 
 5. 按照相似的步骤添加以下度量：
 
-    a. **GM = SUM(Sales\[Line_Profit\])**，格式设置为**货币，小数点后 2
-        位**
+    a. **GM = SUM(Sales\[Line_Profit\])**，格式设置为**货币，小数点后 2位**
 
-    b. **GM% = DIVIDE(\[GM\],
-        \[Sales\])**，格式设置为**百分比，小数点后 2 位**
+    b. **GM% = DIVIDE(\[GM\],\[Sales\])**，格式设置为**百分比，小数点后 2 位**
 
     c. **No of Customers = COUNTROWS(Customer)**，格式设置为**整数**
 

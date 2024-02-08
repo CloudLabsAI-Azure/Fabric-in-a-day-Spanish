@@ -63,15 +63,13 @@ Lakehouse，创建数据模型，并为数据源设置刷新计划。我们接�
 6. "选择要在报表中使用的数据集"页面随即打开。请注意，我们有四个选项。**选择
     lh_FAIAD**：
 
-    a. **lh_FAIAD：** 这是
-        Lakehouse，其中包含我们创建并希望用于报表的数据集。
+    a. **lh_FAIAD：** 这是Lakehouse，其中包含我们创建并希望用于报表的数据集。
 
     b. **Units by Supplier：** 这是我们使用 T-SQL 创建的数据集。
 
-    c. **DataflowsStagingWarehouse：** 这是默认创建的暂存仓库，因为我们没有暂存数据，所以没有使用它。
+    c. **DataflowsStagingWarehouse：** 这是默认创建的暂存仓库，因为我们没有暂存据，所以没有使用它。
 
-    d. **DataflowsStagingLakehouse：** 这是默认创建的暂存
-        lakehouse，因为我们没有暂存数据，所以没有使用它。
+    d. **DataflowsStagingLakehouse：** 这是默认创建的暂存lakehouse，因为我们没有暂存数据，所以没有使用它。
 
 7. 点击 **"自动创建报表"按钮旁边的箭头**。请注意，有两个选项："自动创建报表"和"创建空白报表"。我们来尝试自动创建报表，因此选择**自动创建报表**。
 
