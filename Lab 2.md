@@ -1,3 +1,5 @@
+![](Media/2.1.png)
+
 # 目录 
 
 简介 
@@ -52,9 +54,13 @@ Lakehouse、数据流 Gen2、数据管道和 DirectLake 功能。
 
 2. 输入讲师提供的**电子邮件地址**，然后点击**提交。**
 
+    ![](Media/2.2.png)
+
 3. 您将导航到**密码**屏幕。输入讲师与您共享的密码。
 
 4. 点击**登录**并按照提示登录 Fabric。
+
+    ![](Media/2.3.png)
 
 5. 您将导航到熟悉的 **Power BI 服务主页**。
 
@@ -68,13 +74,21 @@ Fabric 许可证的工作区。我们就这么办吧。
 
 8. 选择**开始试用**。
 
+    ![](Media/2.4.png)
+
 9. "升级到 Microsoft Fabric
     免费试用版"对话框随即打开。选择**开始试用**。
+
+    ![](Media/2.5.png)
 
 10. "已成功升级到Microsoft Fabric 免费试用版"对话框随即打开。选择
     **Fabric 主页**。
 
+    ![](Media/2.6.png)
+
 11. 您将导航到 **Microsoft** **Fabric 主页**。
+
+    ![](Media/2.7.png)
 
 # Fabric 体验概述
 
@@ -88,6 +102,8 @@ Fabric 许可证的工作区。我们就这么办吧。
 
 2. 选择 **Data Factory**。
 
+    ![](Media/2.8.png)
+
 3. 您将导航到 **Data Factory 主页页面**。该页面包含三个主要部分。
 
     a. **新增**：这里列出了 Data Factory - 数据流 Gen2和数据管道中的可用项目。
@@ -99,10 +115,14 @@ Fabric 许可证的工作区。我们就这么办吧。
 
     c.  **快速访问**：这一部分列出了最近使用或收藏的项目。
 
+    ![](Media/2.9.png)
+
 
 ### 任务 3：Data Activator 体验
 
 1.  选择屏幕左下角的 **Data Factory**。Fabric 体验对话框随即打开。
+
+    ![](Media/2.10.png)
 
 2.  从对话框选择 **Data Activator**。您将导航到 **Data Activator
     主页**。Data Activator 是 Microsoft Fabric
@@ -112,6 +132,8 @@ Fabric 许可证的工作区。我们就这么办吧。
     a. **Reflex：** 用于监视数据集、查询和事件流中的模式。
 
     b. **Reflex 示例：** 示例解决方案。
+
+    ![](Media/2.11.png)
 
 ### 任务 4：Synapse Data Engineering 体验
 
@@ -132,6 +154,8 @@ Fabric 许可证的工作区。我们就这么办吧。
 
     f.  **使用示例：** 用于创建示例。
 
+    ![](Media/2.12.png)
+
 ### 任务 5：Synapse Data Science 体验
 
 1. 选择屏幕左下角的 **Data Engineering**。Fabric 体验对话框随即打开。
@@ -149,6 +173,8 @@ Fabric 许可证的工作区。我们就这么办吧。
 
     e.  **示例：** 示例解决方案。
 
+    ![](Media/2.13.png)
+
 ### 任务 6：Synapse Data Warehouse 体验
 
 1. 选择屏幕左下角的 **Data Science**。Fabric 体验对话框随即打开。
@@ -162,6 +188,8 @@ Fabric 许可证的工作区。我们就这么办吧。
     b. **示例仓库：** 示例仓库解决方案。
 
     c. **数据管道：** 用于编排数据解决方案。
+
+    ![](Media/2.14.png)
 
 ### 任务 7：Real-Time Analytics 体验
 
