@@ -1,4 +1,5 @@
 
+![](Media/0.1.png)
 
 # 목차 
 
@@ -51,6 +52,8 @@ Snowflake 사용자 이름: **TE_SNOWFLAKE**
 Snowflake 암호: **8UpfRpExVDXv2AC**
 
 ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6rF200bTop3LpKpsIno/T+AStx6cz6w==**
+
+![](Media/0.2.png)
  
 # 데이터 흐름 템플릿 가져오기
 
@@ -63,14 +66,20 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 2. **Data Factory** 홈 페이지로 **이동합니다**.
 
 3. 메뉴에서 **새로 만들기 -> Dataflow Gen2**를 선택합니다.
+
+    ![](Media/0.3.png)
  
 4. Power Query 창이 열립니다. 가운데 창에서  **Power Query 템플릿에서 가져오기**를 선택합니다.
+
+    ![](Media/0.4.png)
  
 5. **바탕 화면 -> 솔루션** 폴더로 이동하여 가져오려는 데이터 흐름을 선택합니다. 여기서는 **df_People_SharePoint.pqt**를 가져옵니다.
 
 6. **열기**를 선택합니다.
 
 가져온 후에는 쿼리를 확인하고 쿼리에 대한 모든 단계를 가져옵니다. 그러나 연결을 구성해야 합니다. 또한 데이터 대상을 설정해야 합니다. 이들 단계를 완료하려면 랩 지침을 따르세요.
+
+![](Media/0.5.png)
  
 
 # 데모 요구 사항
@@ -88,6 +97,8 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 8. 상단 메뉴에서 **줄임표**를 선택합니다.
 
 9. **작업 영역 설정**을 선택합니다.
+
+    ![](Media/0.6.png)
  
 10. 작업 영역 설정 대화 상자가 열립니다. 왼쪽 메뉴에서 **Data Engineering/과학**을 확장합니다.
 
@@ -100,6 +111,8 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 14. **작업 영역 기본값** 드롭다운을 선택합니다.
 
 15. **새 환경**을 선택합니다.
+
+    ![](Media/0.7.png)
  
 16. 새 환경 대화 상자가 열립니다. 이름을 **FAIAD_<username>_env**
 
@@ -108,6 +121,8 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 
 
 17. **만들기를** 선택합니다.
+
+    ![](Media/0.8.png)
  
 18. 공개 및 사용자 정의 라이브러리를 추가할 수 있는 화면으로 이동됩니다. 우리는 공개 라이브러리인 Prophet을 추가하고자 합니다. 상단 메뉴에서 **공개 라이브러리 -> PyPI에서 추가**를 선택합니다.
 
@@ -116,18 +131,28 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 **을 입력합니다. 참고: 버전이 1.1.5인지 확인하세요**.
 
 20. 오른쪽 상단 창에서 **게시**를 선택합니다. 
+
+    ![](Media/0.9.png)
  
 21. 보류 중인 변경사항 대화상자가 열립니다. **모두 게시**를 선택합니다.
 
 22. "모든 변경사항을 게시하시겠습니까?" 대화 상자가 열립니다. **게시**를 선택합니다. 업데이트를 게시하려면 몇 분 정도 걸립니다.
+
+    ![](Media/0.10.png)
  
 23. 진행 상황을 확인하려면 **진행 상황 보기**를 선택합니다. 업데이트를 게시하려면 몇 분 정도 걸립니다.
+
+    ![](Media/0.11.png)
  
 24. 설치가 완료되면 **상태**가 **성공**으로 변경됩니다.
+
+    ![](Media/0.12.png)
  
 25. 이제 환경을 구성했으므로 이를 작업 영역의 기본 환경으로 저장해야 합니다. 왼쪽 패널에서 **FAIAD_<username>**을 선택합니다.
 
 26. 상단 메뉴에서 **작업 영역 설정**(또는 줄임표 -> 작업 영역 설정)을 선택합니다.
+
+    ![](Media/0.13.png)
  
 27. 작업 영역 설정 대화 상자가 열립니다. 왼쪽 메뉴에서 **Data Engineering**/과학을 확장합니다.
 
@@ -143,12 +168,15 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 
 33. **저장**을 선택합니다.
  
+    ![](Media/0.14.png)
 
 ## 예측용 Notebook 만드는 방법
 
 34. **Synapse Data Engineering** 홈 페이지로 이동합니다.
 
 35. **새로 만들기 -> Notebook**을 선택합니다.
+
+    ![](Media/0.15.png)
  
 36. Notebook, 언어, 환경의 레이아웃, 새 셀을 만드는 방법 등에 대한 **간단한 개요**를 제공합니다.
 
@@ -198,14 +226,20 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
 39. **코드**의 각 단계를 설명합니다(코멘트 입력 수).
 
 40. 셀 옆에 있는 **재생** 버튼을 선택하여 코드를 실행합니다.
+
+    ![](Media/0.16.png)
  
 생성된 세 가지 차트(아래)를 참석자들에게 안내합니다. 2023년 4월까지의 실제 데이터가 있고 12개월을 예측합니다. 
 
 **첫 번째 차트**에서는 계절성과 2024년 4월까지의 예측이 제거된다는 점에 주의합니다.
 
 **두 번째 차트**에서는 추세가 제거되고 계절성을 추가하여 2023년 4월까지 예측합니다.
+
+![](Media/0.17.png)
  
 **세 번째 차트**는 추세와 계절성을 모두 사용하여 예측합니다. 이 차트는 상한과 하한도 제공합니다.
+
+![](Media/0.18.png)
  
 41. **새 셀**을 만듭니다. 
 
@@ -218,9 +252,13 @@ ADLS Gen2 계정 키: **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6
     ```
 
 43. **재생** 버튼을 선택하여 셀을 실행합니다.
+
+    ![](Media/0.19.png)
  
 44. **표시되는 데이터**를 참석자들에게 안내합니다.
 
 45. 사용자에게 새 테이블이 생성되었음을 표시합니다. **sales_forecast**
+
+    ![](Media/0.20.png)
  
 46. **테이블을 쿼리** 하고 사용자에게 테이블의 내용을 표시합니다.
