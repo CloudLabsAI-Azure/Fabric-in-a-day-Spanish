@@ -1,4 +1,4 @@
-
+![](Media/lab-02-1.png "Lab Environment")
  
 # Sommaire	
 
@@ -51,10 +51,14 @@ Aujourd’hui, vous allez découvrir diverses fonctionnalités clés de Microsof
 
 2. Saisissez l’**Adresse e-mail** fournie par le formateur et cliquez sur **Envoyer**.
  
+   ![](Media/lab-02-2.png "Lab Environment")
+
 3. Vous êtes alors redirigé vers l’écran **Mot de passe**. Saisissez le mot de passe que le formateur a partagé avec vous. 
  
 4. Cliquez sur **Se connecter** et suivez les invites pour vous connecter à Fabric.
- 
+
+   ![](Media/lab-02-3.png "Lab Environment")
+
 5. Vous êtes alors redirigé vers la **page d’accueil Service Power BI** familière.
 
 6. Nous supposons que vous connaissez la disposition du service Power BI. Si vous avez une question, n’hésitez pas à la poser au formateur.
@@ -64,12 +68,20 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 7. Dans le coin supérieur droit de l’écran, cliquez sur l’**icône utilisateur**.
 
 8. Cliquez sur **Démarrer l’évaluation**.
- 
+
+   ![](Media/lab-02-4.png "Lab Environment")
+ 
 9. La boîte de dialogue Mettre à niveau vers un essai gratuit Microsoft Fabric s’ouvre alors. Cliquez sur **Démarrer l’évaluation**.
+
+   ![](Media/lab-02-5.png "Lab Environment")
  
 10. La boîte de dialogue Mise à niveau réussie vers Microsoft Fabric s’ouvre alors. Cliquez sur **Fabric Home Page**. 
+
+    ![](Media/lab-02-6.png "Lab Environment")
  
 11. Vous êtes alors redirigé vers la **page d’accueil Microsoft Fabric**.
+
+    ![](Media/lab-02-7.png "Lab Environment")
  
 
 # Présentation des expériences Fabric
@@ -79,6 +91,8 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 1. Cliquez sur l’icône **Microsoft Fabric** en bas de votre écran à gauche. Une boîte de dialogue avec la liste des expériences Fabric s’ouvre alors. Notez que Power BI, Data Factory et Data Activator sont des expériences indépendantes. Data Engineering, Data Science, Data Warehouse et Real-Time Analytics sont des expériences Synapse et ces quatre expériences sont optimisées par Synapse. Explorons.
 
 2. Cliquez sur **Data Factory**.
+
+   ![](Media/lab-02-8.png "Lab Environment")
  
 3. Vous êtes alors redirigé vers la **page d’ Accueil de Data Factory**. La page comporte trois sections principales : 
     
@@ -91,10 +105,14 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
     b. **Recommandé** : cette section donne accès à la documentation d’apprentissage de démarrage rapide.
 
     c. **Accès rapide** : cette section répertorie les éléments récemment utilisés ou favoris.
+
+    ![](Media/lab-02-9.png "Lab Environment")
  
 ## Tâche 3 : expérience Data Activator
 
 1. Cliquez sur **Data Factory** en bas de votre écran à gauche. La boîte de dialogue Expérience Fabric s’ouvre alors.
+
+   ![](Media/lab-02-10.png "Lab Environment")
  
 2. Cliquez sur **Data Activator** dans la boîte de dialogue. Vous êtes alors redirigé vers la **page d’accueil de Data Activator**. Data Activator est une expérience no-code dans Microsoft Fabric permettant d’entreprendre automatiquement des actions lorsque des modèles ou conditions sont détecté(e)s dans des données changeantes. Notez que les trois sections ressemblent à l’expérience Data Factory. Dans la section Nouveau, notez les éléments suivants :
 
@@ -102,6 +120,7 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 
     b. **Exemple Reflex** : exemple de solution.
  
+   ![](Media/lab-02-11.png "Lab Environment")
 
 ## Tâche 4 : expérience Synapse Data Engineering
 
@@ -122,6 +141,8 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
     f. **Utiliser un exemple** : permet de créer un exemple.
  
 
+   ![](Media/lab-02-12.png "Lab Environment")
+   
 ## Tâche 5 : expérience Synapse Data Science
 
 1. Cliquez sur **Data Engineering** en bas de votre écran à gauche. La boîte de dialogue Expérience Fabric s’ouvre alors.
@@ -138,7 +159,9 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
     à partir d’une machine locale.
 
     e. **Exemple** : exemple de solution.
- 
+
+
+   ![](Media/lab-02-13.png "Lab Environment")
  
 ## Tâche 6 : expérience Synapse Data Warehouse
 
@@ -151,6 +174,8 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
     b. **Exemple d’entrepôt** : exemple de solution d’entrepôt.
 
     c. **Pipeline de données** : permet d’orchestrer la solution de données.
+
+   ![](Media/lab-02-14.png "Lab Environment")
  
  
 ## Tâche 7 : expérience Real-Time Analytics
@@ -167,7 +192,9 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 
     d. **Utiliser un exemple** : permet de créer un exemple.
  
- 
+   ![](Media/lab-02-15.png "Lab Environment")
+
+ 
 # Espace de travail Fabric
 
 ## Tâche 8 : créer un espace de travail Fabric
@@ -175,7 +202,9 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 1. Créons maintenant un espace de travail avec la licence Fabric. Cliquez sur **Espaces de travail** dans la barre de navigation gauche. Une boîte de dialogue s’ouvre alors.
 
 2. Cliquez sur **Nouvel espace de travail**.
- 
+
+   ![](Media/lab-02-16.png "Lab Environment")
+
 3. La boîte de dialogue **Créer un espace de travail** s’ouvre alors sur le côté droit du navigateur.
 
 4. Dans le champ **Nom**, saisissez **FAIAD_<username>**.
@@ -185,10 +214,14 @@ Vous êtes actuellement dans **Mon espace de travail**. Pour utiliser des élém
 5. Si vous le souhaitez, vous pouvez saisir une **Description** pour l’espace de travail. Il s’agit d’un champ facultatif.
  
 6. Cliquez sur **Options avancées** pour développer la section.
+
+   ![](Media/lab-02-17.png "Lab Environment")
  
 7. Sous **Modèle de licence**, assurez-vous que la case **Essai** est cochée. (Elle devrait l’être par défaut.)
 
 8. Cliquez sur **Appliquer** pour créer un espace de travail.
+
+   ![](Media/lab-02-18.png "Lab Environment")
  
 Un espace de travail est alors créé et vous êtes redirigé vers cet espace de travail. Nous allons importer les données des différentes sources de données dans la lakehouse et créer notre modèle à l’aide des données de la lakehouse et en rendre compte. La première étape consiste à créer une lakehouse.
 
@@ -197,20 +230,28 @@ Un espace de travail est alors créé et vous êtes redirigé vers cet espace de
 1. Cliquez sur **Real-Time Analytics** en bas de votre écran à gauche. La boîte de dialogue Expérience Fabric s’ouvre alors.
 
 2. Cliquez sur **Data Engineering** pour être redirigé vers la page d’accueil Data Engineering.
+
+   ![](Media/lab-02-19.png "Lab Environment")
  
 3. Cliquez sur **Lakehouse**.
+
+   ![](Media/lab-02-20.png "Lab Environment")
  
 4. La boîte de dialogue Nouvelle lakehouse s’ouvre alors. Tapez **lh_FAIAD** dans la zone de texte Nom. 
 
     **Remarque** : lh fait ici référence à la fonctionnalité Lakehouse. Nous ajoutons le préfixe lh afin de faciliter l’identification et la recherche.
  
 5. Cliquez sur **Créer**.
- 
+
+   ![](Media/lab-02-21.png "Lab Environment")
+   
 Quelques instants après, une lakehouse est créée et vous êtes redirigé vers l’interface Lakehouse.
 Dans le **volet gauche**, notez l’icône Lakehouse sous votre espace de travail. Vous pouvez facilement accéder à la lakehouse en cliquant sur cette icône à tout moment.
 
 Dans l’explorateur Lakehouse, notez des **tables** et **fichiers**. Lakehouse peut exposer des fichiers Azure Data Lake Storage Gen2 sous la section Fichiers ou un flux de données peut charger des données dans des tables Lakehouse. Diverses options sont disponibles. Nous allons vous montrer certaines des options comme dans les labos suivants.
- 
+
+![](Media/lab-02-22.png "Lab Environment")
+
 Dans ce labo, nous avons exploré l’interface Fabric, créé un espace de travail Fabric et une lakehouse. Dans le prochain labo, nous allons découvrir comment Dataflow Gen2 nous permet de nous connecter à ADLS Gen2 afin d’extraire, de transformer et d’ingérer des données dans la lakehouse.
 
 
@@ -219,6 +260,7 @@ Dans ce labo, nous avons exploré l’interface Fabric, créé un espace de trav
 
 Fabric Analyst in a Day (FAIAD) vous présente certaines des fonctions clés de Microsoft Fabric. Dans le menu du service, la section Aide (?) comporte des liens vers d’excellentes ressources.
 
+![](Media/lab-02-23.png "Lab Environment")
  
 Voici quelques autres ressources qui vous aideront lors de vos prochaines étapes avec Microsoft Fabric :
 
