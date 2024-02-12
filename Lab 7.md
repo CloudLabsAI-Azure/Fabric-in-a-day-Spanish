@@ -1,3 +1,5 @@
+![](Media/lab-07-1.png "Lab Environment")
+
 
 # Sommaire
 
@@ -37,16 +39,16 @@ Commençons par utiliser l’option de création automatique d’un état. Plus 
 2. 	Vous allez probablement vous retrouver sur la page d’accueil de Data Factory. En bas du volet gauche, cliquez sur l’icône **Dataؘ Factory**.
 3. 	La boîte de dialogue Expérience Fabric s’ouvre alors. Cliquez sur **Power BI**. Vous êtes alors redirigé vers la **page d’Accueil Power BI**.
  
-![](.png)
+    ![](Media/lab-07-2.png "Lab Environment")
 
 
 4. 	Cliquez sur **Nouveau rapport** dans le menu supérieur.
 
-![](.png)
+    ![](Media/lab-07-3.png "Lab Environment")
  
 5. 	Vous êtes alors redirigé vers l’écran **Créer votre premier rapport**. Des options permettent de saisir des données manuellement et créer un état ou choisir un modèle sémantique publié. Nous avons créé un modèle sémantique dans les labos précédents. Utilisons-le. Sélectionnez l’option **Choisir un modèle sémantique publié**.
 
-![](.png)
+    ![](Media/lab-07-4.png "Lab Environment")
  
 6. 	Choisissez un jeu de données à utiliser sur la page de votre état qui s’ouvre. Notez que nous disposons de quatre options. Sélectionnez **lh_FAIAD** :
     - **lh_FAIAD**: il s’agit de la lakehouse comportant le jeu de données que nous avons créé et que nous souhaitons utiliser pour l’état.
@@ -56,9 +58,11 @@ Commençons par utiliser l’option de création automatique d’un état. Plus 
 
 7. 	Cliquez sur la **flèche en regard du bouton Créer automatiquement un état**. Notez que deux options sont disponibles : Créer automatiquement un état et Créer un rapport vide. Essayons la création automatique, donc sélectionnons **Créer automatiquement un état**.
 
-![](.png)
+    ![](Media/lab-07-5.png "Lab Environment")
 
 8. 	Power BI commence alors à créer automatiquement l’état. Notez qu’une option permet de présélectionner des données, le cas échéant. Une fois l’état prêt, une boîte de dialogue s’affiche en haut de l’écran à droite. Cliquez sur **Afficher le rapport maintenant**.
+
+    ![](Media/lab-07-6.png "Lab Environment")
  
     >**Point de contrôle** : vous disposez d’un état qui ressemble à la capture d’écran ci-dessous. Quelques KPI et quelques visuels de tendance sont disponibles. Il s’agit d’un bon point de départ si vous analysez un nouveau modèle.
 
@@ -76,7 +80,7 @@ Commençons par utiliser l’option de création automatique d’un état. Plus 
 
 13. Cliquez sur **Enregistrer**.
  
-![](.png)
+    ![](Media/lab-07-7.png "Lab Environment")
 
 # Tâche 2 : masquer les tables (indicateurs) par défaut
 
@@ -86,7 +90,7 @@ Créons un état comme celui dont nous disposons dans Power BI Desktop. Pour ce 
 
 2. 	Cliquez sur **Data Engineering**. Vous êtes alors redirigé vers la page d’accueil Data Engineering.
   
-![](.png)
+    ![](Media/lab-07-8.png "Lab Environment")
 
 
 3. 	Faites défiler vers le bas jusqu’à la section **Accès rapide**.
@@ -97,11 +101,11 @@ Créons un état comme celui dont nous disposons dans Power BI Desktop. Pour ce 
 
 Notez que le canevas de conception comporte les tables par défaut. (Vous devrez peut-être faire défiler vers la droite ou vers le bas pour les voir.)
   
-![](.png)
+   ![](Media/lab-07-9.png "Lab Environment")
 
 6. 	Cliquez avec le bouton droit sur la table **long_running_queries** et sélectionnez **Masquer dans la vue Rapport**.
   
-![](.png)
+    ![](Media/lab-07-10.png "Lab Environment")
 
 
 7. 	De même, sélectionnez l’option **Masquer dans la vue Rapport** pour les tables suivantes :
@@ -114,12 +118,12 @@ Notez que le canevas de conception comporte les tables par défaut. (Vous devrez
 
 1. 	Nous pouvons commencer à créer un état à partir de la vue Modèle. Dans le menu supérieur, cliquez sur **Accueil -> Nouveau rapport**. Vous êtes alors redirigé vers le canevas d’état Power BI dans une nouvelle fenêtre/un nouvel onglet de votre navigateur.
  
-![](.png)
+    ![](Media/lab-07-11.png "Lab Environment")
 
 2. 	Si vous ne l’avez pas encore ouvert, ouvrez le fichier **FAIAD.pbix** situé dans le dossier **Report** sur le **Bureau** de votre environnement de labo. 
 Cet état va nous servir de référence. Nous allons commencer par ajouter l’arrière-plan du canevas. Nous allons créer l’en-tête de l’état, ajouter quelques KPI et créer le graphique en courbes Sales over time. Pour gagner du temps et étant entendu que vous avez de l’expérience dans la création de visuels dans Power BI Desktop, nous n’allons pas créer tous les visuels. 
   
-![](.png)
+    ![](Media/lab-07-12.png "Lab Environment")
 
 3. 	Revenez au **canevas Power BI** dans votre navigateur.
 
@@ -137,7 +141,7 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 10. Réglez le curseur Transparence sur __0%__.
   
-![](.png)
+    ![](Media/lab-07-13.png "Lab Environment")
 
 
 # Tâche 4 : ajouter un en-tête à l’état
@@ -157,7 +161,7 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 8. 	Redimensionnez la **zone de texte pour l’adapter à la marge supérieure**.
  
-![](.png)
+    ![](Media/lab-07-14.png "Lab Environment")
 
  
 # Tâche 5 : ajouter des KPI à l’état
@@ -170,7 +174,7 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 4. 	Sélectionnez la mesure **Sales**.
   
-![](.png)
+    ![](Media/lab-07-15.png "Lab Environment")
 
 
 5. 	Une fois le visuel **Carte multiligne** sélectionné, cliquez sur l’icône **Mettre en forme le visuel dans** la section Visualisations.
@@ -183,14 +187,14 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 9. 	Définissez la valeur Hex sur **#004753**.
   
-![](.png)
+    ![](Media/lab-07-16.png "Lab Environment")
 
 
 10. Développez la section **Cartes**.
 
 11. Réglez le curseur **Barre d’accentuation** sur **Désactivé**.
   
-![](.png)
+    ![](Media/lab-07-17.png "Lab Environment")
 
 
 12. Cliquez sur **Général** dans le volet Visualisations.
@@ -201,7 +205,7 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 15. Redimensionnez le **visuel** et déplacez-le vers la **case gauche, comme illustré dans la capture d’écran**.
   
-![](.png)
+    ![](Media/lab-07-18.png "Lab Environment")
 
 
 16. Ajoutons un autre KPI. Sélectionnez la **carte multiligne Sales** que vous venez de créer. **Copiez** le visuel à l’aide du raccourci clavier **Ctrl + C**.
@@ -214,7 +218,7 @@ Cet état va nous servir de référence. Nous allons commencer par ajouter l’a
 
 20. Redimensionnez le **visuel** et **placez-le dans la case située sous le visuel Sales**.
   
-![](.png)
+    ![](Media/lab-07-19.png "Lab Environment")
 
 # Tâche 6 : ajouter un graphique en courbes à l’état
 
@@ -228,7 +232,7 @@ Créons un graphique en courbes pour visualiser les ventes dans le temps par rev
 
 4. 	Cliquez sur le champ **Year**. Notez que le champ Year est une somme par défaut et ajouté à l’axe Y. Résolvons ce problème.
   
-![](.png)
+    ![](Media/lab-07-20.png "Lab Environment")
 
 
 # Tâche 7 : configurer la colonne Year de la table Date
@@ -243,7 +247,7 @@ Créons un graphique en courbes pour visualiser les ventes dans le temps par rev
 
 5. 	Dans la liste déroulante **Totaliser par**, sélectionnez **Aucun**.
   
-![](.png)
+    ![](Media/lab-07-21.png "Lab Environment")
 
 
 6. 	Revenez à l’onglet du navigateur avec le **canevas Power BI**.
@@ -256,7 +260,7 @@ Créons un graphique en courbes pour visualiser les ventes dans le temps par rev
 
 10. Développez la table **Sales** et sélectionnez la mesure **Sales**.
   
-![](.png)
+    ![](Media/lab-07-22.png "Lab Environment")
 
 
 # Tâche 8 : configurer la colonne Short_Month_Name de la table Date
@@ -271,12 +275,12 @@ Créons un graphique en courbes pour visualiser les ventes dans le temps par rev
 
 5. 	Sélectionnez **Trier axe -> Tri croissant**.
   
-![](.png)
+    ![](Media/lab-07-23.png "Lab Environment")
 
 
   >**Remarque** : les mois sont triés par ordre alphabétique. Résolvons ce problème.
   
-![](.png)
+   ![](Media/lab-07-24.png "Lab Environment")
 
 
 6. 	Accédez à l’onglet du navigateur avec **la vue Modèle de la lakehouse**.
@@ -289,13 +293,13 @@ Créons un graphique en courbes pour visualiser les ventes dans le temps par rev
 
 10. Dans la liste déroulante **Trier par colonne**, sélectionnez **Month**.
   
-![](.png)
+    ![](Media/lab-07-25.png "Lab Environment")
 
 
 11. Revenez à l’onglet du navigateur avec le **canevas Power BI**.
 12. Dans le menu supérieur, cliquez sur **Actualiser**. Notez maintenant que les mois sont triés correctement.
    
-![](.png)
+    ![](Media/lab-07-26.png "Lab Environment")
 
 
 # Tâche 9 : mettre en forme le graphique en courbes
@@ -305,7 +309,7 @@ Notez à quel point il est facile de mettre à jour le modèle sémantique lors 
 1. 	Une fois le visuel **Graphique en courbes** sélectionné, développez la table **Reseller** dans la section **Données**.
 2. 	Faites glisser le champ **Reseller -> Reseller Company** vers la section **Légende**.
   
-![](.png)
+    ![](Media/lab-07-27.png "Lab Environment")
 
 
 3. 	Une fois le visuel **Graphique en courbes** sélectionné, cliquez sur l’icône **Mettre en forme le visuel -> Général** dans la section **Visualisations**.
@@ -318,7 +322,7 @@ Notez à quel point il est facile de mettre à jour le modèle sémantique lors 
 
 7. 	Réglez le curseur **Arrière-plan** sur **Désactivé**.
   
-![](.png)
+    ![](Media/lab-07-28.png "Lab Environment")
 
 
 8. 	Dans la section **Visualisations**, cliquez sur l’icône **Mettre en forme le visuel -> Objet visuel**.
@@ -339,7 +343,7 @@ Notez à quel point il est facile de mettre à jour le modèle sémantique lors 
 
 16. Faites défiler le visuel vers la droite et **notez que nous disposons de données jusqu’en avril 2023**.
   
-![](.png)
+    ![](Media/lab-07-29.png "Lab Environment")
 
 
 17. Enregistrons l’état en sélectionnant **Fichier -> Enregistrer** dans le menu.
@@ -352,7 +356,7 @@ Notez à quel point il est facile de mettre à jour le modèle sémantique lors 
 
 20. Cliquez sur **Enregistrer**.
   
-![](.png)
+    ![](Media/lab-07-30.png "Lab Environment")
 
 
 Comme indiqué précédemment, nous n’allons pas créer tous les visuels dans ce labo. À votre guise, n’hésitez pas à créer d’autres visuels. 
@@ -367,7 +371,7 @@ Dans un scénario réel, les données sont mises à jour à la source. Puisque n
 2. 	Sélectionnez **\<your workspace name\>** dans le volet gauche.
 3. 	Sélectionnez **df_Sales_ADFS**, afin que nous puissions modifier le flux de données en ajoutant le nouveau fichier Parquet.
   
-![](.png)
+    ![](Media/lab-07-31.png "Lab Environment")
 
 
 4. 	Si vous ne l’avez pas encore ouvert, ouvrez le fichier **FAIAD.pbix** situé dans le dossier **Report** sur le Bureau de votre environnement de labo. 
@@ -378,7 +382,7 @@ Dans un scénario réel, les données sont mises à jour à la source. Puisque n
 
 7. 	**Cliquez avec le bouton droit** et sélectionnez **Copier**. 
   
-![](.png)
+    ![](Media/lab-07-32.png "Lab Environment")
 
 
 8. 	Revenez à l’**écran Dataflow** dans le navigateur.
@@ -394,14 +398,14 @@ Supprimons maintenant la référence à ADLS Base Folder (2) et utilisons ADLS B
 
 13. Cochez la **case** en regard de la barre de formule ou appuyez sur Entrée.
   
-![](.png)
+    ![](Media/lab-07-33.png "Lab Environment")
 
 
 14. Dans le volet gauche, sous la section Requêtes, **cliquez avec le bouton droit sur la requête ADLS Base Folder (2)** et sélectionnez **Supprimer**.
 
 15. La boîte de dialogue Supprimer la requête s’affiche alors. Cliquez sur **Supprimer** pour confirmer.
   
-![](.png)
+    ![](Media/lab-07-34.png "Lab Environment")
 
 
 16. À présent, ajoutons les données de facturation de mai à la table Invoice. Sélectionnez la requête **Invoice** dans la section Requêtes.
@@ -412,12 +416,12 @@ Supprimons maintenant la référence à ADLS Base Folder (2) et utilisons ADLS B
 
 19. Cliquez sur **OK**.
   
-![](.png)
+    ![](Media/lab-07-35.png "Lab Environment")
 
 
 20. Cliquez sur **Publier** Dans le coin inférieur droit pour enregistrer et publier les mises à jour. 
   
-![](.png)
+    ![](Media/lab-07-36.png "Lab Environment")
 
 
   >**Remarque** : une fois publié, le flux de données est actualisé. Cette opération peut prendre quelques minutes.
@@ -426,7 +430,7 @@ Supprimons maintenant la référence à ADLS Base Folder (2) et utilisons ADLS B
 
 22. Dans le menu supérieur, cliquez sur **Actualiser**. Notez maintenant que le graphique en courbes comporte des données pour mai 2023. Notez également que le montant des ventes en dollars a augmenté.
   
-![](.png)
+    ![](Media/lab-07-37.png "Lab Environment")
 
 
 Au fur et à mesure que chaque flux de données que nous avons créé dans les labos précédents est actualisé dans les délais, les données sont ingérées dans la lakehouse. Le modèle de données de la lakehouse est mis à jour et les états sont actualisés. Nous n’avons pas besoin d’actualiser le modèle de données et de signaler l’actualisation de chacun des flux de données. Voilà l’avantage de Direct Lake.
@@ -457,13 +461,12 @@ Une fois que vous êtes prêt à nettoyer l’environnement de labo, procédez c
 
 3. 	Sélectionnez **\<your workspace name\>** dans le volet gauche pour accéder à la page d’accueil.
   
-![](.png)
+    ![](Media/lab-07-38.png "Lab Environment")
 
 
 4. 	Dans le menu supérieur, cliquez sur les **points de suspension (…)** en regard de Gérer l’accès et sélectionnez **Paramètres d'espace de travail**.
   
-![](.png)
-
+    ![](Media/lab-07-39.png "Lab Environment")
 
 5. 	La boîte de dialogue Paramètres de l’espace de travail s’ouvre alors. Cliquez sur **Autre** dans le menu gauche.
 
@@ -472,14 +475,14 @@ Une fois que vous êtes prêt à nettoyer l’environnement de labo, procédez c
 7. 	La boîte de dialogue Supprimer l’espace de travail s’ouvre alors. Cliquez sur **Supprimer**.
 L’espace de travail et tous les éléments qu’il comporte sont alors supprimés.
   
-![](.png)
+    ![](Media/lab-07-40.png "Lab Environment")
 
 
 # Références
 
 Fabric Analyst in a Day (FAIAD) vous présente certaines des fonctions clés de Microsoft Fabric. Dans le menu du service, la section Aide (?) comporte des liens vers d’excellentes ressources.
   
-![](.png)
+![](Media/lab-07-41.png "Lab Environment")
 
 
 Voici quelques autres ressources qui vous aideront lors de vos prochaines étapes avec Microsoft Fabric :
