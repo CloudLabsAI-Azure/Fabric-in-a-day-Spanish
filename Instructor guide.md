@@ -1,4 +1,4 @@
-
+ ![](Media/instructor_image01.png "Lab Environment")
 
 # Sommaire
 
@@ -52,6 +52,8 @@ Mot de passe Snowflake : **8UpfRpExVDXv2AC**
 
 Clé de compte ADLS Gen2 : **Lpwn8hQASMpe5r4F+VFXAvpnzKF9x9Kjt5GMvMCFWB0xCFuM4fyVwOW6rF200bTop3LpKpsIno/T+AStx6cz6w==**
 
+![](Media/Instr_image_02.png "Lab Environment")
+
  
 # Importer un modèle Dataflow :
 
@@ -64,16 +66,20 @@ En tant que formateur, vous pouvez choisir de permettre aux participants d’imp
 2. Accédez à la page d’**Accueil de Data Factory**.
 
 3. Cliquez sur le menu **Nouveau, puis sélectionnez Flux de données Gen2**.
- 
+
+![](Media/Instr_image_03.png "Lab Environment")
+
 4. Une fenêtre Power Query s’ouvre alors. Dans le volet central, cliquez sur **Importer à partir d’un modèle Power Query**.
- 
+
+![](Media/Instr_image_04.png "Lab Environment")
+
 5. Accédez au dossier **Desktop -> Solutions** et sélectionnez le flux de données que vous souhaitez importer. Ici, nous importons  **df_People_SharePoint.pqt**.
 
 6. Cliquez sur **Ouvrir**.
 
 Une fois l’importation effectuée, notez que la requête et toutes les étapes de la requête sont importées. Cependant, la connexion doit être configurée. De plus, la destination des données doit être définie. Pour effectuer ces étapes, veuillez suivre les instructions du labo.
 
- 
+![](Media/Instr_image_05.png "Lab Environment")
 
 # Conditions préalables de la démonstration
 
@@ -90,7 +96,9 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 8. Dans le menu supérieur, cliquez sur les **points de suspension (…)**.
  
 9. Sélectionnez **Paramètres d’espace de travail**.
- 
+
+![](Media/Instr_image_06.png "Lab Environment")
+
 10. La boîte de dialogue Paramètres d’espace de travail s’ouvre alors. Dans le menu gauche, développez **Engineering données/Science**.
 
 11. Cliquez sur **Paramètres Spark**.
@@ -102,6 +110,8 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 14. Cliquez sur la liste déroulante **Espace de travail par défaut**.
 
 15. Cliquez sur **Nouvel environnement**.
+
+![](Media/Instr_image_07.png "Lab Environment")
  
 16. La boîte de dialogue Nouvel environnement s’ouvre alors. Saisissez le nom sous la forme **FAIAD_<username>_env**.
 
@@ -109,7 +119,9 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
  
 17. Cliquez sur **Créer**.
- 
+
+![](Media/Instr_image_08.png "Lab Environment")
+
 18. Vous êtes alors redirigé vers un écran vous permettant d’ajouter des bibliothèques publiques et personnalisées. Nous souhaitons ajouter la bibliothèque publique prophet. Dans le menu supérieur, cliquez sur **Bibliothèques publiques -> Ajouter à partir de PyPI**
 
 19. Dans le volet central, dans la zone de texte sous Bibliothèque, saisissez **prophet**.
@@ -117,19 +129,28 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
     **Remarque** : assurez-vous que la version est 1.1.5.
 
 20. Dans le volet supérieur droit, cliquez sur **Publier**. 
+
+![](Media/Instr_image_09.png "Lab Environment")
  
 21. La boîte de dialogue Modifications en attente s’ouvre alors. Cliquez sur **Publier tout**.
 
 22. La boîte de dialogue Publier toutes les modifications ? s’ouvre alors. Cliquez sur **Publier**. La publication de la mise à jour prend quelques minutes.
  
- 
+![](Media/Instr_image_10.png "Lab Environment")
+
 23. Cliquez sur **Afficher la progression** pour vérifier la progression. La publication de la mise à jour prend quelques minutes.
+
+![](Media/Instr_image_11.png "Lab Environment")
  
 24. Une fois l’installation effectuée, notez que l'**État** devient **Réussite**.
+
+![](Media/Instr_image_12.png "Lab Environment")
  
 25. Maintenant que nous avons configuré l’environnement, nous devons l’enregistrer comme environnement par défaut pour l’espace de travail. Dans le volet gauche, cliquez sur **FAIAD_<username>**.
 
 26. Dans le menu supérieur, cliquez sur **Paramètres d'espace de travail** (ou sur les points de suspension, puis sélectionnez Paramètres d'espace de travail).
+
+![](Media/Instr_image_13.png "Lab Environment")
  
 27. La boîte de dialogue Paramètres d'espace de travail s’ouvre alors. Dans le menu gauche, développez **Engineering données/Science**.
 
@@ -144,12 +165,16 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 32. Sélectionnez l’environnement que vous venez de créer dans la liste déroulante : **FAIAD_<username>_env**.
 
 33. Cliquez sur **Enregistrer**.
+
+![](Media/Instr_image_14.png "Lab Environment")
  
 ## Création d’un notebook à des fins de prévision
 
 34. Accédez à la page d’**Accueil Synapse Data Engineering**.
 
 35. Cliquez sur **Nouveau -> Bloc-notes**.
+
+![](Media/Instr_image_15.png "Lab Environment")
  
 36. Fournissez une **brève présentation** de la disposition : notebook, langage, environnement, création d’une cellule, etc.
 
@@ -200,6 +225,8 @@ model.plot_components(forecast)
 39. Expliquez chaque étape du **code** (conseils fournis en commentaires).
 
 40. Exécutez le code en cliquant sur le bouton **Lire** en regard de la cellule.
+
+![](Media/Instr_image_16.png "Lab Environment")
  
 Guidez les participants à travers les trois graphiques créés (ci-dessous). Nous avons des chiffres réels jusqu’en avril 2023 et nous effectuons une prévision sur 12 mois. 
 
@@ -207,9 +234,11 @@ Notez que le **premier graphique** supprime la saisonnalité et effectue une pr�
 
 Le **deuxième graphique** supprime la tendance et ajoute la saisonnalité pour effectuer une prévision jusqu’en avril 2024.
 
+![](Media/Instr_image_17.png "Lab Environment")
  
 Le **troisième graphique** effectue une prévision à l’aide de la tendance et de la saisonnalité. Ce graphique fournit également les limites supérieure et inférieure.
 
+![](Media/Instr_image_18.png "Lab Environment")
  
 41. Créez une **cellule**. 
  
@@ -222,9 +251,13 @@ spark.createDataFrame(forecast).write.saveAsTable("Sales_Forecast", mode="overwr
 ```
 
 43. Exécutez la cellule en cliquant sur le bouton **Lire**.
+
+![](Media/Instr_image_19.png "Lab Environment")
  
 44. Guidez les participants à travers les **données qui s’affichent**.
 
 45. Montrez aux utilisateurs qu’une table a été créée : **sales_forecast**.
+
+![](Media/Instr_image_20.png "Lab Environment")
  
 46. **Interrogez** la table et montrez son contenu aux utilisateurs.
