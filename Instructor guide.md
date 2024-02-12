@@ -67,11 +67,11 @@ En tant que formateur, vous pouvez choisir de permettre aux participants d’imp
 
 3. Cliquez sur le menu **Nouveau, puis sélectionnez Flux de données Gen2**.
 
-   ![](Media/Instr_image_03.png "Lab Environment")
+   ![](Media/instr_image_03.png "Lab Environment")
 
 4. Une fenêtre Power Query s’ouvre alors. Dans le volet central, cliquez sur **Importer à partir d’un modèle Power Query**.
 
-   ![](Media/Instr_image_04.png "Lab Environment")
+   ![](Media/instr_image_04.png "Lab Environment")
 
 5. Accédez au dossier **Desktop -> Solutions** et sélectionnez le flux de données que vous souhaitez importer. Ici, nous importons  **df_People_SharePoint.pqt**.
 
@@ -79,7 +79,7 @@ En tant que formateur, vous pouvez choisir de permettre aux participants d’imp
 
 Une fois l’importation effectuée, notez que la requête et toutes les étapes de la requête sont importées. Cependant, la connexion doit être configurée. De plus, la destination des données doit être définie. Pour effectuer ces étapes, veuillez suivre les instructions du labo.
 
-![](Media/Instr_image_05.png "Lab Environment")
+   ![](Media/instr_image_05.png "Lab Environment")
 
 # Conditions préalables de la démonstration
 
@@ -97,7 +97,7 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
  
 9. Sélectionnez **Paramètres d’espace de travail**.
 
-![](Media/Instr_image_06.png "Lab Environment")
+   ![](Media/instr_image_06.png "Lab Environment")
 
 10. La boîte de dialogue Paramètres d’espace de travail s’ouvre alors. Dans le menu gauche, développez **Engineering données/Science**.
 
@@ -111,16 +111,15 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
 15. Cliquez sur **Nouvel environnement**.
 
-![](Media/Instr_image_07.png "Lab Environment")
+    ![](Media/instr_image_07.png "Lab Environment")
  
 16. La boîte de dialogue Nouvel environnement s’ouvre alors. Saisissez le nom sous la forme **FAIAD_<username>_env**.
 
     **Remarque** : le nom de l’espace de travail doit être unique. Nous utilisons FAIAD_demouser_env comme nom d’espace de travail pour ce document. Cependant, le nom de votre espace de travail doit être différent. Assurez-vous qu’une coche verte avec « **Ce nom est disponible** » s’affiche sous le champ Nom.
 
- 
 17. Cliquez sur **Créer**.
 
-![](Media/Instr_image_08.png "Lab Environment")
+    ![](Media/instr_image_08.png "Lab Environment")
 
 18. Vous êtes alors redirigé vers un écran vous permettant d’ajouter des bibliothèques publiques et personnalisées. Nous souhaitons ajouter la bibliothèque publique prophet. Dans le menu supérieur, cliquez sur **Bibliothèques publiques -> Ajouter à partir de PyPI**
 
@@ -130,27 +129,27 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
 20. Dans le volet supérieur droit, cliquez sur **Publier**. 
 
-![](Media/Instr_image_09.png "Lab Environment")
+    ![](Media/instr_image_09.png "Lab Environment")
  
 21. La boîte de dialogue Modifications en attente s’ouvre alors. Cliquez sur **Publier tout**.
 
 22. La boîte de dialogue Publier toutes les modifications ? s’ouvre alors. Cliquez sur **Publier**. La publication de la mise à jour prend quelques minutes.
- 
-![](Media/Instr_image_10.png "Lab Environment")
+
+    ![](Media/instr_image_10.png "Lab Environment")
 
 23. Cliquez sur **Afficher la progression** pour vérifier la progression. La publication de la mise à jour prend quelques minutes.
 
-![](Media/Instr_image_11.png "Lab Environment")
+    ![](Media/instr_image_11.png "Lab Environment")
  
 24. Une fois l’installation effectuée, notez que l'**État** devient **Réussite**.
 
-![](Media/Instr_image_12.png "Lab Environment")
+    ![](Media/instr_image_12.png "Lab Environment")
  
 25. Maintenant que nous avons configuré l’environnement, nous devons l’enregistrer comme environnement par défaut pour l’espace de travail. Dans le volet gauche, cliquez sur **FAIAD_<username>**.
 
 26. Dans le menu supérieur, cliquez sur **Paramètres d'espace de travail** (ou sur les points de suspension, puis sélectionnez Paramètres d'espace de travail).
 
-![](Media/Instr_image_13.png "Lab Environment")
+    ![](Media/instr_image_13.png "Lab Environment")
  
 27. La boîte de dialogue Paramètres d'espace de travail s’ouvre alors. Dans le menu gauche, développez **Engineering données/Science**.
 
@@ -166,7 +165,7 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
 33. Cliquez sur **Enregistrer**.
 
-![](Media/Instr_image_14.png "Lab Environment")
+    ![](Media/instr_image_14.png "Lab Environment")
  
 ## Création d’un notebook à des fins de prévision
 
@@ -174,7 +173,7 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
 35. Cliquez sur **Nouveau -> Bloc-notes**.
 
-![](Media/Instr_image_15.png "Lab Environment")
+    ![](Media/instr_image_15.png "Lab Environment")
  
 36. Fournissez une **brève présentation** de la disposition : notebook, langage, environnement, création d’une cellule, etc.
 
@@ -182,51 +181,51 @@ Il est nécessaire que vous, le formateur, effectuiez les labos 1 à 6 et que to
 
 38. Saisissez le **code** suivant :
 
-```
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import month, year, col
-from prophet import Prophet
-import pandas as pd
-
-
-# Initialize Spark session
-spark = SparkSession.builder.appName("Prophet Forecasting").getOrCreate()
-
-# Load data from your specific Spark table
-df = spark.sql("SELECT * FROM lh_FAIAD.Sales")
-
-# Aggregate data to monthly level
-monthly_df = df.withColumn("Month", month("InvoiceDate"))\
-               .withColumn("Year", year("InvoiceDate"))\
-               .groupBy("Year", "Month")\
-               .sum("Quantity")\
-               .orderBy("Year", "Month")
-
-# Convert to Pandas DataFrame and prepare for Prophet
-pandas_df = monthly_df.toPandas()
-pandas_df['ds'] = pd.to_datetime(pandas_df[['Year', 'Month']].assign(DAY=1))
-pandas_df['y'] = pandas_df['sum(Quantity)']
-
-# Fit the Prophet model
-model = Prophet(yearly_seasonality=True, weekly_seasonality=False,daily_seasonality=False)
-model.fit(pandas_df[['ds, 'y']])
-
-# Create a DataFrame for future predictions (e.g., next 12 months)
-future = model.make_future_dataframe(periods=12, freq='M')
-
-# Forecast
-forecast = model.predict(future)
-
-# Plotting the forecast
-model.plot(forecast)
-model.plot_components(forecast)
-```
+   ```
+   from pyspark.sql import SparkSession
+   from pyspark.sql.functions import month, year, col
+   from prophet import Prophet
+   import pandas as pd
+   
+   
+   # Initialize Spark session
+   spark = SparkSession.builder.appName("Prophet Forecasting").getOrCreate()
+   
+   # Load data from your specific Spark table
+   df = spark.sql("SELECT * FROM lh_FAIAD.Sales")
+   
+   # Aggregate data to monthly level
+   monthly_df = df.withColumn("Month", month("InvoiceDate"))\
+                  .withColumn("Year", year("InvoiceDate"))\
+                  .groupBy("Year", "Month")\
+                  .sum("Quantity")\
+                  .orderBy("Year", "Month")
+   
+   # Convert to Pandas DataFrame and prepare for Prophet
+   pandas_df = monthly_df.toPandas()
+   pandas_df['ds'] = pd.to_datetime(pandas_df[['Year', 'Month']].assign(DAY=1))
+   pandas_df['y'] = pandas_df['sum(Quantity)']
+   
+   # Fit the Prophet model
+   model = Prophet(yearly_seasonality=True, weekly_seasonality=False,daily_seasonality=False)
+   model.fit(pandas_df[['ds, 'y']])
+   
+   # Create a DataFrame for future predictions (e.g., next 12 months)
+   future = model.make_future_dataframe(periods=12, freq='M')
+   
+   # Forecast
+   forecast = model.predict(future)
+   
+   # Plotting the forecast
+   model.plot(forecast)
+   model.plot_components(forecast)
+   ```
 
 39. Expliquez chaque étape du **code** (conseils fournis en commentaires).
 
 40. Exécutez le code en cliquant sur le bouton **Lire** en regard de la cellule.
 
-![](Media/Instr_image_16.png "Lab Environment")
+    ![](Media/instr_image_16.png "Lab Environment")
  
 Guidez les participants à travers les trois graphiques créés (ci-dessous). Nous avons des chiffres réels jusqu’en avril 2023 et nous effectuons une prévision sur 12 mois. 
 
@@ -234,30 +233,30 @@ Notez que le **premier graphique** supprime la saisonnalité et effectue une pr�
 
 Le **deuxième graphique** supprime la tendance et ajoute la saisonnalité pour effectuer une prévision jusqu’en avril 2024.
 
-![](Media/Instr_image_17.png "Lab Environment")
+   ![](Media/instr_image_17.png "Lab Environment")
  
 Le **troisième graphique** effectue une prévision à l’aide de la tendance et de la saisonnalité. Ce graphique fournit également les limites supérieure et inférieure.
 
-![](Media/Instr_image_18.png "Lab Environment")
+   ![](Media/instr_image_18.png "Lab Environment")
  
 41. Créez une **cellule**. 
  
 42. Ajoutez le **code** suivant à la cellule :
 
-```
-display(forecast)
-#écrire les données prévisionnelles dans une table
-spark.createDataFrame(forecast).write.saveAsTable("Sales_Forecast", mode="overwrite")
-```
+   ```
+   display(forecast)
+   #écrire les données prévisionnelles dans une table
+   spark.createDataFrame(forecast).write.saveAsTable("Sales_Forecast", mode="overwrite")
+   ```
 
 43. Exécutez la cellule en cliquant sur le bouton **Lire**.
 
-![](Media/Instr_image_19.png "Lab Environment")
+    ![](Media/instr_image_19.png "Lab Environment")
  
 44. Guidez les participants à travers les **données qui s’affichent**.
 
 45. Montrez aux utilisateurs qu’une table a été créée : **sales_forecast**.
 
-![](Media/Instr_image_20.png "Lab Environment")
+    ![](Media/instr_image_20.png "Lab Environment")
  
 46. **Interrogez** la table et montrez son contenu aux utilisateurs.
