@@ -67,11 +67,11 @@ En tant que formateur, vous pouvez choisir de permettre aux participants d’imp
 
 3. Cliquez sur le menu **Nouveau, puis sélectionnez Flux de données Gen2**.
 
-![](Media/Instr_image_03.png "Lab Environment")
+   ![](Media/Instr_image_03.png "Lab Environment")
 
 4. Une fenêtre Power Query s’ouvre alors. Dans le volet central, cliquez sur **Importer à partir d’un modèle Power Query**.
 
-![](Media/Instr_image_04.png "Lab Environment")
+   ![](Media/Instr_image_04.png "Lab Environment")
 
 5. Accédez au dossier **Desktop -> Solutions** et sélectionnez le flux de données que vous souhaitez importer. Ici, nous importons  **df_People_SharePoint.pqt**.
 
