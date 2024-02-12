@@ -1,4 +1,4 @@
-![](Media/lab-02-1.png "Lab Environment")
+![](Media/lab-02-001.png "Lab Environment")
  
 # Sommaire	
 
