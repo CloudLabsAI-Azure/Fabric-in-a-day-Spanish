@@ -1,4 +1,4 @@
-
+![](Media/lab-06-1.png "Lab Environment")
 
 # Sommaire
 
@@ -35,7 +35,7 @@ Nous avons des données provenant de différentes sources ingérées dans la lak
 
 3. Vous voyez trois types d’lh_FAIAD : modèle sémantique, point de terminaison SQL et lakehouse. Nous avons exploré l’option Lakehouse dans un labo précédent. Sélectionnez l’option **Point de terminaison analytique SQL lh_FAIAD** pour explorer l’option SQL. Vous êtes alors redirigé vers la vue SQL de l’explorateur.
 
-  ![](.png)
+   ![](Media/lab-06-2.png "Lab Environment")
   
 Vous pouvez explorer les données avant de créer un modèle de données à l’aide de SQL. Examinons deux options permettant d’utiliser SQL : la première est conviviale pour les développeurs et la deuxième est destinée aux analystes. 
 
@@ -45,7 +45,7 @@ Dans le volet gauche, notez que vous pouvez afficher les tables. Si vous dévelo
 
 4. Dans le **menu supérieur**, cliquez sur **Nouvelle requête SQL** ou en **bas du volet gauche**, cliquez sur **Requête**. Vous êtes alors redirigé vers la vue Requête SQL.
 
-![](.png)
+   ![](Media/lab-06-3.png "Lab Environment")
  
 5. Collez  la **requête SQL ci-dessous** dans la **fenêtre Requête**. Cette requête renvoie les unités par nom de fournisseur. Pour y parvenir, elle joint la table Sales avec les tables Product et Supplier.
 
@@ -61,17 +61,17 @@ Dans le volet gauche, notez que vous pouvez afficher les tables. Si vous dévelo
 
 8. Dans le **volet gauche** Explorateur, sous la section **Queries**, cette requête est enregistrée sous **Mes requêtes** comme **SQL query 1**. Cela permet de renommer la requête et de l’enregistrer pour une utilisation ultérieure. En outre, une option permet d’afficher les requêtes partagées avec vous à l’aide du dossier **Requêtes partagées**.
 
-![](.png)
+   ![](Media/lab-06-4.png "Lab Environment")
  
 # Tâche 2 : visualiser le résultat T-SQL
 
 1. Nous pouvons également visualiser le résultat de cette requête. **Mettez en surbrillance la requête** dans le volet de la requête et cliquez sur le volet **Résultats**, puis sur **Visualiser les résultats**.
  
-![](.png)
+   ![](Media/lab-06-5.png "Lab Environment")
 
 2. La boîte de dialogue Visualiser les résultats s’ouvre alors. Cliquez sur **Continuer**.
 
-![](.png)
+   ![](Media/lab-06-6.png "Lab Environment")
  
 3. La boîte de dialogue familière de vue d’état s’ouvre alors. Dans le volet **Données**, développez SQL query 1.
 
@@ -91,7 +91,7 @@ Dans le volet gauche, notez que vous pouvez afficher les tables. Si vous dévelo
 
 10. Cliquez sur **Enregistrer**.
 
-![](.png)
+    ![](Media/lab-06-7.png "Lab Environment")
  
 # Tâche 3 : créer une requête visuelle
 
@@ -103,7 +103,7 @@ Vous êtes alors redirigé vers la **vue de point de terminaison analytique SQL*
  
 3. Une fois la table **Sales** sélectionnée, cliquez sur **Combiner -> Fusionner des requêtes** dans le menu du volet de requête visuelle.
 
-![](.png)
+   ![](Media/lab-06-8.png "Lab Environment")
  
 4. La boîte de dialogue Fusionner s’ouvre alors. Dans la **liste déroulante Table de droite pour la fusion**, sélectionnez **Product**.
 
@@ -113,7 +113,7 @@ Vous êtes alors redirigé vers la **vue de point de terminaison analytique SQL*
 
 7. Cliquez sur **OK**.
 
-![](.png)
+   ![](Media/lab-06-9.png "Lab Environment")
  
 8. Dans le volet des **résultats**, cliquez sur la **double flèche** en regard de la colonne **Product**.
 
@@ -121,13 +121,13 @@ Vous êtes alors redirigé vers la **vue de point de terminaison analytique SQL*
 
 10. Cliquez sur **OK**. Notez que les étapes **Requêtes fusionnées** et **Product développé** sont créées dans la table **Sales**.
 
-![](.png)
+    ![](Media/lab-06-10.png "Lab Environment")
  
 11. De même, fusionnons la table Supplier. Dans la table **Sales**, cliquez sur le signe **« + »** (situé après Product développé) pour ajouter une nouvelle étape. Une boîte de dialogue s’ouvre alors.
 
 12. Cliquez sur **Combiner -> Fusionner des requêtes**.
 
-![](.png)
+    ![](Media/lab-06-11.png "Lab Environment")
  
 13. La boîte de dialogue Fusionner s’ouvre alors. Dans la **liste déroulante Table de droite pour la fusion**, sélectionnez **Supplier**.
 
@@ -137,7 +137,7 @@ Vous êtes alors redirigé vers la **vue de point de terminaison analytique SQL*
 
 16. Cliquez sur **OK**.
 
-![](.png)
+    ![](Media/lab-06-12.png "Lab Environment")
  
 17. Dans le volet des **résultats**, cliquez sur la **double flèche** en regard de la colonne Supplier.
 
@@ -151,13 +151,13 @@ Vous êtes alors redirigé vers la **vue de point de terminaison analytique SQL*
 
 1. Maintenant que la requête est prête, voyons le résultat. Cliquez sur **Visualiser les résultats** dans le volet des résultats.
 
-![](.png)
+   ![](Media/lab-06-13.png "Lab Environment")
  
 2. La boîte de dialogue Visualiser les résultats s’ouvre alors. Dans le volet **Données** à droite, sélectionnez les champs **Supplier_Name** et **Quantity**.
 
 3. Sélectionnez le **visuel Table** dans le volet Visuel pour afficher les résultats sous forme de table. Notez que le résultat ressemble au résultat de la requête SQL précédente. Si vous le souhaitez, vous pouvez enregistrer cet état. Puisque nous avons enregistré un état similaire précédemment, nous allons cliquer sur **Annuler**.
  
-![](.png)
+   ![](Media/lab-06-14.png "Lab Environment")
 
 # Tâche 5 : créer des relations
 Nous sommes maintenant prêts à créer le modèle, des relations entre les tables et des mesures.
@@ -168,7 +168,7 @@ Nous sommes maintenant prêts à créer le modèle, des relations entre les tabl
 
 3. Créons une relation entre les tables Sales et Reseller. Sélectionnez la valeur **ResellerID** dans la table **Sales** et faites-la glisser vers la valeur **ResellerID** dans la table **Reseller**.
 
-![](.png)
+   ![](Media/lab-06-15.png "Lab Environment")
  
 4. La boîte de dialogue Nouvelle relation s’ouvre alors. Assurez-vous que le champ **Table 1** est défini sur **Sales** et le paramètre **Colonne** sur **ResellerID**.
 
@@ -180,7 +180,7 @@ Nous sommes maintenant prêts à créer le modèle, des relations entre les tabl
 
 8. Cliquez sur **OK**.
 
-![](.png)
+   ![](Media/lab-06-16.png "Lab Environment")
  
 9. De même, créez une relation entre les tables Sales et Date. Sélectionnez la valeur **InvoiceDate** dans la table **Sales** et faites-la glisser vers la valeur **Date** dans la table **Date**.
 
@@ -194,11 +194,11 @@ Nous sommes maintenant prêts à créer le modèle, des relations entre les tabl
 
 14. Cliquez sur **OK**.
 
-![](.png)
+    ![](Media/lab-06-17.png "Lab Environment")
  
 **Point de contrôle** : votre modèle devrait comporter les deux relations entre les tables Sales et Reseller et les tables Sales et Date, comme illustré dans la capture d’écran ci-dessous :
 
-![](.png)
+   ![](Media/lab-06-18.png "Lab Environment")
  
 Pour gagner du temps, nous n’allons pas créer toutes les relations. Si le temps le permet, vous pouvez suivre la section facultative à la fin du labo. La section facultative passe en revue les étapes permettant de créer les relations restantes.
 
@@ -220,7 +220,7 @@ Ajoutons quelques mesures dont nous avons besoin pour créer le tableau de bord 
 
 7. Définissez le champ **Nombre de décimales** sur **0**.
 
-![](.png)
+   ![](Media/lab-06-19.png "Lab Environment")
  
 8. Une fois la table **Sales** sélectionnée dans le menu supérieur, cliquez sur **Accueil -> Nouvelle mesure**. Notez que la barre de formule s’affiche.
 
@@ -234,7 +234,7 @@ Ajoutons quelques mesures dont nous avons besoin pour créer le tableau de bord 
 
 13. Réglez le curseur **Séparateur de milliers** sur **Oui**.
 
-![](.png)
+    ![](Media/lab-06-20.png "Lab Environment")
  
 14. Une fois la table **Sales** sélectionnée dans le menu supérieur, cliquez sur **Accueil -> Nouvelle mesure**. Notez que la barre de formule s’affiche.
 
@@ -248,7 +248,7 @@ Ajoutons quelques mesures dont nous avons besoin pour créer le tableau de bord 
 
 19. Réglez le curseur **Séparateur de milliers** sur **Oui**.
 
-![](.png)
+    ![](Media/lab-06-21.png "Lab Environment")
  
 Encore une fois, pour gagner du temps, nous n’allons pas créer toutes les mesures. Si le temps le permet, vous pouvez suivre la section facultative à la fin du labo. La section facultative passe en revue les étapes permettant de créer les mesures restantes.
 
@@ -264,7 +264,7 @@ Ajoutons les relations restantes.
 
 **Point de contrôle :** votre modèle devrait ressembler à la capture d’écran ci-dessous.
 
-![](.png)
+   ![](Media/lab-06-22.png "Lab Environment")
  
 3. Créons maintenant une relation entre les tables Product et Supplier. Sélectionnez la valeur **SupplierID** dans la table **Product** et faites-la glisser vers la valeur **SupplierID** dans la table **Supplier**.
 
@@ -278,7 +278,7 @@ Ajoutons les relations restantes.
  
 8. Cliquez sur **OK**.
 
-![](.png)
+   ![](Media/lab-06-23.png "Lab Environment")
  
 9. De même, créez une relation **plusieurs-à-un** avec le champ **Direction du filtre croisé** défini sur **À double sens** entre les tables **Product_Details** et **Product**. Sélectionnez la valeur **StockItemID** dans la table **Product_Details** et la valeur **StockItemID** dans la table **Product**.
 
@@ -294,7 +294,7 @@ Ajoutons les relations restantes.
 
 15. Cliquez sur **OK**.
 
-![](.png)
+    ![](Media/lab-06-24.png "Lab Environment")
  
 16. Créons maintenant une relation entre les tables Customer et Reseller. Sélectionnez la valeur **ResellerID** dans la table **Customer** et faites-la glisser vers la valeur **ResellerID** dans la table **Reseller**.
 
@@ -308,11 +308,11 @@ Ajoutons les relations restantes.
 
 21. Cliquez sur **OK**.
 
-![](.png)
+    ![](Media/lab-06-25.png "Lab Environment")
  
 **Point de contrôle :** votre modèle devrait ressembler à la capture d’écran ci-dessous.
 
-![](.png)
+   ![](Media/lab-06-26.png "Lab Environment")
  
 22. Créons maintenant une relation entre les tables PO et Date. Sélectionnez la valeur **Order_Date** dans la table PO et faites-la glisser vers la valeur **Date** dans la table **Date**.
 
@@ -326,7 +326,7 @@ Ajoutons les relations restantes.
 
 27. Cliquez sur **OK**.
 
-![](.png)
+    ![](Media/lab-06-27.png "Lab Environment")
  
 28. De même, créez une relation **plusieurs-à-un** entre les tables **PO** et **Product**. Sélectionnez la valeur StockItemID dans la table PO et la valeur StockItemID dans la table Product.
 
@@ -335,7 +335,7 @@ Nous avons fini de créer toutes les relations.
 
 **Point de contrôle :** votre modèle devrait ressembler à la capture d’écran ci-dessous.
  
-![](.png)
+   ![](Media/lab-06-28.png "Lab Environment")
 
 # Tâche 8 : section facultative - Créer des mesures
 
@@ -349,7 +349,7 @@ Ajoutons les mesures restantes.
 
 4. Dans la liste déroulante Format, sélectionnez **Devise**.
 
-![](.png)
+   ![](Media/lab-06-29.png "Lab Environment")
  
 5. Suivez des étapes similaires pour ajouter les mesures suivantes :
 
@@ -363,7 +363,7 @@ Ajoutons les mesures restantes.
 
 Fabric Analyst in a Day (FAIAD) vous présente certaines des fonctions clés de Microsoft Fabric. Dans le menu du service, la section Aide (?) comporte des liens vers d’excellentes ressources.
 
-![](.png)
+![](Media/lab-06-30.png "Lab Environment")
  
 Voici quelques autres ressources qui vous aideront lors de vos prochaines étapes avec Microsoft Fabric :
 
