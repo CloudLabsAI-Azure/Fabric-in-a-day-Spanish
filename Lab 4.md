@@ -1,3 +1,5 @@
+![](Media/lab-04-1.png "Lab Environment")
+
 # Sommaire 
 
 - Introduction 
@@ -52,6 +54,8 @@ Dans notre scénario, les données fournisseur se trouvent dans Snowflake, les d
 
 2. Dans le menu supérieur, cliquez sur **Nouveau, puis sélectionnez Flux de données Gen2**.
 
+   ![](Media/lab-04-2.png "Lab Environment")
+
 Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connaissons Dataflow, copions les requêtes de Power BI Desktop dans Dataflow.
 
 3. Si vous ne l'avez pas encore ouvert, ouvrez le fichier **FAIAD.pbix** situé dans le dossier **Report** sur le **Bureau** de votre environnement de labo.
@@ -72,6 +76,8 @@ Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connai
 
 6. **Cliquez avec le bouton droit** et sélectionnez **Copier**.
 
+   ![](Media/lab-04-3.png "Lab Environment")
+
 7. Revenez au **navigateur**.
 
 8. Dans le **volet Dataflow**, cliquez sur le **volet central** et appuyez sur **Ctrl + V**. (À l'heure actuelle, le clic droit sur Coller n'est pas pris en charge.)
@@ -82,6 +88,8 @@ Notez que les cinq requêtes sont collées et que vous disposez désormais du vo
 
 1. Cliquez sur **Configurer la connection**.
 
+   ![](Media/lab-04-4.png "Lab Environment")
+
 2. La boîte de dialogue Connexion à une source de données s'ouvre alors. Dans la liste déroulante **Connexion**, assurez-vous que l'option **Créer une connexion** est sélectionnée.
 
 3. Le champ **Type d'authentification** doit être défini sur **Snowflake**.
@@ -89,12 +97,16 @@ Notez que les cinq requêtes sont collées et que vous disposez désormais du vo
 4. Saisissez le **Nom d'utilisateur et le Mot de passe Snowflake** disponibles dans l'onglet Variables d'environnement (en regard de l'onglet Guide du labo).
 
 5. Cliquez sur **Connexion**.
+
+   ![](Media/lab-04-5.png "Lab Environment")
    
 La connexion est alors établie et vous pouvez afficher les données dans le volet d'aperçu. N'hésitez pas à parcourir les étapes appliquées des requêtes. En substance, la requête Suppliers comporte les détails des fournisseurs et la requête SupplierCategories, comme son nom l'indique, comporte des catégories de fournisseurs. Ces deux tables sont jointes pour créer la dimension Supplier, avec les colonnes dont nous avons besoin. De même, nous avons fusionné la requête PO Line Items avec la requête PO pour créer le fait PO. Nous devons maintenant ingérer les données Supplier et PO dans Lakehouse.
 
-7. Comme indiqué précédemment, nous ne mettons en lots aucune de ces données. Par conséquent, **cliquez avec le bouton droit** sur la requête **Supplier** dans le volet Requêtes et sélectionnez **Activer la mise en scéne** pour supprimer la coche.
+6. Comme indiqué précédemment, nous ne mettons en lots aucune de ces données. Par conséquent, **cliquez avec le bouton droit** sur la requête **Supplier** dans le volet Requêtes et sélectionnez **Activer la mise en scéne** pour supprimer la coche.
 
-8. De même, cliquez avec le bouton droit sur la requête **PO**. Sélectionnez **Activer la mise en scéne** pour supprimer la coche.
+   ![](Media/lab-04-6.png "Lab Environment")
+
+7. De même, cliquez avec le bouton droit sur la requête **PO**. Sélectionnez **Activer la mise en scéne** pour supprimer la coche.
 
 **Remarque :** nous n'avons pas besoin de désactiver la mise en lots pour les trois autres requêtes, car l'option Activer le chargement a été désactivée dans Power BI Desktop (d'où ces requêtes ont été copiées).
 
@@ -106,9 +118,13 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 3. Cliquez sur **Lakehouse** dans la boîte de dialogue.
 
+   ![](Media/lab-04-7.png "Lab Environment")
+
 4. La boîte de dialogue Se connecter à la destination des données s'ouvre alors. Dans la liste déroulante **Connexion**, sélectionnez **Lakehouse (aucun)**.
 
 5. Cliquez sur **Suivant**.
+
+   ![](Media/lab-04-8.png "Lab Environment")
 
 6. La boîte de dialogue Choisir la cible de destination s'ouvre alors. Assurez-vous que le **bouton radio Nouvelle table** est **coché**, car nous créons une table.
 
@@ -120,13 +136,19 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 10. Cliquez sur **Suivant**.
 
+    ![](Media/lab-04-9.png "Lab Environment")
+
 11. La boîte de dialogue Choisir les paramètres de destination s'ouvre alors. Chaque fois que Dataflow Gen2 est actualisé, nous souhaitons effectuer un chargement complet. Assurez-vous que le champ **Méthode de mise à jour** est défini sur **Remplacer**.
 
 12. Notez qu'un avertissement indique que « Certains noms de colonnes contiennent des caractères non pris en charge. Devons-nous les corriger pour vous ? » Lakehouse ne prend pas en charge les noms de colonne comportant des espaces. Cliquez sur **Les corriger** pour supprimer l'avertissement.
 
 13. Le mappage de colonnes permet de mapper des colonnes de flux de données à des colonnes existantes. Dans notre cas, il s'agit d'une Nouvelle table. Par conséquent, nous pouvons utiliser les valeurs par défaut. Cliquez sur **Enregistrer les paramètres**.
 
+    ![](Media/lab-04-10.png "Lab Environment")
+
 14. Vous êtes redirigé vers la **fenêtre Power Query**. Dans le **coin inférieur droit**, notez que la liste déroulante Destination des données est définie sur **Lakehouse**. De même, **configurez la destination des données pour la requête PO**. Ensuite, la liste déroulante **Destination des données** de votre requête PO devrait être définie sur **Lakehouse**, comme illustré dans la capture d'écran ci-dessous.
+
+    ![](Media/lab-04-11.png "Lab Environment")
 
 ### Tâche 4 : renommer et publier le flux de données Snowflake
 
@@ -136,25 +158,35 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 3. Appuyez sur **Entrée** pour enregistrer le changement de nom.
 
+   ![](Media/lab-04-12.png "Lab Environment")
+
 4. Dans le coin inférieur droit, cliquez sur **Publier**.
+
+   ![](Media/lab-04-13.png "Lab Environment")
 
 Vous êtes alors redirigé vers l'**écran Data Factory**. La publication du flux de données peut prendre quelques instants.
 
 **Remarque :** parfois, le nom du flux de données n'est pas mis à jour. Dans ce cas, procédez comme suit. Si le flux de données est renommé, vous pouvez passer à la tâche suivante.
 
 5. Une fois la publication de Dataflow 1 terminée, renommons-le. Cliquez sur les **points de suspension (...)** en regard de Dataflow 1. Sélectionnez **Propriétés**.
+
+   ![](Media/lab-04-14.png "Lab Environment")
     
-7. La boîte de dialogue des propriétés du flux de données s'ouvre alors. Redéfinissez le nom sur **df_Supplier_Snowflake**.
+6. La boîte de dialogue des propriétés du flux de données s'ouvre alors. Redéfinissez le nom sur **df_Supplier_Snowflake**.
 
-8. Dans la zone de texte **Description**, ajoutez **Dataflow to ingest Supplier data from Snowflake to Lakehouse**.
+7. Dans la zone de texte **Description**, ajoutez **Dataflow to ingest Supplier data from Snowflake to Lakehouse**.
 
-9. Cliquez sur **Enregistrer**.
+8. Cliquez sur **Enregistrer**.
+
+   ![](Media/lab-04-15.png "Lab Environment")
 
 Vous êtes alors redirigé vers l'**écran Data Factory**. Créons maintenant un flux de données permettant d'importer les données de Dataverse.
 
 ### Tâche 5 : copier des requêtes Dataverse dans Dataflow
 
 1. Dans le menu supérieur, cliquez sur **Nouveau, puis sélectionnez Flux de données Gen2**.
+
+   ![](Media/lab-04-16.png "Lab Environment")
 
 Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connaissons Dataflow, copions les requêtes de Power BI Desktop dans Dataflow.
 
@@ -176,6 +208,8 @@ Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connai
 
 5. **Cliquez avec le bouton droit** et sélectionnez **Copier**.
 
+   ![](Media/lab-04-17.png "Lab Environment")
+
 6. Revenez à la **page Dataflow** dans votre navigateur.
 
 7. Dans le **volet Dataflow**, appuyez sur **Ctrl + V**. (À l'heure actuelle, le clic droit sur Coller n'est pas pris en charge.)
@@ -186,11 +220,15 @@ Notez que les cinq requêtes sont collées et que vous disposez désormais du vo
 
 1. Cliquez sur **Configurer la connexion**.
 
+   ![](Media/lab-04-18.png "Lab Environment")
+
 2. La boîte de dialogue Connexion à une source de données s'ouvre alors. Dans la **liste déroulante** **Connexion**, assurez-vous que l'option **Créer une connexion** est **sélectionnée**.
 
 3. Le champ **Type d'authentification** devrait être défini sur **Compte professionnel**.
 
 4. Cliquez sur **Connexion**.
+
+   ![](Media/lab-04-19.png "Lab Environment")
    
 ### Tâche 7 : créer la destination des données pour la requête Customer
 
@@ -198,15 +236,21 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 1. Comme indiqué précédemment, nous ne mettons en lots aucune de ces données. Par conséquent, **cliquez avec le bouton droit** sur la requête **Customer** dans le volet Requêtes et sélectionnez **Activer la mise en scéne** pour supprimer la coche.
 
+   ![](Media/lab-04-20.png "Lab Environment")
+
 2. Sélectionnez la requête **Customer**.
 
 3. Dans le coin inférieur droit, cliquez sur « **+** » en regard de **Destination des données**.
 
 4. Cliquez sur **Lakehouse** dans la boîte de dialogue.
 
+   ![](Media/lab-04-21.png "Lab Environment")
+
 5. La boîte de dialogue Se connecter à la destination des données s'ouvre alors. Dans la liste déroulante **Connexion**, sélectionnez **Lakehouse (aucun)**.
 
 6. Cliquez sur **Suivant**.
+
+   ![](Media/lab-04-22.png "Lab Environment")
 
 7. La boîte de dialogue Choisir la cible de destination s'ouvre alors. Assurez-vous que le bouton radio **Nouvelle table** est coché, car nous créons une table.
 
@@ -218,11 +262,15 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 11. Cliquez sur **Suivant**.
 
+    ![](Media/lab-04-23.png "Lab Environment")
+
 12. La boîte de dialogue Choisir les paramètres de destination s'ouvre alors. Chaque fois que Dataflow Gen2 est actualisé, nous souhaitons effectuer un chargement complet. Assurez-vous que le champ **Méthode de mise à jour** est défini sur **Remplacer**.
 
 13. Notez qu'un avertissement indique que « Certains noms de colonnes contiennent des caractères non pris en charge. Devons-nous les corriger pour vous ? » Lakehouse ne prend pas en charge les noms de colonne comportant des espaces. Cliquez sur **Les corriger** pour supprimer l'avertissement.
 
 14. Le mappage de colonnes permet de mapper des colonnes de flux de données à des colonnes existantes. Dans notre cas, il s'agit d'une Nouvelle table. Par conséquent, nous pouvons utiliser les valeurs par défaut. Cliquez sur **Enregistrer les paramètres**.
+
+    ![](Media/lab-04-24.png "Lab Environment")
 
 ### Tâche 8 : publier et renommer le flux de données Dataverse
 
@@ -230,9 +278,13 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 2. Dans le coin inférieur droit, cliquez sur **Publier**.
 
+   ![](Media/lab-04-25.png "Lab Environment")
+
 **Remarque :** vous êtes alors redirigé vers l'**écran Data Factory**.  La publication du flux de données peut prendre quelques instants.
 
 3. Dataflow 1 est le flux de données dans lequel nous travaillions. Renommons-le avant de continuer. Cliquez sur les **points de suspension (...)** en regard de Dataflow 1. Sélectionnez **Propriétés**.
+
+   ![](Media/lab-04-26.png "Lab Environment")
 
 4. La boîte de dialogue des propriétés du flux de données s'ouvre alors. Redéfinissez le champ **Nom** sur **df_Customer_Dataverse**.
 
@@ -240,12 +292,16 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 6. Cliquez sur **Enregistrer**.
 
+   ![](Media/lab-04-27.png "Lab Environment")
+
 Vous êtes alors redirigé vers l'**écran Data Factory**. Créons maintenant un flux de données permettant d'importer les données de
 SharePoint.
 
 ### Tâche 9 : copier des requêtes SharePoint dans Dataflow
 
 1. Dans le menu supérieur, cliquez sur **Nouveau, puis sélectionnez Flux de données Gen2**.
+
+   ![](Media/lab-04-28.png "Lab Environment")
 
 Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connaissons Dataflow, copions les requêtes de Power BI Desktop dans Dataflow.
 
@@ -257,6 +313,8 @@ Vous êtes alors redirigé vers la **page Dataflow**. Maintenant que nous connai
 
 10. **Cliquez avec le bouton droit** et sélectionnez **Copier**.
 
+    ![](Media/lab-04-29.png "Lab Environment")
+
 11. Revenez à l'**écran Dataflow** dans le navigateur.
 
 12. Dans le **volet Dataflow**, appuyez sur **Ctrl + V**. (À l'heure actuelle, le clic droit sur Coller n'est pas pris en charge.)
@@ -267,11 +325,15 @@ Notez que la requête est collée et disponible dans le volet gauche. Comme nous
 
 1. Cliquez sur **Configurer la connexion**.
 
+   ![](Media/lab-04-30.png "Lab Environment")
+
 2. La boîte de dialogue Connexion à une source de données s'ouvre alors. Dans la liste déroulante **Connexion**, assurez-vous que l'option **Créer une connexion** est sélectionnée.
 
 3. Le champ **Type d'authentification** devrait être défini sur **Compte professionnel**.
 
 4. Cliquez sur **Connexion**.
+
+   ![](Media/lab-04-31.png "Lab Environment")
 
 ### Tâche 11 : configurer la destination des données pour la requête People
 
@@ -279,15 +341,21 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 1. Comme indiqué précédemment, nous ne mettons en lots aucune de ces données. Par conséquent, **cliquez avec le bouton droit** sur la requête **People** dans le volet Requêtes et sélectionnez **Activer la mise en scéne** pour supprimer la coche.
 
+   ![](Media/lab-04-32.png "Lab Environment")
+
 2. Sélectionnez la requête **People**.
 
 3. Dans le coin inférieur droit, cliquez sur « **+** » en regard de **Destination des données**.
 
 4. Cliquez sur **Lakehouse** dans la boîte de dialogue.
 
+   ![](Media/lab-04-33.png "Lab Environment")
+
 5.  La boîte de dialogue Se connecter à la destination des données s'ouvre alors. Dans la liste déroulante **Connexion**, sélectionnez **Lakehouse (aucun)**.
 
 6. Cliquez sur **Suivant**.
+
+   ![](Media/lab-04-34.png "Lab Environment")
 
 7. La boîte de dialogue Choisir la cible de destination s'ouvre alors. Assurez-vous que le bouton radio **Nouvelle table** est coché, car nous créons une table.
 
@@ -299,11 +367,15 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 11. Cliquez sur **Suivant**.
 
+    ![](Media/lab-04-35.png "Lab Environment")
+
 12. La boîte de dialogue Choisir les paramètres de destination s'ouvre alors. Chaque fois que Dataflow Gen2 est actualisé, nous souhaitons effectuer un chargement complet. Assurez-vous que le champ **Méthode de mise à jour** est défini sur **Remplacer**.
 
 13. Notez qu'un avertissement indique que « Certains noms de colonnes contiennent des caractères non pris en charge. Devons-nous les corriger pour vous ? » Lakehouse ne prend pas en charge les noms de colonne comportant des espaces. Cliquez sur **Les corriger** pour supprimer l'avertissement.
 
 14. Le mappage de colonnes permet de mapper des colonnes de flux de données à des colonnes existantes. Dans notre cas, il s'agit d'une Nouvelle table. Par conséquent, nous pouvons utiliser les valeurs par défaut. Cliquez sur **Enregistrer les paramètres**.
+
+    ![](Media/lab-04-36.png "Lab Environment")
 
 ### Tâche 12 : publier et renommer le flux de données SharePoint
 
@@ -311,10 +383,14 @@ La connexion est alors établie et vous pouvez afficher les données dans le vol
 
 2. Dans le coin inférieur droit, cliquez sur **Publier**.
 
+   ![](Media/lab-04-37.png "Lab Environment")
+
 **Remarque :** vous êtes alors redirigé vers l'**écran Data Factory**.
 La publication du flux de données peut prendre quelques instants.
 
 3. Dataflow 1 est le flux de données dans lequel nous travaillions. Renommons-le avant de continuer. Cliquez sur les **points de suspension (...)** en regard de Dataflow 1. Sélectionnez **Propriétés**.
+
+   ![](Media/lab-04-38.png "Lab Environment")
 
 4.  La boîte de dialogue Propriétés du flux de données s'ouvre alors. Redéfinissez le champ **Nom** sur **df_People_SharePoint**.
 
@@ -322,11 +398,15 @@ La publication du flux de données peut prendre quelques instants.
 
 6. Cliquez sur **Enregistrer**.
 
+   ![](Media/lab-04-39.png "Lab Environment")
+
 Vous êtes alors redirigé vers l'**écran Data Factory**. Nous avons maintenant ingéré toutes les données dans Lakehouse. Dans le prochain labo, nous allons planifier l'actualisation de Dataflow.
 
 # Références
 
 Fabric Analyst in a Day (FAIAD) vous présente certaines des fonctions clés de Microsoft Fabric. Dans le menu du service, la section Aide (?) comporte des liens vers d'excellentes ressources.
+
+![](Media/lab-04-40.png "Lab Environment")
 
 Voici quelques autres ressources qui vous aideront lors de vos
 prochaines étapes avec Microsoft Fabric :
