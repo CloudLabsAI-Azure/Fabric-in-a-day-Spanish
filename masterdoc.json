@@ -1,0 +1,39 @@
+[
+    {
+      "Name": "Fabric-in-a-day-localization",
+      "Language": "French",
+      "BaseURL": "https://github.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French",
+      "Files": [
+         {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Instructor guide.md",
+          "Order": 1
+        }, 
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 1.md",
+        },
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 2.md",
+        },
+         {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 3.md",
+          "Order": 4
+        },
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 4.md",
+          "Order": 5
+        },
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 5.md",
+          "Order": 6
+        },
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 6.md",
+          "Order": 7
+        },
+        {
+          "RawFilePath": "https://docs-api.cloudlabs.ai/repos/raw.githubusercontent.com/CloudLabsAI-Azure/Fabric-in-a-day-localization/tree/French/Lab 7.md",
+          "Order": 8
+        }
+      ]
+    }
+  ]
