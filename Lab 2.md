@@ -253,8 +253,6 @@ Dans l’explorateur Lakehouse, notez des **tables** et **fichiers**. Lakehouse 
 ![](Media/lab-02-22.png "Lab Environment")
 
 Dans ce labo, nous avons exploré l’interface Fabric, créé un espace de travail Fabric et une lakehouse. Dans le prochain labo, nous allons découvrir comment Dataflow Gen2 nous permet de nous connecter à ADLS Gen2 afin d’extraire, de transformer et d’ingérer des données dans la lakehouse.
-
-
  
 # Références
 
@@ -281,9 +279,7 @@ Voici quelques autres ressources qui vous aideront lors de vos prochaines étape
 
 - Rejoignez la [communauté Fabric](https://aka.ms/fabric-community) pour publier vos questions, partager vos commentaires et apprendre des autres.
 
-
 Lisez les blogs d’annonces plus détaillés sur l’expérience Fabric :
-
 
 - [Blog Expérience Data Factory dans Fabric](https://aka.ms/Fabric-Data-Factory-Blog) 
 
@@ -304,8 +300,6 @@ Lisez les blogs d’annonces plus détaillés sur l’expérience Fabric :
 - [Blog OneLake dans Fabric](https://aka.ms/Fabric-OneLake-Blog)
 
 - [Blog Intégration de Dataverse et Microsoft Fabric](https://aka.ms/Dataverse-Fabric-Blog)
-
-
 
 © 2023 Microsoft Corporation. Tous droits réservés.
 
