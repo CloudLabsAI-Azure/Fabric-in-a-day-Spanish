@@ -221,9 +221,7 @@ Dans notre scénario, les données collaborateur ne sont pas mises à jour dans 
 
 13. Dans le menu, cliquez sur l'icône **Accueil -> Enregistrer** pour enregistrer le pipeline.
 
-
     ![](Media/lab-05-17.png "Lab Environment")
-
 
 Notez les avantages d'utiliser le pipeline de données par rapport à la définition du flux de données sur une actualisation planifiée (comme nous l'avons fait pour les flux de données précédents) :
 
@@ -529,16 +527,16 @@ Ensuite, nous devons attendre 5 minutes/300 secondes si l'actualisation du flu
 
 8. La boîte de dialogue Générateur d'expressions de pipeline s'ouvre alors. Saisissez
    
-```
-@if(
-    greater(variables(‘varCounter’), 1),
-    if(equals(variables(‘varCounter’), 2),
-        mul(variables(‘varWaitTime’),15 ), 
-        mul(variables(‘varWaitTime’), 0)
-    ),
-    mul(variables(‘varWaitTime’),5 )
-)
-```
+   ```
+   @if(
+      greater(variables(‘varCounter’), 1),
+      if(equals(variables(‘varCounter’), 2),
+         mul(variables(‘varWaitTime’),15 ), 
+         mul(variables(‘varWaitTime’), 0)
+      ),
+      mul(variables(‘varWaitTime’),5 )
+   )
+   ```
 
 N'hésitez pas à saisir cette expression, à sélectionner les fonctions à l'aide du menu ou à la copier-coller.
 
