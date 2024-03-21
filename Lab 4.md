@@ -60,6 +60,8 @@ Você será direcionado para a **página do Fluxo de Dados**. Agora que estamos 
 7. Volte para o **navegador**.
 8. No **painel Dataflow**, selecione o **painel central** e pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
 
+   **Nota:** Se você estiver trabalhando no ambiente de laboratório, selecione as reticências no canto superior direito da tela. Use o controle deslizante para habilitar a **VM Native Clipboard**. Selecione OK na caixa de diálogo. Uma vez terminada a colagem da consulta, você pode desativar essa opção.
+
 ## Tarefa 2: Criar conexão com o Snowflake
 Observe que as cinco consultas foram coladas e agora você tem o painel Consultas à esquerda. Como não temos uma conexão criada para o Snowflake, você verá uma mensagem de aviso solicitando que configure a conexão.
 
@@ -169,6 +171,8 @@ Você será direcionado para a **página do Fluxo de Dados**. Agora que estamos 
 6. Volte para a **página Dataflow** no navegador.
 7. No **painel Dataflow**, pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
 
+   **Nota:** Se você estiver trabalhando no ambiente de laboratório, selecione as reticências no canto superior direito da tela. Use o controle deslizante para habilitar a **VM Native Clipboard**. Selecione OK na caixa de diálogo. Uma vez terminada a colagem da consulta, você pode desativar essa opção.
+
 ## Tarefa 6: Criar conexão com o Dataverse
 Observe que as cinco consultas foram coladas e agora você tem o painel Consultas à esquerda. Como não temos uma conexão criada para o Dataverse, você verá uma mensagem de aviso solicitando que configure a conexão.
 
@@ -251,6 +255,8 @@ Você será direcionado à **página do Fluxo de Dados**. Agora que estamos fami
  
 11.	Volte para a tela **Fluxo de Dados** no navegador.
 12.	No **painel Fluxo de Dados**, pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
+
+    **Nota:** Se você estiver trabalhando no ambiente de laboratório, selecione as reticências no canto superior direito da tela. Use o controle deslizante para habilitar a **VM Native Clipboard**. Selecione OK na caixa de diálogo. Uma vez terminada a colagem da consulta, você pode desativar essa opção.
 
 Observe se a consulta foi colada e se está disponível no painel esquerdo. Como não temos uma conexão criada para o SharePoint, você verá uma mensagem de aviso solicitando que configure a conexão.
 

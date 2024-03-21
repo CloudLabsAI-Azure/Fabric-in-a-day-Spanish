@@ -185,6 +185,8 @@ Precisamos mostrar State em seguida, mas as etapas estão ficando repetitivas. J
 4. Volte para para o **navegador**. Você deve estar no Fluxo de Dados em que estávamos trabalhando.
 5. No painel esquerdo, selecione o painel **Consultas** e pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
 
+   **Nota:** Se você estiver trabalhando no ambiente de laboratório, selecione as reticências no canto superior direito da tela. Use o controle deslizante para habilitar a **VM Native Clipboard**. Selecione OK na caixa de diálogo. Uma vez terminada a colagem da consulta, você pode desativar essa opção.
+
     ![](Media/3.25.png)
  
 Observe que a ADLS Base Folder (2) também é copiada. Isso ocorre porque States se refere à ADLS Base Folder no Power BI Desktop, mas já temos a ADLS Base Folder. Vamos resolver isso.
@@ -350,9 +352,11 @@ Para facilitar, vamos ver se podemos copiar as consultas do Power BI Desktop.
 6. Volte para a janela de Dataflow **df_Sales_ADLS** do navegador.
 7. No painel esquerdo, selecione o painel **Consultas** e pressione **Ctrl+V** (no momento, não é possível clicar com o botão direito do mouse em Colar).
 
+   **Nota:** Se você estiver trabalhando no ambiente de laboratório, selecione as reticências no canto superior direito da tela. Use o controle deslizante para habilitar a **VM Native Clipboard**. Selecione OK na caixa de diálogo. Uma vez terminada a colagem da consulta, você pode desativar essa opção.
+
     ![](Media/3.46.png)
  
-8. Conforme mencionado anteriormente, não estamos preparando nenhum desses dados. Portanto, **clique com o botão direito do mouse** nas consultas a seguir e selecione **Habilitar o preparo** para remover a marca de seleção.
+9. Conforme mencionado anteriormente, não estamos preparando nenhum desses dados. Portanto, **clique com o botão direito do mouse** nas consultas a seguir e selecione **Habilitar o preparo** para remover a marca de seleção.
 
     a.	Product
     
